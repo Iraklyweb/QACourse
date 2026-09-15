@@ -6,6 +6,13 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const outDir = path.join(root, 'docs');
 const failures = [];
 const htmlFiles = [];
+const forbiddenPublishedPatterns = [
+  [new RegExp(['Ka', 'ta\\s+Academy'].join(''), 'i'), 'прежнее латинское название'],
+  [new RegExp(['Ка', 'та\\s+Академ'].join(''), 'iu'), 'прежнее русское название'],
+  [new RegExp(['ka', 'ta\\.academy'].join(''), 'i'), 'технический адрес прежней платформы'],
+  [new RegExp(['К шагу прикреплено ', 'видео'].join(''), 'iu'), 'удалённое уведомление о видео'],
+  [new RegExp(['Видео не включено в локальную ', 'копию; сохранена только отметка о его наличии'].join(''), 'iu'), 'удалённое пояснение о видео'],
+];
 
 function walk(dir) {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -22,13 +29,16 @@ const unsafePatterns = [
   [/<script\b[^>]*\bsrc=["']https?:/i, 'внешний скрипт'],
   [/<[a-z][^>]*\bon[a-z]+\s*=/i, 'inline-обработчик события'],
   [/<[a-z][^>]*(?:href|src)=["']\s*javascript\s*:/i, 'javascript URL'],
-  [/https?:\/\/(?:platform|admin)\.kata\.academy\/api\//i, 'приватный API Kata Academy'],
+  [/https?:\/\/[^/"']*academy[^/"']*\/api\//i, 'приватный API учебной платформы'],
   [/\b(?:answerId|answerText|prevResult|accessToken|refreshToken)\b/i, 'закрытое поле выгрузки'],
 ];
 
 for (const file of htmlFiles) {
   const html = fs.readFileSync(file, 'utf8');
   for (const [pattern, label] of unsafePatterns) {
+    if (pattern.test(html)) failures.push(`${path.relative(root, file)}: ${label}`);
+  }
+  for (const [pattern, label] of forbiddenPublishedPatterns) {
     if (pattern.test(html)) failures.push(`${path.relative(root, file)}: ${label}`);
   }
   for (const tag of html.matchAll(/<(?:a|link|script)\b[^>]*>/gi)) {
@@ -46,7 +56,11 @@ for (const file of htmlFiles) {
 }
 
 const lessonFiles = htmlFiles.filter((file) => /step-\d{3}\.html$/.test(file));
-const search = JSON.parse(fs.readFileSync(path.join(outDir, 'assets', 'search-index.json'), 'utf8'));
+const searchText = fs.readFileSync(path.join(outDir, 'assets', 'search-index.json'), 'utf8');
+const search = JSON.parse(searchText);
+for (const [pattern, label] of forbiddenPublishedPatterns) {
+  if (pattern.test(searchText)) failures.push(`docs/assets/search-index.json: ${label}`);
+}
 if (lessonFiles.length !== 295) failures.push(`Страниц уроков: ${lessonFiles.length}, ожидалось 295`);
 if (search.length !== 295) failures.push(`Записей поиска: ${search.length}, ожидалось 295`);
 if (htmlFiles.length !== 301) failures.push(`HTML-файлов: ${htmlFiles.length}, ожидалось 301`);
