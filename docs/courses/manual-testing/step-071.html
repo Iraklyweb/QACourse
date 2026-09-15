@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Лекция &quot;SOAP: что это и зачем нужно?&quot; SOAP (Simple Object Access Protocol) — это протокол для обмена данными между приложениями. Он создавался с целью обес">
+  <meta name="color-scheme" content="dark light">
+  <title>Лекция «SOAP: что это и зачем нужно?» · QA Конспект</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body data-base="../../">
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="topbar">
+    <a class="brand" href="../../index.html" aria-label="QA Конспект, главная"><span class="brand-mark">QA</span><span>Конспект</span></a>
+    <nav aria-label="Основная навигация">
+      <a href="../../courses/manual-testing/">Ручное тестирование</a>
+      <a href="../../courses/mqa-base/">MQA Base</a>
+      <a href="../../courses/manual-testing/">Курс</a>
+    </nav>
+    <form class="search-mini" action="../../search.html" role="search">
+      <label class="sr-only" for="site-search-2">Поиск по курсам</label>
+      <input id="site-search-2" name="q" type="search" placeholder="Найти тему…" autocomplete="off">
+      <button type="submit" aria-label="Искать">⌕</button>
+    </form>
+  </header>
+  <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="index.html">← Структура курса</a><div class="rail-index"><span>071</span><small>из 168</small></div><p>SOAP</p><div class="rail-progress" aria-label="Шаг 1 из 3 в теме"><i style="width:33%"></i></div><small>1 / 3 в теме</small></aside>
+        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><a href="index.html">Ручное тестирование</a><span>/</span><span>Сети</span><span>/</span><span>SOAP</span></nav>
+          <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «SOAP: что это и зачем нужно?»</h1><p>Сети · SOAP</p></header>
+          <aside class="media-card"><span aria-hidden="true">▶</span><div><strong>К шагу прикреплено видео</strong><p>Видео не включено в локальную копию; сохранена только отметка о его наличии.</p></div></aside><div class="lesson-content"><h1><span>Лекция &laquo;SOAP: что это и зачем нужно?&raquo;</span></h1>
+
+<p>&nbsp;</p>
+
+<p><span><strong>SOAP (Simple Object Access Protocol)</strong> &mdash; это протокол для обмена данными между приложениями. Он создавался с целью обеспечить стандартный способ общения между системами, даже если они работают на разных платформах или написаны на разных языках программирования.</span></p>
+
+<p><span>SOAP базируется на строгих правилах, что делает его надёжным, особенно для сложных корпоративных систем, где важны безопасность, стабильность и чёткое выполнение операций.</span></p>
+
+<p>&nbsp;</p>
+
+<h3><span><strong>Что такое SOAP простыми словами?</strong></span></h3>
+
+<p><strong>SOAP </strong>&mdash; это как деловая переписка по строгому шаблону. У каждого сообщения есть чёткая структура: заголовок, тело и блок для ошибок.<span>. Он требует, чтобы обе стороны соблюдали определённый формат и структуру при передаче данных. Каждое сообщение формируется в виде XML, и этот XML строго регламентирован: в нём обязательно есть заголовок, тело сообщения и раздел для ошибок (если они возникнут).</span></p>
+
+<p>&nbsp;</p>
+
+<h3><span><strong>Почему SOAP такой строгий?</strong></span></h3>
+
+<p><span>Строгость SOAP оправдана тем, что он используется в системах, где ошибка недопустима, например:</span></p>
+
+<ul>
+	<li>
+	<p><span>Банковские переводы.</span></p>
+	</li>
+	<li>
+	<p><span>Работа с государственными структурами.</span></p>
+	</li>
+	<li>
+	<p><span>Корпоративные системы, где требуется сложная бизнес-логика.</span></p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><span><strong>Как это работает?</strong></span></h3>
+
+<ol>
+	<li>
+	<p><span><strong>Клиент отправляет запрос. </strong>SOAP-запрос формируется в формате XML. Например, клиент может запросить информацию о заказе, отправив XML с указанием номера заказа.</span></p>
+	</li>
+	<li>
+	<p><span><strong>Сервер обрабатывает запрос. </strong>Сервер читает XML, понимает, что от него требуется, выполняет нужные операции (например, извлекает данные из базы) и формирует ответ.</span></p>
+	</li>
+	<li>
+	<p><span><strong>Сервер возвращает ответ. </strong>Ответ тоже формируется в формате XML. Если всё прошло успешно, сервер возвращает результат. Если произошла ошибка, сервер добавляет информацию об ошибке в специальный раздел XML.</span></p>
+	</li>
+</ol>
+
+<p>&nbsp;</p>
+
+<p>SOAP обеспечивает стабильную и предсказуемую передачу данных благодаря строгим стандартам.<span>, обеспечивая чёткую структуру запросов и ответов. Это минимизирует риск ошибок при взаимодействии систем, особенно в сложных корпоративных и финансовых средах.</span></p>
+
+<p>Для защиты данных SOAP использует расширение WS-Security (Web Services Security), которое добавляет<span> механизмы защиты на уровне сообщений. <strong>WS-Security</strong> позволяет:</span></p>
+
+<ul>
+	<li>
+	<p><span><strong>Шифровать данные</strong>, чтобы предотвратить их перехват.</span></p>
+	</li>
+	<li>
+	<p><span><strong>Добавлять цифровые подписи</strong>, подтверждающие подлинность отправителя.</span></p>
+	</li>
+	<li>
+	<p><span><strong>Управлять доступом</strong>, ограничивая круг пользователей, которым разрешено отправлять и получать данные.</span></p>
+	</li>
+</ul>
+
+<p>В отличие от более гибких решений, в SOAP безопасность и надёжность встроены изначально &mdash; это часть его архитектуры<span>, что делает его удобным для систем, требующих строгого контроля передачи данных.</span></p>
+
+<h2>&nbsp;</h2>
+
+<h3><span><strong>Пример использования SOAP</strong></span></h3>
+
+<p><span>Допустим, вы тестируете систему перевода денег. Клиент отправляет запрос на перевод:</span></p>
+
+<ul>
+	<li>
+	<p><span>SOAP-запрос содержит информацию о счёте отправителя, счёте получателя и сумме перевода.</span></p>
+	</li>
+	<li>
+	<p><span>Сервер проверяет, достаточно ли средств, и выполняет операцию.</span></p>
+	</li>
+	<li>
+	<p><span>В ответ клиент получает сообщение об успешном переводе или информацию об ошибке.</span></p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><span><strong>Что нужно знать для работы и собеседования?</strong></span></h3>
+
+<ol>
+	<li>
+	<p><span><strong>SOAP использует XML. </strong>Все запросы и ответы строятся на этом формате, поэтому нужно понимать его базовую структуру.</span></p>
+	</li>
+	<li>
+	<p><span><strong>Основные части SOAP-сообщения:</strong></span></p>
+
+	<ul>
+		<li>
+		<p><span><strong>Header (заголовок):</strong> информация о безопасности или сессии.</span></p>
+		</li>
+		<li>
+		<p><span><strong>Body (тело):</strong> основное содержимое запроса или ответа.</span></p>
+		</li>
+		<li>
+		<p><span><strong>Fault (ошибки):</strong> сведения о проблемах, если что-то пошло не так.</span></p>
+		</li>
+	</ul>
+	</li>
+	<li>
+	<p><span><strong>SOAP надёжен и безопасен. </strong>Его используют там, где нужно гарантировать, что данные передаются точно и с защитой (например, с использованием WS-Security).</span></p>
+	</li>
+</ol>
+
+<p>&nbsp;</p>
+
+<h3><span><strong>Итог</strong></span></h3>
+
+<p><span><strong>SOAP</strong> &mdash; это первый протокол, который стал стандартом для обмена данными между системами. </span>Изначально SOAP использовался в корпоративных и государственных системах, где особенно важны чёткие стандарты и безопасность<span>. Несмотря на то, что сейчас всё больше систем переходят на REST из-за его простоты и гибкости, SOAP до сих пор используется, потому что многие старые системы построены на нём, и их обновление требует значительных усилий.</span></p>
+
+<p><span>Для собеседования важно показать понимание базовых принципов SOAP:</span></p>
+
+<ul>
+	<li>
+	<p><span>SOAP использует строгую структуру на основе XML.</span></p>
+	</li>
+	<li>
+	<p><span>Он был создан для обеспечения надёжного и безопасного обмена данными между системами.</span></p>
+	</li>
+	<li>
+	<p><span>Основные части SOAP-сообщения: заголовок (Header), тело (Body) и ошибки (Fault).</span></p>
+	</li>
+</ul>
+
+<p><span>На практике тестирование SOAP API можно проводить не только через специализированные инструменты вроде SoapUI, но и через Postman, который также поддерживает работу с XML-запросами. Понимание структуры и логики SOAP поможет вам тестировать старые системы и находить возможные ошибки.</span></p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><strong>Что нужно уметь рассказать</strong><br>
+&ndash; Термин &laquo;SOAP&raquo;<br>
+&ndash; SOAP использует XML для запросов и ответов<br>
+&ndash; Основные части SOAP-сообщения: Header, Body, Fault</p>
+
+<p><strong>Всё остальное &mdash; для общего развития</strong></p></div>
+          <nav class="pager" aria-label="Навигация между шагами"><a class="prev" href="step-070.html"><small>Назад</small><span>← Лекция «HTTP и HTTPS: основы для собеседования и работы»</span></a><a class="next" href="step-072.html"><small>Дальше</small><span>Лекция «WSDL: что это такое?» →</span></a></nav>
+        </article></div></main>
+  <footer><span>Локальная учебная копия · без отслеживания и отправки ответов</span><a href="../../about.html">О сайте</a></footer>
+</body>
+</html>

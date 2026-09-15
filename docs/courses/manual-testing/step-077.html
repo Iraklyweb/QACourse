@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Лекция &quot;JSON: основной формат передачи данных&quot; JSON (JavaScript Object Notation) — это универсальный текстовый формат для хранения и обмена данными между с">
+  <meta name="color-scheme" content="dark light">
+  <title>Лекция «JSON: основной формат передачи данных» · QA Конспект</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body data-base="../../">
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="topbar">
+    <a class="brand" href="../../index.html" aria-label="QA Конспект, главная"><span class="brand-mark">QA</span><span>Конспект</span></a>
+    <nav aria-label="Основная навигация">
+      <a href="../../courses/manual-testing/">Ручное тестирование</a>
+      <a href="../../courses/mqa-base/">MQA Base</a>
+      <a href="../../courses/manual-testing/">Курс</a>
+    </nav>
+    <form class="search-mini" action="../../search.html" role="search">
+      <label class="sr-only" for="site-search-2">Поиск по курсам</label>
+      <input id="site-search-2" name="q" type="search" placeholder="Найти тему…" autocomplete="off">
+      <button type="submit" aria-label="Искать">⌕</button>
+    </form>
+  </header>
+  <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="index.html">← Структура курса</a><div class="rail-index"><span>077</span><small>из 168</small></div><p>REST</p><div class="rail-progress" aria-label="Шаг 4 из 14 в теме"><i style="width:29%"></i></div><small>4 / 14 в теме</small></aside>
+        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><a href="index.html">Ручное тестирование</a><span>/</span><span>Сети</span><span>/</span><span>REST</span></nav>
+          <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «JSON: основной формат передачи данных»</h1><p>Сети · REST</p></header>
+          <aside class="media-card"><span aria-hidden="true">▶</span><div><strong>К шагу прикреплено видео</strong><p>Видео не включено в локальную копию; сохранена только отметка о его наличии.</p></div></aside><div class="lesson-content"><h1>Лекция &laquo;JSON: основной формат передачи данных&raquo;</h1>
+
+<p>&nbsp;</p>
+
+<p><strong>JSON (JavaScript Object Notation)</strong> &mdash; это универсальный текстовый формат для хранения и обмена данными между системами. Он используется в большинстве современных приложений, особенно для работы с API. JSON отличается простотой, компактностью и гибкостью, что сделало его стандартом для передачи данных в интернете.</p>
+
+<h2>&nbsp;</h2>
+
+<h3><strong>Что такое JSON и зачем он нужен?</strong></h3>
+
+<p>JSON был создан как лёгкий и читаемый формат, который позволяет структурировать данные. Его основная задача &mdash; передавать информацию в удобной для человека и машины форме.</p>
+
+<p>Пример: клиент (например, мобильное приложение) отправляет запрос на сервер, чтобы получить данные о продуктах. Сервер возвращает ответ в формате JSON:</p>
+
+<p><span>{</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;products&quot;: [</span></p>
+
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;{ &quot;id&quot;: 1, &quot;name&quot;: &quot;Ноутбук&quot;, &quot;price&quot;: 50000 },</span></p>
+
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;{ &quot;id&quot;: 2, &quot;name&quot;: &quot;Смартфон&quot;, &quot;price&quot;: 30000 }</span></p>
+
+<p><span>&nbsp;&nbsp;]</span></p>
+
+<p><span>}</span></p>
+
+<p>Этот ответ легко обрабатывается программой и отображается пользователю.</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Формат JSON</strong></h3>
+
+<p>JSON организует данные с помощью двух ключевых структур:</p>
+
+<ol>
+	<li>
+	<p><strong>Объекты:</strong></p>
+
+	<ul>
+		<li>
+		<p>Представляют собой набор пар <strong>&quot;ключ: значение&quot;</strong>, заключённых в фигурные скобки { }.</p>
+		</li>
+		<li>
+		<p><strong>Ключ</strong> всегда строка в двойных кавычках.</p>
+		</li>
+		<li>
+		<p><strong>Значение</strong> может быть любого типа: строкой, числом, логическим значением, массивом, объектом или null.</p>
+		</li>
+	</ul>
+	</li>
+</ol>
+
+<p>&nbsp;</p>
+
+<h3><strong>Пример объекта:</strong></h3>
+
+<h4><span>{</span></h4>
+
+<p><span>&nbsp;&nbsp;&quot;name&quot;: &quot;Иван&quot;,</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;age&quot;: 30,</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;isMarried&quot;: true</span></p>
+
+<p><span>}</span></p>
+
+<ol>
+	<li>
+	<p><strong>Массивы:</strong></p>
+
+	<ul>
+		<li>
+		<p>Это упорядоченные списки значений, заключённые в квадратные скобки [ ].</p>
+		</li>
+		<li>
+		<p>Элементы массива нумеруются с 0.</p>
+		</li>
+		<li>
+		<p>Массивы могут содержать любые типы данных, включая вложенные массивы и объекты.</p>
+		</li>
+	</ul>
+	</li>
+</ol>
+
+<p><strong>Пример массива:</strong></p>
+
+<p><span>[</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;Москва&quot;,</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;Санкт-Петербург&quot;,</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;Казань&quot;</span></p>
+
+<p><span>]</span></p>
+
+<p>JSON позволяет комбинировать объекты и массивы, создавая вложенные структуры данных любой сложности.</p>
+
+<p>Пример комбинированной структуры:</p>
+
+<p><span>{</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;products&quot;: [</span></p>
+
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;{ &quot;id&quot;: 1, &quot;name&quot;: &quot;Ноутбук&quot;, &quot;price&quot;: 50000 },</span></p>
+
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;{ &quot;id&quot;: 2, &quot;name&quot;: &quot;Смартфон&quot;, &quot;price&quot;: 30000 }</span></p>
+
+<p><span>&nbsp;&nbsp;],</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;totalProducts&quot;: 2</span></p>
+
+<p><span>}</span></p>
+
+<p><strong>Более детальный разбор объектов, массивов и поддерживаемых типов данных мы изучим в следующей теме.</strong></p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Почему JSON так популярен?</strong></h3>
+
+<ol>
+	<li>
+	<p><strong>Простота. </strong>JSON легко читается и пишется. Даже новички могут быстро понять его структуру.</p>
+	</li>
+	<li>
+	<p><strong>Компактность. </strong>JSON занимает меньше места, чем XML, благодаря отсутствию громоздких тегов, что делает его более быстрым для передачи.</p>
+	</li>
+	<li>
+	<p><strong>Широкая поддержка. </strong>JSON работает с большинством языков программирования и широко используется в веб-разработке.</p>
+	</li>
+	<li>
+	<p><strong>Гибкость. </strong>JSON поддерживает вложенность, что позволяет описывать сложные структуры данных.</p>
+	</li>
+</ol>
+
+<p>&nbsp;</p>
+
+<h3><strong>Как JSON используется в API?</strong></h3>
+
+<p>JSON &mdash; это стандартный формат передачи данных в REST API. Клиент отправляет запросы с параметрами в JSON, а сервер возвращает ответы в том же формате.</p>
+
+<p><strong>Пример взаимодействия:</strong></p>
+
+<p>Клиент отправляет запрос:<span> {</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;product&quot;: &quot;Кофемашина&quot;,</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;quantity&quot;: 2</span></p>
+
+<p><span>}</span></p>
+
+<p><span>Сервер отвечает: {</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;orderId&quot;: 12345,</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;status&quot;: &quot;confirmed&quot;</span></p>
+
+<p><span>}</span></p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Итог</strong></h3>
+
+<p>JSON &mdash; это лёгкий, универсальный и удобный формат для работы с данными. Его простота и гибкость сделали его стандартом для передачи информации в большинстве современных приложений. JSON &mdash; это фундамент, который нужно освоить, чтобы эффективно работать с API и разрабатывать качественные тесты.</p>
+
+<p>&nbsp;</p>
+
+<p><strong>Что нужно уметь рассказать</strong><br>
+&ndash; Термин &laquo;JSON (JavaScript Object Notation)&raquo;<br>
+&ndash; Структуры: объекты { } и массивы [ ]<br>
+&ndash; Поддерживаемые типы: строка, число, логический, null, объект, массив<br>
+&ndash; Используется в REST API как стандартный формат<br>
+&ndash; Отличие от XML: компактность и простота</p>
+
+<p><strong>Всё остальное &mdash; для общего развития</strong></p></div>
+          <nav class="pager" aria-label="Навигация между шагами"><a class="prev" href="step-076.html"><small>Назад</small><span>← Лекция «OpenAPI: что это и зачем нужно»</span></a><a class="next" href="step-078.html"><small>Дальше</small><span>Лекция «Формат JSON» →</span></a></nav>
+        </article></div></main>
+  <footer><span>Локальная учебная копия · без отслеживания и отправки ответов</span><a href="../../about.html">О сайте</a></footer>
+</body>
+</html>

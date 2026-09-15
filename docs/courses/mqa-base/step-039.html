@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Постусловие Постусловие — это состояние системы после выполнения проверки. Оно показывает, что изменилось, что осталось созданным и что нужно &amp;ldquo;убрать">
+  <meta name="color-scheme" content="dark light">
+  <title>Лекция «Постусловие» · QA Конспект</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body data-base="../../">
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="topbar">
+    <a class="brand" href="../../index.html" aria-label="QA Конспект, главная"><span class="brand-mark">QA</span><span>Конспект</span></a>
+    <nav aria-label="Основная навигация">
+      <a href="../../courses/manual-testing/">Ручное тестирование</a>
+      <a href="../../courses/mqa-base/">MQA Base</a>
+      <a href="../../courses/mqa-base/">Курс</a>
+    </nav>
+    <form class="search-mini" action="../../search.html" role="search">
+      <label class="sr-only" for="site-search-2">Поиск по курсам</label>
+      <input id="site-search-2" name="q" type="search" placeholder="Найти тему…" autocomplete="off">
+      <button type="submit" aria-label="Искать">⌕</button>
+    </form>
+  </header>
+  <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="index.html">← Структура курса</a><div class="rail-index"><span>039</span><small>из 127</small></div><p>Структура документа</p><div class="rail-progress" aria-label="Шаг 16 из 16 в теме"><i style="width:100%"></i></div><small>16 / 16 в теме</small></aside>
+        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><a href="index.html">MQA Base</a><span>/</span><span>Тестовая документация</span><span>/</span><span>Структура документа</span></nav>
+          <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «Постусловие»</h1><p>Тестовая документация · Структура документа</p></header>
+          <aside class="media-card"><span aria-hidden="true">▶</span><div><strong>К шагу прикреплено видео</strong><p>Видео не включено в локальную копию; сохранена только отметка о его наличии.</p></div></aside><div class="lesson-content"><div>
+
+<h1>Постусловие</h1>
+
+<div>
+<div>
+<div>
+<p><strong>Постусловие </strong>&mdash; это состояние системы после выполнения проверки.</p>
+
+<p>Оно показывает, что изменилось, что осталось созданным и что нужно &ldquo;убрать за собой&rdquo;, чтобы вернуть систему в исходное состояние.</p>
+</div>
+
+<div>
+<p><strong>Постусловие часто путают с ожидаемым результатом, но это разные вещи.</strong></p>
+
+<p>Ожидаемый результат описывает, как система должна сработать,</p>
+
+<p>а постусловие &mdash; в каком состоянии она осталась после выполнения проверки.</p>
+</div>
+
+<div>
+<p><strong>На практике поле &ldquo;Постусловие&rdquo; используется редко.</strong></p>
+
+<p>Его можно встретить в тест-кейсах или баг-репортах, если после проверки остаются данные, которые могут повлиять на другие сценарии: созданные записи, активные сессии или изменённые объекты.</p>
+
+<p>В чек-листах нет такого поля.</p>
+</div>
+
+<div>
+<p>&ldquo;Убирать за собой&rdquo; тоже требуется не всегда &mdash; всё зависит от специфики продукта, типа задач и командных договорённостей.</p>
+
+<p>Иногда тесты создают данные, которые потом используются в других проверках, и удалять их не нужно.</p>
+
+<p>А иногда &mdash; наоборот, важно не оставить лишнего, чтобы не сломать другим сценарии или не засорить базу.</p>
+</div>
+
+<div>
+<p><strong>Примеры:</strong></p>
+
+<p>Проверка работы магнитолы:</p>
+
+<p>&mdash; Предусловия: открыть дверь, включить зажигание.</p>
+
+<p>&mdash; Шаги: включить магнитолу, нажать &ldquo;Play&rdquo;.</p>
+
+<p>&mdash; Ожидаемый результат: музыка играет.</p>
+
+<p>&mdash; Постусловие: заглушить машину.</p>
+
+<p>Если не выполнить постусловие, аккумулятор разрядится &mdash; тест выполнен, но последствия нежелательные.</p>
+</div>
+
+<div>
+<p><strong>Проверка создания товара:</strong></p>
+
+<p>&mdash; Цель: создать новый товар.</p>
+
+<p>&mdash; Ожидаемый результат: товар создан.</p>
+
+<p>&mdash; Постусловие: удалить созданный товар, чтобы не засорять базу.</p>
+</div>
+
+<div>
+<p><strong>Проверка авторизации:</strong></p>
+
+<p>&mdash; Ожидаемый результат: пользователь успешно авторизован.</p>
+
+<p>&mdash; Постусловие: выйти из системы.</p>
+
+<p>Проверка записи в журнал действий здесь не постусловие &mdash; это уже отдельная проверка.</p>
+</div>
+
+<div>
+<p>Главная логика простая: постусловие не проверяет, а восстанавливает.</p>
+
+<p>После теста всё должно остаться в том же состоянии, в каком было до него.</p>
+
+<p>Это не всегда требуется, но когда нужно &mdash; лучше сделать, чем потом искать, кто оставил мусор.</p>
+</div>
+</div>
+</div>
+</div></div>
+          <nav class="pager" aria-label="Навигация между шагами"><a class="prev" href="step-038.html"><small>Назад</small><span>← Лекция «Пояснение к теме “Фактический результат (ФР)”»</span></a><a class="next" href="step-040.html"><small>Дальше</small><span>Лекция «Дополнительные поля (обработка и коммуникация)» →</span></a></nav>
+        </article></div></main>
+  <footer><span>Локальная учебная копия · без отслеживания и отправки ответов</span><a href="../../about.html">О сайте</a></footer>
+</body>
+</html>

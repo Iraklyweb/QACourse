@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Фактический результат Фактический результат — то, что происходит на самом деле при выполнении проверки. Если отличается от ожидаемого — значит, дефект найд">
+  <meta name="color-scheme" content="dark light">
+  <title>Лекция «Фактический результат» · QA Конспект</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body data-base="../../">
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="topbar">
+    <a class="brand" href="../../index.html" aria-label="QA Конспект, главная"><span class="brand-mark">QA</span><span>Конспект</span></a>
+    <nav aria-label="Основная навигация">
+      <a href="../../courses/manual-testing/">Ручное тестирование</a>
+      <a href="../../courses/mqa-base/">MQA Base</a>
+      <a href="../../courses/mqa-base/">Курс</a>
+    </nav>
+    <form class="search-mini" action="../../search.html" role="search">
+      <label class="sr-only" for="site-search-2">Поиск по курсам</label>
+      <input id="site-search-2" name="q" type="search" placeholder="Найти тему…" autocomplete="off">
+      <button type="submit" aria-label="Искать">⌕</button>
+    </form>
+  </header>
+  <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="index.html">← Структура курса</a><div class="rail-index"><span>037</span><small>из 127</small></div><p>Структура документа</p><div class="rail-progress" aria-label="Шаг 14 из 16 в теме"><i style="width:88%"></i></div><small>14 / 16 в теме</small></aside>
+        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><a href="index.html">MQA Base</a><span>/</span><span>Тестовая документация</span><span>/</span><span>Структура документа</span></nav>
+          <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «Фактический результат»</h1><p>Тестовая документация · Структура документа</p></header>
+          <aside class="media-card"><span aria-hidden="true">▶</span><div><strong>К шагу прикреплено видео</strong><p>Видео не включено в локальную копию; сохранена только отметка о его наличии.</p></div></aside><div class="lesson-content"><div>
+
+<h1>Фактический результат</h1>
+
+<div>
+<div>
+<div>
+<p><strong>Фактический результат</strong>&mdash; то, что происходит на самом деле при выполнении проверки. Если отличается от ожидаемого &mdash; значит, дефект найден.</p>
+</div>
+
+<div>
+<p><strong>Поле &ldquo;Фактический результат&rdquo; используется только в баг-репортах.</strong></p>
+
+<p>Оно фиксирует, как система повела себя в реальности &mdash; не как ожидалось, а как произошло на самом деле.</p>
+
+<p>Именно это расхождение между ожидаемым и фактическим поведением становится основой для дефекта.</p>
+</div>
+
+<div>
+<p><strong>В тест-кейсах и чек-листах отдельного поля для фактического результата нет.</strong></p>
+
+<p>Проверка завершается статусом. Если поведение системы совпадает с ожидаемым &mdash; тест считается пройденным &ldquo;Passed&rdquo;.</p>
+
+<p>Если результат отличается &mdash; проверка получает статус &ldquo;Failed&rdquo;, и на этом месте начинается новая часть работы: оформление баг-репорта.</p>
+</div>
+
+<div>
+<p>В тест-кейсе шаги проверки уже прописаны, поэтому их можно просто скопировать в баг-репорт и добавить описание фактического поведения системы.</p>
+
+<p>А в чек-листе шагов нет, и чтобы завести баг, придётся восстановить контекст вручную:</p>
+
+<p>что делал, в каком порядке, с какими данными и при каких условиях.</p>
+</div>
+
+<div>
+<p>В баг-репорте фактический результат описывается максимально конкретно:</p>
+
+<ul>
+	<li>что именно произошло, какое сообщение появилось, какие данные сохранились или исчезли,</li>
+	<li>что система сделала иначе, чем ожидалось.</li>
+</ul>
+
+<p>Фактический результат &mdash; это не оценка вроде &ldquo;сломалось&rdquo; или &ldquo;не работает&rdquo;,</p>
+
+<p>а точное наблюдение, по которому команда сможет воспроизвести ошибку.</p>
+</div>
+
+<div>
+<p><strong>Так формируется связка:</strong></p>
+
+<p>тест-кейсы и чек-листы показывают, что проверялось и чем закончилась проверка,</p>
+
+<p>а баг-репорт фиксирует, в чём именно система повела себя не так, как должна была.</p>
+</div>
+</div>
+</div>
+</div></div>
+          <nav class="pager" aria-label="Навигация между шагами"><a class="prev" href="step-036.html"><small>Назад</small><span>← Лекция «Пояснения к теме “Ожидаемый результат (ОР)”»</span></a><a class="next" href="step-038.html"><small>Дальше</small><span>Лекция «Пояснение к теме “Фактический результат (ФР)”» →</span></a></nav>
+        </article></div></main>
+  <footer><span>Локальная учебная копия · без отслеживания и отправки ответов</span><a href="../../about.html">О сайте</a></footer>
+</body>
+</html>

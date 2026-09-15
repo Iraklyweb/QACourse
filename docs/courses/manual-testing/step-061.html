@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Лекция &quot;Тонкий и толстый клиенты: что это и как понять?&quot; Когда мы говорим о клиентах в клиент-серверной архитектуре, важно понимать, где выполняется основн">
+  <meta name="color-scheme" content="dark light">
+  <title>Лекция «Тонкий и толстый клиенты: что это и как понять?» · QA Конспект</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body data-base="../../">
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="topbar">
+    <a class="brand" href="../../index.html" aria-label="QA Конспект, главная"><span class="brand-mark">QA</span><span>Конспект</span></a>
+    <nav aria-label="Основная навигация">
+      <a href="../../courses/manual-testing/">Ручное тестирование</a>
+      <a href="../../courses/mqa-base/">MQA Base</a>
+      <a href="../../courses/manual-testing/">Курс</a>
+    </nav>
+    <form class="search-mini" action="../../search.html" role="search">
+      <label class="sr-only" for="site-search-2">Поиск по курсам</label>
+      <input id="site-search-2" name="q" type="search" placeholder="Найти тему…" autocomplete="off">
+      <button type="submit" aria-label="Искать">⌕</button>
+    </form>
+  </header>
+  <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="index.html">← Структура курса</a><div class="rail-index"><span>061</span><small>из 168</small></div><p>Клиент-серверная архитектура</p><div class="rail-progress" aria-label="Шаг 3 из 9 в теме"><i style="width:33%"></i></div><small>3 / 9 в теме</small></aside>
+        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><a href="index.html">Ручное тестирование</a><span>/</span><span>Сети</span><span>/</span><span>Клиент-серверная архитектура</span></nav>
+          <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «Тонкий и толстый клиенты: что это и как понять?»</h1><p>Сети · Клиент-серверная архитектура</p></header>
+          <aside class="media-card"><span aria-hidden="true">▶</span><div><strong>К шагу прикреплено видео</strong><p>Видео не включено в локальную копию; сохранена только отметка о его наличии.</p></div></aside><div class="lesson-content"><h1><span>Лекция &laquo;Тонкий и толстый клиенты: что это и как понять?&raquo;</span></h1>
+
+<p>&nbsp;</p>
+
+<p><span>Когда мы говорим о клиентах в клиент-серверной архитектуре, важно понимать, где выполняется основная работа &mdash; на клиентской стороне (то есть на устройстве пользователя) или на сервере. Это помогает лучше разбираться в работе приложений и понимать, как они устроены.</span></p>
+
+<p>&nbsp;</p>
+
+<h3><span><strong>Тонкий клиент</strong></span></h3>
+
+<p><span><strong>Тонкий клиент</strong> &mdash; это приложение, которое минимально обрабатывает данные на своей стороне. Основная логика и вычисления происходят на сервере. <em>Как воспринимать:</em> Тонкий клиент &mdash; это посредник, который отправляет запросы на сервер и отображает пользователю результаты.</span></p>
+
+<p><span><em>Примеры:</em></span></p>
+
+<ul>
+	<li>
+	<p><span>Веб-браузеры (например, Chrome или Safari): они отправляют запросы на серверы сайтов и получают готовые страницы.</span></p>
+	</li>
+	<li>
+	<p>Мобильные приложения, которые просто передают данные на сервер и получают от него ответ.</p>
+	</li>
+</ul>
+
+<p><span><em>Плюсы:</em> Простота работы на клиентской стороне, минимальные требования к устройству. <em>Минусы:</em> Зависимость от скорости интернета и сервера.</span></p>
+
+<p>&nbsp;</p>
+
+<h3><span><strong>Толстый клиент</strong></span></h3>
+
+<p><span>Толстый клиент выполняет основную часть работы на своей стороне. Сервер, как правило, используется для хранения данных или авторизации, а большая часть логики реализована на клиенте. <em>Как воспринимать:</em> Толстый клиент сам решает большинство задач и минимально взаимодействует с сервером.</span></p>
+
+<p><span><em>Примеры:</em></span></p>
+
+<ul>
+	<li>
+	<p><span>Программы вроде Microsoft Word или Excel: вся работа происходит локально на вашем устройстве.</span></p>
+	</li>
+	<li>
+	<p><span>Игры, которые работают без подключения к серверу или используют его только для сохранения данных.</span></p>
+	</li>
+</ul>
+
+<p><span><em>Плюсы:</em> Меньшая нагрузка на сервер, возможность работать оффлайн. <em>Минусы:</em> Высокие требования к устройству пользователя.</span></p>
+
+<p>&nbsp;</p>
+
+<h3><span><strong>Как это связано с клиент-серверной архитектурой?</strong></span></h3>
+
+<p>Тонкие клиенты полагаются на сервер, а толстые &mdash; способны работать автономно. Знание этих отличий позволяет быстрее находить источник проблем: на клиенте или на сервере.</p>
+
+<p>&nbsp;</p>
+
+<p><strong>Что нужно уметь рассказать</strong><br>
+&ndash; Термин &laquo;Тонкий клиент&raquo;<br>
+&ndash; Термин &laquo;Толстый клиент&raquo;<br>
+&ndash; Где выполняется основная логика (клиент vs сервер)<br>
+&ndash; Главный плюс и минус каждого варианта</p>
+
+<p><strong>Всё остальное &mdash; для общего развития</strong></p></div>
+          <nav class="pager" aria-label="Навигация между шагами"><a class="prev" href="step-060.html"><small>Назад</small><span>← Лекция «Многозвенная архитектура: как справляться с миллиардами пользователей»</span></a><a class="next" href="step-062.html"><small>Дальше</small><span>Лекция «Что такое API, и как это понимать?» →</span></a></nav>
+        </article></div></main>
+  <footer><span>Локальная учебная копия · без отслеживания и отправки ответов</span><a href="../../about.html">О сайте</a></footer>
+</body>
+</html>

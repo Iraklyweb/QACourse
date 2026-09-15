@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Лекция &quot;Как определить, что нужно тестировать?&quot; Не всегда нужно проверять всё подряд — важно понимать, что именно изменилось . Важно внимательно изучить ве">
+  <meta name="color-scheme" content="dark light">
+  <title>Лекция «Как определить, что нужно тестировать?» · QA Конспект</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body data-base="../../">
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="topbar">
+    <a class="brand" href="../../index.html" aria-label="QA Конспект, главная"><span class="brand-mark">QA</span><span>Конспект</span></a>
+    <nav aria-label="Основная навигация">
+      <a href="../../courses/manual-testing/">Ручное тестирование</a>
+      <a href="../../courses/mqa-base/">MQA Base</a>
+      <a href="../../courses/manual-testing/">Курс</a>
+    </nav>
+    <form class="search-mini" action="../../search.html" role="search">
+      <label class="sr-only" for="site-search-2">Поиск по курсам</label>
+      <input id="site-search-2" name="q" type="search" placeholder="Найти тему…" autocomplete="off">
+      <button type="submit" aria-label="Искать">⌕</button>
+    </form>
+  </header>
+  <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="index.html">← Структура курса</a><div class="rail-index"><span>125</span><small>из 168</small></div><p>Заметки &quot;как тестировать&quot;</p><div class="rail-progress" aria-label="Шаг 4 из 10 в теме"><i style="width:40%"></i></div><small>4 / 10 в теме</small></aside>
+        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><a href="index.html">Ручное тестирование</a><span>/</span><span>Тестирование на деле</span><span>/</span><span>Заметки &quot;как тестировать&quot;</span></nav>
+          <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «Как определить, что нужно тестировать?»</h1><p>Тестирование на деле · Заметки &quot;как тестировать&quot;</p></header>
+          <aside class="media-card"><span aria-hidden="true">▶</span><div><strong>К шагу прикреплено видео</strong><p>Видео не включено в локальную копию; сохранена только отметка о его наличии.</p></div></aside><div class="lesson-content"><h1>Лекция &laquo;Как определить, что нужно тестировать?&raquo;</h1>
+
+<p>&nbsp;</p>
+
+<p>Не всегда нужно проверять всё подряд &mdash; важно понимать, <strong>что именно изменилось</strong>.</p>
+
+<p>Важно внимательно изучить весь функционал, когда задача попала к вам впервые. Это касается как <strong>полного тестирования всей формы</strong>, так и отдельных изменений в ней.</p>
+
+<p>Если перед вами <strong>новая форма</strong>, тестируйте её максимально тщательно. Проверяйте всё, что только возможно, <strong>если у вас есть на это время</strong>. Кто знает, насколько качественно её проверяли до вас? Возможно, именно вы найдёте ошибки, которые никто не заметил.</p>
+
+<p>Но если вам дали протестировать <strong>только новый функционал</strong>, например, <strong>добавление фото</strong>, а раньше вы уже тестировали эту форму, то <strong>заново тестировать всё подряд &mdash; бессмысленно</strong>. Большинство функций <strong>не изменилось</strong>, поэтому тратить время на повторное тестирование всех полей <strong>не нужно</strong>.</p>
+
+<p>В этом случае достаточно <strong>проверить только тот функционал, который добавили</strong>. Быстро проверили загрузку фото &mdash; и всё, задача закрыта.</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Как работает разработчик?</strong></h3>
+
+<p>Разработчик вносит изменения в код, <strong>добавляя новый функционал</strong> (например, загрузку фото) в нужное место, <strong>не переписывая весь код с нуля</strong>. Он изменяет <strong>только ту часть</strong>, которая касается задачи, а остальная система остаётся без изменений. После этого обновлённый код отправляется на проверку другим разработчикам.</p>
+
+<p>Перед тем как изменения попадут в основную версию приложения, их тестирует сначала <strong>сам разработчик</strong>, а затем команда. Только после этого код становится частью продукта.</p>
+
+<p>Как тестировщику понять, затронули ли изменения только один функционал или что-то ещё? Самый надёжный способ &mdash; <strong>спросить у разработчика</strong>. Если изменилась только одна часть кода &mdash; нет смысла тестировать всю форму заново.</p>
+
+<p>В будущем, когда вы освоите основы чтения кода, сможете <strong>самостоятельно находить изменения</strong>, ведь разработчики обычно оставляют <strong>комментарии</strong> или помечают, что именно они изменили. Это поможет точнее понимать, на что обращать внимание во время тестирования.</p>
+
+<p>&nbsp;</p>
+
+<p><strong>Но сейчас не усложняйте себе жизнь</strong> &mdash; просто уточните у разработчика, какие части системы были изменены.</p></div>
+          <nav class="pager" aria-label="Навигация между шагами"><a class="prev" href="step-124.html"><small>Назад</small><span>← Лекция «Нужно ли писать чек-листы и тест-кейсы на всё это?»</span></a><a class="next" href="step-126.html"><small>Дальше</small><span>Лекция «Как тестировать бэкенд?» →</span></a></nav>
+        </article></div></main>
+  <footer><span>Локальная учебная копия · без отслеживания и отправки ответов</span><a href="../../about.html">О сайте</a></footer>
+</body>
+</html>

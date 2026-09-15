@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Лекция &quot;Тестирование UI: Сравнение макетов и реального интерфейса&quot; При тестировании UI важно убедиться, что интерфейс соответствует дизайну. Это проверяетс">
+  <meta name="color-scheme" content="dark light">
+  <title>Лекция «Тестирование UI: Сравнение макетов и реального интерфейса» · QA Конспект</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body data-base="../../">
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="topbar">
+    <a class="brand" href="../../index.html" aria-label="QA Конспект, главная"><span class="brand-mark">QA</span><span>Конспект</span></a>
+    <nav aria-label="Основная навигация">
+      <a href="../../courses/manual-testing/">Ручное тестирование</a>
+      <a href="../../courses/mqa-base/">MQA Base</a>
+      <a href="../../courses/manual-testing/">Курс</a>
+    </nav>
+    <form class="search-mini" action="../../search.html" role="search">
+      <label class="sr-only" for="site-search-2">Поиск по курсам</label>
+      <input id="site-search-2" name="q" type="search" placeholder="Найти тему…" autocomplete="off">
+      <button type="submit" aria-label="Искать">⌕</button>
+    </form>
+  </header>
+  <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="index.html">← Структура курса</a><div class="rail-index"><span>122</span><small>из 168</small></div><p>Заметки &quot;как тестировать&quot;</p><div class="rail-progress" aria-label="Шаг 1 из 10 в теме"><i style="width:10%"></i></div><small>1 / 10 в теме</small></aside>
+        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><a href="index.html">Ручное тестирование</a><span>/</span><span>Тестирование на деле</span><span>/</span><span>Заметки &quot;как тестировать&quot;</span></nav>
+          <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «Тестирование UI: Сравнение макетов и реального интерфейса»</h1><p>Тестирование на деле · Заметки &quot;как тестировать&quot;</p></header>
+          <aside class="media-card"><span aria-hidden="true">▶</span><div><strong>К шагу прикреплено видео</strong><p>Видео не включено в локальную копию; сохранена только отметка о его наличии.</p></div></aside><div class="lesson-content"><h1>Лекция &laquo;Тестирование UI: Сравнение макетов и реального интерфейса&raquo;</h1>
+
+<p>&nbsp;</p>
+
+<p>При тестировании UI важно убедиться, что интерфейс соответствует дизайну. Это проверяется с помощью макетов, которые предоставляют дизайнеры (Figma, Zeplin, Adobe XD) и реального отображения в браузере или мобильном приложении.</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Как тестировать UI?</strong></h3>
+
+<ol>
+	<li>
+	<p><strong>Проверка расположения элементов</strong></p>
+
+	<ul>
+		<li>
+		<p>Совпадает ли расположение кнопок, полей, текстов, изображений с макетом?</p>
+		</li>
+		<li>
+		<p>Нет ли сдвигов или перекрытия элементов друг другом?</p>
+		</li>
+		<li>
+		<p>Не уехали ли элементы при изменении разрешения экрана?</p>
+		</li>
+	</ul>
+	</li>
+	<li>
+	<p><strong>Проверка размеров и отступов</strong></p>
+
+	<ul>
+		<li>
+		<p>Соответствуют ли размеры блоков макету?</p>
+		</li>
+		<li>
+		<p>Отступы между элементами одинаковые на всех страницах?</p>
+		</li>
+		<li>
+		<p>В мобильной версии элементы не сжались слишком сильно?</p>
+		</li>
+	</ul>
+	</li>
+	<li>
+	<p><strong>Шрифты и их стили</strong></p>
+
+	<ul>
+		<li>
+		<p>Размер шрифта совпадает с макетом?</p>
+		</li>
+		<li>
+		<p>Цвет и насыщенность текста (жирный, курсив) соответствуют макету?</p>
+		</li>
+		<li>
+		<p>Интервал между строками (line-height) такой же, как в макете?</p>
+		</li>
+	</ul>
+	</li>
+	<li>
+	<p><strong>Цвета и контрастность</strong></p>
+
+	<ul>
+		<li>
+		<p>Фон, кнопки, тексты используют правильные цвета?</p>
+		</li>
+		<li>
+		<p>Нет ли слишком низкого контраста, который делает текст плохо читаемым?</p>
+		</li>
+	</ul>
+	</li>
+	<li>
+	<p><strong>Изображения и иконки</strong></p>
+
+	<ul>
+		<li>
+		<p>Все изображения загружаются и отображаются?</p>
+		</li>
+		<li>
+		<p>Иконки и изображения соответствуют макету?</p>
+		</li>
+		<li>
+		<p>Картинки отображаются чётко, не размыты, не искажены?</p>
+		</li>
+	</ul>
+	</li>
+	<li>
+	<p><strong>Адаптивность (разные экраны и устройства)</strong></p>
+
+	<ul>
+		<li>
+		<p>Проверяем, как сайт выглядит на мобильных устройствах и планшетах.</p>
+		</li>
+		<li>
+		<p>Нет ли обрезанных или выходящих за границы экрана элементов?</p>
+		</li>
+		<li>
+		<p>Работает ли мобильное меню, (если оно предусмотрено в макете)?</p>
+		</li>
+	</ul>
+	</li>
+	<li>
+	<p><strong>Интерактивность и состояния элементов</strong></p>
+
+	<ul>
+		<li>
+		<p>Проверяем наведение (hover), нажатие (active) и фокус (focus).</p>
+		</li>
+		<li>
+		<p>При наведении на кнопку она меняет цвет, как в макете?</p>
+		</li>
+		<li>
+		<p>Поля ввода правильно подсвечиваются при ошибке?</p>
+		</li>
+	</ul>
+	</li>
+	<li>
+	<p><strong>Скроллы и высота страницы</strong></p>
+
+	<ul>
+		<li>
+		<p>Если в макете нет скролла, а он есть &mdash; это баг.</p>
+		</li>
+		<li>
+		<p>Если контент не влезает в блок и уходит за его границы &mdash; тоже баг.</p>
+		</li>
+	</ul>
+	</li>
+</ol>
+
+<p>&nbsp;</p>
+
+<h3><strong>Как сравнивать макет и реальный UI?</strong></h3>
+
+<ol>
+	<li>
+	<p><strong>Глазами</strong> (визуально сравниваем макет и страницу).</p>
+	</li>
+	<li>
+	<p><strong>DevTools (инструменты разработчика)</strong></p>
+
+	<ul>
+		<li>
+		<p>Проверяем размеры, отступы и шрифты во вкладке <strong>Elements &rarr; Inspector</strong>.</p>
+		</li>
+	</ul>
+	</li>
+</ol>
+
+<p>&nbsp;</p>
+
+<h3><strong>Что делать, если есть расхождения с макетом?</strong></h3>
+
+<ul>
+	<li>
+	<p><strong>Сначала проверить, это баг или нет.</strong> Иногда разработчик мог внести изменения по согласованию с дизайнером.</p>
+	</li>
+	<li>
+	<p><strong>Обсудить с командой.</strong> Если дизайнер подтвердил изменения &mdash; это не баг.</p>
+	</li>
+	<li>
+	<p><strong>Проверить в разных браузерах.</strong> В разных браузерах рендеринг может отличаться.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><strong>Итог</strong></h3>
+
+<p>Тестирование UI &mdash; это не только про &laquo;красиво или некрасиво&raquo;, но и про соответствие требованиям. Важно проверять расположение элементов, шрифты, цвета, размеры, адаптивность и интерактивность. Если что-то не совпадает с макетом &mdash; сначала уточнить, плановое ли это изменение, а потом уже заводить баг.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><strong>Что нужно уметь рассказать</strong><br>
+&ndash; Термин &laquo;UI-тестирование&raquo;<br>
+&ndash; Сравнение макета (Figma, Zeplin и др.) и реального интерфейса<br>
+&ndash; Проверка расположения элементов, размеров и отступов<br>
+&ndash; Проверка шрифтов и их стилей<br>
+&ndash; Проверка цветов и контрастности<br>
+&ndash; Проверка изображений и иконок<br>
+&ndash; Проверка адаптивности на разных устройствах<br>
+&ndash; Проверка интерактивности (hover, active, focus, ошибки ввода)<br>
+&ndash; Проверка наличия/отсутствия скролла и корректности отображения контента<br>
+&ndash; Использование DevTools для всего этого<br>
+&ndash; Алгоритм при расхождениях: уточнить у команды &rarr; если подтверждено дизайнером, не баг; если нет &mdash; заводим баг</p>
+
+<p><strong>Всё остальное &mdash; для общего развития</strong></p></div>
+          <nav class="pager" aria-label="Навигация между шагами"><a class="prev" href="step-121.html"><small>Назад</small><span>← Ревью по теме «Сети»</span></a><a class="next" href="step-123.html"><small>Дальше</small><span>Лекция «Как работать с требованиями» →</span></a></nav>
+        </article></div></main>
+  <footer><span>Локальная учебная копия · без отслеживания и отправки ответов</span><a href="../../about.html">О сайте</a></footer>
+</body>
+</html>

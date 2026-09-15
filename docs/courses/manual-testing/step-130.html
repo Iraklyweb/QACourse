@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Лекция &quot;Серверные проблемы: База данных и 500 ошибки&quot; 1. Сервер не отвечает (500 Internal Server Error) Проблема: Сервер не может обработать запрос из-за в">
+  <meta name="color-scheme" content="dark light">
+  <title>Лекция «Серверные проблемы: База данных и 500 ошибки»  · QA Конспект</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body data-base="../../">
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="topbar">
+    <a class="brand" href="../../index.html" aria-label="QA Конспект, главная"><span class="brand-mark">QA</span><span>Конспект</span></a>
+    <nav aria-label="Основная навигация">
+      <a href="../../courses/manual-testing/">Ручное тестирование</a>
+      <a href="../../courses/mqa-base/">MQA Base</a>
+      <a href="../../courses/manual-testing/">Курс</a>
+    </nav>
+    <form class="search-mini" action="../../search.html" role="search">
+      <label class="sr-only" for="site-search-2">Поиск по курсам</label>
+      <input id="site-search-2" name="q" type="search" placeholder="Найти тему…" autocomplete="off">
+      <button type="submit" aria-label="Искать">⌕</button>
+    </form>
+  </header>
+  <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="index.html">← Структура курса</a><div class="rail-index"><span>130</span><small>из 168</small></div><p>Заметки &quot;как тестировать&quot;</p><div class="rail-progress" aria-label="Шаг 9 из 10 в теме"><i style="width:90%"></i></div><small>9 / 10 в теме</small></aside>
+        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><a href="index.html">Ручное тестирование</a><span>/</span><span>Тестирование на деле</span><span>/</span><span>Заметки &quot;как тестировать&quot;</span></nav>
+          <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «Серверные проблемы: База данных и 500 ошибки» </h1><p>Тестирование на деле · Заметки &quot;как тестировать&quot;</p></header>
+          <aside class="media-card"><span aria-hidden="true">▶</span><div><strong>К шагу прикреплено видео</strong><p>Видео не включено в локальную копию; сохранена только отметка о его наличии.</p></div></aside><div class="lesson-content"><h1>Лекция &laquo;Серверные проблемы: База данных и 500 ошибки&raquo;</h1>
+
+<p>&nbsp;</p>
+
+<h3><strong>1. Сервер не отвечает (500 Internal Server Error)</strong></h3>
+
+<p><strong>Проблема: </strong>Сервер не может обработать запрос из-за внутренней ошибки, связанной с базой данных.</p>
+
+<p><strong>Пример: </strong>Клиент отправляет:</p>
+
+<p>POST /api/user HTTP/1.1&nbsp;&nbsp;</p>
+
+<p>Host: <a href="http://example.com/" target="_blank" rel="noopener noreferrer">example.com</a>&nbsp;&nbsp;</p>
+
+<p>Content-Type: application/json&nbsp;&nbsp;</p>
+
+<p>{</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&quot;name&quot;: &quot;John Doe&quot;,</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&quot;email&quot;: &quot;<a>john@example.com</a>&quot;</p>
+
+<p>}</p>
+
+<p>Сервер пытается выполнить:</p>
+
+<p>INSERT INTO users (name, email) VALUES (&#39;John Doe&#39;, &#39;<a>john@example.com</a>&#39;)</p>
+
+<p>Но база данных возвращает ошибку, например:</p>
+
+<p>Duplicate entry &#39;<a>john@example.com</a>&#39; for key &#39;email_unique&#39;</p>
+
+<p>Сервер возвращает:</p>
+
+<p>HTTP/1.1 500 Internal Server Error&nbsp;&nbsp;</p>
+
+<p>Content-Type: application/json&nbsp;&nbsp;</p>
+
+<p>{</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&quot;error&quot;: &quot;Internal Server Error. Database constraint violation.&quot;</p>
+
+<p>}</p>
+
+<p><strong>Как проверить:</strong></p>
+
+<ol>
+	<li>
+	<p>Убедитесь, что данные не нарушают уникальные ограничения базы (например, уникальные ключи).</p>
+	</li>
+	<li>
+	<p>Проверьте, правильно ли составлен SQL-запрос.</p>
+	</li>
+</ol>
+
+<p><strong>Последствия:</strong></p>
+
+<ul>
+	<li>
+	<p>Запрос не выполняется.</p>
+	</li>
+	<li>
+	<p>Клиент получает общую ошибку сервера.</p>
+	</li>
+</ul>
+
+<p><strong>Возможные статус-коды:</strong></p>
+
+<ul>
+	<li>
+	<p>500 Internal Server Error.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><strong>2. Сервер не может соединиться с базой данных</strong></h3>
+
+<p><strong>Проблема: </strong>Сервер не может установить соединение с базой данных.</p>
+
+<p><strong>Пример: </strong>Клиент отправляет:</p>
+
+<p>GET /api/products HTTP/1.1&nbsp;&nbsp;</p>
+
+<p>Host: <a href="http://example.com/" target="_blank" rel="noopener noreferrer">example.com</a>&nbsp;&nbsp;</p>
+
+<p>Сервер пытается подключиться:</p>
+
+<p>Connection to database failed: Host not found.</p>
+
+<p>Сервер возвращает:</p>
+
+<p>HTTP/1.1 500 Internal Server Error&nbsp;&nbsp;</p>
+
+<p>Content-Type: application/json&nbsp;&nbsp;</p>
+
+<p>{</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&quot;error&quot;: &quot;Database connection failed.&quot;</p>
+
+<p>}</p>
+
+<p><strong>Как проверить:</strong></p>
+
+<ol>
+	<li>
+	<p>Проверьте состояние базы данных (работает ли она).</p>
+	</li>
+	<li>
+	<p>Убедитесь, что сервер имеет доступ к базе (правильные настройки хоста, порта, логина и пароля). Делает это DevOps или разработчик, а вы просто можете предложить вариант посмотреть.</p>
+	</li>
+</ol>
+
+<p><strong>Последствия:</strong></p>
+
+<ul>
+	<li>
+	<p>Сервер не может обработать запрос.</p>
+	</li>
+	<li>
+	<p>Клиент получает ошибку подключения.</p>
+	</li>
+</ul>
+
+<p><strong>Возможные статус-коды:</strong></p>
+
+<ul>
+	<li>
+	<p>500 Internal Server Error.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><strong>3. SQL-запрос выполняется некорректно</strong></h3>
+
+<p><strong>Проблема: </strong>Запрос к базе данных содержит синтаксическую ошибку.</p>
+
+<p><strong>Пример: </strong>Клиент отправляет:</p>
+
+<p>GET /api/orders HTTP/1.1&nbsp;&nbsp;</p>
+
+<p>Host: <a href="http://example.com/" target="_blank" rel="noopener noreferrer">example.com</a>&nbsp;&nbsp;</p>
+
+<p>Сервер выполняет:</p>
+
+<p>SELECT * FORM orders</p>
+
+<p>Ошибка в SQL:</p>
+
+<p>You have an error in your SQL syntax near &#39;FORM orders&#39;.</p>
+
+<p>Сервер возвращает:</p>
+
+<p>HTTP/1.1 500 Internal Server Error&nbsp;&nbsp;</p>
+
+<p>Content-Type: application/json&nbsp;&nbsp;</p>
+
+<p>{</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&quot;error&quot;: &quot;Database query failed.&quot;</p>
+
+<p>}</p>
+
+<p><strong>Как проверить:</strong></p>
+
+<ol>
+	<li>
+	<p>Проверьте синтаксис SQL-запроса.</p>
+	</li>
+	<li>
+	<p>Убедитесь, что запрос корректно формируется в коде сервера.</p>
+	</li>
+</ol>
+
+<p><strong>Последствия:</strong></p>
+
+<ul>
+	<li>
+	<p>Данные не возвращаются.</p>
+	</li>
+	<li>
+	<p>Клиент получает сообщение о внутренней ошибке сервера.</p>
+	</li>
+</ul>
+
+<p><strong>Возможные статус-коды:</strong></p>
+
+<ul>
+	<li>
+	<p>500 Internal Server Error.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><strong>4. Сервер обращается к несуществующей таблице или колонке</strong></h3>
+
+<p><strong>Проблема: </strong>Сервер пытается выполнить запрос к базе, но указанная таблица или колонка не существует.</p>
+
+<p><strong>Пример: </strong>Клиент отправляет:</p>
+
+<p>GET /api/invoices HTTP/1.1&nbsp;&nbsp;</p>
+
+<p>Host: <a href="http://example.com/" target="_blank" rel="noopener noreferrer">example.com</a>&nbsp;&nbsp;</p>
+
+<p>Сервер выполняет:</p>
+
+<p>SELECT * FROM invoices</p>
+
+<p>Ошибка базы:</p>
+
+<p>Table &#39;invoices&#39; doesn&#39;t exist.</p>
+
+<p>Сервер возвращает:</p>
+
+<p>HTTP/1.1 500 Internal Server Error&nbsp;&nbsp;</p>
+
+<p>Content-Type: application/json&nbsp;&nbsp;</p>
+
+<p>{</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&quot;error&quot;: &quot;Database table not found.&quot;</p>
+
+<p>}</p>
+
+<p><strong>Как проверить:</strong></p>
+
+<ol>
+	<li>
+	<p>Проверьте существование таблицы или колонки в базе данных.</p>
+	</li>
+	<li>
+	<p>Убедитесь, что запрос сформирован корректно.</p>
+	</li>
+</ol>
+
+<p><strong>Последствия:</strong></p>
+
+<ul>
+	<li>
+	<p>Клиент получает ошибку сервера.</p>
+	</li>
+	<li>
+	<p>Запрос не выполняется.</p>
+	</li>
+</ul>
+
+<p><strong>Возможные статус-коды:</strong></p>
+
+<ul>
+	<li>
+	<p>500 Internal Server Error.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><strong>5. Некорректные данные возвращаются из базы данных</strong></h3>
+
+<p><strong>Проблема: </strong>Сервер возвращает данные, но они некорректны из-за ошибки в запросе или неправильной обработки.</p>
+
+<p><strong>Пример: </strong>Клиент отправляет:</p>
+
+<p>GET /api/users HTTP/1.1&nbsp;&nbsp;</p>
+
+<p>Host: <a href="http://example.com/" target="_blank" rel="noopener noreferrer">example.com</a>&nbsp;&nbsp;</p>
+
+<p>Сервер выполняет:</p>
+
+<p>SELECT id, name FROM users</p>
+
+<p>Ошибка в обработке:</p>
+
+<ul>
+	<li>
+	<p>Сервер забывает вернуть поле email.</p>
+	</li>
+</ul>
+
+<p>Сервер возвращает:</p>
+
+<p>HTTP/1.1 200 OK&nbsp;&nbsp;</p>
+
+<p>Content-Type: application/json&nbsp;&nbsp;</p>
+
+<p>[</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;{</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;id&quot;: 1,</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;name&quot;: &quot;John Doe&quot;</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+
+<p>]</p>
+
+<p>Ожидается:</p>
+
+<p>HTTP/1.1 200 OK&nbsp;&nbsp;</p>
+
+<p>Content-Type: application/json&nbsp;&nbsp;</p>
+
+<p>[</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;{</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;id&quot;: 1,</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;name&quot;: &quot;John Doe&quot;,</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;email&quot;: &quot;<a>john@example.com</a>&quot;</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+
+<p>]</p>
+
+<p><strong>Как проверить:</strong></p>
+
+<ol>
+	<li>
+	<p>Сравните возвращённые данные с ожидаемым форматом.</p>
+	</li>
+	<li>
+	<p>Убедитесь, что сервер корректно формирует запрос к базе и обрабатывает ответ.</p>
+	</li>
+</ol>
+
+<p><strong>Последствия:</strong></p>
+
+<ul>
+	<li>
+	<p>Клиент не получает необходимых данных.</p>
+	</li>
+	<li>
+	<p>Функционал приложения нарушается.</p>
+	</li>
+</ul>
+
+<p><strong>Возможные статус-коды:</strong></p>
+
+<ul>
+	<li>
+	<p>200 OK, но данные некорректны.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><strong>6. Взаимодействие с несколькими базами или сервисами</strong></h3>
+
+<p><strong>Проблема: </strong>Сервер отправляет запросы в несколько баз данных или сервисов, но один из них недоступен.</p>
+
+<p><strong>Пример: </strong>Клиент отправляет:</p>
+
+<p>POST /api/checkout HTTP/1.1&nbsp;&nbsp;</p>
+
+<p>Host: <a href="http://example.com/" target="_blank" rel="noopener noreferrer">example.com</a>&nbsp;&nbsp;</p>
+
+<p>Content-Type: application/json&nbsp;&nbsp;</p>
+
+<p>{</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&quot;cartId&quot;: 12345</p>
+
+<p>}</p>
+
+<p>Сервер выполняет:</p>
+
+<ol>
+	<li>
+	<p>Запрос к базе cart для получения содержимого корзины.</p>
+	</li>
+	<li>
+	<p>Запрос к базе inventory для проверки доступности товаров.</p>
+	</li>
+	<li>
+	<p>Один из запросов возвращает ошибку:</p>
+	</li>
+</ol>
+
+<p>Connection to database &#39;inventory&#39; timed out.</p>
+
+<p>Сервер возвращает:</p>
+
+<p>HTTP/1.1 500 Internal Server Error&nbsp;&nbsp;</p>
+
+<p>Content-Type: application/json&nbsp;&nbsp;</p>
+
+<p>{</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&quot;error&quot;: &quot;Failed to complete checkout process. Try again later.&quot;</p>
+
+<p>}</p>
+
+<p><strong>Как проверить:</strong></p>
+
+<ol>
+	<li>
+	<p>Убедитесь, что все базы данных или сервисы доступны.</p>
+	</li>
+	<li>
+	<p>Проверьте, правильно ли настроена логика обработки зависимостей.</p>
+	</li>
+</ol>
+
+<p><strong>Последствия:</strong></p>
+
+<ul>
+	<li>
+	<p>Операция не выполняется.</p>
+	</li>
+	<li>
+	<p>Клиент получает сообщение об ошибке.</p>
+	</li>
+</ul>
+
+<p><strong>Возможные статус-коды:</strong></p>
+
+<ul>
+	<li>
+	<p>500 Internal Server Error</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><strong>Что нужно уметь рассказать</strong><br>
+Нужно уметь как можно больше пунктов назвать и уметь их объяснить</p></div>
+          <nav class="pager" aria-label="Навигация между шагами"><a class="prev" href="step-129.html"><small>Назад</small><span>← Лекция «Клиентские проблемы» </span></a><a class="next" href="step-131.html"><small>Дальше</small><span>Обратная связь по модулю «Тестирование на деле»  →</span></a></nav>
+        </article></div></main>
+  <footer><span>Локальная учебная копия · без отслеживания и отправки ответов</span><a href="../../about.html">О сайте</a></footer>
+</body>
+</html>

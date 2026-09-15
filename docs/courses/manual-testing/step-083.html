@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Лекция &quot;URI, URL и URN: в чём разница и как это понимать?&quot; В тестировании API часто встречаются три термина: URI, URL и URN. Разберём их, чтобы стало понят">
+  <meta name="color-scheme" content="dark light">
+  <title>Лекция «URI, URL и URN: в чём разница и как это понимать?» · QA Конспект</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body data-base="../../">
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="topbar">
+    <a class="brand" href="../../index.html" aria-label="QA Конспект, главная"><span class="brand-mark">QA</span><span>Конспект</span></a>
+    <nav aria-label="Основная навигация">
+      <a href="../../courses/manual-testing/">Ручное тестирование</a>
+      <a href="../../courses/mqa-base/">MQA Base</a>
+      <a href="../../courses/manual-testing/">Курс</a>
+    </nav>
+    <form class="search-mini" action="../../search.html" role="search">
+      <label class="sr-only" for="site-search-2">Поиск по курсам</label>
+      <input id="site-search-2" name="q" type="search" placeholder="Найти тему…" autocomplete="off">
+      <button type="submit" aria-label="Искать">⌕</button>
+    </form>
+  </header>
+  <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="index.html">← Структура курса</a><div class="rail-index"><span>083</span><small>из 168</small></div><p>REST</p><div class="rail-progress" aria-label="Шаг 10 из 14 в теме"><i style="width:71%"></i></div><small>10 / 14 в теме</small></aside>
+        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><a href="index.html">Ручное тестирование</a><span>/</span><span>Сети</span><span>/</span><span>REST</span></nav>
+          <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «URI, URL и URN: в чём разница и как это понимать?»</h1><p>Сети · REST</p></header>
+          <aside class="media-card"><span aria-hidden="true">▶</span><div><strong>К шагу прикреплено видео</strong><p>Видео не включено в локальную копию; сохранена только отметка о его наличии.</p></div></aside><div class="lesson-content"><h1>Лекция &laquo;URI, URL и URN: в чём разница и как это понимать?&raquo;</h1>
+
+<p>&nbsp;</p>
+
+<p>В тестировании API часто встречаются три термина: URI, URL и URN. Разберём их, чтобы стало понятно, чем они отличаются.</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>URI (Uniform Resource Identifier) &ndash; общий термин</strong></h3>
+
+<p><strong>URI &ndash;</strong> это просто идентификатор ресурса. Это общий термин, который включает в себя URL и URN.</p>
+
+<p><strong>Примеры URI:</strong></p>
+
+<p><a href="https://example.com/" target="_blank" rel="noopener noreferrer"><strong>https://example.com/</strong></a></p>
+
+<p><a href="https://example.com/blog/posts/12345" target="_blank" rel="noopener noreferrer"><strong>https://example.com/blog/posts/12345</strong></a></p>
+
+<p><strong>urn:blog:post:12345</strong></p>
+
+<p>Все три примера &mdash; это URI, потому что они идентифицируют ресурс. Но первый и второй &mdash; это URL, а третий &mdash; URN.</p>
+
+<ul>
+	<li>
+	<p><strong>URL</strong> &mdash; адрес, который указывает, где ресурс находится.</p>
+	</li>
+	<li>
+	<p><strong>URN</strong> &mdash; уникальное имя ресурса, которое не указывает его местоположение.</p>
+	</li>
+</ul>
+
+<p><strong>URI = URL + URN</strong></p>
+
+<p>&nbsp;</p>
+
+<h3><strong>URL (Uniform Resource Locator) &ndash; адрес ресурса</strong></h3>
+
+<p><strong>URL &ndash; </strong>это частный случай URI, который всегда указывает, где находится ресурс и как его получить.</p>
+
+<p><strong>Примеры URL:</strong></p>
+
+<p><a href="https://example.com/" target="_blank" rel="noopener noreferrer"><strong>https://example.com/</strong></a></p>
+
+<p><a href="https://example.com/blog/posts/12345" target="_blank" rel="noopener noreferrer"><strong>https://example.com/blog/posts/12345</strong></a></p>
+
+<p><strong>Разберём второй пример:</strong></p>
+
+<ul>
+	<li>
+	<p><strong>https:// &mdash; протокол, который указывает, как получить ресурс.</strong></p>
+	</li>
+	<li>
+	<p><a href="http://example.com/" target="_blank" rel="noopener noreferrer"><strong>example.com</strong></a><strong> &mdash; домен, где находится ресурс.</strong></p>
+	</li>
+	<li>
+	<p><strong>/blog/posts/12345 &mdash; путь к конкретному объекту.</strong></p>
+	</li>
+</ul>
+
+<p>Это не просто идентификатор ресурса, а способ его найти и получить.</p>
+
+<p>URL &mdash; это адрес ресурса, который мы видим в браузере. Он отвечает на вопросы: &quot;Где это находится?&quot; и &quot;Как туда попасть?&quot;</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>URN (Uniform Resource Name) &ndash; уникальное имя ресурса</strong></h3>
+
+<p><strong>URN </strong>&ndash; это уникальное имя ресурса, которое не содержит информации о его местоположении и способе получения.</p>
+
+<p><strong>Пример URN:</strong></p>
+
+<p><strong>urn:blog:post:12345</strong></p>
+
+<p><strong>Разберём:</strong></p>
+
+<ul>
+	<li>
+	<p><strong>urn: &mdash; обозначает, что это уникальное имя, а не адрес.</strong></p>
+	</li>
+	<li>
+	<p><strong>blog:post:12345 &mdash; уникальный идентификатор записи.</strong></p>
+	</li>
+</ul>
+
+<p>URN не даёт информации о том, где этот ресурс находится и как его получить.</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Разница между URI и URL на понятном примере</strong></h3>
+
+<h4><strong>Библиотека:</strong></h4>
+
+<ul>
+	<li>
+	<p><strong>URI &mdash; это любой способ идентифицировать книгу: её ISBN, название или адрес на полке.</strong></p>
+	</li>
+	<li>
+	<p><strong>URL &mdash; это конкретный адрес книги в библиотеке: &quot;Библиотека №5, 3-й этаж, ряд 4, полка 2&quot;.</strong></p>
+	</li>
+	<li>
+	<p><strong>URN &mdash; это уникальное имя книги, например, её ISBN 978-5-699-12014-7.</strong></p>
+	</li>
+</ul>
+
+<h4><strong>Веб-сайты:</strong></h4>
+
+<p><strong>URI </strong>&mdash; это любой способ идентифицировать страницу.</p>
+
+<p><strong>URL </strong>&mdash; это конкретный веб-адрес, например:<strong> </strong><a href="https://example.com/blog/posts/12345" target="_blank" rel="noopener noreferrer"><strong>https://example.com/blog/posts/12345</strong></a></p>
+
+<p>URN &mdash; это уникальный идентификатор записи, например:<strong> urn:blog:post:12345</strong></p>
+
+<p>Каждый URL &mdash; это URI, но не каждый URI &mdash; это URL.</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Почему в реальной жизни используется URL, а не URN?</strong></h3>
+
+<p>URN был создан для уникальной идентификации ресурсов, но в реальной работе почти не используется, потому что:</p>
+
+<ul>
+	<li>
+	<p>URL универсальнее &mdash; он не только идентифицирует ресурс, но и указывает, где его искать.</p>
+	</li>
+	<li>
+	<p>URN чаще применяется внутри систем, например, в базах данных или сложных архитектурах, где важно хранить уникальные идентификаторы, но само местоположение не фиксировано.</p>
+	</li>
+</ul>
+
+<p><strong>Пример:</strong></p>
+
+<p><a href="https://example.com/blog/posts/12345" target="_blank" rel="noopener noreferrer"><strong>https://example.com/blog/posts/12345</strong></a></p>
+
+<p>Здесь 12345 выполняет роль URN, но сам URL даёт ещё и путь к записи.</p>
+
+<p>В тестировании API вам в основном придётся работать именно с URL, потому что это реальный способ доступа к ресурсам.</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Итог</strong></h3>
+
+<p>На собеседованиях вопросы про URI, URL и URN встречаются редко, потому что в реальной работе тестировщику достаточно понимать, как устроены URL и как API взаимодействуют с ресурсами. URN почти не используется в повседневной практике, поэтому глубоко в него погружаться не нужно.</p>
+
+<p>Не заморачивайтесь. В реальной работе воспринимайте это просто как URL.</p></div>
+          <nav class="pager" aria-label="Навигация между шагами"><a class="prev" href="step-082.html"><small>Назад</small><span>← Лекция «Вопросы про REST и SOAP на собеседовании»</span></a><a class="next" href="step-084.html"><small>Дальше</small><span>Лекция «Разница между ресурсом, эндпоинтом и ручкой» →</span></a></nav>
+        </article></div></main>
+  <footer><span>Локальная учебная копия · без отслеживания и отправки ответов</span><a href="../../about.html">О сайте</a></footer>
+</body>
+</html>

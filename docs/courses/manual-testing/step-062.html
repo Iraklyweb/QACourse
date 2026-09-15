@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Лекция &quot;Что такое API, и как это понимать?&quot; API (Application Programming Interface (интерфейс)) — это способ общения между разными программами. Одна програ">
+  <meta name="color-scheme" content="dark light">
+  <title>Лекция «Что такое API, и как это понимать?» · QA Конспект</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body data-base="../../">
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="topbar">
+    <a class="brand" href="../../index.html" aria-label="QA Конспект, главная"><span class="brand-mark">QA</span><span>Конспект</span></a>
+    <nav aria-label="Основная навигация">
+      <a href="../../courses/manual-testing/">Ручное тестирование</a>
+      <a href="../../courses/mqa-base/">MQA Base</a>
+      <a href="../../courses/manual-testing/">Курс</a>
+    </nav>
+    <form class="search-mini" action="../../search.html" role="search">
+      <label class="sr-only" for="site-search-2">Поиск по курсам</label>
+      <input id="site-search-2" name="q" type="search" placeholder="Найти тему…" autocomplete="off">
+      <button type="submit" aria-label="Искать">⌕</button>
+    </form>
+  </header>
+  <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="index.html">← Структура курса</a><div class="rail-index"><span>062</span><small>из 168</small></div><p>Клиент-серверная архитектура</p><div class="rail-progress" aria-label="Шаг 4 из 9 в теме"><i style="width:44%"></i></div><small>4 / 9 в теме</small></aside>
+        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><a href="index.html">Ручное тестирование</a><span>/</span><span>Сети</span><span>/</span><span>Клиент-серверная архитектура</span></nav>
+          <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «Что такое API, и как это понимать?»</h1><p>Сети · Клиент-серверная архитектура</p></header>
+          <aside class="media-card"><span aria-hidden="true">▶</span><div><strong>К шагу прикреплено видео</strong><p>Видео не включено в локальную копию; сохранена только отметка о его наличии.</p></div></aside><div class="lesson-content"><h1><span>Лекция &laquo;Что такое API, и как это понимать?&raquo;</span></h1>
+
+<p>&nbsp;</p>
+
+<p><span>API (Application Programming Interface (интерфейс)) &mdash; это способ общения между разными программами. Одна программа отправляет запрос, другая отвечает. Всё сводится к обмену данными в установленном формате, чтобы обе стороны понимали друг друга. Это упрощает взаимодействие между разными системами и позволяет работать без глубокого понимания их внутреннего устройства.</span></p>
+
+<p>&nbsp;</p>
+
+<h3><span><strong>Какие бывают виды API?</strong></span></h3>
+
+<p><span>Существует несколько видов API, которые различаются по принципам работы и областям применения. Вот основные:</span></p>
+
+<ol>
+	<li>
+	<p><span><strong>REST (Representational State Transfer): </strong>Разработан в начале 2000-х годов и стал стандартом для веб-приложений благодаря своей простоте и гибкости. REST использует стандартные HTTP-методы (GET, POST, PUT, DELETE и др.) и возвращает данные обычно в формате JSON или XML. Основной акцент сделан на простоте и лёгкости интеграции. Сегодня REST используется в большинстве современных приложений, так как он идеально подходит для работы с веб-сервисами.</span></p>
+	</li>
+	<li>
+	<p><span><strong>SOAP (Simple Object Access Protocol): </strong>Появился в конце 1990-х годов и стал первым широко используемым стандартом для взаимодействия между системами. SOAP работает с форматом XML и строго следует заранее определённым правилам. Благодаря высокой надёжности и встроенной поддержке безопасности, его часто используют в банковской и корпоративной сферах, где важна строгая структура и контроль.</span></p>
+	</li>
+	<li>
+	<p><span><strong>GraphQL: </strong>Разработан Facebook в 2015 году как более гибкая альтернатива REST. В отличие от REST, где клиент получает фиксированный набор данных, GraphQL позволяет запрашивать только те данные, которые вам нужны. Этот подход удобен для сложных приложений, где требуется минимизировать объём передаваемой информации.</span></p>
+	</li>
+	<li>
+	<p><span><strong>gRPC: </strong>Создан Google в 2015 году для высокопроизводительных распределённых систем. gRPC использует бинарный протокол для передачи данных, что делает его быстрее, чем REST и GraphQL. Этот вид API подходит для микросервисной архитектуры, где важна скорость передачи данных и эффективность.</span></p>
+	</li>
+</ol>
+
+<h2>&nbsp;</h2>
+
+<h3><span><strong>Итог</strong></span></h3>
+
+<p>Эти виды API разрабатывались в разное время под разные задачи.<span> Мы будем сосредотачиваться на REST API, так как он наиболее распространён и вы чаще всего будете работать именно с ним. Однако другие виды API не должны вас беспокоить &mdash; их знание не потребуется для собеседований и не повлияет на ваш успех. Не тратьте на них время. Немного поговорим про SOAP, так как его иногда спрашивают, но углубляться в него не будем. </span>С другими типами API вы познакомитесь, когда это потребуется на практике &mdash; чаще всего уже в рамках конкретных проектов.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><strong>Что нужно уметь рассказать</strong><br>
+&ndash; Термин &laquo;API&raquo;<br>
+&ndash; Виды &laquo;API&raquo;</p>
+
+<p><strong>Всё остальное &mdash; для общего развития</strong></p></div>
+          <nav class="pager" aria-label="Навигация между шагами"><a class="prev" href="step-061.html"><small>Назад</small><span>← Лекция «Тонкий и толстый клиенты: что это и как понять?»</span></a><a class="next" href="step-063.html"><small>Дальше</small><span>Лекция «Сервис, сервер, веб-сервис, веб-сайт и веб-приложение: в чём разница?» →</span></a></nav>
+        </article></div></main>
+  <footer><span>Локальная учебная копия · без отслеживания и отправки ответов</span><a href="../../about.html">О сайте</a></footer>
+</body>
+</html>

@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Лекция &quot;Разница между ресурсом, эндпоинтом и ручкой&quot; Ресурс Ресурс — это абстрактная сущность или объект, с которым работает API. Это может быть пользовате">
+  <meta name="color-scheme" content="dark light">
+  <title>Лекция «Разница между ресурсом, эндпоинтом и ручкой» · QA Конспект</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body data-base="../../">
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="topbar">
+    <a class="brand" href="../../index.html" aria-label="QA Конспект, главная"><span class="brand-mark">QA</span><span>Конспект</span></a>
+    <nav aria-label="Основная навигация">
+      <a href="../../courses/manual-testing/">Ручное тестирование</a>
+      <a href="../../courses/mqa-base/">MQA Base</a>
+      <a href="../../courses/manual-testing/">Курс</a>
+    </nav>
+    <form class="search-mini" action="../../search.html" role="search">
+      <label class="sr-only" for="site-search-2">Поиск по курсам</label>
+      <input id="site-search-2" name="q" type="search" placeholder="Найти тему…" autocomplete="off">
+      <button type="submit" aria-label="Искать">⌕</button>
+    </form>
+  </header>
+  <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="index.html">← Структура курса</a><div class="rail-index"><span>084</span><small>из 168</small></div><p>REST</p><div class="rail-progress" aria-label="Шаг 11 из 14 в теме"><i style="width:79%"></i></div><small>11 / 14 в теме</small></aside>
+        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><a href="index.html">Ручное тестирование</a><span>/</span><span>Сети</span><span>/</span><span>REST</span></nav>
+          <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «Разница между ресурсом, эндпоинтом и ручкой»</h1><p>Сети · REST</p></header>
+          <aside class="media-card"><span aria-hidden="true">▶</span><div><strong>К шагу прикреплено видео</strong><p>Видео не включено в локальную копию; сохранена только отметка о его наличии.</p></div></aside><div class="lesson-content"><h1>Лекция &laquo;Разница между ресурсом, эндпоинтом и ручкой&raquo;</h1>
+
+<p>&nbsp;</p>
+
+<h3><strong>Ресурс</strong></h3>
+
+<p><strong>Ресурс</strong> &mdash; это абстрактная сущность или объект, с которым работает API. Это может быть пользователь, продукт, заказ, запись в блоге и т.д. Ресурс &mdash; это то, <strong>что вы запрашиваете</strong>, но без привязки к тому, где этот объект находится.</p>
+
+<p><strong>Пример ресурса:</strong></p>
+
+<ul>
+	<li>
+	<p>Пользователи (users).</p>
+	</li>
+	<li>
+	<p>Продукты (products).</p>
+	</li>
+	<li>
+	<p>Заказы (orders).</p>
+	</li>
+</ul>
+
+<p>Ресурс &mdash; это концепция. Например, &quot;список всех пользователей&quot; &mdash; это ресурс.</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Эндпоинт</strong></h3>
+
+<p><strong>Эндпоинт</strong> &mdash; это конкретный путь (URL), через который происходит доступ к ресурсу. Он указывает, <strong>&quot;где&quot; находится ресурс и &quot;как&quot; к нему обратиться</strong>.</p>
+
+<p>Эндпоинт состоит из:</p>
+
+<ol>
+	<li>
+	<p><strong>Базового URL:</strong> адрес сервера, например, <a href="https://api.example.com/" target="_blank" rel="noopener noreferrer">https://api.example.com</a>.</p>
+	</li>
+	<li>
+	<p><strong>Пути к ресурсу:</strong> часть URL, описывающая конкретный объект или действие, например, /users.</p>
+	</li>
+	<li>
+	<p><strong>HTTP-метод:</strong> действие, которое вы хотите выполнить (GET, POST, PUT, DELETE).</p>
+	</li>
+</ol>
+
+<p><strong>Пример эндпоинта:</strong></p>
+
+<p>GET <a href="https://api.example.com/users/123" target="_blank" rel="noopener noreferrer">https://api.example.com/users/123</a></p>
+
+<ul>
+	<li>
+	<p>Базовый URL: <a href="https://api.example.com/" target="_blank" rel="noopener noreferrer">https://api.example.com</a>.</p>
+	</li>
+	<li>
+	<p>Ресурс: users.</p>
+	</li>
+	<li>
+	<p>Конкретный пользователь (ID): /123.</p>
+	</li>
+	<li>
+	<p>Действие: GET (получение информации о пользователе).</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><strong>Что такое &quot;ручка&quot;?</strong></h3>
+
+<p><strong>Ручка</strong> &mdash; это разговорное название эндпоинта, которое часто используют разработчики и тестировщики. Иногда можно услышать: &quot;Эта ручка не работает&quot;, &quot;Добавь ручку&quot;, &quot;Проверь ручку&quot; &mdash; речь всегда про конкретный эндпоинт.</p>
+
+<p><strong>Пример ручки:</strong></p>
+
+<p>POST <a href="https://api.example.com/orders" target="_blank" rel="noopener noreferrer">https://api.example.com/orders</a></p>
+
+<p>Это то, что вы будете тестировать: путь, метод и передаваемые параметры.</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Различие между ресурсом и эндпоинтом</strong></h3>
+
+<table>
+	
+		
+		
+	
+	<tbody>
+		<tr>
+			<td>
+			<p><strong>Ресурс</strong></p>
+			</td>
+			<td>
+			<p><strong>Эндпоинт (или ручка)</strong></p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p>Абстрактная сущность или объект.</p>
+			</td>
+			<td>
+			<p>Конкретный путь (URL) для взаимодействия с ресурсом.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p>Пример: &quot;Пользователи&quot;.</p>
+			</td>
+			<td>
+			<p>Пример: <a href="https://api.example.com/users" target="_blank" rel="noopener noreferrer">https://api.example.com/users</a>.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p>Описывает &quot;что&quot; запрашивается.</p>
+			</td>
+			<td>
+			<p>Описывает &quot;где&quot; и &quot;как&quot; получить доступ к ресурсу.</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p>Существует независимо от реализации API.</p>
+			</td>
+			<td>
+			<p>Реализуется как часть API.</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>&nbsp;</p>
+
+<h3><strong>Что в реальной жизни?</strong></h3>
+
+<p>Хотя ресурс и эндпоинт отличаются в теории, на практике они воспринимаются как одно и то же. Например, когда говорят &quot;ресурс users&quot;, часто имеют в виду именно эндпоинт <a href="https://api.example.com/users" target="_blank" rel="noopener noreferrer">https://api.example.com/users</a>. Поэтому в рабочих задачах различие между ними почти не используется.</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Почему это важно?</strong></h3>
+
+<p>Понимание разницы между ресурсом, эндпоинтом и ручкой полезно:</p>
+
+<ul>
+	<li>
+	<p>Чтобы понимать, как API организовано.</p>
+	</li>
+	<li>
+	<p>Чтобы быть в контексте разработки и обсуждений.</p>
+	</li>
+</ul>
+
+<p><strong>На собеседованиях: </strong>Вопросы об этом встречаются редко, так как это больше про общую теорию. Такие понятия полезны для понимания работы API в целом и чтобы лучше разбираться в терминах, которые используют разработчики.</p>
+
+<h2>&nbsp;</h2>
+
+<h3><strong>Итог</strong></h3>
+
+<p>Ресурс &mdash; это концепция, которая описывает, что вы запрашиваете. Эндпоинт (или ручка) &mdash; это конкретное место и способ доступа к этому ресурсу. Несмотря на теоретические различия, в реальной работе они часто воспринимаются как одно и то же. Эти знания нужны больше для понимания API и общения с командой, а не для выполнения ежедневных задач.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><strong>Что нужно уметь рассказать</strong><br>
+&ndash; Термин &laquo;Ресурс&raquo;<br>
+&ndash; Термин &laquo;Эндпоинт&raquo;<br>
+&ndash; Термин &laquo;Ручка&raquo;</p>
+
+<p><strong>Всё остальное &mdash; для общего развития</strong></p></div>
+          <nav class="pager" aria-label="Навигация между шагами"><a class="prev" href="step-083.html"><small>Назад</small><span>← Лекция «URI, URL и URN: в чём разница и как это понимать?»</span></a><a class="next" href="step-085.html"><small>Дальше</small><span>Лекция «Структура сообщения в API» →</span></a></nav>
+        </article></div></main>
+  <footer><span>Локальная учебная копия · без отслеживания и отправки ответов</span><a href="../../about.html">О сайте</a></footer>
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Лекция &quot;Куки: что это такое и зачем они нужны&quot; Куки (cookies) — это небольшие фрагменты данных, которые сервер отправляет клиенту (обычно браузеру), и кото">
+  <meta name="color-scheme" content="dark light">
+  <title>Лекция «Куки: что это такое и зачем они нужны» · QA Конспект</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body data-base="../../">
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="topbar">
+    <a class="brand" href="../../index.html" aria-label="QA Конспект, главная"><span class="brand-mark">QA</span><span>Конспект</span></a>
+    <nav aria-label="Основная навигация">
+      <a href="../../courses/manual-testing/">Ручное тестирование</a>
+      <a href="../../courses/mqa-base/">MQA Base</a>
+      <a href="../../courses/manual-testing/">Курс</a>
+    </nav>
+    <form class="search-mini" action="../../search.html" role="search">
+      <label class="sr-only" for="site-search-2">Поиск по курсам</label>
+      <input id="site-search-2" name="q" type="search" placeholder="Найти тему…" autocomplete="off">
+      <button type="submit" aria-label="Искать">⌕</button>
+    </form>
+  </header>
+  <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="index.html">← Структура курса</a><div class="rail-index"><span>106</span><small>из 168</small></div><p>Cash и cookies</p><div class="rail-progress" aria-label="Шаг 2 из 3 в теме"><i style="width:67%"></i></div><small>2 / 3 в теме</small></aside>
+        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><a href="index.html">Ручное тестирование</a><span>/</span><span>Сети</span><span>/</span><span>Cash и cookies</span></nav>
+          <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «Куки: что это такое и зачем они нужны»</h1><p>Сети · Cash и cookies</p></header>
+          <aside class="media-card"><span aria-hidden="true">▶</span><div><strong>К шагу прикреплено видео</strong><p>Видео не включено в локальную копию; сохранена только отметка о его наличии.</p></div></aside><div class="lesson-content"><h1>Лекция &laquo;Куки: что это такое и зачем они нужны&raquo;</h1>
+
+<p>&nbsp;</p>
+
+<p><strong>Куки (cookies)</strong> &mdash; это небольшие фрагменты данных, которые сервер отправляет клиенту (обычно браузеру), и которые сохраняются на стороне клиента для последующего использования. Они позволяют серверу &laquo;запоминать&raquo; пользователя и его действия между сессиями. Куки часто используются для авторизации, персонализации контента и отслеживания действий пользователя.</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Как работают куки</strong></h3>
+
+<p><strong>Сервер создаёт куки: </strong>Когда клиент делает запрос (например, авторизуется), сервер отправляет заголовок Set-Cookie с данными, которые нужно сохранить. <strong>Пример:</strong> Set-Cookie: session_id=abc123; Max-Age=3600; HttpOnly; Secure</p>
+
+<p><strong>Клиент сохраняет куки: </strong>Браузер или другое клиентское приложение сохраняет эти данные локально.</p>
+
+<p><strong>Клиент отправляет куки на сервер: </strong>При каждом последующем запросе браузер автоматически добавляет заголовок Cookie, отправляя сохранённые данные серверу.</p>
+
+<p><strong>Пример:</strong> Cookie: session_id=abc123</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Основные параметры куки</strong></h3>
+
+<ol>
+	<li>
+	<p><strong>Name=Value: </strong>Основная пара, которая содержит название и значение куки. Пример: session_id=abc123.</p>
+	</li>
+	<li>
+	<p><strong>Max-Age/Expires: </strong>Указывает срок действия куки. Если срок истёк, куки удаляется.</p>
+	</li>
+	<li>
+	<p><strong>HttpOnly: </strong>Куки доступны только для HTTP-запросов, их нельзя прочитать или изменить через JavaScript.</p>
+	</li>
+	<li>
+	<p><strong>Secure: </strong>Куки передаются только по HTTPS.</p>
+	</li>
+</ol>
+
+<p>&nbsp;</p>
+
+<h3><strong>Типы куки</strong></h3>
+
+<p>Существует несколько типов куки, которые различаются по времени хранения, источнику создания и назначению. В зависимости от задачи они могут использоваться по-разному, но стандартная классификация включает:</p>
+
+<ul>
+	<li>
+	<p><strong>Сессионные куки </strong>Хранятся только в течение текущей сессии браузера и удаляются после его закрытия. 📌 <strong>Пример</strong>: сохранение состояния авторизации, чтобы пользователь не вводил пароль при каждом переходе по страницам.</p>
+	</li>
+	<li>
+	<p><strong>Постоянные куки </strong>Хранятся на устройстве до истечения срока действия (Max-Age или Expires) или пока их не удалит пользователь вручную. 📌 <strong>Пример</strong>: сохранение настроек языка на сайте или данных для автоматического входа.</p>
+	</li>
+	<li>
+	<p><strong>Зомби-куки (Evercookies) </strong>Эти куки восстанавливаются даже после удаления стандартными методами, так как данные о них могут храниться в нескольких местах (Local Storage, IndexedDB, Flash-хранилище и других). Они используются для слежки и отслеживания пользователей даже после очистки браузера. 📌 <strong>Пример</strong>: повторное появление рекламы, несмотря на удаление куки, или сохранение настроек на сайте, даже если пользователь очистил браузер.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><strong>Куки и безопасность</strong></h3>
+
+<p>Куки часто используются для хранения токенов авторизации или другой важной информации, поэтому их настройка должна быть безопасной:</p>
+
+<ul>
+	<li>
+	<p>Используйте <strong>HttpOnly</strong> для защиты данных от доступа через JavaScript.</p>
+	</li>
+	<li>
+	<p>Всегда добавляйте <strong>Secure</strong>, чтобы куки передавались только по HTTPS.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><strong>Пример работы с куки</strong></h3>
+
+<p><strong>Сценарий авторизации:</strong></p>
+
+<ol>
+	<li>
+	<p>Клиент отправляет данные для входа:&nbsp;<span>POST /login HTTP/1.1</span></p>
+	</li>
+</ol>
+
+<p><span>Host: </span><a href="http://example.com/" target="_blank" rel="noopener noreferrer"><span>example.com</span></a></p>
+
+<p><span>Content-Type: application/json</span></p>
+
+<p><span>{</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;username&quot;: &quot;user&quot;,</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;password&quot;: &quot;pass&quot;</span></p>
+
+<p><span>}</span></p>
+
+<ol>
+	<li>
+	<p>Сервер возвращает ответ с куки: 200 OK</p>
+	</li>
+</ol>
+
+<p><span>Set-Cookie: session_id=abc123; Max-Age=3600; HttpOnly; Secure</span></p>
+
+<ol>
+	<li>
+	<p>Клиент отправляет последующие запросы с куки: <span>GET /profile HTTP/1.1</span></p>
+	</li>
+</ol>
+
+<p><span>Host: </span><a href="http://example.com/" target="_blank" rel="noopener noreferrer"><span>example.com</span></a></p>
+
+<p><span>Cookie: session_id=abc123</span></p>
+
+<ol>
+	<li>
+	<p>Сервер проверяет куки и возвращает данные профиля.</p>
+	</li>
+</ol>
+
+<h2>&nbsp;</h2>
+
+<h3><strong>Что важно помнить</strong></h3>
+
+<ul>
+	<li>
+	<p><strong>Куки клиентские:</strong> Хранятся и отправляются браузером. Проверяйте их через вкладку <strong>Application</strong> в DevTools.</p>
+	</li>
+	<li>
+	<p><strong>Куки серверные:</strong> Создаются и отправляются сервером. Проверяйте их в заголовках Set-Cookie.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><strong>Итог</strong></h3>
+
+<h4>В большинстве случаев вы будете работать с куки так же, как и с клиентским кэшем &mdash; ваша основная задача будет заключаться в их очистке. Проверять куки придётся редко, только по прямому запросу или в рамках специфических требований. Без чётких указаний или необходимости влезать в куки нет смысла.</h4>
+
+<p>Однако, если работа с куки всё же потребуется, основные задачи будут такими:</p>
+
+<ol>
+	<li>
+	<p><strong>Очистка куки:</strong> Убедитесь, что данные авторизации или персонализации очищены, чтобы проверить сценарии с &quot;чистым&quot; состоянием.</p>
+	</li>
+	<li>
+	<p><strong>Проверка заголовков Set-Cookie:</strong> Убедитесь, что сервер правильно устанавливает куки и их параметры.</p>
+	</li>
+	<li>
+	<p><strong>Модификация и удаление:</strong> Проверьте, как система реагирует на изменение или отсутствие куки.</p>
+	</li>
+</ol>
+
+<p>Такой подход обеспечит вам уверенность в работе с куки и позволит избежать лишних действий.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><strong>Что нужно уметь рассказать</strong><br>
+&ndash; Термин &laquo;куки&raquo; (cookies)</p>
+
+<p><strong>Всё остальное &mdash; для общего развития</strong></p></div>
+          <nav class="pager" aria-label="Навигация между шагами"><a class="prev" href="step-105.html"><small>Назад</small><span>← Лекция «Кэширование: серверное и клиентское»</span></a><a class="next" href="step-107.html"><small>Дальше</small><span>Лекция «Кэш и куки: что спрашивают на собеседованиях и как используются в работе» →</span></a></nav>
+        </article></div></main>
+  <footer><span>Локальная учебная копия · без отслеживания и отправки ответов</span><a href="../../about.html">О сайте</a></footer>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Лекция &quot;API в клиент-серверной архитектуре: примеры на основе трёхзвенной системы&quot; Что здесь происходит? Когда ты взаимодействуешь с любым приложением — бу">
+  <meta name="color-scheme" content="dark light">
+  <title>Лекция «API в клиент-серверной архитектуре: примеры на основе трёхзвенной системы» · QA Конспект</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body data-base="../../">
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="topbar">
+    <a class="brand" href="../../index.html" aria-label="QA Конспект, главная"><span class="brand-mark">QA</span><span>Конспект</span></a>
+    <nav aria-label="Основная навигация">
+      <a href="../../courses/manual-testing/">Ручное тестирование</a>
+      <a href="../../courses/mqa-base/">MQA Base</a>
+      <a href="../../courses/manual-testing/">Курс</a>
+    </nav>
+    <form class="search-mini" action="../../search.html" role="search">
+      <label class="sr-only" for="site-search-2">Поиск по курсам</label>
+      <input id="site-search-2" name="q" type="search" placeholder="Найти тему…" autocomplete="off">
+      <button type="submit" aria-label="Искать">⌕</button>
+    </form>
+  </header>
+  <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="index.html">← Структура курса</a><div class="rail-index"><span>065</span><small>из 168</small></div><p>Клиент-серверная архитектура</p><div class="rail-progress" aria-label="Шаг 7 из 9 в теме"><i style="width:78%"></i></div><small>7 / 9 в теме</small></aside>
+        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><a href="index.html">Ручное тестирование</a><span>/</span><span>Сети</span><span>/</span><span>Клиент-серверная архитектура</span></nav>
+          <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «API в клиент-серверной архитектуре: примеры на основе трёхзвенной системы»</h1><p>Сети · Клиент-серверная архитектура</p></header>
+          <aside class="media-card"><span aria-hidden="true">▶</span><div><strong>К шагу прикреплено видео</strong><p>Видео не включено в локальную копию; сохранена только отметка о его наличии.</p></div></aside><div class="lesson-content"><h1><span>Лекция &laquo;API в клиент-серверной архитектуре: примеры на основе трёхзвенной системы&raquo;</span></h1>
+
+<h2>&nbsp;</h2>
+
+<h3><span><strong>Что здесь происходит?</strong></span></h3>
+
+<p><span>Когда ты взаимодействуешь с любым приложением &mdash; будь то доставка еды или прогноз погоды, &mdash; между клиентом (то есть приложением на твоём устройстве) и сервером происходит общение. </span>API &mdash; это те самые договорённости, с помощью которых клиент и сервер понимают друг друга.<span> А теперь разберём это на примерах, чтобы стало понятно, где клиент, где сервер и как это связано с базой данных.</span></p>
+
+<h2>&nbsp;</h2>
+
+<h3><span><strong>Пример 1: Ресторанное приложение</strong></span></h3>
+
+<p><span><strong>Ситуация</strong>: Ты хочешь посмотреть меню ресторана.</span></p>
+
+<ol>
+	<li>
+	<p><span><strong>Клиент</strong>: Это твоё приложение доставки еды. Ты открываешь ресторан, и приложение обращается к серверу со словами: &quot;Дай мне меню этого ресторана&quot;.</span></p>
+	</li>
+	<li>
+	<p><span><strong>Сервер</strong>: Это то место, где хранится логика приложения. Сервер принимает запрос от клиента, проверяет, какой именно ресторан ты выбрал, и понимает, что нужно для него достать меню.</span></p>
+	</li>
+	<li>
+	<p><span><strong>База данных</strong>: Сервер &quot;идёт&quot; в базу данных, где хранится информация обо всех ресторанах и их меню, и забирает нужные данные для выбранного ресторана.</span></p>
+	</li>
+	<li>
+	<p><span><strong>Сервер отвечает</strong>: Получив меню из базы данных, сервер упаковывает эту информацию в удобный формат и отправляет её клиенту.</span></p>
+	</li>
+	<li>
+	<p><span><strong>Клиент показывает результат</strong>: </span>Приложение получает данные и показывает тебе на экране: Пицца &mdash; 500 рублей, Салат &mdash; 300 рублей.</p>
+	</li>
+</ol>
+
+<p>&nbsp;</p>
+
+<h3><span><strong>Пример 2: Приложение для погоды</strong></span></h3>
+
+<p><span><strong>Ситуация</strong>: Ты хочешь узнать погоду в своём городе.</span></p>
+
+<ol>
+	<li>
+	<p><span><strong>Клиент</strong>: Это твоё приложение погоды. Ты вводишь название города, например &quot;Москва&quot;. Приложение формирует запрос к серверу: &quot;Дай мне данные о погоде для Москвы&quot;.</span></p>
+	</li>
+	<li>
+	<p><span><strong>Сервер</strong>: Сервер принимает запрос, анализирует, какой город указан, и понимает, что нужно получить информацию о погоде в Москве.</span></p>
+	</li>
+	<li>
+	<p><span><strong>База данных</strong>: Сервер либо запрашивает данные из своей базы данных (если информация о погоде недавно обновлялась), либо обращается к внешнему сервису, который предоставляет свежие данные о погоде.</span></p>
+	</li>
+	<li>
+	<p><span><strong>Сервер отвечает</strong>: Получив данные о температуре, состоянии неба и скорости ветра, сервер передаёт эту информацию обратно приложению.</span></p>
+	</li>
+	<li>
+	<p><span><strong>Клиент показывает результат</strong>: Приложение получает ответ и выводит его в удобном виде, например: &quot;В Москве сейчас -5&deg;C, облачно, ветер 10 м/с&quot;.</span></p>
+	</li>
+</ol>
+
+<h2>&nbsp;</h2>
+
+<h3><span><strong>Как это связано с API?</strong></span></h3>
+
+<p><span>API &mdash; это посредник между клиентом и сервером. Клиент отправляет запрос через API: &quot;Мне нужны такие-то данные&quot;. API помогает серверу понять, что именно нужно сделать, и упаковывает ответ, чтобы клиент смог его &quot;прочитать&quot;. Без API клиент и сервер просто не смогли бы договориться, как общаться.</span></p>
+
+<p>&nbsp;</p>
+
+<h3><span><strong>Итог</strong></span></h3>
+
+<ol>
+	<li>
+	<p><strong>Клиент </strong>&mdash; это то, что работает на твоём устройстве: приложение, которое ты видишь и с которым взаимодействуешь.<span> (приложение на телефоне или сайте, а так же может быть другой сервер).</span></p>
+	</li>
+	<li>
+	<p><span><strong>Сервер</strong> &mdash; это &quot;мозг&quot;, который принимает запросы, выполняет логику и обрабатывает данные.</span></p>
+	</li>
+	<li>
+	<p><span><strong>База данных</strong> &mdash; это место, где всё хранится (меню ресторанов, данные о погоде и так далее).</span></p>
+	</li>
+	<li>
+	<p><span><strong>API</strong> &mdash; это мост между клиентом и сервером, который позволяет этим частям системы взаимодействовать.</span></p>
+	</li>
+</ol></div>
+          <nav class="pager" aria-label="Навигация между шагами"><a class="prev" href="step-064.html"><small>Назад</small><span>← Лекция «Фронтенд и бэкенд: что это и в чём разница?»</span></a><a class="next" href="step-066.html"><small>Дальше</small><span>Лекция «Клиент-серверная архитектура: как отвечать на собеседовании» →</span></a></nav>
+        </article></div></main>
+  <footer><span>Локальная учебная копия · без отслеживания и отправки ответов</span><a href="../../about.html">О сайте</a></footer>
+</body>
+</html>

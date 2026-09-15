@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Лекция &quot;Создание таблицы в MySQL&quot; Поскольку наш путь в базы данных только начинается, стоит вспомнить основы. Реляционные базы данных хранят данные в табли">
+  <meta name="color-scheme" content="dark light">
+  <title>Лекция «Создание таблицы в MySQL» · QA Конспект</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body data-base="../../">
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="topbar">
+    <a class="brand" href="../../index.html" aria-label="QA Конспект, главная"><span class="brand-mark">QA</span><span>Конспект</span></a>
+    <nav aria-label="Основная навигация">
+      <a href="../../courses/manual-testing/">Ручное тестирование</a>
+      <a href="../../courses/mqa-base/">MQA Base</a>
+      <a href="../../courses/manual-testing/">Курс</a>
+    </nav>
+    <form class="search-mini" action="../../search.html" role="search">
+      <label class="sr-only" for="site-search-2">Поиск по курсам</label>
+      <input id="site-search-2" name="q" type="search" placeholder="Найти тему…" autocomplete="off">
+      <button type="submit" aria-label="Искать">⌕</button>
+    </form>
+  </header>
+  <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="index.html">← Структура курса</a><div class="rail-index"><span>134</span><small>из 168</small></div><p>Базы данных</p><div class="rail-progress" aria-label="Шаг 3 из 4 в теме"><i style="width:75%"></i></div><small>3 / 4 в теме</small></aside>
+        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><a href="index.html">Ручное тестирование</a><span>/</span><span>SQL</span><span>/</span><span>Базы данных</span></nav>
+          <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «Создание таблицы в MySQL»</h1><p>SQL · Базы данных</p></header>
+          <div class="lesson-content"><h1><strong>Лекция &laquo;Создание таблицы в MySQL&raquo;</strong></h1>
+
+<p>&nbsp;</p>
+
+<p>Поскольку наш путь в базы данных только начинается, стоит вспомнить основы. Реляционные базы данных хранят данные в таблицах, и каждая таблица содержит набор столбцов. У столбца есть название и тип данных.</p>
+
+<p>SQL (Structured Query Language) является стандартным языком для управления базами данных. Вы можете создать базу данных и таблицу SQL с помощью SQL-сервера, такого как MySQL, PostgreSQL или Microsoft SQL Server.</p>
+
+<ol>
+	<li>
+	<p>Установите SQL-сервер.</p>
+	</li>
+	<li>
+	<p>Откройте SQL-клиент, например, MySQL Workbench или pgAdmin.</p>
+	</li>
+	<li>
+	<p>Подключитесь к SQL-серверу с помощью учетных данных администратора.</p>
+	</li>
+</ol>
+
+<p>Скачать MySQL Community Server</p>
+
+<p><a href="https://dev.mysql.com/downloads/mysql/" target="_blank" rel="noopener noreferrer">https://dev.mysql.com/downloads/mysql/</a></p>
+
+<p>Для начала посмотрим, какие уже есть созданные базы данных:</p>
+
+<pre>
+<code>show databases;</code></pre>
+
+<p>Результат:</p>
+
+<div>
+<pre>
+<code>+--------------------+
+
+| Database           |
+
++--------------------+
+
+| information_schema |
+
+| mysql              |
+
+| performance_schema |
+
+| sys                |
+
+| test               |
+
++--------------------+</code></pre>
+
+<p>Это все служебные базы. Мы не будем их трогать, а создадим свою БД. Для этого выполним команду для создания новой базы данных MySQL:</p>
+
+<pre>
+<code>CREATE DATABASE database_name;</code></pre>
+
+<p>Не забываем про точку с запятой после запроса!<br>
+<br>
+Снова посмотрим список всех баз:</p>
+</div>
+
+<div>
+<pre>
+<code>show databases;</code></pre>
+
+<p>Видим, что наша БД появилась в списке:</p>
+</div>
+
+<div>
+<pre>
+<code>+--------------------+
+
+| Database           |
+
++--------------------+
+
+| information_schema |
+
+| database_name      |
+
+| mysql              |
+
+| performance_schema |
+
+| sys                |
+
+| test               |
+
++--------------------+</code></pre>
+
+<p>Теперь покажем, как удалить созданные БД. Учтите, что при удалении базы также удаляются все таблицы с данными в ней, поэтому будьте аккуратны и перепроверяйте названия баз, которые собираетесь удалить.</p>
+</div>
+
+<pre>
+<code>drop database database_name;</code></pre>
+
+<p>Чтобы использовать базу данных - мы делаем запрос</p>
+
+<div>
+<pre>
+<code>use database_name;</code></pre>
+
+<p>Но пока наша база данных пустая - нужно ее заполнить.</p>
+</div>
+
+<p>Создайте таблицу следующей командой:</p>
+
+<div>
+<pre>
+<code>CREATE TABLE table_name (
+
+column_name1 data_type,
+
+column_name2 data_type,
+
+...
+
+);</code></pre>
+
+<p>table_name &mdash; имя таблицы;</p>
+</div>
+
+<p>column_name &mdash; имя столбца;</p>
+
+<p>data_type &mdash; тип данных столбца.</p>
+
+<p>Теперь разберем процесс создания таблицы детально.</p>
+
+<h2>&nbsp;</h2>
+
+<h2><strong>Названия таблиц и столбцов</strong></h2>
+
+<p>Таблицы и столбцы стоит называть осмысленно и прозрачно, чтобы было понятно, как другому разработчику, так и вам самим спустя полгода. Даже если это учебная база только для вашего пользования, рекомендуем сразу привыкать делать правильно.</p>
+
+<p>Имена могут содержать символы подчеркивания для большей наглядности. Классический пример непонятных названий &mdash; table1, table2 и т. п. Использование транслита, неясных сокращений и, разумеется, наличие орфографических ошибок тоже не приветствуется. Хороший пример коротких информативных названий: Customers, Users, Orders, так как по названию таблицы должно быть очевидно, какие данные таблица будет содержать. Эта же логика применима и к названию столбцов.</p>
+
+<p>Максимальная длина названия и для таблицы, и для столбцов &mdash; 64 символа.</p>
+
+<h2>&nbsp;</h2>
+
+<h2><strong>Типы данных столбцов</strong></h2>
+
+<p>Для каждого столбца таблицы будет определен тип данных. Неправильное использование типов данных увеличивает как объем занимаемой памяти, так и время выполнения запросов к таблице. Это может быть незаметно на таблицах в несколько строк, но очень существенно, если количество строк будет измеряться десятками и сотнями тысяч, и это далеко не предел для рабочей базы данных. Проведем краткий обзор наиболее часто используемых типов:</p>
+
+<h2>&nbsp;</h2>
+
+<h2><strong>Числовые типы</strong></h2>
+
+<p>- INT &mdash; целочисленные значения от &minus;2147483648 до 2147483647, 4 байта.</p>
+
+<p>- DECIMAL &mdash; хранит числа с заданной точностью. Использует два параметра &mdash; максимальное количество цифр всего числа (precision) и количество цифр дробной части (scale). Рекомендуемый тип данных для работы с валютами и координатами. Можно использовать синонимы NUMERIC, DEC, FIXED.</p>
+
+<p>- TINYINT &mdash; целые числа от &minus;127 до 128, занимает 1 байт хранимой памяти.</p>
+
+<p>- BOOL &mdash; 0 или 1. Однозначный ответ на однозначный вопрос &mdash; false или true. Название столбцов типа boolean часто начинается с is, has, can, allow. Тип настолько востребован на практике, что для него в MySQL создали встроенные константы FALSE (0) или TRUE (1). Можно использовать синоним BOOLEAN.</p>
+
+<p>- FLOAT &mdash; дробные числа с плавающей запятой (точкой).</p>
+
+<h2>&nbsp;</h2>
+
+<h2><strong>Символьные</strong></h2>
+
+<p>- VARCHAR(N) &mdash; N определяет максимально возможную длину строки. Создан для хранения текстовых данных переменной длины, поэтому память хранения зависит от длины строки. Наиболее часто используемый тип строковых данных.</p>
+
+<p>- CHAR(N) &mdash; как и с varchar, N указывает максимальную длину строки. Char создан хранить данные строго фиксированной длины, и каждая запись будет занимать ровно столько памяти, сколько требуется для хранения строки длиной N.</p>
+
+<p>-&nbsp;TEXT &mdash; подходит для хранения большого объема текста до 65 KB, например, целой статьи.</p>
+
+<h4><strong>Дата и время</strong></h4>
+
+<p>- DATE &mdash; только дата. Диапазон от 1000-01-01 по 9999-12-31. Подходит для хранения дат рождения, исторических дат, начиная с 11 века. Память хранения &mdash; 3 байта.</p>
+
+<p>- TIME &mdash; только время &mdash; часы, минуты, секунды &mdash; &laquo;hh:mm:ss&raquo;. Память хранения &mdash; 3 байта.</p>
+
+<p>- DATETIME &mdash; соединяет оба предыдущих типа &mdash; дату и время. Использует 8 байтов памяти.</p>
+
+<p>- TIMESTAMP &mdash; хранит дату и время начиная с 1970 года. Подходит для большинства бизнес-задач. Потребляет 4 байта памяти, что в два раза меньше, чем DATETIME, поскольку использует более скромный диапазон дат.</p>
+
+<h2>&nbsp;</h2>
+
+<h2><strong>Бинарные</strong></h2>
+
+<p>Используются для хранения файлов, фото, документов, аудио и видеоконтента. Все это хранится в бинарном виде.</p>
+
+<p>- BLOB &mdash; до 65 КБ бинарных данных</p>
+
+<p>- LARGEBLOB &mdash; до 4 ГБ.</p>
+
+<p>Например, чтобы создать таблицу с именем &quot;users&quot; с колонками &quot;id&quot;, &quot;username&quot; и &quot;email&quot;:</p>
+
+<div>
+<pre>
+<code>CREATE TABLE users (
+
+id INT PRIMARY KEY AUTO_INCREMENT,
+
+username VARCHAR(50),
+
+email VARCHAR(100)
+
+);</code></pre>
+
+<p>VARCHAR - это тип данных в SQL, который используется для хранения строковых значений. Он может хранить переменное количество символов, и его максимальный размер определяется в скобках, например VARCHAR(50) - максимальный размер строки 50 символов.</p>
+</div>
+
+<p>PRIMARY KEY - это особый тип ключа в SQL, который используется для уникальной идентификации каждой строки в таблице. Он гарантирует, что значение в колонке с первичным ключом будет уникальным для каждой строки в таблице. Также можно указать AUTO_INCREMENT, чтобы указать SQL-серверу автоматически инкрементировать значение первичного ключа при добавлении новых строк в таблицу.</p>
+
+<p>Для добавления данных в БД в MySQL используется команда INSERT, которая имеет следующий формальный синтаксис:</p>
+
+<div>
+<pre>
+<code>INSERT [INTO] имя_таблицы [(список_столбцов)] VALUES (значение1, значение2, ... значениеN)</code></pre>
+
+<p>После выражения INSERT INTO в скобках можно указать список столбцов через запятую, в которые надо добавлять данные, и в конце после слова VALUES скобках перечисляют добавляемые для столбцов значения.</p>
+</div>
+
+<p>Например, пусть в базе данных productsdb есть следующая таблица Products:</p>
+
+<div>
+<pre>
+<code>CREATE DATABASE productsdb;
+
+USE productsdb;
+
+CREATE TABLE Products
+
+(
+
+Id INT AUTO_INCREMENT PRIMARY KEY,
+
+ProductName VARCHAR(30) NOT NULL,
+
+Manufacturer VARCHAR(20) NOT NULL,
+
+ProductCount INT DEFAULT 0,
+
+Price DECIMAL NOT NULL
+
+);</code></pre>
+
+<p>Добавим в эту таблицу одну строку с помощью следующего кода:</p>
+</div>
+
+<div>
+<pre>
+<code>INSERT Products(ProductName, Manufacturer, ProductCount, Price)
+
+VALUES ('iPhone X', 'Apple', 5, 76000);</code></pre>
+
+<p>В данном случае значения будут передаваться столбцам по позиции. То есть столбцу ProductName передается строка &quot;iPhone X&quot;, столбцу Manufacturer - строка &quot;Apple&quot; и так далее.</p>
+</div>
+
+<p>Важно, чтобы между значениями и типами данных столбцов было соответствие. Так, столбец ProductName представляет тип varchar, то есть строку. Соответственно этому столбцу мы можем передать строковое значение в одинарных кавычках. А стобец ProductCount представляет тип int, то есть целое число, поэтому данному столбцу нужно передать целые числа, но никак не строки.</p>
+
+<p>После удачного выполнения в MySQL Workbench в поле вывода должны появиться зеленый маркер и сообщение &quot;1 row(s) affected&quot;:</p>
+
+<p><span class="media-note" role="note"><span aria-hidden="true">▧</span> Изображение: иллюстрация · lh5.googleusercontent.com</span></p>
+
+<p>Необязательно при добавлении данных указывать значения абсолютно для всех столбцов таблицы. Например, в примере выше не указано значение для стобца Id. Но поскольку для данного столбца определен атрибут AUTO_INCREMENT, то его значение будет автоматически генерироваться.</p>
+
+<p>Также мы можем опускать при добавлении такие столбцы, которые поддерживают значение NULL или для которых указано значение по умолчанию, то есть для них определены атрибуты NULL или DEFAULT. Так, в таблице Products столбец ProductCount имеет значение по умолчанию - число 0. Поэтому мы можем при добавлении опустить этот столбец, и ему будет передаваться число 0:</p>
+
+<div>
+<pre>
+<code>INSERT Products(ProductName, Manufacturer, Price)
+
+VALUES ('Galaxy S9', 'Samsung', 63000);</code></pre>
+
+<p>С помощью ключевых слов DEFAULT и NULL можно указать, что в качестве значения будет использовать значение по умолчанию или NULL соответственно:</p>
+</div>
+
+<div>
+<pre>
+<code>INSERT Products(ProductName, Manufacturer, Price, ProductCount)
+
+VALUES ('Nokia 9', 'HDM Global', 41000, DEFAULT);</code></pre>
+
+<pre>
+<code>INSERT Products(ProductName, Manufacturer, Price, ProductCount)
+
+VALUES ('Nokia 9', 'HDM Global', 41000, NULL);</code></pre>
+
+<p>&nbsp;</p>
+
+<p><em>Более подробно о создании БД можно прочитать в статье &quot;<a href="https://selectel.ru/blog/tutorials/how-to-create-tables-in-mysql/" target="_blank" rel="noopener noreferrer">Как создавать таблицы в MySQL (Create Table)</a>&rdquo;</em></p>
+</div></div>
+          <nav class="pager" aria-label="Навигация между шагами"><a class="prev" href="step-133.html"><small>Назад</small><span>← Лекция «Виды баз данных»</span></a><a class="next" href="step-135.html"><small>Дальше</small><span>Лекция «Зачем тестировщику нужно уметь работать с базами данных?» →</span></a></nav>
+        </article></div></main>
+  <footer><span>Локальная учебная копия · без отслеживания и отправки ответов</span><a href="../../about.html">О сайте</a></footer>
+</body>
+</html>

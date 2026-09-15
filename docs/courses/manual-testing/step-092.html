@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Лекция &quot;HTTP-статус-коды 500: серверные ошибки&quot; Статус-коды группы 500 указывают на то, что запрос клиента был корректным, но сервер не смог его обработать">
+  <meta name="color-scheme" content="dark light">
+  <title>Лекция «HTTP-статус-коды 500: серверные ошибки» · QA Конспект</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body data-base="../../">
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="topbar">
+    <a class="brand" href="../../index.html" aria-label="QA Конспект, главная"><span class="brand-mark">QA</span><span>Конспект</span></a>
+    <nav aria-label="Основная навигация">
+      <a href="../../courses/manual-testing/">Ручное тестирование</a>
+      <a href="../../courses/mqa-base/">MQA Base</a>
+      <a href="../../courses/manual-testing/">Курс</a>
+    </nav>
+    <form class="search-mini" action="../../search.html" role="search">
+      <label class="sr-only" for="site-search-2">Поиск по курсам</label>
+      <input id="site-search-2" name="q" type="search" placeholder="Найти тему…" autocomplete="off">
+      <button type="submit" aria-label="Искать">⌕</button>
+    </form>
+  </header>
+  <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="index.html">← Структура курса</a><div class="rail-index"><span>092</span><small>из 168</small></div><p>Cтатус-коды</p><div class="rail-progress" aria-label="Шаг 5 из 6 в теме"><i style="width:83%"></i></div><small>5 / 6 в теме</small></aside>
+        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><a href="index.html">Ручное тестирование</a><span>/</span><span>Сети</span><span>/</span><span>Cтатус-коды</span></nav>
+          <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «HTTP-статус-коды 500: серверные ошибки»</h1><p>Сети · Cтатус-коды</p></header>
+          <aside class="media-card"><span aria-hidden="true">▶</span><div><strong>К шагу прикреплено видео</strong><p>Видео не включено в локальную копию; сохранена только отметка о его наличии.</p></div></aside><div class="lesson-content"><h1>Лекция &laquo;HTTP-статус-коды 500: серверные ошибки&raquo;</h1>
+
+<p>&nbsp;</p>
+
+<p>Статус-коды группы <strong>500</strong> указывают на то, что запрос клиента был корректным, но сервер не смог его обработать из-за внутренней ошибки. Такие коды важны для тестировщиков, так как они часто сигнализируют о проблемах в работе системы, которые нужно уметь диагностировать и передавать разработчикам.</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Что это значит?</strong></h3>
+
+<p>Серверные ошибки возникают, когда запрос клиента не может быть выполнен из-за сбоя в логике, инфраструктуре или ограничениях серверной стороны. Это может быть:</p>
+
+<ul>
+	<li>
+	<p>Ошибки в коде сервера.</p>
+	</li>
+	<li>
+	<p>Проблемы взаимодействия с базой данных или сторонними сервисами.</p>
+	</li>
+	<li>
+	<p>Превышение лимитов ресурсов (память, процессорное время).</p>
+	</li>
+</ul>
+
+<p>Тестировщикам важно понимать, что коды 500 сигнализируют именно о сбое на стороне сервера, а не клиента.</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Основные коды 500 и как их получить</strong></h3>
+
+<h4><strong>500 Internal Server Error</strong></h4>
+
+<p><strong>Что это значит? </strong>Общая ошибка сервера, которая возникает, когда он не может выполнить запрос из-за внутреннего сбоя. Это &quot;универсальный&quot; код для любых ситуаций, которые сервер не может обработать корректно.</p>
+
+<p><strong>Как получить?</strong></p>
+
+<p>Отправьте запрос, который вызывает непредвиденное поведение на сервере.</p>
+
+<p>Пример:</p>
+
+<p><span>GET /products?id=abc HTTP/1.1</span></p>
+
+<p><span>Host: </span><a href="http://example.com/" target="_blank" rel="noopener noreferrer"><span>example.com</span></a></p>
+
+<p>Если сервер не обрабатывает некорректный идентификатор должным образом, он может вернуть: 500 Internal Server Error</p>
+
+<p><span>{</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;error&quot;: &quot;Unexpected error occurred&quot;</span></p>
+
+<p><span>}</span></p>
+
+<p><strong>Где это встречается?</strong></p>
+
+<ul>
+	<li>
+	<p>Ошибки в бизнес-логике на сервере.</p>
+	</li>
+	<li>
+	<p>Проблемы с обработкой данных или отсутствием валидации.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h4><strong>502 Bad Gateway</strong></h4>
+
+<p><strong>Что это значит? </strong>Этот код указывает, что сервер (шлюз) получил некорректный или неполный ответ от другого сервера, к которому он обращается.</p>
+
+<p><strong>Как получить?</strong></p>
+
+<p>Отправьте запрос через прокси-сервер или балансировщик нагрузки, где один из бэкэндов недоступен. Пример:</p>
+
+<p><span>GET /api/resource HTTP/1.1</span></p>
+
+<p><span>Host: </span><a href="http://example.com/" target="_blank" rel="noopener noreferrer"><span>example.com</span></a></p>
+
+<p>Ответ: 502 Bad Gateway</p>
+
+<p><span>{</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;error&quot;: &quot;Invalid response from upstream server&quot;</span></p>
+
+<p><span>}</span></p>
+
+<p><strong>Где это встречается?</strong></p>
+
+<ul>
+	<li>
+	<p>В системах с несколькими серверами, где один из них не отвечает.</p>
+	</li>
+	<li>
+	<p>Когда внешние зависимости, такие как сторонние API, недоступны.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h4><strong>503 Service Unavailable</strong></h4>
+
+<p><strong>Что это значит? </strong>Сервер временно недоступен для обработки запросов, обычно из-за перегрузки, технического обслуживания или других временных проблем.</p>
+
+<p><strong>Как получить?</strong></p>
+
+<p>Отправьте запрос на сервер, который превышает свои лимиты. Пример:</p>
+
+<p><span>GET /heavy-load HTTP/1.1</span></p>
+
+<p><span>Host: </span><a href="http://example.com/" target="_blank" rel="noopener noreferrer"><span>example.com</span></a></p>
+
+<p>Ответ: 503 Service Unavailable</p>
+
+<p><span>{</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;error&quot;: &quot;The server is temporarily unable to handle the request&quot;</span></p>
+
+<p><span>}</span></p>
+
+<p><strong>Где это встречается?</strong></p>
+
+<ul>
+	<li>
+	<p>При перегрузке сервера, например, в условиях нагрузочного тестирования или пиковых нагрузок.</p>
+	</li>
+	<li>
+	<p>Когда сервер отключён на время технического обслуживания.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h4><strong>504 Gateway Timeout</strong></h4>
+
+<p><strong>Что это значит? </strong>Этот код указывает, что сервер (шлюз) не дождался ответа от другого сервера в установленное время.</p>
+
+<p><strong>Как получить?</strong></p>
+
+<p>Отправьте запрос, который обрабатывается слишком долго (например, запрос к внешнему API с задержкой). Пример:</p>
+
+<p><span>GET /slow-service HTTP/1.1</span></p>
+
+<p><span>Host: </span><a href="http://example.com/" target="_blank" rel="noopener noreferrer"><span>example.com</span></a></p>
+
+<p>Ответ: 504 Gateway Timeout</p>
+
+<p><span>{</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;error&quot;: &quot;Upstream server timeout&quot;</span></p>
+
+<p><span>}</span></p>
+
+<p><strong>Где это встречается?</strong></p>
+
+<ul>
+	<li>
+	<p>При медленной работе базы данных или сторонних сервисов.</p>
+	</li>
+	<li>
+	<p>Когда сервер настроен с коротким временем ожидания (timeout).</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><strong>Рекомендательный характер</strong></h3>
+
+<p>Как и коды других групп, серверные ошибки не всегда строго соответствуют стандартам. Например:</p>
+
+<ul>
+	<li>
+	<p>Сервер может возвращать 500 Internal Server Error вместо более специфических кодов (502, 503), если разработчики не предусмотрели отдельные обработки для каждого случая.</p>
+	</li>
+	<li>
+	<p>Иногда сервер возвращает 503 Service Unavailable во время перегрузки, хотя проблема связана с ошибкой логики, которая больше подходит для 500.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><strong>Как тестировщик может диагностировать ошибки 500?</strong></h3>
+
+<ol>
+	<li>
+	<p><strong>Сознательно вызывайте ошибки: </strong>Как и с кодами 400, тестировщик должен уметь искусственно создавать сценарии, которые приводят к кодам 500. Например:</p>
+
+	<ul>
+		<li>
+		<p>Отправляйте запросы с некорректными данными.</p>
+		</li>
+		<li>
+		<p>Используйте инструменты для перегрузки сервера (нагрузочное тестирование).</p>
+		</li>
+	</ul>
+	</li>
+	<li>
+	<p><strong>Используйте инструменты: </strong>Такие инструменты, как <strong>Postman</strong>, <strong>Insomnia</strong> или системы мониторинга (например, Kibana, Grafana), помогут отследить, где именно произошла ошибка, и получить больше информации.</p>
+	</li>
+	<li>
+	<p><strong>Работайте с логами: </strong>Большинство серверов записывают внутренние ошибки в логи. Передайте эти логи разработчикам, чтобы они могли диагностировать проблему.</p>
+	</li>
+</ol>
+
+<p>&nbsp;</p>
+
+<h3><strong>Почему это нужно понимать?</strong></h3>
+
+<p>Статус-коды группы 500 не только помогают обнаруживать сбои, но и учат:</p>
+
+<ul>
+	<li>
+	<p>Как API справляется с внутренними ошибками.</p>
+	</li>
+	<li>
+	<p>Какие ограничения и уязвимости есть в системе.</p>
+	</li>
+	<li>
+	<p>Как правильно передавать информацию о сбоях разработчикам.</p>
+	</li>
+</ul>
+
+<p>Ваша задача &mdash; не только зафиксировать проблему, но и понять её контекст, чтобы помочь команде исправить её быстро и эффективно.</p></div>
+          <nav class="pager" aria-label="Навигация между шагами"><a class="prev" href="step-091.html"><small>Назад</small><span>← Лекция «HTTP-статус-коды 400: клиентские ошибки»</span></a><a class="next" href="step-093.html"><small>Дальше</small><span>Лекция «HTTP-статус-коды на собеседовании: что важно знать» →</span></a></nav>
+        </article></div></main>
+  <footer><span>Локальная учебная копия · без отслеживания и отправки ответов</span><a href="../../about.html">О сайте</a></footer>
+</body>
+</html>

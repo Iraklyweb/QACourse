@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="ID ID — уникальный идентификатор, по которому элемент можно найти или сослаться на него. Применяется во всех типах тестовой документации для связи между об">
+  <meta name="color-scheme" content="dark light">
+  <title>Лекция «ID» · QA Конспект</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body data-base="../../">
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="topbar">
+    <a class="brand" href="../../index.html" aria-label="QA Конспект, главная"><span class="brand-mark">QA</span><span>Конспект</span></a>
+    <nav aria-label="Основная навигация">
+      <a href="../../courses/manual-testing/">Ручное тестирование</a>
+      <a href="../../courses/mqa-base/">MQA Base</a>
+      <a href="../../courses/mqa-base/">Курс</a>
+    </nav>
+    <form class="search-mini" action="../../search.html" role="search">
+      <label class="sr-only" for="site-search-2">Поиск по курсам</label>
+      <input id="site-search-2" name="q" type="search" placeholder="Найти тему…" autocomplete="off">
+      <button type="submit" aria-label="Искать">⌕</button>
+    </form>
+  </header>
+  <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="index.html">← Структура курса</a><div class="rail-index"><span>010</span><small>из 127</small></div><p>Паспорт и классификация документа</p><div class="rail-progress" aria-label="Шаг 2 из 6 в теме"><i style="width:33%"></i></div><small>2 / 6 в теме</small></aside>
+        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><a href="index.html">MQA Base</a><span>/</span><span>Тестовая документация</span><span>/</span><span>Паспорт и классификация документа</span></nav>
+          <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «ID»</h1><p>Тестовая документация · Паспорт и классификация документа</p></header>
+          <aside class="media-card"><span aria-hidden="true">▶</span><div><strong>К шагу прикреплено видео</strong><p>Видео не включено в локальную копию; сохранена только отметка о его наличии.</p></div></aside><div class="lesson-content"><div>
+
+<h1>ID</h1>
+
+<div>
+<div>
+<div>
+<p><strong>ID </strong>&mdash; уникальный идентификатор, по которому элемент можно найти или сослаться на него. Применяется во всех типах тестовой документации для связи между объектами.</p>
+
+<p>Он нужен, чтобы любой элемент тестовой документации можно было быстро найти и связать с другими артефактами.</p>
+
+<p>Внутри компании он играет ту же роль, что номер паспорта у человека: помогает отличить один объект от другого, даже если названия похожи.</p>
+</div>
+
+<div>
+<p><strong>В разных инструментах ID создаётся по-разному.</strong></p>
+
+<p>В TestIT или Zephyr он может формироваться автоматически &mdash; например, TC-125 для тест-кейса или BUG-432 для дефекта.</p>
+
+<p>Если вы работаете в таблице, ID можно проставлять вручную: обычный числовой или буквенно-числовой индекс, главное &mdash; чтобы он был уникальным и не пересекался с другими.</p>
+</div>
+
+<div>
+<p><strong>Когда таких документов становится сотни, ID перестаёт быть &ldquo;просто колонкой&rdquo;.</strong></p>
+
+<p>Он помогает:</p>
+
+<p><em>&mdash; делать ссылки между тестами, багами и задачами;</em></p>
+
+<p><em>&mdash; понимать, к какому элементу относится комментарий или лог;</em></p>
+
+<p><em>&mdash; не потерять документ при миграции или выгрузке.</em></p>
+</div>
+
+<div>
+<p>Если документация ведётся в Excel, часто ошибаются с нумерацией: дублируют ID, пропускают значения, вставляют новые строки без обновления.</p>
+
+<p>Из-за этого теряется связь между тестами и дефектами &mdash; система перестаёт быть целостной.</p>
+
+<p>Поэтому даже в простой таблице лучше заранее определить формат ID и придерживаться его.</p>
+
+<p><strong>Например:</strong></p>
+
+<p>TC-001 &mdash; тест-кейс,</p>
+
+<p>CL-015 &mdash; пункт чек-листа,</p>
+
+<p>BR-207 &mdash; баг-репорт.</p>
+</div>
+
+<div>
+<p>Такой порядок помогает сохранять структуру и не терять связи, даже если документация ведётся вручную.</p>
+
+<p>Система не должна быть сложной &mdash; главное, чтобы её понимали все, кто с ней работает.</p>
+</div>
+</div>
+</div>
+</div></div>
+          <nav class="pager" aria-label="Навигация между шагами"><a class="prev" href="step-009.html"><small>Назад</small><span>← Лекция «Паспорт документа: как не потерять тесты, чек-листы и баги»</span></a><a class="next" href="step-011.html"><small>Дальше</small><span>Лекция «Автор» →</span></a></nav>
+        </article></div></main>
+  <footer><span>Локальная учебная копия · без отслеживания и отправки ответов</span><a href="../../about.html">О сайте</a></footer>
+</body>
+</html>

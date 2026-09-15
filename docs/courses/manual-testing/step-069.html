@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Лекция &quot;Как это работает в HTTPS?&quot; Установка соединения: Когда клиент подключается к серверу, они сначала договариваются о правилах шифрования. Это называе">
+  <meta name="color-scheme" content="dark light">
+  <title>Лекция «Как это работает в HTTPS?» · QA Конспект</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body data-base="../../">
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="topbar">
+    <a class="brand" href="../../index.html" aria-label="QA Конспект, главная"><span class="brand-mark">QA</span><span>Конспект</span></a>
+    <nav aria-label="Основная навигация">
+      <a href="../../courses/manual-testing/">Ручное тестирование</a>
+      <a href="../../courses/mqa-base/">MQA Base</a>
+      <a href="../../courses/manual-testing/">Курс</a>
+    </nav>
+    <form class="search-mini" action="../../search.html" role="search">
+      <label class="sr-only" for="site-search-2">Поиск по курсам</label>
+      <input id="site-search-2" name="q" type="search" placeholder="Найти тему…" autocomplete="off">
+      <button type="submit" aria-label="Искать">⌕</button>
+    </form>
+  </header>
+  <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="index.html">← Структура курса</a><div class="rail-index"><span>069</span><small>из 168</small></div><p>HTTP и HTTPS</p><div class="rail-progress" aria-label="Шаг 2 из 3 в теме"><i style="width:67%"></i></div><small>2 / 3 в теме</small></aside>
+        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><a href="index.html">Ручное тестирование</a><span>/</span><span>Сети</span><span>/</span><span>HTTP и HTTPS</span></nav>
+          <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «Как это работает в HTTPS?»</h1><p>Сети · HTTP и HTTPS</p></header>
+          <aside class="media-card"><span aria-hidden="true">▶</span><div><strong>К шагу прикреплено видео</strong><p>Видео не включено в локальную копию; сохранена только отметка о его наличии.</p></div></aside><div class="lesson-content"><h1><span>Лекция &laquo;Как это работает в HTTPS?&raquo;</span></h1>
+
+<p>&nbsp;</p>
+
+<ol>
+	<li>
+	<p><span><strong>Установка соединения: </strong>Когда клиент подключается к серверу, они сначала договариваются о правилах шифрования. Это называется <strong>&quot;рукопожатие&quot;</strong> (handshake). Во время этого:</span></p>
+
+	<ul>
+		<li>
+		<p><span>Клиент проверяет, что сервер настоящий (проверяет SSL/TLS-сертификат).</span></p>
+		</li>
+		<li>
+		<p><span>Стороны обмениваются ключами для шифрования, </span>чтобы никто не смог перехватить или изменить передаваемые данные.</p>
+		</li>
+	</ul>
+	</li>
+	<li>
+	<p><span><strong>Шифрование данных: </strong>После &quot;рукопожатия&quot; всё, что отправляется между клиентом и сервером, зашифровано. Например:</span></p>
+
+	<ul>
+		<li>
+		<p><span>Если клиент отправляет пароль, вместо &quot;mypassword123&quot; сервер получает &quot;cG5!@#sf83zq&quot;, который он расшифрует с помощью своего ключа.</span></p>
+		</li>
+		<li>
+		<p><span>Аналогично, если сервер отправляет данные клиенту, они тоже шифруются перед отправкой.</span></p>
+		</li>
+	</ul>
+	</li>
+	<li>
+	<p><span><strong>Никто не может подслушать: </strong>Даже если кто-то в сети перехватит данные, они увидят только зашифрованный &quot;мусор&quot;, который невозможно прочитать без ключей, известных только клиенту и серверу.</span></p>
+	</li>
+</ol>
+
+<p>&nbsp;</p>
+
+<h3><span><strong>Улучшение понимания: короткий пример</strong></span></h3>
+
+<p><span>Представь, что ты отправляешь сообщение другу через закрытый конверт с особым кодовым замком.</span></p>
+
+<ul>
+	<li>
+	<p><span>Только ты и друг знаете, как открыть этот замок (это ваши &quot;ключи&quot;).</span></p>
+	</li>
+	<li>
+	<p><span>Даже если кто-то перехватит конверт, он не сможет открыть его и прочитать содержимое без знания кода.</span></p>
+	</li>
+</ul>
+
+<p>HTTPS работает по тому же принципу: только клиент и сервер знают код доступа (ключи), а любые попытки вмешательства становятся бессмысленными.</p>
+
+<p>&nbsp;</p></div>
+          <nav class="pager" aria-label="Навигация между шагами"><a class="prev" href="step-068.html"><small>Назад</small><span>← Лекция «HTTP и HTTPS: основы и зачем это знать»</span></a><a class="next" href="step-070.html"><small>Дальше</small><span>Лекция «HTTP и HTTPS: основы для собеседования и работы» →</span></a></nav>
+        </article></div></main>
+  <footer><span>Локальная учебная копия · без отслеживания и отправки ответов</span><a href="../../about.html">О сайте</a></footer>
+</body>
+</html>

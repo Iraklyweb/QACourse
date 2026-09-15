@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Почему проверки устаревают В интернете часто можно встретить фразу, что &amp;ldquo;проверки устаревают&amp;rdquo;. Но почти нигде не объясняется, почему это вообще">
+  <meta name="color-scheme" content="dark light">
+  <title>Лекция «Почему проверки устаревают» · QA Конспект</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body data-base="../../">
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="topbar">
+    <a class="brand" href="../../index.html" aria-label="QA Конспект, главная"><span class="brand-mark">QA</span><span>Конспект</span></a>
+    <nav aria-label="Основная навигация">
+      <a href="../../courses/manual-testing/">Ручное тестирование</a>
+      <a href="../../courses/mqa-base/">MQA Base</a>
+      <a href="../../courses/mqa-base/">Курс</a>
+    </nav>
+    <form class="search-mini" action="../../search.html" role="search">
+      <label class="sr-only" for="site-search-2">Поиск по курсам</label>
+      <input id="site-search-2" name="q" type="search" placeholder="Найти тему…" autocomplete="off">
+      <button type="submit" aria-label="Искать">⌕</button>
+    </form>
+  </header>
+  <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="index.html">← Структура курса</a><div class="rail-index"><span>055</span><small>из 127</small></div><p>Контекст и применение</p><div class="rail-progress" aria-label="Шаг 9 из 9 в теме"><i style="width:100%"></i></div><small>9 / 9 в теме</small></aside>
+        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><a href="index.html">MQA Base</a><span>/</span><span>Тестовая документация</span><span>/</span><span>Контекст и применение</span></nav>
+          <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «Почему проверки устаревают»</h1><p>Тестовая документация · Контекст и применение</p></header>
+          <aside class="media-card"><span aria-hidden="true">▶</span><div><strong>К шагу прикреплено видео</strong><p>Видео не включено в локальную копию; сохранена только отметка о его наличии.</p></div></aside><div class="lesson-content"><div>
+
+<h1>Почему проверки устаревают</h1>
+
+<div>
+<div>
+<div>
+<p>В интернете часто можно встретить фразу, что &ldquo;проверки устаревают&rdquo;.</p>
+
+<p>Но почти нигде не объясняется, почему это вообще происходит.</p>
+</div>
+
+<div>
+<p><strong>Работа тестировщика строится вокруг задач.</strong></p>
+
+<p>Под каждую задачу создаётся проверка &mdash; тест-кейс или чек-лист.</p>
+
+<p>Сделал задачу &mdash; оформил проверку.</p>
+
+<p>Появилась новая задача &mdash; появилась новая проверка.</p>
+</div>
+
+<div>
+<p>Если в проекте меняется старый функционал, документация обновляется:</p>
+
+<p>новая задача по старому функционалу = обновление старых проверок.</p>
+
+<p>Казалось бы, логика простая. Но именно здесь и начинается история, почему проверки &ldquo;устаревают&rdquo;.</p>
+</div>
+
+<div>
+<p><strong>Первая причина &mdash; на документацию просто забивают.</strong></p>
+
+<p>Не специально, а потому что некогда, не успели, не дошли руки.</p>
+
+<p>Задача закрыта, продукт работает, и вроде всё в порядке.</p>
+
+<p>А через неделю в систему возвращаются &mdash; и выясняется, что кейс больше не отражает реальность.</p>
+</div>
+
+<div>
+<p><strong>Вторая причина &mdash; пересечение сценариев.</strong></p>
+
+<p>Допустим, есть функционал F1, и для него написан сценарий S1.</p>
+
+<p>Потом появляется новая задача на функционал F2, и внутри него используется тот же сценарий S1, только в другом контексте.</p>
+
+<p>Тестировщик делает новую проверку, и теперь один и тот же сценарий живёт в двух местах.</p>
+
+<p>Проходит время, функционал F1 обновляют, сценарий S1 меняется, и в первой проверке кейс обновляют.</p>
+
+<p>А во второй &mdash; нет.</p>
+</div>
+
+<div>
+<p><strong>Почему?</strong></p>
+
+<ul>
+	<li>Потому что никто не помнит, что этот сценарий встречается ещё где-то.</li>
+	<li>Потому что задача стоит только на F1, а значит, менять проверки в других модулях &mdash; &ldquo;вроде не про нас&rdquo;.</li>
+	<li>Потому что обновление десятков связанных кейсов требует времени, а приоритет всегда у новой задачи, а не у старых проверок.</li>
+</ul>
+</div>
+
+<div>
+<p>Так что проверки устаревают не только потому, что тестировщики ленятся или забывают обновить документацию.</p>
+
+<p>Да, это случается &mdash; и часто.</p>
+
+<p>Но есть и другая сторона: продукт развивается быстрее, чем успевает меняться тестовая база.</p>
+
+<p>Когда приоритет &mdash; выпуск новой фичи, а не правка кейсов, документация отстаёт.</p>
+
+<p>Система живёт, задачи идут, релизы выкатываются &mdash; и тесты постепенно перестают совпадать с реальностью.</p>
+</div>
+
+<div>
+<p>Это не вина конкретного человека, а просто свойство рабочего процесса.</p>
+
+<p>Чем дольше живёт проект, тем больше проверок остаются &ldquo;в прошлом&rdquo;.</p>
+
+<p>И в этом нет трагедии &mdash; если команда осознаёт, что документация отражает состояние &ldquo;на тот момент&rdquo;, а не вечную истину.</p>
+</div>
+</div>
+</div>
+</div></div>
+          <nav class="pager" aria-label="Навигация между шагами"><a class="prev" href="step-054.html"><small>Назад</small><span>← Лекция «Один баг-репорт = одна проблема»</span></a><a class="next" href="step-056.html"><small>Дальше</small><span>Лекция «Подходы к составу полей» →</span></a></nav>
+        </article></div></main>
+  <footer><span>Локальная учебная копия · без отслеживания и отправки ответов</span><a href="../../about.html">О сайте</a></footer>
+</body>
+</html>

@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Лекция &quot;Заголовки запроса в API&quot; Когда клиент и сервер обмениваются данными через API, они используют заголовки запроса для передачи дополнительной информа">
+  <meta name="color-scheme" content="dark light">
+  <title>Лекция «Заголовки запроса в API» · QA Конспект</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body data-base="../../">
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="topbar">
+    <a class="brand" href="../../index.html" aria-label="QA Конспект, главная"><span class="brand-mark">QA</span><span>Конспект</span></a>
+    <nav aria-label="Основная навигация">
+      <a href="../../courses/manual-testing/">Ручное тестирование</a>
+      <a href="../../courses/mqa-base/">MQA Base</a>
+      <a href="../../courses/manual-testing/">Курс</a>
+    </nav>
+    <form class="search-mini" action="../../search.html" role="search">
+      <label class="sr-only" for="site-search-2">Поиск по курсам</label>
+      <input id="site-search-2" name="q" type="search" placeholder="Найти тему…" autocomplete="off">
+      <button type="submit" aria-label="Искать">⌕</button>
+    </form>
+  </header>
+  <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="index.html">← Структура курса</a><div class="rail-index"><span>086</span><small>из 168</small></div><p>REST</p><div class="rail-progress" aria-label="Шаг 13 из 14 в теме"><i style="width:93%"></i></div><small>13 / 14 в теме</small></aside>
+        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><a href="index.html">Ручное тестирование</a><span>/</span><span>Сети</span><span>/</span><span>REST</span></nav>
+          <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «Заголовки запроса в API»</h1><p>Сети · REST</p></header>
+          <aside class="media-card"><span aria-hidden="true">▶</span><div><strong>К шагу прикреплено видео</strong><p>Видео не включено в локальную копию; сохранена только отметка о его наличии.</p></div></aside><div class="lesson-content"><h1>Лекция &laquo;Заголовки запроса в API&raquo;</h1>
+
+<p>&nbsp;</p>
+
+<p>Когда клиент и сервер обмениваются данными через API, они используют заголовки запроса для передачи дополнительной информации. Заголовки помогают клиенту и серверу &quot;понимать&quot; друг друга: какой формат данных используется, кто отправляет запрос, какие права доступа у клиента и как обрабатывать данные.</p>
+
+<p>Знание и правильное использование заголовков &mdash; ключ к успешной работе с API, особенно для тестировщиков.</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Как формируются заголовки?</strong></h3>
+
+<p>Заголовки представляют собой пары <strong>ключ: значение</strong>, которые передаются в HTTP-запросе или ответе.</p>
+
+<p>Формат заголовков:</p>
+
+<p>Заголовок: значение</p>
+
+<p>Пример заголовков в HTTP-запросе:</p>
+
+<p><span>POST /api/users HTTP/1.1&nbsp;&nbsp;</span></p>
+
+<p><span>Host: </span><a href="http://example.com/" target="_blank" rel="noopener noreferrer"><span>example.com</span></a><span>&nbsp;&nbsp;</span></p>
+
+<p><span>Authorization: Bearer abc123token&nbsp;&nbsp;</span></p>
+
+<p><span>Content-Type: application/json&nbsp;&nbsp;</span></p>
+
+<p><span>Accept: application/json&nbsp;&nbsp;</span></p>
+
+<p><span>User-Agent: PostmanRuntime/7.29.2&nbsp;&nbsp;</span></p>
+
+<p>&nbsp;</p>
+
+<p>Здесь заголовки указывают, кто отправляет запрос, какие данные передаются и в каком формате клиент хочет получить ответ.</p>
+
+<p>Пример заголовков в HTTP-ответе сервера:</p>
+
+<p><span>HTTP/1.1 200 OK&nbsp;&nbsp;</span></p>
+
+<p><span>Content-Type: application/json&nbsp;&nbsp;</span></p>
+
+<p><span>Set-Cookie: sessionId=xyz456; Path=/; Secure; HttpOnly&nbsp;&nbsp;</span></p>
+
+<p><span>Cache-Control: no-cache&nbsp;&nbsp;</span></p>
+
+<p>&nbsp;</p>
+
+<p>Ответ содержит информацию о возвращаемых данных, управлении сессиями и кэшировании. Формирование и отправка заголовков зависит от клиента. В обычных условиях их автоматически устанавливает браузер, мобильное приложение или другой клиент, если это предусмотрено разработчиком. При тестировании API заголовки можно изменять и настраивать вручную с помощью специальных инструментов. Некоторые заголовки вам придётся формировать самостоятельно в соответствии с требованиями системы.</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Где увидеть заголовки запроса и ответа?</strong></h3>
+
+<p>Заголовки можно посмотреть в инструментах для работы с API:</p>
+
+<ul>
+	<li>
+	<p><strong>В браузере (DevTools &rarr; вкладка &quot;Сеть&quot;)</strong></p>
+	</li>
+	<li>
+	<p><strong>В Postman (раздел Headers)</strong></p>
+	</li>
+	<li>
+	<p><strong>В терминале (cURL, например curl -v)</strong></p>
+	</li>
+</ul>
+
+<p>Пример вывода заголовков через curl:</p>
+
+<p>curl -v -H &quot;Authorization: Bearer abc123token&quot; <a href="https://example.com/api/users" target="_blank" rel="noopener noreferrer">https://example.com/api/users</a></p>
+
+<p>В ответе можно увидеть заголовки сервера и понять, какие данные он возвращает.</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Как понять, что заголовки правильные?</strong></h3>
+
+<p>Проверка заголовков важна при тестировании API. Ошибки в заголовках могут приводить к сбоям в работе сервиса.</p>
+
+<p>На что обращать внимание:</p>
+
+<ul>
+	<li>
+	<p><strong>Заголовки должны соответствовать спецификации API</strong> &mdash; API может требовать обязательные заголовки, без которых запрос не будет обработан.</p>
+	</li>
+	<li>
+	<p><strong>Формат заголовков должен быть корректным</strong> &mdash; Content-Type должен совпадать с передаваемыми данными.</p>
+	</li>
+	<li>
+	<p><strong>Правильность значений</strong> &mdash; передаваемый токен должен быть валидным, а заголовки, связанные с сессиями, должны соответствовать требованиям сервера.</p>
+	</li>
+	<li>
+	<p><strong>Реакция сервера на некорректные заголовки</strong> &mdash; например, если передать неверный Content-Type, сервер должен вернуть 415 Unsupported Media Type.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><strong>Группы заголовков</strong></h3>
+
+<h4><strong>Авторизация и безопасность</strong></h4>
+
+<p>Используются для подтверждения личности клиента и защиты данных.</p>
+
+<p><strong>Authorization</strong> &mdash; передаёт данные для аутентификации (например, токен доступа).</p>
+
+<p><strong>Токен</strong> &mdash; это уникальная строка, которая подтверждает, что у пользователя есть права на доступ к системе. Он работает как электронный ключ: сервер выдаёт его после успешного входа, а затем клиент использует токен в каждом запросе вместо логина и пароля.</p>
+
+<p>На тестировании проверяется, что:</p>
+
+<ul>
+	<li>
+	<p>Запрос без токена возвращает <strong>401 Unauthorized</strong>.</p>
+	</li>
+	<li>
+	<p>Запрос с неправильным токеном отклоняется и возвращается <strong>401 Unauthorized</strong>.</p>
+	</li>
+	<li>
+	<p>Запрос с валидным токеном проходит.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><strong>Что такое Bearer-токен?</strong></h3>
+
+<p>Bearer-токен &mdash; это <strong>тип токена, который клиент передаёт серверу в заголовке Authorization</strong>. Он используется для аутентификации и подтверждения прав доступа.</p>
+
+<p>Пример использования:</p>
+
+<p><span>Authorization: Bearer abc123token</span></p>
+
+<p>Слово <strong>Bearer</strong> означает, что тот, кто предъявляет этот токен, считается авторизованным. <strong>Сервер не проверяет, кто отправил токен &mdash; если он валидный, доступ будет предоставлен.</strong></p>
+
+<h5><strong>Что тестировать?</strong></h5>
+
+<ul>
+	<li>
+	<p>Запрос <strong>без Bearer-токена</strong> должен возвращать 401 Unauthorized.</p>
+	</li>
+	<li>
+	<p>Запрос с <strong>истёкшим или поддельным токеном</strong> тоже должен возвращать 401 Unauthorized.</p>
+	</li>
+	<li>
+	<p>Если токен корректный, сервер должен разрешить выполнение запроса.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><strong>Что такое JWT (JSON Web Token)?</strong></h3>
+
+<p>JWT &mdash; это <strong>формат Bearer-токена</strong>, который представляет собой зашифрованную строку, содержащую <strong>данные о пользователе и его правах</strong>.</p>
+
+<p>Пример JWT-токена:</p>
+
+<p>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJhZG1pbiIsImlhdCI6MTY5MDAwMDAwMCwiZXhwIjoxNjkwMDkwMDAwfQ.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ</p>
+
+<p>Он состоит из трёх частей, разделённых точками:</p>
+
+<ol>
+	<li>
+	<p><strong>Заголовок (Header)</strong> &mdash; содержит информацию о типе токена и алгоритме шифрования.</p>
+	</li>
+	<li>
+	<p><strong>Полезная нагрузка (Payload)</strong> &mdash; включает данные о пользователе, его роли и сроке действия токена.</p>
+	</li>
+	<li>
+	<p><strong>Подпись (Signature)</strong> &mdash; используется для проверки подлинности токена.</p>
+	</li>
+</ol>
+
+<h5><strong>Что тестировать?</strong></h5>
+
+<ul>
+	<li>
+	<p><strong>Декодирование токена</strong> &mdash; убедиться, что в Payload не хранятся <strong>чувствительные данные</strong> (например, пароли).</p>
+	</li>
+	<li>
+	<p><strong>Срок действия (exp)</strong> &mdash; если токен истёк, сервер должен вернуть 401 Unauthorized.</p>
+	</li>
+	<li>
+	<p><strong>Роли (role)</strong> &mdash; у пользователя должны быть <strong>правильные права доступа</strong>.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><strong>Cookie</strong></h3>
+
+<p><strong>Cookie</strong> &mdash; передаёт данные о сессии клиента. Пример:</p>
+
+<p><span>Cookie: sessionId=xyz456</span></p>
+
+<p><strong>Идентификатор</strong> &mdash; это уникальный код или строка, с помощью которой система отличает один объект от другого. В случае сессии он нужен, чтобы понять, какой пользователь выполняет запрос.</p>
+
+<p><strong>Сессия</strong> &mdash; это период активности пользователя на сайте или в приложении. Пока сессия активна, сервер &quot;помнит&quot; пользователя, его данные и настройки, чтобы не запрашивать их каждый раз заново.</p>
+
+<p>Cookie с идентификатором сессии позволяет серверу понимать, кто отправляет запрос, и связывать его с текущим состоянием пользователя. Это нужно, например, чтобы не заставлять пользователя логиниться заново при каждом переходе на новую страницу.</p>
+
+<p>Проверяется, что:</p>
+
+<ul>
+	<li>
+	<p>Запрос без корректного Cookie приводит к разрыву сессии.</p>
+	</li>
+	<li>
+	<p>Сервер корректно обрабатывает запросы с переданным Cookie.</p>
+	</li>
+	<li>
+	<p>При истечении срока действия Cookie сервер требует новую аутентификацию.</p>
+	</li>
+</ul>
+
+<h2>&nbsp;</h2>
+
+<h3><strong>Формат данных</strong></h3>
+
+<p>Определяют, в каком формате клиент передаёт и принимает данные.</p>
+
+<p><strong>Content-Type</strong> &mdash; указывает формат передаваемых данных. Пример:</p>
+
+<p><span>Content-Type: application/json</span></p>
+
+<p>&nbsp;</p>
+
+<p>На тестировании проверяется, что:</p>
+
+<ul>
+	<li>
+	<p>Передаваемый формат совпадает с фактическими данными.</p>
+	</li>
+	<li>
+	<p>Сервер корректно реагирует на неверный формат (415 Unsupported Media Type).</p>
+	</li>
+</ul>
+
+<p><strong>Accept</strong> &mdash; указывает, в каком формате клиент хочет получить ответ. Пример:</p>
+
+<p><span>Accept: application/json</span></p>
+
+<p>На тестировании проверяется, что:</p>
+
+<ul>
+	<li>
+	<p>Сервер возвращает данные в нужном формате.</p>
+	</li>
+	<li>
+	<p>Если запрашиваемый формат недоступен, сервер выдаёт <strong>406 Not Acceptable</strong>.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><strong>Сведения о клиенте</strong></h3>
+
+<p>Передают информацию о том, откуда пришёл запрос.</p>
+
+<p><strong>User-Agent</strong> &mdash; передаёт данные о клиенте (браузер, скрипт, Postman). Пример:</p>
+
+<p><span>User-Agent: PostmanRuntime/7.29.2</span></p>
+
+<p>&nbsp;</p>
+
+<p>Используется в тестировании, если система блокирует определённые User-Agent или требует их наличия.</p>
+
+<p><strong>Referer</strong> &mdash; указывает, с какого ресурса пришёл запрос. Пример:</p>
+
+<p>Referer: <a href="https://example.com/" target="_blank" rel="noopener noreferrer">https://example.com/</a></p>
+
+<p>&nbsp;</p>
+
+<p>Позволяет отслеживать, откуда пришёл запрос. Может использоваться для защиты от подделки запросов (CSRF).</p>
+
+<p><strong>Host</strong> &mdash; указывает, к какому серверу направляется запрос. Пример:</p>
+
+<p>Host: <a href="http://example.com/" target="_blank" rel="noopener noreferrer">example.com</a></p>
+
+<p>&nbsp;</p>
+
+<p>Если на одном IP-адресе работает несколько сайтов или сервисов, заголовок <strong>Host</strong> сообщает серверу, к какому из них относится запрос. Браузер автоматически добавляет этот заголовок. Если же запрос отправляется напрямую без <strong>Host</strong>, сервер ответит в зависимости от его настройки &mdash; либо вернёт страницу по умолчанию, либо ошибку.</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Кэширование и оптимизация</strong></h3>
+
+<p>Заголовки, которые управляют хранением данных и настройками соединения.</p>
+
+<ul>
+	<li>
+	<p><strong>Cache-Control</strong>: указывает, как сервер должен кэшировать данные.</p>
+	</li>
+	<li>
+	<p><strong>Accept-Encoding</strong>: указывает, какие методы сжатия данных поддерживает клиент.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><strong>Какие заголовки тестирует тестировщик?</strong></h3>
+
+<p>Хотя заголовков запроса существует множество, в реальной работе тестировщика вы чаще всего будете работать с:</p>
+
+<ul>
+	<li>
+	<p><strong>Authorization</strong> &mdash; работа авторизации, корректность токенов.</p>
+	</li>
+	<li>
+	<p><strong>Cookie</strong> &mdash; обработка сессий и авторизации.</p>
+	</li>
+	<li>
+	<p><strong>User-Agent</strong> &mdash; в случаях, когда важно, откуда приходит запрос.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><strong>Итог</strong></h3>
+
+<p>Заголовки запроса и ответа передают важную информацию о данных, авторизации и работе API.</p>
+
+<p>Понимание этих заголовков помогает находить ошибки и тестировать API более эффективно.</p></div>
+          <nav class="pager" aria-label="Навигация между шагами"><a class="prev" href="step-085.html"><small>Назад</small><span>← Лекция «Структура сообщения в API»</span></a><a class="next" href="step-087.html"><small>Дальше</small><span>Лекция «Заголовки ответа в API» →</span></a></nav>
+        </article></div></main>
+  <footer><span>Локальная учебная копия · без отслеживания и отправки ответов</span><a href="../../about.html">О сайте</a></footer>
+</body>
+</html>

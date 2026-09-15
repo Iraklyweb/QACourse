@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Лекция &quot;HTTP-методы: часто задаваемые вопросы на собеседовании&quot; Вопросы о HTTP-методах — одна из самых популярных тем на собеседованиях, связанных с тестир">
+  <meta name="color-scheme" content="dark light">
+  <title>Лекция «HTTP-методы: часто задаваемые вопросы на собеседовании» · QA Конспект</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body data-base="../../">
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="topbar">
+    <a class="brand" href="../../index.html" aria-label="QA Конспект, главная"><span class="brand-mark">QA</span><span>Конспект</span></a>
+    <nav aria-label="Основная навигация">
+      <a href="../../courses/manual-testing/">Ручное тестирование</a>
+      <a href="../../courses/mqa-base/">MQA Base</a>
+      <a href="../../courses/manual-testing/">Курс</a>
+    </nav>
+    <form class="search-mini" action="../../search.html" role="search">
+      <label class="sr-only" for="site-search-2">Поиск по курсам</label>
+      <input id="site-search-2" name="q" type="search" placeholder="Найти тему…" autocomplete="off">
+      <button type="submit" aria-label="Искать">⌕</button>
+    </form>
+  </header>
+  <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="index.html">← Структура курса</a><div class="rail-index"><span>103</span><small>из 168</small></div><p>HTTP-методы в API</p><div class="rail-progress" aria-label="Шаг 10 из 11 в теме"><i style="width:91%"></i></div><small>10 / 11 в теме</small></aside>
+        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><a href="index.html">Ручное тестирование</a><span>/</span><span>Сети</span><span>/</span><span>HTTP-методы в API</span></nav>
+          <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «HTTP-методы: часто задаваемые вопросы на собеседовании»</h1><p>Сети · HTTP-методы в API</p></header>
+          <aside class="media-card"><span aria-hidden="true">▶</span><div><strong>К шагу прикреплено видео</strong><p>Видео не включено в локальную копию; сохранена только отметка о его наличии.</p></div></aside><div class="lesson-content"><h1>Лекция &laquo;HTTP-методы: часто задаваемые вопросы на собеседовании&raquo;</h1>
+
+<p>&nbsp;</p>
+
+<p>Вопросы о HTTP-методах &mdash; одна из самых популярных тем на собеседованиях, связанных с тестированием API. Знать базовые ответы на них недостаточно: важно уметь объяснять их своими словами и приводить примеры. Вот список типичных вопросов и короткие ответы.</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Какие есть основные HTTP-методы и зачем они нужны?</strong></h3>
+
+<p>HTTP-методы &mdash; это инструкции серверу, описывающие, что делать с ресурсами.</p>
+
+<ul>
+	<li>
+	<p><strong>GET:</strong> Получение данных.</p>
+	</li>
+	<li>
+	<p><strong>POST:</strong> Создание новых ресурсов или выполнение действий.</p>
+	</li>
+	<li>
+	<p><strong>PUT:</strong> Полное обновление ресурса или его создание.</p>
+	</li>
+	<li>
+	<p><strong>PATCH:</strong> Частичное обновление ресурса.</p>
+	</li>
+	<li>
+	<p><strong>DELETE:</strong> Удаление ресурса.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h4><strong>Что такое идемпотентность?</strong></h4>
+
+<p>Идемпотентность означает, что повторный запрос с одинаковыми данными не изменит состояние ресурса.</p>
+
+<ul>
+	<li>
+	<p>Пример: GET, PUT, DELETE &mdash; идемпотентны; POST &mdash; нет, так как может создать дубликаты.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h4><strong>Какие методы считаются безопасными?</strong></h4>
+
+<p>Безопасные методы не изменяют данные на сервере: <strong>GET</strong>, <strong>HEAD</strong>, <strong>OPTIONS</strong>.</p>
+
+<p>&nbsp;</p>
+
+<h4><strong>Можно ли методом DELETE создать сущность?</strong></h4>
+
+<p>Теоретически да, если сервер реализован так, что DELETE создаёт новую сущность вместо её удаления. HTTP-методы &mdash; это рекомендации, и разработчики могут реализовать их по-своему.</p>
+
+<p>&nbsp;</p>
+
+<h4><strong>Когда использовать PUT, а когда PATCH?</strong></h4>
+
+<ul>
+	<li>
+	<p><strong>PUT:</strong> Для полного обновления ресурса, нужно передавать все поля.</p>
+	</li>
+	<li>
+	<p><strong>PATCH:</strong> Для частичного обновления, можно передать только изменяемые поля.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h4><strong>Для чего используется метод DELETE?</strong></h4>
+
+<p>Для удаления ресурса. Повторный запрос подтвердит, что ресурса больше нет.</p>
+
+<p>&nbsp;</p>
+
+<h4><strong>Какие заголовки важны при работе с методами?</strong></h4>
+
+<ul>
+	<li>
+	<p><strong>Content-Type:</strong> Указывает формат данных (например, JSON).</p>
+	</li>
+	<li>
+	<p><strong>Accept:</strong> Указывает, какой формат ответа ожидает клиент.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h4><strong>Какой метод вы используете для проверки существования ресурса?</strong></h4>
+
+<p><strong>HEAD</strong>, так как он возвращает только метаинформацию о ресурсе без передачи тела ответа.</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Советы для подготовки</strong></h3>
+
+<ul>
+	<li>
+	<p>Используйте структуру &quot;определение &mdash; пример &mdash; особенности&quot;, чтобы ваши ответы звучали уверенно и логично.</p>
+	</li>
+	<li>
+	<p>Не бойтесь упоминать нестандартные случаи, если вы о них знаете. Это показывает вашу широту знаний.</p>
+	</li>
+	<li>
+	<p>Важно не только знать ответы, но и уметь объяснить их своими словами.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><strong>Итог</strong></h3>
+
+<p>Эти вопросы &mdash; базовые и часто встречающиеся на собеседованиях. Знание и умение объяснить их &mdash; необходимый минимум для успешного прохождения интервью. Подготовьтесь: это несложно, но важно!</p></div>
+          <nav class="pager" aria-label="Навигация между шагами"><a class="prev" href="step-102.html"><small>Назад</small><span>← Лекция «Общий итог по HTTP-методам»</span></a><a class="next" href="step-104.html"><small>Дальше</small><span>Лекция «Как работает взаимодействие между клиентом и сервером: полный цикл» →</span></a></nav>
+        </article></div></main>
+  <footer><span>Локальная учебная копия · без отслеживания и отправки ответов</span><a href="../../about.html">О сайте</a></footer>
+</body>
+</html>

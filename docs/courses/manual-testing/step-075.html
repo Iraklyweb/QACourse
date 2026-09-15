@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Лекция &quot;WADL: аналог WSDL для REST&quot; WADL (Web Application Description Language) — это стандарт для описания REST API, написанный на XML. Он выполняет ту же">
+  <meta name="color-scheme" content="dark light">
+  <title>Лекция «WADL: аналог WSDL для REST» · QA Конспект</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body data-base="../../">
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="topbar">
+    <a class="brand" href="../../index.html" aria-label="QA Конспект, главная"><span class="brand-mark">QA</span><span>Конспект</span></a>
+    <nav aria-label="Основная навигация">
+      <a href="../../courses/manual-testing/">Ручное тестирование</a>
+      <a href="../../courses/mqa-base/">MQA Base</a>
+      <a href="../../courses/manual-testing/">Курс</a>
+    </nav>
+    <form class="search-mini" action="../../search.html" role="search">
+      <label class="sr-only" for="site-search-2">Поиск по курсам</label>
+      <input id="site-search-2" name="q" type="search" placeholder="Найти тему…" autocomplete="off">
+      <button type="submit" aria-label="Искать">⌕</button>
+    </form>
+  </header>
+  <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="index.html">← Структура курса</a><div class="rail-index"><span>075</span><small>из 168</small></div><p>REST</p><div class="rail-progress" aria-label="Шаг 2 из 14 в теме"><i style="width:14%"></i></div><small>2 / 14 в теме</small></aside>
+        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><a href="index.html">Ручное тестирование</a><span>/</span><span>Сети</span><span>/</span><span>REST</span></nav>
+          <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «WADL: аналог WSDL для REST»</h1><p>Сети · REST</p></header>
+          <aside class="media-card"><span aria-hidden="true">▶</span><div><strong>К шагу прикреплено видео</strong><p>Видео не включено в локальную копию; сохранена только отметка о его наличии.</p></div></aside><div class="lesson-content"><h1><span>Лекция &laquo;WADL: аналог WSDL для REST&raquo;</span></h1>
+
+<p>&nbsp;</p>
+
+<p><span><strong>WADL (Web Application Description Language)</strong> &mdash; это стандарт для описания REST API, написанный на XML. Он выполняет ту же роль, что и WSDL в SOAP, но используется в контексте REST. </span>WADL описывает ресурсы, методы, параметры и формат данных, что помогает разработчикам и тестировщикам понять, как правильно взаимодействовать с API.<span> Не является обязательным </span>элементом<span> в REST.</span></p>
+
+<p>&nbsp;</p>
+
+<h3><span><strong>Что описывает WADL?</strong></span></h3>
+
+<ol>
+	<li>
+	<p><span><strong>Ресурсы. </strong>Это основные элементы REST API (например, users, orders, products), куда ходит клиент.</span></p>
+	</li>
+	<li>
+	<p><span><strong>Методы. </strong>WADL указывает, какие HTTP-методы можно использовать с ресурсами (например, GET, POST, PUT, DELETE и др.).</span></p>
+	</li>
+	<li>
+	<p><span><strong>Параметры. </strong>Описывает, какие параметры можно передавать в запросе, их типы и обязательность.</span></p>
+	</li>
+	<li>
+	<p><span><strong>Ответы. </strong>Указывает, какие данные возвращает API и в каком формате (например, JSON, XML).</span></p>
+	</li>
+</ol>
+
+<p>&nbsp;</p>
+
+<h3><span><strong>Пример WADL</strong></span></h3>
+
+<p><span>Пример WADL для API, которое возвращает список пользователей:</span></p>
+
+<p><span>&lt;application xmlns=&quot;</span><a href="http://wadl.dev.java.net/2009/02" target="_blank" rel="noopener noreferrer"><span>http://wadl.dev.java.net/2009/02</span></a><span>&quot;&gt;</span></p>
+
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;&lt;resources base=&quot;</span><a href="https://example.com/api" target="_blank" rel="noopener noreferrer"><span>https://example.com/api</span></a><span>&quot;&gt;</span></p>
+
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;resource path=&quot;/users&quot;&gt;</span></p>
+
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;method name=&quot;GET&quot;&gt;</span></p>
+
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;response&gt;</span></p>
+
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;representation mediaType=&quot;application/json&quot;/&gt;</span></p>
+
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/response&gt;</span></p>
+
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/method&gt;</span></p>
+
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/resource&gt;</span></p>
+
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/resources&gt;</span></p>
+
+<p><span>&lt;/application&gt;</span></p>
+
+<p>&nbsp;</p>
+
+<h4><span><strong>Расшифровка:</strong></span></h4>
+
+<ul>
+	<li>
+	<p><span>&lt;resources&gt; описывает базовый URL для всех запросов.</span></p>
+	</li>
+	<li>
+	<p><span>&lt;resource path=&quot;/users&quot;&gt; указывает, что доступен ресурс /users.</span></p>
+	</li>
+	<li>
+	<p><span>&lt;method name=&quot;GET&quot;&gt; показывает, что к этому ресурсу можно обратиться методом GET.</span></p>
+	</li>
+	<li>
+	<p><span>&lt;representation mediaType=&quot;application/json&quot;/&gt; говорит, что ответ будет в формате JSON.</span></p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><span><strong>Почему WADL используется редко?</strong></span></h3>
+
+<ol>
+	<li>
+	<p><span><strong>REST гибкий и лёгкий. </strong>WADL часто считают слишком громоздким для REST, который задумывался как лёгкий и нестрогий.</span></p>
+	</li>
+	<li>
+	<p><span><strong>OpenAPI (Swagger) вытеснил WADL. </strong>Индустрия перешла на OpenAPI, который проще в использовании и имеет больше инструментов для работы.</span></p>
+	</li>
+</ol>
+
+<p>&nbsp;</p>
+
+<h3><span><strong>Итог</strong></span></h3>
+
+<p>WADL &mdash; это попытка стандартизировать описание REST API с помощью формата XML, аналогично тому, как WSDL используется для SOAP. Он описывает ресурсы, методы, параметры и форматы данных. Однако на практике WADL используется крайне редко. Современным и более популярным стандартом описания REST API стал OpenAPI (Swagger) &mdash; благодаря простоте, читабельности и мощным инструментам для генерации документации и тестирования.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><strong>Что нужно уметь рассказать</strong><br>
+&ndash; Термин &laquo;WADL&raquo;<br>
+&ndash; WADL = описание REST API в XML<br>
+&ndash; Аналог WSDL, но для REST<br>
+&ndash; Что описывает: ресурсы, методы, параметры, ответы, форматы данных<br>
+&ndash; На практике почти не используется<br>
+&ndash; Современная альтернатива &mdash; OpenAPI (Swagger)</p>
+
+<p><strong>Всё остальное &mdash; для общего развития</strong></p></div>
+          <nav class="pager" aria-label="Навигация между шагами"><a class="prev" href="step-074.html"><small>Назад</small><span>← Лекция «REST: что это и как это работает»</span></a><a class="next" href="step-076.html"><small>Дальше</small><span>Лекция «OpenAPI: что это и зачем нужно» →</span></a></nav>
+        </article></div></main>
+  <footer><span>Локальная учебная копия · без отслеживания и отправки ответов</span><a href="../../about.html">О сайте</a></footer>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Техники тест-дизайна Техники тест-дизайна — это способы построения проверок, которые помогают системно искать ошибки, а не действовать наугад. Каждая техни">
+  <meta name="color-scheme" content="dark light">
+  <title>Лекция «Техники тест-дизайна» · QA Конспект</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body data-base="../../">
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="topbar">
+    <a class="brand" href="../../index.html" aria-label="QA Конспект, главная"><span class="brand-mark">QA</span><span>Конспект</span></a>
+    <nav aria-label="Основная навигация">
+      <a href="../../courses/manual-testing/">Ручное тестирование</a>
+      <a href="../../courses/mqa-base/">MQA Base</a>
+      <a href="../../courses/mqa-base/">Курс</a>
+    </nav>
+    <form class="search-mini" action="../../search.html" role="search">
+      <label class="sr-only" for="site-search-2">Поиск по курсам</label>
+      <input id="site-search-2" name="q" type="search" placeholder="Найти тему…" autocomplete="off">
+      <button type="submit" aria-label="Искать">⌕</button>
+    </form>
+  </header>
+  <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="index.html">← Структура курса</a><div class="rail-index"><span>116</span><small>из 127</small></div><p>Теоретические сведения</p><div class="rail-progress" aria-label="Шаг 16 из 19 в теме"><i style="width:84%"></i></div><small>16 / 19 в теме</small></aside>
+        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><a href="index.html">MQA Base</a><span>/</span><span>Техники тест-дизайна</span><span>/</span><span>Теоретические сведения</span></nav>
+          <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «Техники тест-дизайна»</h1><p>Техники тест-дизайна · Теоретические сведения</p></header>
+          <aside class="media-card"><span aria-hidden="true">▶</span><div><strong>К шагу прикреплено видео</strong><p>Видео не включено в локальную копию; сохранена только отметка о его наличии.</p></div></aside><div class="lesson-content"><div>
+
+<h1>Техники тест-дизайна</h1>
+
+<div>
+<div>
+<div>
+<p><strong>Техники тест-дизайна</strong> &mdash; это способы построения проверок, которые помогают системно искать ошибки, а не действовать наугад. Каждая техника отвечает за свой тип логики: где ошибиться проще всего &mdash; в данных, в границах, в комбинациях параметров или в переходах между состояниями.</p>
+</div>
+
+<div>
+<p><strong>В тестировании выделяют несколько техник:</strong></p>
+
+<ul>
+	<li>Классы эквивалентности &mdash; позволяют сократить количество проверок, разбивая данные на группы, внутри которых система должна вести себя одинаково.</li>
+	<li>Граничные значения &mdash; помогают находить дефекты на краях допустимых диапазонов.</li>
+	<li>Таблицы решений &mdash; описывают реакции системы при разных сочетаниях условий.</li>
+	<li>Переходы состояний &mdash; показывают, как система меняет состояние при разных действиях или событиях.</li>
+	<li>Попарное тестирование (pairwise) &mdash; помогает проверить все возможные сочетания параметров без лишних проверок, отбирая минимальный, но достаточный набор комбинаций.</li>
+	<li>Сценарии использования (use case) &mdash; строятся вокруг пользовательских действий и помогают увидеть, как система работает в реальных сценариях.</li>
+</ul>
+</div>
+
+<div>
+<p>Есть и спорные техники, которые не все считают самостоятельными. Например, <strong>предугадывание ошибок</strong> &mdash; когда тестировщик исходит из собственного опыта и предполагает, где может &ldquo;сломаться&rdquo;. Я как автор курса не разделяю этот подход и не рассматриваю его как полноценную технику: это скорее интуиция и насмотренность, а не системный инструмент. А вот use case я поддерживаю &mdash; эта техника помогает увидеть не просто отдельные поля, а цельную логику использования продукта, что делает проверки ближе к реальности.</p>
+</div>
+
+<div>
+<p>На практике техники комбинируются: для одной проверки можно использовать сразу несколько подходов. Например, при тестировании формы удобно применить классы эквивалентности и граничные значения, а при проверке бизнес-процесса &mdash; таблицы решений и переходы состояний.</p>
+</div>
+
+<div>
+<p>Техники тест-дизайна формируют мышление тестировщика: помогают выстроить структуру проверок, сократить дубли, сфокусироваться на рисках и объяснить, почему выбраны именно эти проверки.</p>
+</div>
+</div>
+</div>
+</div></div>
+          <nav class="pager" aria-label="Навигация между шагами"><a class="prev" href="step-115.html"><small>Назад</small><span>← Лекция «Классы эквивалентности»</span></a><a class="next" href="step-117.html"><small>Дальше</small><span>Лекция «Когда применяются техники тест-дизайна» →</span></a></nav>
+        </article></div></main>
+  <footer><span>Локальная учебная копия · без отслеживания и отправки ответов</span><a href="../../about.html">О сайте</a></footer>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Баг, дефект, ошибка и фейл: что есть что и почему все путают Что такое баг, дефект, ошибка и фейл Баг (bug) — жаргонизм, это любое отклонение фактического ">
+  <meta name="color-scheme" content="dark light">
+  <title>Лекция «Баг, дефект, ошибка и фейл: что есть что и почему все путают» · QA Конспект</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body data-base="../../">
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="topbar">
+    <a class="brand" href="../../index.html" aria-label="QA Конспект, главная"><span class="brand-mark">QA</span><span>Конспект</span></a>
+    <nav aria-label="Основная навигация">
+      <a href="../../courses/manual-testing/">Ручное тестирование</a>
+      <a href="../../courses/mqa-base/">MQA Base</a>
+      <a href="../../courses/mqa-base/">Курс</a>
+    </nav>
+    <form class="search-mini" action="../../search.html" role="search">
+      <label class="sr-only" for="site-search-2">Поиск по курсам</label>
+      <input id="site-search-2" name="q" type="search" placeholder="Найти тему…" autocomplete="off">
+      <button type="submit" aria-label="Искать">⌕</button>
+    </form>
+  </header>
+  <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="index.html">← Структура курса</a><div class="rail-index"><span>006</span><small>из 127</small></div><p>Тестовая документация (ТК, ЧЛ, БР)</p><div class="rail-progress" aria-label="Шаг 6 из 8 в теме"><i style="width:75%"></i></div><small>6 / 8 в теме</small></aside>
+        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><a href="index.html">MQA Base</a><span>/</span><span>Тестовая документация</span><span>/</span><span>Тестовая документация (ТК, ЧЛ, БР)</span></nav>
+          <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «Баг, дефект, ошибка и фейл: что есть что и почему все путают»</h1><p>Тестовая документация · Тестовая документация (ТК, ЧЛ, БР)</p></header>
+          <aside class="media-card"><span aria-hidden="true">▶</span><div><strong>К шагу прикреплено видео</strong><p>Видео не включено в локальную копию; сохранена только отметка о его наличии.</p></div></aside><div class="lesson-content"><div>
+
+<h1>Баг, дефект, ошибка и фейл: что есть что и почему все путают</h1>
+
+<div>
+<div>
+<div>
+<p><strong>Что такое баг, дефект, ошибка и фейл</strong></p>
+
+<p>Баг (bug) &mdash; жаргонизм, это любое отклонение фактического поведения системы от ожидаемого. То, что работает не так, как должно.</p>
+
+<p>Дефект (defect) &mdash; синоним бага, чаще используется в документации или формальных отчётах.</p>
+
+<p>Ошибка (error) &mdash; это неправильное действие на этапе написания кода, требований или логики. Ошибка может вызвать баг, но сама по себе &mdash; это ещё не баг.</p>
+
+<p>Фейл (fail/failure) &mdash; это момент, когда система проявила баг: упала, выдала уведомление с ошибкой. Например, тест не прошёл, кнопка не нажалась, вылетела ошибка. То есть проявление дефекта во время выполнения.</p>
+</div>
+
+<div>
+<p><strong>Откуда появляется</strong></p>
+
+<p>Ошибки происходят на любом этапе:</p>
+
+<p>&ndash; Аналитик неправильно описал бизнес-логику &ndash; Разработчик неправильно реализовал &ndash; Тестировщик неправильно понял ожидания &ndash; Система не отработала как надо (необработанный null, кривой JSON, падение сервиса) (потом поймете что это).</p>
+
+<p>Баг &mdash; это всегда результат расхождения между фактом и ожиданием. Но источник может быть в любой роли. Не всегда виноват разработчик.</p>
+</div>
+
+<div>
+<p><strong>В реальности</strong></p>
+
+<p>На собеседовании лучше придерживаться формальных определений: ошибка &mdash; причина, баг &mdash; результат, фейл &mdash; проявление. Потому что собеседующий может ожидать, что ты их различаешь. Особенно, если он из старой школы или просто любит душнить терминами.</p>
+
+<p><strong>Но в реальной работе всё проще.</strong></p>
+
+<p>На проекте баг, дефект, ошибка &mdash; почти всегда одно и то же. Люди не делают чётких разграничений. В разговоре все говорят &laquo;поймал баг&raquo;, &laquo;нашёл ошибку&raquo;, &laquo;упало&raquo;. И всем понятно, о чём речь.</p>
+
+<p>Никто не будет поправлять тебя, если ты скажешь &laquo;ошибка&raquo; вместо &laquo;дефекта&raquo;. Пока ситуация не требует чёткости (например, в баг-репорте для внешней команды, при разборе с аналитиками), никто не разделяет термины. Главное &mdash; понимать, что именно пошло не так, а не как это называется.</p>
+
+<p>Так что:</p>
+
+<p>&ndash; На собеседовании &mdash; чётко разделяй, если просят &ndash; На работе &mdash; не душни, используй то, что понятно всем &ndash; В документации или при спорных ситуациях &mdash; формулируй точно, если от этого что-то зависит</p>
+</div>
+
+<div>
+<p><strong>Вот как говорят в реальности:</strong></p>
+
+<p>&ndash; &laquo;Что-то не отрабатывает, посмотри логи&raquo; &ndash; &laquo;У нас баг или это фича такая?&raquo; &ndash; &laquo;Похоже, баг, но надо уточнить у аналитика&raquo; &ndash; &laquo;Заводить будем или просто поправим?&raquo;</p>
+
+<p>А вот как не говорят, если только не душат:</p>
+
+<p>&ndash; &laquo;Это failure, вызванный defect, который возник из-за error&raquo; &ndash; &laquo;Ты неправильно употребил термин &ldquo;баг&rdquo;, это дефект&raquo; &ndash; &laquo;Прослеживается mismatch между actual и expected behavior&raquo;</p>
+</div>
+
+<div>
+<p><strong>Итог</strong></p>
+
+<p>Формально баг, ошибка и дефект &mdash; это разные понятия. На собеседовании их различают, чтобы проверить твоё понимание. Но в реальной работе термины почти всегда сливаются. Главное &mdash; уметь объяснить, что не так, и где отклонение от ожидания. Не теряй смысл за терминами, и не усложняй там, где можно сказать проще.</p>
+</div>
+</div>
+</div>
+</div></div>
+          <nav class="pager" aria-label="Навигация между шагами"><a class="prev" href="step-005.html"><small>Назад</small><span>← Лекция «Баг-репорт: фиксируем ошибку так, чтобы её исправили»</span></a><a class="next" href="step-007.html"><small>Дальше</small><span>Лекция «От требований к задачам: зачем фиксировать результат тестирования» →</span></a></nav>
+        </article></div></main>
+  <footer><span>Локальная учебная копия · без отслеживания и отправки ответов</span><a href="../../about.html">О сайте</a></footer>
+</body>
+</html>

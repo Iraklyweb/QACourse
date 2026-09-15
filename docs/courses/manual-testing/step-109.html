@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Лекция &quot;Что такое DevTools&quot; Chrome DevTools — это набор инструментов для веб-разработчиков, встроенных непосредственно в браузер Google Chrome . Есть много">
+  <meta name="color-scheme" content="dark light">
+  <title>Лекция «Что такое DevTools» · QA Конспект</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body data-base="../../">
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="topbar">
+    <a class="brand" href="../../index.html" aria-label="QA Конспект, главная"><span class="brand-mark">QA</span><span>Конспект</span></a>
+    <nav aria-label="Основная навигация">
+      <a href="../../courses/manual-testing/">Ручное тестирование</a>
+      <a href="../../courses/mqa-base/">MQA Base</a>
+      <a href="../../courses/manual-testing/">Курс</a>
+    </nav>
+    <form class="search-mini" action="../../search.html" role="search">
+      <label class="sr-only" for="site-search-2">Поиск по курсам</label>
+      <input id="site-search-2" name="q" type="search" placeholder="Найти тему…" autocomplete="off">
+      <button type="submit" aria-label="Искать">⌕</button>
+    </form>
+  </header>
+  <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="index.html">← Структура курса</a><div class="rail-index"><span>109</span><small>из 168</small></div><p>DevTools, HTML и CSS</p><div class="rail-progress" aria-label="Шаг 1 из 2 в теме"><i style="width:50%"></i></div><small>1 / 2 в теме</small></aside>
+        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><a href="index.html">Ручное тестирование</a><span>/</span><span>Сети</span><span>/</span><span>DevTools, HTML и CSS</span></nav>
+          <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «Что такое DevTools»</h1><p>Сети · DevTools, HTML и CSS</p></header>
+          <div class="lesson-content"><h1>Лекция &laquo;Что такое DevTools&raquo;</h1>
+
+<p>&nbsp;</p>
+
+<p><span>Chrome DevTools &mdash; это набор инструментов для веб-разработчиков, встроенных непосредственно в браузер </span><a href="https://www.google.com/chrome/" target="_blank" rel="noopener noreferrer"><span>Google Chrome</span></a><span> . </span></p>
+
+<p><span>Есть много способов открыть DevTools:.</span></p>
+
+<p><span>- Если вы хотите работать с DOM или CSS, щелкните правой кнопкой мыши элемент на странице и выберите &laquo;Посмотреть код&raquo; , чтобы перейти на панель &laquo;Elements</span><span>&raquo;. </span><span>Или нажмите Command+Option+C (Mac) или Control+Shift+C (Windows, Linux).</span></p>
+
+<p><span>- Если вы хотите просмотреть зарегистрированные сообщения или запустить JavaScript, нажмите Command+Option+J (Mac) или Control+Shift+J (Windows, Linux, ChromeOS), чтобы сразу перейти на панель Console</span><span>.</span></p>
+
+<p><span>- Ну и основной способ, которым вы будете пользоваться чаще всего, когда запомните &ndash; горячие клавиши. Вызвать DevTools можно одновременным нажатием клавиш</span><span> <strong>Ctrl + Shift + I</strong>&nbsp;или <strong>кнопки f12</strong> в Windows</span><span>и</span><span> <strong>Cmd + Alt + I</strong> </span><span>в macOS</span><span>.</span></p>
+
+<h2><strong><span>Настройки DevTools</span></strong></h2>
+
+<h3><span>Тема интерфейса</span></h3>
+
+<p><span>Можно настроить инструменты разработчика и изменить их внешний вид &mdash; например, выбрать тёмное оформление интерфейса.</span></p>
+
+<p><span class="media-note" role="note"><span aria-hidden="true">▧</span> Изображение: иллюстрация</span></p>
+
+<h3><span>Горячие клавиши</span></h3>
+
+<p><span>В настройках есть список горячих клавиш &mdash; советуем с ними ознакомиться, знание этих комбинаций очень ускорит работу.</span></p>
+
+<p><span class="media-note" role="note"><span aria-hidden="true">▧</span> Изображение: иллюстрация</span></p>
+
+<h3><span>Расположение панелей</span></h3>
+
+<p><span>В правом верхнем углу находится кнопка, которая отвечает за расположение панелей. DevTools может находиться снизу, слева, справа, а ещё мы можем открепить отладчик и работать с ним в отдельном окне.</span></p>
+
+<p><span class="media-note" role="note"><span aria-hidden="true">▧</span> Изображение: иллюстрация</span></p>
+
+<h2><strong><span>Вкладка Elements</span></strong></h2>
+
+<p><span>С её помощью можно отслеживать элементы и их свойства на странице, можно редактировать стили и проверять вёрстку.</span></p>
+
+<p><span class="media-note" role="note"><span aria-hidden="true">▧</span> Изображение: иллюстрация</span></p>
+
+<h2><strong><span>Как получить информацию об элементе</span></strong></h2>
+
+<p><span>Есть три способа получить информацию о любом элементе на странице.</span></p>
+
+<p><span>Через инспектор</span><span>. Способ удобен, если вы точно видите элемент и можете кликнуть по нему правой кнопкой мыши. Выберите Inspect или &laquo;Посмотреть код&raquo;. Заодно сразу откроется панель разработчика.</span></p>
+
+<p><span class="media-note" role="note"><span aria-hidden="true">▧</span> Изображение: иллюстрация</span></p>
+
+<p><span>Поиск по элементам. </span><span>При показанном отладчике нажимаем Ctrl+F, и внизу появится окно поиска по тегу, атрибуту, классу или текстовому содержимому элемента.</span></p>
+
+<p><span>Введём, например, &rdquo;navigation-rail&rdquo;, и увидим все подходящие элемент:</span></p>
+
+<p><span class="media-note" role="note"><span aria-hidden="true">▧</span> Изображение: иллюстрация</span></p>
+
+<p><span>Визуальный поиск. При открытом отладчике открываем режим визуального поиска, находим нужный элемент и кликаем по нему:</span></p>
+
+<p><span class="media-note" role="note"><span aria-hidden="true">▧</span> Изображение: иллюстрация</span></p>
+
+<h2><strong><span>Как внести изменения в элемент на странице</span></strong></h2>
+
+<p><span>Если вы хотите отредактировать атрибут, класс или текст элемента, сделайте двойной клик в нужной точке и вносите изменения.</span></p>
+
+<p><span class="media-note" role="note"><span aria-hidden="true">▧</span> Изображение: иллюстрация</span></p>
+
+<h2><strong><span>Как изменить разметку страницы</span></strong></h2>
+
+<p><span>Любители мыши кликают правой кнопкой на элемент и выбирают Edit as HTML, а фанаты клавиатуры нажимают F2. Результат сразу отображается на экране.</span><br>
+<span>Проверка вёрстки на переполнение</span></p>
+
+<p><span>Мы верстали, редактировали, а как проверить, что вёрстка не развалится, если количество элементов изменится? Сделаем тесты на переполнение.</span></p>
+
+<p><span>Проверка на переполнение текстом. Есть два способа:</span></p>
+
+<ol>
+	<li>
+	<p><span>Находим элемент, делаем двойной клик и добавляем текст. Проще всего скопировать содержимое и вставить его несколько раз.</span></p>
+	</li>
+	<li>
+	<p><span>Открываем вкладку Console, вставляем команду document.body.contentEditable = true, нажимаем Enter. Теперь можно редактировать любой текстовый элемент на странице напрямую. Естественно, исправленный текст останется до перезагрузки страницы и никак не повлияет на сайт.</span></p>
+	</li>
+</ol>
+
+<p><span class="media-note" role="note"><span aria-hidden="true">▧</span> Изображение: иллюстрация</span> <span class="media-note" role="note"><span aria-hidden="true">▧</span> Изображение: иллюстрация</span></p>
+
+<p><span>На что обращать внимание? При добавлении текст не должен вылезать за поля элемента, выпадать или обрезаться.</span></p>
+
+<h2><strong><span>Просмотр и тестовое редактирование стилей</span></strong></h2>
+
+<p><span>Информация о стилях находится на вкладке Styles. Справа выводятся стили, указанные разработчиком, а справа от каждого стиля &mdash; файл и строка, где они прописаны.При наведении на элемент, появляются стили браузера, применяемые к элементу. Они могут отличаться в зависимости от выбранного браузера.</span></p>
+
+<p><br>
+<span><span><span class="media-note" role="note"><span aria-hidden="true">▧</span> Изображение: иллюстрация · lh5.googleusercontent.com</span></span></span></p>
+
+<p><span><span><span class="media-note" role="note"><span aria-hidden="true">▧</span> Изображение: иллюстрация · lh5.googleusercontent.com</span></span></span></p>
+
+<h2><strong><span>Данные о цвете</span></strong></h2>
+
+<p><span>У элементов со свойством color легко меняется цвет &mdash; для этого нужно воспользоваться пипеткой. Можно выбрать любой цвет из интерфейса или указать цвет в RGBA или HSL.</span></p>
+
+<p><br>
+<span><span><span class="media-note" role="note"><span aria-hidden="true">▧</span> Изображение: иллюстрация · lh3.googleusercontent.com</span></span></span><br>
+<span><span><span class="media-note" role="note"><span aria-hidden="true">▧</span> Изображение: иллюстрация · lh6.googleusercontent.com</span></span></span></p>
+
+<p><span>Стоит также отметить, что панель для правки стилей имеет целый ряд собственных вкладок, в которой &quot;Styles&quot;, лишь первая. Вот, какие дополнительные разделы там имеются: </span></p>
+
+<ol>
+	<li>
+	<p><span>Computed &ndash; отображает модель выбранного блока и вычисленные для него автоматически стили, которые явно не заданы или были унаследованы от родительских блоков; </span></p>
+	</li>
+	<li>
+	<p><span>Event Listeners &ndash; выводит список функций, &quot;слушающих&quot; определённые события для всей страницы или конкретно выбранного блока (нужно снять галочку ; </span></p>
+	</li>
+	<li>
+	<p><span>DOM Breakpoints &ndash; содержит так называемые &quot;точки остановки&quot; DOM (сокр. англ. &quot;Document Object Model&quot; &ndash; &quot;объектная модель документа&quot;), которые можно создавать из контекстного меню HTML-кода (группа &quot;Break on&quot;) при его модификации для быстрой отмены/применения внесённых правок; </span></p>
+	</li>
+	<li>
+	<p><span>Properties &ndash; позволяет просмотреть полный список JavaScript-свойств для выбранного блока на страничке;</span></p>
+	</li>
+	<li>
+	<p><span>Accessibility &ndash; показывает иерархический уровень вложенности для выбранного блока без учёта типов блоков, их классов, идентификаторов или иных характеристик. </span></p>
+	</li>
+</ol>
+
+<h2><strong><span>Вкладка Console</span></strong></h2>
+
+<p><span>В консоли отображается информация об ошибках в коде, а ещё туда можно ввести команду, и она выполнится. Если на странице не подгрузились шрифты, картинки или стили, то сообщения об ошибках выводятся именно сюда. Справа в верхнем углу DevTools выведутся иконки-предупреждения, которые откроют окно консоли.</span></p>
+
+<p><br>
+<span><span><span class="media-note" role="note"><span aria-hidden="true">▧</span> Изображение: иллюстрация · lh3.googleusercontent.com</span></span></span></p>
+
+<p><a href="https://www.bestfree.ru/article/webdesign/chrome-devtools.php" target="_blank" rel="noopener noreferrer"><span>В выводе консоли</span></a><span> все события группируются на три категории с разным цветом фона: Белый &ndash; &quot;отстуки&quot; об успешно выполненных событиях. </span></p>
+
+<p><span>Жёлтый &ndash; предупреждения о возможных некритических ошибках и сбоях. </span></p>
+
+<p><span>Красный &ndash; ошибки в выполнении скриптов или в доступе к определённым запрашиваемым ресурсам. </span></p>
+
+<p><span>Ошибки и предупреждения содержат в себе краткое описание проблемы и ссылку на файл и строку в нём, которая эту проблему вызывает. Зная точный адрес возникновения неполадки (при условии, что она возникает в файле на Вашем сервере), Вы можете быстро локализовать и устранить ошибку. Что касается выполнения пользовательского кода, то данная возможность применяется очень часто для быстрой отладки кода и проведения различных экспериментов с JavaScript. Например, при изучении этого языка Вам не всегда нужен отдельный Блокнот или даже полновесная среда разработки. Простенькие скрипты Вы можете выполнять прямо в консоли (тем более, что она поддерживает автодополнение команд). Для программирования в консоли лучше всего открывать в Хроме несуществующую внутреннюю страницу (например, chrome://blank/) или новую пустую вкладку (chrome://newtab/). Это позволит избежать накладок в выполнении уже работающих на странице скриптов. По сути и всё &ndash; можем писать код в консоли и выполнять его нажатием Enter. Единственное, что нужно помнить, для вывода, вместо традиционного &quot;document.write(&quot;&quot;);&quot;, используется конструкция &quot;console.log(&quot;&quot;);&quot;. Вот Вам самый примитивный пример для вывода текстовой строки:</span></p>
+
+<p><span><strong>console.log(&quot;Мой первый вывод текста в консоли Хрома :)&quot;);</strong> </span><br>
+<span>Консоль поддерживает ряд спецификаторов, позволяющих явно определить тип вывода (строка/число/элемент DOM/объект JavaScript), выполнить подстановку данных обозначенного типа или применить форматирование:</span></p>
+
+<p><span><span><span class="media-note" role="note"><span aria-hidden="true">▧</span> Изображение: иллюстрация · lh4.googleusercontent.com</span></span></span></p>
+
+<p><span>Вот несколько примеров применения спецификаторов: </span></p>
+
+<p><span><span><span class="media-note" role="note"><span aria-hidden="true">▧</span> Изображение: иллюстрация · lh6.googleusercontent.com</span></span></span></p>
+
+<h2><strong><span>Вкладка Sources</span></strong></h2>
+
+<p><span>Теперь заглянем во вкладку Sources. Она показывает все подключенные к странице ресурсы. Чаще всего эта вкладка используется при отладке кода.</span></p>
+
+<p><span>Например, так выглядит CSS-файл на вкладке Sources.</span></p>
+
+<p><span><span><span class="media-note" role="note"><span aria-hidden="true">▧</span> Изображение: иллюстрация · lh3.googleusercontent.com</span></span></span></p>
+
+<h2><strong><span>Вкладка Network</span></strong></h2>
+
+<p><span>С её помощью можно выяснить, сколько времени заняла загрузка страницы, какие ресурсы подключились или не подключились к странице, и многое другое. При первом открытии вкладка может оказаться пустой &mdash; тогда просто перезагрузите страницу.</span></p>
+
+<p><span>После перезагрузки внизу появится таблица всех ресурсов, подключенных к странице, и данные о них. Здесь можно узнать тип запроса, который был отправлен для получения ресурса, статус ответа, размер ресурса и многое другое.</span></p>
+
+<p><span><span><span class="media-note" role="note"><span aria-hidden="true">▧</span> Изображение: иллюстрация · lh3.googleusercontent.com</span></span></span></p>
+
+<p>При нажатии на конкретный запрос на вкладке Network мы можем посмотреть информацию о нем. А именно:</p>
+
+<p>Header &mdash; заголовки (именно здесь содержатся отправленные данные)</p>
+
+<p>Preview &mdash; просмотр того, что мы получили после рендеренга (это же самое показано на странице сайта)</p>
+
+<p>Response &mdash; ответ (то, что сайт прислал в ответ на наш запрос)</p>
+
+<p>Cookies &mdash; небольшие фрагменты текста, передаваемые в браузер с сайта, который вы открываете. С их помощью сайт запоминает информацию о ваших посещениях.</p>
+
+<p>Timing &mdash; сколько времени занял запрос и ответ</p>
+
+<p><span>Каждая строка в журнале Network &mdash; это ресурс. Все они перечислены в хронологическом порядке (по умолчанию). Верхний обычно является основным HTML-документом. Нижний &mdash; то, что было запрошено последним.</span></p>
+
+<p><span>Каждый столбец &mdash; информация о ресурсе. Основные данные по умолчанию:</span></p>
+
+<p><span>Status &mdash; код ответа;</span></p>
+
+<p><span>Type &mdash; тип ресурса;</span></p>
+
+<p><span>Initiator &mdash; что вызвало запрос ресурса. Щелкнув на ссылку в столбце Initiator, вы перейдете к исходному коду, вызвавшему запрос;</span></p>
+
+<p><span>Size &mdash; размер ресурса;</span></p>
+
+<p><span>Time &mdash; как долго длился запрос;</span></p>
+
+<p><span>Waterfall &mdash; графическое представление различных этапов запроса.</span></p>
+
+<p><span>Если нажать кнопку фильтра, появится возможность посмотреть, как загружаются определенные ресурсы &mdash; например, картинки или шрифты.</span></p>
+
+<p><br>
+<span><span><span class="media-note" role="note"><span aria-hidden="true">▧</span> Изображение: иллюстрация · lh3.googleusercontent.com</span></span></span></p>
+
+<p><span>В левом нижнем углу &mdash; информация о количестве запросов, трафике и времени загрузки. Ещё мы можем выбрать скорость соединения и проверить, как сайт работает на мобильном где-нибудь за городом.</span></p>
+
+<p><span><span><span class="media-note" role="note"><span aria-hidden="true">▧</span> Изображение: иллюстрация · lh5.googleusercontent.com</span></span></span></p>
+
+<h2><strong><span>Проверка вёрстки на мобильных</span></strong></h2>
+
+<p><span>Легко проверить, как выглядит вёрстка на мобильных. Заходим в режим эмуляции и всё &mdash; можем поменять ширину экрана, выбрать конкретный девайс (например, айфон), просмотреть все media-выражения, примененные к странице, или выбрать плотность пикселей, чтобы проверить ретиновую графику.</span></p>
+
+<p><span>Это незаменимый инструмент в работе над адаптивной вёрсткой.</span></p>
+
+<p><br>
+<span><span><span class="media-note" role="note"><span aria-hidden="true">▧</span> Изображение: иллюстрация · lh4.googleusercontent.com</span></span></span></p>
+
+<h2><strong><span>Скриншоты страниц</span></strong></h2>
+
+<p><span>Другая возможность &mdash; скриншоты страницы. Заходим в режим эмуляции и в выпадающем меню выбираем &laquo;сделать скриншот&raquo; &mdash; изображение сразу сохраняется на компьютер.</span><br>
+<span>Также есть возможность сделать скриншот всей страницы целиком &mdash; для этого выберите пункт Capture full size screenshot.</span></p>
+
+<p><span><span><span class="media-note" role="note"><span aria-hidden="true">▧</span> Изображение: иллюстрация · lh5.googleusercontent.com</span></span></span></p>
+
+<h2><strong><span>Вкладка Performance </span></strong></h2>
+
+<p><span>Performance позволяет оценить, какую нагрузку создаёт веб-ресурс на компьютер пользователя. Чтобы получить достаточное для анализа количество данных, достаточно записывать работу страницы в течении минуты.</span></p>
+
+<p><br>
+<span><span><span class="media-note" role="note"><span aria-hidden="true">▧</span> Изображение: иллюстрация · lh6.googleusercontent.com</span></span></span></p>
+
+<p><span>После чего останавливаем и смотрим результаты: </span></p>
+
+<p><span><span><span class="media-note" role="note"><span aria-hidden="true">▧</span> Изображение: иллюстрация · lh3.googleusercontent.com</span></span></span></p>
+
+<p><span>Графики имеют разноцветные метки, позволяющие видеть, какие процессы отнимают больше всего времени и ресурсов компьютера на протяжении всей проверки. А обобщить полученные данные можно, взглянув на круговую диаграмму внизу, которая отображает общее время теста, а также процент, затраченный на работу скриптов, рендеринг элементов страницы, прорисовку изображений, загрузку иных элементов (например, сторонних скриптов) и простой. Все эти данные также можно использовать для оптимизации веб-страниц.</span></p>
+
+<h2><strong><span>Вкладка </span><span>Security</span></strong></h2>
+
+<p><span>Используя панель<strong> </strong></span><strong><span>безопасности</span></strong><span> в Chrome DevTools, можно убедиться, что HTTPS правильно реализован на странице. </span><br>
+<span>Если основной источник страницы не защищен, в разделе &laquo;</span><strong><span>Обзор безопасности</span></strong><span>&raquo; указано &laquo;</span><span><strong>Эта страница не защищена</strong>&raquo;</span><span>.</span></p>
+
+<p><br>
+<span><span><span class="media-note" role="note"><span aria-hidden="true">▧</span> Изображение: иллюстрация · lh3.googleusercontent.com</span></span></span></p>
+
+<p><span><span><span class="media-note" role="note"><span aria-hidden="true">▧</span> Изображение: иллюстрация · lh6.googleusercontent.com</span></span></span></p>
+
+<p><span>Эта проблема возникает, когда URL-адрес, который вы посетили, был запрошен через HTTP. Чтобы сделать его безопасным, вам нужно запросить его через HTTPS. Например, если вы посмотрите на URL-адрес в адресной строке, он, вероятно, будет похож на </span><span>http://example.com</span><span>. Чтобы сделать его безопасным, URL-адрес должен быть </span><span>https://example.com</span><span>.</span></p>
+
+<p><span>Сейчас стало практически необходимо использовать на сайтах защищённый HTTPS-протокол. Чтобы оценить эффективность его работы и потенциальные бреши в безопасности веб-страниц, можно воспользоваться вкладкой &quot;Security&quot;. Здесь после перезагрузки страницы мы увидим отчёт о безопасных и опасных ресурсах и, соответственно, сможем принять дальнейшие меры для устранения выявленных недостатков.</span></p>
+
+<p><span>Google Chrome предоставляет пользователю довольно хороший набор инструментов разработчика. В нём есть практически всё, что может потребоваться для инспектирования и оптимизации веб-страниц.</span></p>
+
+<p><em><span>Полные версии статей можно прочитать здесь:</span></em></p>
+
+<p><em><a href="https://habr.com/ru/post/558694/" target="_blank" rel="noopener noreferrer"><span>https://habr.com/ru/post/558694/</span></a></em></p>
+
+<p><em><a href="https://htmlacademy.ru/blog/soft/chrome-devtools-1" target="_blank" rel="noopener noreferrer"><span>https://htmlacademy.ru/blog/soft/chrome-devtools-1</span></a></em></p>
+
+<p><em><a href="https://www.bestfree.ru/article/webdesign/chrome-devtools.php" target="_blank" rel="noopener noreferrer"><span>https://www.bestfree.ru/article/webdesign/chrome-devtools.php</span></a></em></p>
+
+<p><em><a href="https://hackware.ru/?p=8973" target="_blank" rel="noopener noreferrer">https://hackware.ru/?p=8973</a></em></p>
+
+<p><em><a href="https://siteclinic.ru/blog/seo-instrumenty/seo-chrome-devtools/" target="_blank" rel="noopener noreferrer">https://siteclinic.ru/blog/seo-instrumenty/seo-chrome-devtools/</a></em></p></div>
+          <nav class="pager" aria-label="Навигация между шагами"><a class="prev" href="step-108.html"><small>Назад</small><span>← Лекция «Как тестировать API: основные подходы и сценарии»</span></a><a class="next" href="step-110.html"><small>Дальше</small><span>Лекция «Основы HTML и CSS» →</span></a></nav>
+        </article></div></main>
+  <footer><span>Локальная учебная копия · без отслеживания и отправки ответов</span><a href="../../about.html">О сайте</a></footer>
+</body>
+</html>

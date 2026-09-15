@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Лекция &quot;Метод GET: как работает и зачем нужен&quot; Метод GET используется для запроса данных с сервера без их изменения. Если сравнивать с реальной жизнью, GET">
+  <meta name="color-scheme" content="dark light">
+  <title>Лекция «Метод GET: как работает и зачем нужен» · QA Конспект</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body data-base="../../">
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="topbar">
+    <a class="brand" href="../../index.html" aria-label="QA Конспект, главная"><span class="brand-mark">QA</span><span>Конспект</span></a>
+    <nav aria-label="Основная навигация">
+      <a href="../../courses/manual-testing/">Ручное тестирование</a>
+      <a href="../../courses/mqa-base/">MQA Base</a>
+      <a href="../../courses/manual-testing/">Курс</a>
+    </nav>
+    <form class="search-mini" action="../../search.html" role="search">
+      <label class="sr-only" for="site-search-2">Поиск по курсам</label>
+      <input id="site-search-2" name="q" type="search" placeholder="Найти тему…" autocomplete="off">
+      <button type="submit" aria-label="Искать">⌕</button>
+    </form>
+  </header>
+  <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="index.html">← Структура курса</a><div class="rail-index"><span>095</span><small>из 168</small></div><p>HTTP-методы в API</p><div class="rail-progress" aria-label="Шаг 2 из 11 в теме"><i style="width:18%"></i></div><small>2 / 11 в теме</small></aside>
+        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><a href="index.html">Ручное тестирование</a><span>/</span><span>Сети</span><span>/</span><span>HTTP-методы в API</span></nav>
+          <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «Метод GET: как работает и зачем нужен»</h1><p>Сети · HTTP-методы в API</p></header>
+          <aside class="media-card"><span aria-hidden="true">▶</span><div><strong>К шагу прикреплено видео</strong><p>Видео не включено в локальную копию; сохранена только отметка о его наличии.</p></div></aside><div class="lesson-content"><h1>Лекция &laquo;Метод GET: как работает и зачем нужен&raquo;</h1>
+
+<p>&nbsp;</p>
+
+<h5>Метод GET используется для запроса данных с сервера без их изменения. Если сравнивать с реальной жизнью, GET &mdash; это как просмотр каталога товаров в интернет-магазине: вы можете видеть список товаров, но не можете его изменить.</h5>
+
+<h5>&nbsp;</h5>
+
+<h3><strong>Как работает GET?</strong></h3>
+
+<h5>Метод GET позволяет клиенту получать данные без изменения ресурса. В отличие от POST, который отправляет данные на сервер, GET только запрашивает информацию.</h5>
+
+<ol>
+	<li>
+	<p>Клиент отправляет GET-запрос: Клиент указывает URL ресурса, который хочет получить. Если требуется уточнение, добавляет query-параметры.</p>
+	</li>
+</ol>
+
+<h5><strong>Пример запроса:</strong></h5>
+
+<h5><span>GET /users?role=admin HTTP/1.1&nbsp;&nbsp;</span></h5>
+
+<h5><span>Host: </span><a href="http://api.example.com/" target="_blank" rel="noopener noreferrer"><span>api.example.com</span></a><span>&nbsp;&nbsp;</span></h5>
+
+<h5>Этот запрос получает список пользователей с ролью администратора.</h5>
+
+<ol>
+	<li>
+	<p><strong>Сервер обрабатывает запрос:</strong></p>
+	</li>
+</ol>
+
+<ul>
+	<li>
+	<p>Проверяет, существует ли ресурс (/users).</p>
+	</li>
+	<li>
+	<p>Фильтрует данные, если переданы параметры (например, role=admin).</p>
+	</li>
+	<li>
+	<p>Формирует ответ с найденными данными.</p>
+	</li>
+</ul>
+
+<ol>
+	<li>
+	<p><strong>Сервер отправляет ответ, который включает:</strong></p>
+	</li>
+</ol>
+
+<ul>
+	<li>
+	<p><strong>Статус-код</strong> (например, 200 OK, если запрос успешен).</p>
+	</li>
+	<li>
+	<p><strong>Заголовки</strong>, указывающие тип данных (Content-Type).</p>
+	</li>
+	<li>
+	<p><strong>Тело ответа</strong>, содержащее запрашиваемую информацию.</p>
+	</li>
+</ul>
+
+<h5><strong>Пример ответа:</strong></h5>
+
+<h5><span>HTTP/1.1 200 OK&nbsp;&nbsp;</span></h5>
+
+<h5><span>Content-Type: application/json&nbsp;&nbsp;</span></h5>
+
+<h5><span>[</span></h5>
+
+<h5><span>&nbsp;&nbsp;{&quot;id&quot;: 1, &quot;name&quot;: &quot;Alice&quot;},</span></h5>
+
+<h5><span>&nbsp;&nbsp;{&quot;id&quot;: 2, &quot;name&quot;: &quot;Bob&quot;}</span></h5>
+
+<h5><span>]</span></h5>
+
+<h5><strong>Сервер отправляет коды ответа:</strong></h5>
+
+<ul>
+	<li>
+	<p>200 OK &mdash; запрос успешен, сервер возвращает данные.</p>
+	</li>
+	<li>
+	<p>204 No Content &mdash; запрос успешен, но данных нет.</p>
+	</li>
+	<li>
+	<p>400 Bad Request &mdash; некорректный запрос.</p>
+	</li>
+	<li>
+	<p>404 Not Found &mdash; запрашиваемый ресурс не найден.</p>
+	</li>
+</ul>
+
+<h5>Метод <strong>GET</strong> удобен, когда нужно просто получить данные, не внося изменений на сервере.</h5>
+
+<p>&nbsp;</p>
+
+<h3><strong>Основные свойства метода GET</strong></h3>
+
+<h5><strong>GET является идемпотентным</strong></h5>
+
+<ul>
+	<li>
+	<p>Повторный запрос с одинаковыми параметрами всегда возвращает один и тот же результат, если данные на сервере не изменялись.</p>
+	</li>
+</ul>
+
+<h5><strong>Влияние на безопасность и состояние сервера</strong></h5>
+
+<ul>
+	<li>
+	<p>GET не изменяет состояние сервера, а лишь запрашивает данные для их чтения, что делает его безопасным методом.</p>
+	</li>
+	<li>
+	<p>Однако сам факт обращения к серверу может быть зафиксирован (например, в логах или счётчиках посещений).</p>
+	</li>
+	<li>
+	<p>GET <strong>небезопасен</strong> для передачи конфиденциальных данных, так как параметры передаются в URL и могут быть:</p>
+
+	<ul>
+		<li>
+		<p>Видны в истории браузера.</p>
+		</li>
+		<li>
+		<p>Записаны в логи сервера.</p>
+		</li>
+		<li>
+		<p>Кэшироваться прокси-серверами.</p>
+		</li>
+	</ul>
+	</li>
+</ul>
+
+<h5><strong>Передача данных</strong></h5>
+
+<ul>
+	<li>
+	<p>GET <strong>не использует тело запроса</strong>, вся информация передаётся в <strong>URL</strong> в виде <strong>query-параметров</strong>.</p>
+	</li>
+	<li>
+	<p>Это делает запросы лёгкими, но может ограничивать их длину.</p>
+	</li>
+</ul>
+
+<h5><strong>Ограничение длины URL</strong></h5>
+
+<ul>
+	<li>
+	<p>URL имеет ограниченную длину, которая зависит от браузера и сервера (обычно до <strong>2048 символов</strong>).</p>
+	</li>
+	<li>
+	<p>Если передаётся слишком много данных, запрос может не обработаться.</p>
+	</li>
+	<li>
+	<p>В таких случаях лучше использовать метод <strong>POST</strong>, где данные передаются в теле запроса.</p>
+	</li>
+</ul>
+
+<h5><strong>Форматы данных</strong></h5>
+
+<ul>
+	<li>
+	<p>Чаще всего GET-запрос возвращает данные в <strong>JSON</strong>, так как REST API работают с этим форматом.</p>
+	</li>
+	<li>
+	<p>Может также поддерживать <strong>XML, HTML, CSV</strong>, в зависимости от API.</p>
+	</li>
+</ul>
+
+<h5><strong>Кэширование</strong></h5>
+
+<ul>
+	<li>
+	<p>GET-запросы <strong>кэшируются браузерами и прокси-серверами</strong>, если сервер не запретил это заголовками Cache-Control или ETag.</p>
+	</li>
+	<li>
+	<p>Это позволяет сократить количество запросов, но может привести к получению устаревших данных.</p>
+	</li>
+</ul>
+
+<h5>&nbsp;</h5>
+
+<h3><strong>Дополнительные особенности GET</strong></h3>
+
+<h5><strong>GET требует существования ресурса</strong></h5>
+
+<ul>
+	<li>
+	<p>Если объект найден, сервер возвращает 200 OK и данные.</p>
+	</li>
+	<li>
+	<p>Если объект не найден, сервер возвращает 404 Not Found.</p>
+	</li>
+</ul>
+
+<h5><strong>GET всегда выполняется для конкретного ресурса</strong></h5>
+
+<h5>Например, получение списка пользователей: GET /users&nbsp;&nbsp;</h5>
+
+<h5>Или получение конкретного пользователя: GET /users/1&nbsp;&nbsp;</h5>
+
+<h5><strong>GET удобен, когда требуется только получение данных</strong></h5>
+
+<ul>
+	<li>
+	<p>Он <strong>не создаёт, не изменяет и не удаляет</strong> информацию.</p>
+	</li>
+	<li>
+	<p>Если необходимо передать большие объёмы данных или работать с конфиденциальной информацией, лучше использовать другие методы.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><strong>Параметры в GET-запросах</strong></h3>
+
+<h5>Метод GET передаёт параметры через <strong>строку запроса (query string)</strong> в URL. Это позволяет уточнять запрос и получать только нужные данные.</h5>
+
+<h5><strong>Как выглядит строка запроса?</strong></h5>
+
+<h5>Строка запроса начинается с символа ?, за которым следуют параметры в формате ключ=значение. Если параметров несколько, они разделяются символом &amp;.</h5>
+
+<h5><strong>Пример:</strong></h5>
+
+<h5><span>GET /users?role=admin&amp;status=active HTTP/1.1</span></h5>
+
+<h5>Разберём этот запрос:</h5>
+
+<ul>
+	<li>
+	<p>? (вопросительный знак) &mdash; это символ, который указывает начало строки параметров в URL.</p>
+	</li>
+	<li>
+	<p><strong>role</strong> &mdash; это ключ, который обозначает роль пользователя (например, администратор, пользователь, менеджер).</p>
+	</li>
+	<li>
+	<p><strong>=</strong> &mdash; знак равенства, который связывает ключ и значение.</p>
+	</li>
+	<li>
+	<p><strong>admin</strong> &mdash; значение, указывающее, что нам нужны пользователи с ролью администратора.</p>
+	</li>
+	<li>
+	<p>&amp; (амперсанд) &mdash; &nbsp;это разделитель, который используется для соединения нескольких параметров в URL, показывая, что один параметр следует за другим.</p>
+	</li>
+	<li>
+	<p><strong>status</strong> &mdash; это ключ, который указывает на статус пользователя.</p>
+	</li>
+	<li>
+	<p><strong>active</strong> &mdash; значение, обозначающее, что мы ищем только активных пользователей.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><strong>Типы параметров в GET-запросах</strong></h3>
+
+<h5><strong>1. Параметры фильтрации </strong>Позволяют уточнять запрос, возвращая только нужные данные.</h5>
+
+<h5><span>GET /products?category=electronics&amp;price&lt;1000</span></h5>
+
+<h5>Этот запрос вернёт товары из категории &quot;электроника&quot; с ценой до 1000.</h5>
+
+<p>&nbsp;</p>
+
+<h5><strong>2. Параметры сортировки </strong>Определяют порядок вывода данных.</h5>
+
+<h5><span>GET /products?sort=price&amp;order=asc</span></h5>
+
+<h5>Список товаров будет отсортирован по цене в порядке возрастания.</h5>
+
+<p>&nbsp;</p>
+
+<h5><strong>3. Параметры пагинации </strong>Когда данных много, сервер возвращает их <strong>постранично</strong>, чтобы снизить нагрузку.</h5>
+
+<h5><span>GET /users?page=2&amp;limit=10</span></h5>
+
+<h5>Этот запрос вернёт <strong>вторую страницу</strong> списка пользователей, по <strong>10 записей</strong> на каждой странице.</h5>
+
+<p>&nbsp;</p>
+
+<h5><strong>4. Специфические параметры API </strong>Некоторые API имеют свои особые параметры для управления запросами.</h5>
+
+<h5><span>GET /search?q=API+testing&amp;lang=en</span></h5>
+
+<ul>
+	<li>
+	<p>q=API testing &mdash; строка поиска.</p>
+	</li>
+	<li>
+	<p>lang=en &mdash; указывает язык результатов.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><strong>Особенности работы с параметрами</strong></h3>
+
+<h5><strong>1. Кодирование параметров </strong>Если параметры содержат пробелы, специальные символы или кириллицу, их нужно кодировать в <strong>формате URL</strong>. Как выглядит закодированное значение:</h5>
+
+<ul>
+	<li>
+	<p>Пробел &rarr; %20</p>
+	</li>
+	<li>
+	<p>Кириллица (тест) &rarr; %D1%82%D0%B5%D1%81%D1%82</p>
+	</li>
+	<li>
+	<p>Символ + &rarr; %2B</p>
+	</li>
+</ul>
+
+<h5>Пример до кодирования:</h5>
+
+<h5><span>GET /search?q=API testing</span></h5>
+
+<h5>После кодирования:</h5>
+
+<h5><span>GET /search?q=API%20testing</span></h5>
+
+<p>&nbsp;</p>
+
+<h5><strong>2. Порядок параметров </strong>Порядок параметров в строке запроса <strong>не имеет значения</strong>. Эти два запроса вернут одинаковый результат:</h5>
+
+<h5><span>GET /users?role=admin&amp;status=active</span></h5>
+
+<h5><span>GET /users?status=active&amp;role=admin</span></h5>
+
+<h5>&nbsp;</h5>
+
+<h3><strong>Итог</strong></h3>
+
+<h5>Метод <strong>GET</strong> &ndash; основной инструмент для запроса данных, но требует осторожности при передаче конфиденциальных данных и работе с длинными URL.</h5>
+
+<h5><strong>Как тестируют GET?</strong></h5>
+
+<ol>
+	<li>
+	<p><strong>Отправляют GET-запрос</strong> и проверяют, возвращает ли сервер нужные данные.</p>
+	</li>
+	<li>
+	<p><strong>Сравнивают полученные данные с ожидаемыми</strong>, проверяют корректность фильтрации, сортировки, пагинации.</p>
+	</li>
+	<li>
+	<p><strong>Проверяют обработку некорректных запросов</strong> (404 Not Found, 400 Bad Request).</p>
+	</li>
+</ol>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><strong>Что нужно уметь рассказать</strong><br>
+&ndash; Термин &laquo;метод GET&raquo;<br>
+&ndash; Как работает GET<br>
+&ndash; Основные свойства метода GET<br>
+&ndash; Дополнительные особенности GET<br>
+&ndash; Параметры в GET-запросах<br>
+&ndash; Типы параметров в GET-запросах</p>
+
+<p><strong>Всё остальное &mdash; для общего развития</strong></p></div>
+          <nav class="pager" aria-label="Навигация между шагами"><a class="prev" href="step-094.html"><small>Назад</small><span>← Лекция «HTTP-методы в API: общее введение»</span></a><a class="next" href="step-096.html"><small>Дальше</small><span>Лекция «Метод POST: как работает и зачем нужен» →</span></a></nav>
+        </article></div></main>
+  <footer><span>Локальная учебная копия · без отслеживания и отправки ответов</span><a href="../../about.html">О сайте</a></footer>
+</body>
+</html>

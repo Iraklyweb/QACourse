@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Лекция &quot;Метод OPTIONS: как работает и зачем нужен&quot; Метод OPTIONS используется для получения информации о возможностях сервера и поддерживаемых HTTP-методах">
+  <meta name="color-scheme" content="dark light">
+  <title>Лекция «Метод OPTIONS: как работает и зачем нужен» · QA Конспект</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body data-base="../../">
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="topbar">
+    <a class="brand" href="../../index.html" aria-label="QA Конспект, главная"><span class="brand-mark">QA</span><span>Конспект</span></a>
+    <nav aria-label="Основная навигация">
+      <a href="../../courses/manual-testing/">Ручное тестирование</a>
+      <a href="../../courses/mqa-base/">MQA Base</a>
+      <a href="../../courses/manual-testing/">Курс</a>
+    </nav>
+    <form class="search-mini" action="../../search.html" role="search">
+      <label class="sr-only" for="site-search-2">Поиск по курсам</label>
+      <input id="site-search-2" name="q" type="search" placeholder="Найти тему…" autocomplete="off">
+      <button type="submit" aria-label="Искать">⌕</button>
+    </form>
+  </header>
+  <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="index.html">← Структура курса</a><div class="rail-index"><span>101</span><small>из 168</small></div><p>HTTP-методы в API</p><div class="rail-progress" aria-label="Шаг 8 из 11 в теме"><i style="width:73%"></i></div><small>8 / 11 в теме</small></aside>
+        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><a href="index.html">Ручное тестирование</a><span>/</span><span>Сети</span><span>/</span><span>HTTP-методы в API</span></nav>
+          <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «Метод OPTIONS: как работает и зачем нужен»</h1><p>Сети · HTTP-методы в API</p></header>
+          <aside class="media-card"><span aria-hidden="true">▶</span><div><strong>К шагу прикреплено видео</strong><p>Видео не включено в локальную копию; сохранена только отметка о его наличии.</p></div></aside><div class="lesson-content"><h1>Лекция &laquo;Метод OPTIONS: как работает и зачем нужен&raquo;</h1>
+
+<p>&nbsp;</p>
+
+<p>Метод <strong>OPTIONS</strong> используется для <strong>получения информации о возможностях сервера</strong> и поддерживаемых <strong>HTTP-методах</strong> для конкретного ресурса. В отличие от <strong>GET, POST или PUT</strong>, он <strong>не выполняет никаких операций с данными</strong>, а только сообщает, <strong>какие методы поддерживаются API</strong>.</p>
+
+<p>Если сравнивать с реальной жизнью, <strong>OPTIONS</strong> &mdash; это как <strong>спросить у оператора техподдержки</strong>, какие услуги предоставляет компания, <strong>не заказывая ничего</strong>.</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Как работает OPTIONS?</strong></h3>
+
+<p>Метод <strong>OPTIONS</strong> позволяет клиенту узнать, <strong>какие HTTP-методы и заголовки поддерживает сервер</strong> для <strong>конкретного ресурса</strong> или всего API.</p>
+
+<h4><strong>1. Клиент отправляет OPTIONS-запрос для конкретного ресурса:</strong></h4>
+
+<p><span>OPTIONS /users HTTP/1.1&nbsp;&nbsp;</span></p>
+
+<p><span>Host: </span><a href="http://api.example.com/" target="_blank" rel="noopener noreferrer"><span>api.example.com</span></a><span>&nbsp;&nbsp;</span></p>
+
+<p>&rarr; <strong>Клиент спрашивает, какие методы доступны для /users</strong>.</p>
+
+<h4><strong>2. Сервер обрабатывает запрос:</strong></h4>
+
+<ul>
+	<li>
+	<p><strong>Проверяет, какие методы поддерживает данный ресурс</strong>.</p>
+	</li>
+	<li>
+	<p><strong>Возвращает список допустимых HTTP-методов</strong> в заголовке Allow.</p>
+	</li>
+</ul>
+
+<h4><strong>3. Сервер отправляет ответ:</strong></h4>
+
+<p><span>HTTP/1.1 200 OK&nbsp;&nbsp;</span></p>
+
+<p><span>Allow: GET, POST, PUT, DELETE, OPTIONS&nbsp;&nbsp;</span></p>
+
+<p><span>Content-Length: 0&nbsp;&nbsp;</span></p>
+
+<p>&rarr; <strong>В заголовке Allow указаны все методы, которые поддерживает ресурс</strong>.</p>
+
+<h4><strong>4. </strong>OPTIONS-запрос для всех методов AP<strong>I:</strong></h4>
+
+<p><span>OPTIONS * HTTP/1.1&nbsp;&nbsp;</span></p>
+
+<p><span>Host: </span><a href="http://api.example.com/" target="_blank" rel="noopener noreferrer"><span>api.example.com</span></a><span>&nbsp;&nbsp;</span></p>
+
+<p>&rarr; <strong>Этот запрос позволяет узнать общие правила API</strong>, а не конкретного ресурса.</p>
+
+<h4><strong>5. Сервер может вернуть CORS-заголовки:</strong></h4>
+
+<p><span>HTTP/1.1 204 No Content&nbsp;&nbsp;</span></p>
+
+<p><span>Access-Control-Allow-Methods: GET, POST, OPTIONS&nbsp;&nbsp;</span></p>
+
+<p><span>Access-Control-Allow-Headers: Authorization, Content-Type&nbsp;&nbsp;</span></p>
+
+<p>&rarr; <strong>Это называется Preflight-запрос</strong>, который используется <strong>для проверки разрешённых методов при работе с CORS (межсайтовыми запросами)</strong>.</p>
+
+<p><strong>Метод OPTIONS помогает клиенту узнать, какие методы поддерживаются в API, и избежать ошибок при отправке неподдерживаемых запросов.</strong></p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Основные свойства метода OPTIONS</strong></h3>
+
+<h4><strong>OPTIONS является идемпотентным</strong></h4>
+
+<ul>
+	<li>
+	<p>Повторные OPTIONS-запросы не изменяют состояние сервера.</p>
+	</li>
+	<li>
+	<p>Они только возвращают информацию о поддерживаемых методах.</p>
+	</li>
+</ul>
+
+<h4><strong>Влияние на безопасность и состояние сервера</strong></h4>
+
+<ul>
+	<li>
+	<p>OPTIONS не изменяет состояние сервера, а лишь запрашивает данные для их чтения, что делает его безопасным методом.</p>
+	</li>
+	<li>
+	<p>Безопасен с точки зрения передачи данных, так как они не передаются, а только запрашиваются.</p>
+	</li>
+	<li>
+	<p>Однако сервер может ограничить его использование по соображениям безопасности.</p>
+	</li>
+</ul>
+
+<h4><strong>Передача данных</strong></h4>
+
+<ul>
+	<li>
+	<p>OPTIONS не требует тела запроса, но может передавать заголовки для уточнения параметров.</p>
+	</li>
+	<li>
+	<p>Ответ содержит заголовки с перечнем поддерживаемых методов и иногда CORS-настройки.</p>
+	</li>
+</ul>
+
+<h4><strong>Ограничения длины URL отсутствуют</strong></h4>
+
+<ul>
+	<li>
+	<p>Как и GET/HEAD, OPTIONS передаёт параметры через URL.</p>
+	</li>
+	<li>
+	<p>Ограничения зависят только от браузеров и серверов.</p>
+	</li>
+</ul>
+
+<h4><strong>Форматы данных</strong></h4>
+
+<ul>
+	<li>
+	<p>OPTIONS не возвращает тело ответа, только заголовки (Allow, Access-Control-Allow-Methods).</p>
+	</li>
+	<li>
+	<p>Может возвращать 204 No Content, если сервер не передаёт дополнительных данных.</p>
+	</li>
+</ul>
+
+<h4><strong>Кэширование</strong></h4>
+
+<ul>
+	<li>
+	<p>OPTIONS не кэшируется браузерами, так как его результат зависит от настроек сервера.</p>
+	</li>
+	<li>
+	<p>Однако CORS-запросы могут кешироваться через заголовок Access-Control-Max-Age.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><strong>Дополнительные особенности метода OPTIONS</strong></h3>
+
+<h4><strong>OPTIONS используется для CORS</strong></h4>
+
+<ul>
+	<li>
+	<p>При кросс-доменных запросах браузер отправляет preflight-запрос, чтобы проверить, можно ли выполнять операцию.</p>
+	</li>
+</ul>
+
+<h4><strong>OPTIONS помогает избежать ошибок API</strong></h4>
+
+<ul>
+	<li>
+	<p>Перед отправкой запроса клиент может уточнить, какие методы поддерживаются, чтобы не отправлять неподдерживаемые.</p>
+	</li>
+</ul>
+
+<h4>OPTIONS может использоваться как на уровне всего API, так и для конкретного ресурса.</h4>
+
+<ul>
+	<li>
+	<p>OPTIONS &mdash; запрашивает информацию обо всех методах API.</p>
+	</li>
+	<li>
+	<p>OPTIONS /users &mdash; запрашивает информацию о методах для конкретного ресурса.</p>
+	</li>
+</ul>
+
+<h4><strong>Метод OPTIONS полезен для предварительной проверки API, работы с CORS и диагностики </strong>поддерживаемых <strong>методов.</strong></h4>
+
+<p>&nbsp;</p>
+
+<h3><strong>Итог</strong></h3>
+
+<p>Метод <strong>OPTIONS</strong> используется для <strong>запроса информации о </strong>поддерживаемых <strong>HTTP-методах</strong> и <strong>часто применяется для работы с CORS</strong>. Он <strong>не изменяет состояние сервера</strong>, а только <strong>возвращает разрешённые методы и заголовки</strong>.</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Как тестируют OPTIONS?</strong></h3>
+
+<ul>
+	<li>
+	<p>Проверяют, возвращает ли сервер корректный список методов (Allow: GET, POST, PUT, DELETE).</p>
+	</li>
+	<li>
+	<p>Тестируют CORS-настройки (Access-Control-Allow-Methods, Access-Control-Allow-Headers).</p>
+	</li>
+	<li>
+	<p>Проверяют, не возвращает ли сервер тело ответа, если этого не требуется (204 No Content).</p>
+	</li>
+	<li>
+	<p>Убеждаются, что OPTIONS не меняет данные на сервере.</p>
+	</li>
+</ul>
+
+<p><strong>Метод OPTIONS помогает клиенту узнать возможности API и избежать ошибок, отправляя неподдерживаемые запросы.</strong></p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><strong>Что нужно уметь рассказать</strong><br>
+&ndash; Термин &laquo;метод OPTIONS&raquo;<br>
+&ndash; Как работает OPTIONS<br>
+&ndash; Основные свойства метода OPTIONS<br>
+&ndash; Дополнительные особенности метода OPTIONS</p>
+
+<p><strong>Всё остальное &mdash; для общего развития</strong></p></div>
+          <nav class="pager" aria-label="Навигация между шагами"><a class="prev" href="step-100.html"><small>Назад</small><span>← Лекция «Метод HEAD: как работает и зачем нужен»</span></a><a class="next" href="step-102.html"><small>Дальше</small><span>Лекция «Общий итог по HTTP-методам» →</span></a></nav>
+        </article></div></main>
+  <footer><span>Локальная учебная копия · без отслеживания и отправки ответов</span><a href="../../about.html">О сайте</a></footer>
+</body>
+</html>

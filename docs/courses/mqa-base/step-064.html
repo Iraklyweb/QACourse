@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Переход к баг-репортам Во всех предыдущих примерах мы работали в рамках ТК и ЧЛ: читали требования, формировали проверки, выполняли их и фиксировали резуль">
+  <meta name="color-scheme" content="dark light">
+  <title>Лекция «Переход к баг-репортам» · QA Конспект</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body data-base="../../">
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="topbar">
+    <a class="brand" href="../../index.html" aria-label="QA Конспект, главная"><span class="brand-mark">QA</span><span>Конспект</span></a>
+    <nav aria-label="Основная навигация">
+      <a href="../../courses/manual-testing/">Ручное тестирование</a>
+      <a href="../../courses/mqa-base/">MQA Base</a>
+      <a href="../../courses/mqa-base/">Курс</a>
+    </nav>
+    <form class="search-mini" action="../../search.html" role="search">
+      <label class="sr-only" for="site-search-2">Поиск по курсам</label>
+      <input id="site-search-2" name="q" type="search" placeholder="Найти тему…" autocomplete="off">
+      <button type="submit" aria-label="Искать">⌕</button>
+    </form>
+  </header>
+  <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="index.html">← Структура курса</a><div class="rail-index"><span>064</span><small>из 127</small></div><p>Примеры</p><div class="rail-progress" aria-label="Шаг 5 из 11 в теме"><i style="width:45%"></i></div><small>5 / 11 в теме</small></aside>
+        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><a href="index.html">MQA Base</a><span>/</span><span>Тестовая документация</span><span>/</span><span>Примеры</span></nav>
+          <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «Переход к баг-репортам»</h1><p>Тестовая документация · Примеры</p></header>
+          <aside class="media-card"><span aria-hidden="true">▶</span><div><strong>К шагу прикреплено видео</strong><p>Видео не включено в локальную копию; сохранена только отметка о его наличии.</p></div></aside><div class="lesson-content"><div>
+
+<h1>Переход к баг-репортам</h1>
+
+<div>
+<div>
+<div>
+<p><strong>Во всех предыдущих примерах мы работали в рамках ТК и ЧЛ:</strong></p>
+
+<p>читали требования, формировали проверки, выполняли их и фиксировали результат в статусе.</p>
+
+<p>Но на этом работа тестировщика не заканчивается.</p>
+</div>
+
+<div>
+<p>В последнем примере с формой &laquo;Консультация&raquo; мы как раз пришли к той точке, ради которой всё это и делается &mdash; обнаружили дефект.</p>
+
+<p><strong>Мы сформировали проверку:</strong></p>
+
+<p>&laquo;При отсутствии выбранного чек бокса &bdquo;Я согласен с политикой&ldquo; отправить заявку невозможно&raquo;.</p>
+
+<p><strong>Выполнили шаги.</strong></p>
+
+<p>И увидели, что заявка отправляется даже без выбранного чекбокса.</p>
+</div>
+
+<div>
+<p>Вот здесь важно остановиться и зафиксировать момент.</p>
+
+<p>Пока мы просто поставили статус &laquo;Провален&raquo; в тест-кейсе или чек-листе &mdash; это ещё не баг-репорт.</p>
+
+<p><strong>Это только результат проверки.</strong></p>
+
+<p>Дальше возникает следующий логичный шаг: дефект нужно корректно описать и передать в работу.</p>
+
+<p>Именно в этот момент мы переходим от тестовой документации к баг-репортам.</p>
+</div>
+
+<div>
+<p><strong>Баг-репорт не возникает сам по себе.</strong></p>
+
+<p>Он всегда вырастает из конкретной проверки:</p>
+
+<ul>
+	<li>было требование,</li>
+	<li>была проверка,</li>
+	<li>был ожидаемый результат,</li>
+	<li>получили фактический результат,</li>
+	<li>увидели расхождение.</li>
+</ul>
+</div>
+
+<div>
+<p>В нашем случае расхождение очевидно:</p>
+
+<p>по требованиям чекбокс обязателен,</p>
+
+<p>по факту форма отправляется без него.</p>
+
+<p>Это не спорная ситуация, не &laquo;вопрос&raquo;, не &laquo;надо уточнить&raquo;.</p>
+
+<p><strong>Это дефект.</strong></p>
+</div>
+
+<div>
+<p>В следующем разделе мы разберём этот же пример уже с точки зрения баг-репорта:</p>
+
+<ul>
+	<li>как правильно описать проблему с обязательным чекбоксом,</li>
+	<li>что писать в ожидаемом результате,</li>
+	<li>что указывать в фактическом,</li>
+	<li>и почему формулировка тест-кейса напрямую влияет на качество баг-репорта.</li>
+</ul>
+</div>
+
+<div>
+<p><strong>Если проверка сформулирована чётко &mdash; баг-репорт пишется легко.</strong></p>
+
+<p><strong>Если проверка размытая &mdash; баг-репорт получается таким же.</strong></p>
+
+<p>Поэтому дальше &mdash; разбираем баг-репорты на этом же примере, без новых сущностей и без фантазий.</p>
+</div>
+</div>
+</div>
+</div></div>
+          <nav class="pager" aria-label="Навигация между шагами"><a class="prev" href="step-063.html"><small>Назад</small><span>← Лекция «Форма «Консультация»»</span></a><a class="next" href="step-065.html"><small>Дальше</small><span>Лекция «Баг-репорт на основе проваленного тест-кейса» →</span></a></nav>
+        </article></div></main>
+  <footer><span>Локальная учебная копия · без отслеживания и отправки ответов</span><a href="../../about.html">О сайте</a></footer>
+</body>
+</html>

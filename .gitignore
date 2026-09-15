@@ -1,0 +1,6 @@
+.sites-runtime/
+kata-academy-export/
+extract-kata-courses.ps1
+inspect-kata-api.ps1
+node_modules/
+*.log

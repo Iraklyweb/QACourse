@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Лекция &quot;Заголовки ответа в API&quot; Когда сервер отвечает на запрос клиента, он использует заголовки ответа, чтобы передать дополнительную информацию. Заголовк">
+  <meta name="color-scheme" content="dark light">
+  <title>Лекция «Заголовки ответа в API» · QA Конспект</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body data-base="../../">
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="topbar">
+    <a class="brand" href="../../index.html" aria-label="QA Конспект, главная"><span class="brand-mark">QA</span><span>Конспект</span></a>
+    <nav aria-label="Основная навигация">
+      <a href="../../courses/manual-testing/">Ручное тестирование</a>
+      <a href="../../courses/mqa-base/">MQA Base</a>
+      <a href="../../courses/manual-testing/">Курс</a>
+    </nav>
+    <form class="search-mini" action="../../search.html" role="search">
+      <label class="sr-only" for="site-search-2">Поиск по курсам</label>
+      <input id="site-search-2" name="q" type="search" placeholder="Найти тему…" autocomplete="off">
+      <button type="submit" aria-label="Искать">⌕</button>
+    </form>
+  </header>
+  <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="index.html">← Структура курса</a><div class="rail-index"><span>087</span><small>из 168</small></div><p>REST</p><div class="rail-progress" aria-label="Шаг 14 из 14 в теме"><i style="width:100%"></i></div><small>14 / 14 в теме</small></aside>
+        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><a href="index.html">Ручное тестирование</a><span>/</span><span>Сети</span><span>/</span><span>REST</span></nav>
+          <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «Заголовки ответа в API»</h1><p>Сети · REST</p></header>
+          <aside class="media-card"><span aria-hidden="true">▶</span><div><strong>К шагу прикреплено видео</strong><p>Видео не включено в локальную копию; сохранена только отметка о его наличии.</p></div></aside><div class="lesson-content"><h1>Лекция &laquo;Заголовки ответа в API&raquo;</h1>
+
+<p>&nbsp;</p>
+
+<p>Когда сервер отвечает на запрос клиента, он использует заголовки ответа, чтобы передать дополнительную информацию. Заголовки помогают клиенту правильно обрабатывать данные, обеспечивают безопасность, управляют кэшированием, сессиями и информируют тестировщика о возможных ошибках.</p>
+
+<p>Знание заголовков ответа важно для тестировщика, так как они позволяют выявлять проблемы с форматом данных, кэшированием, авторизацией и доступом к API.</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Как формируются заголовки ответа?</strong></h3>
+
+<p>Сервер автоматически формирует заголовки ответа на основе запроса клиента, настроек API и бизнес-логики системы.</p>
+
+<p>Пример HTTP-ответа сервера с заголовками:</p>
+
+<p><span>HTTP/1.1 200 OK&nbsp;&nbsp;</span></p>
+
+<p><span>Content-Type: application/json&nbsp;&nbsp;</span></p>
+
+<p><span>Content-Length: 1234&nbsp;&nbsp;</span></p>
+
+<p><span>Set-Cookie: sessionId=xyz456; HttpOnly; Secure&nbsp;&nbsp;</span></p>
+
+<p><span>Cache-Control: no-cache&nbsp;&nbsp;</span></p>
+
+<p><span>Server: nginx/1.19.10&nbsp;&nbsp;</span></p>
+
+<p>В этом ответе заголовки передают информацию о формате данных, размере ответа, управлении сессиями и кэшированием.</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Где увидеть заголовки ответа?</strong></h3>
+
+<p>Заголовки ответа можно посмотреть в инструментах для тестирования API:</p>
+
+<ul>
+	<li>
+	<p><strong>В браузере (DevTools &rarr; вкладка &quot;Сеть&quot;)</strong></p>
+	</li>
+	<li>
+	<p><strong>В Postman (раздел Headers в ответе сервера)</strong></p>
+	</li>
+	<li>
+	<p><strong>В терминале (cURL, например curl -I)</strong></p>
+	</li>
+</ul>
+
+<p>Пример просмотра заголовков через curl:</p>
+
+<p>curl -I <a href="https://example.com/api/users" target="_blank" rel="noopener noreferrer">https://example.com/api/users</a></p>
+
+<p>Этот запрос вернёт только заголовки ответа без тела.</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Как понять, что заголовки правильные?</strong></h3>
+
+<p>Чтобы убедиться, что сервер корректно формирует заголовки, тестировщик проверяет:</p>
+
+<ul>
+	<li>
+	<p><strong>Соответствие формату API</strong> &mdash; например, Content-Type должен совпадать с реальным форматом данных.</p>
+	</li>
+	<li>
+	<p><strong>Правильность работы кэширования</strong> &mdash; сервер должен корректно управлять Cache-Control и ETag.</p>
+	</li>
+	<li>
+	<p><strong>Работу сессий и безопасности</strong> &mdash; Set-Cookie должен устанавливать корректные флаги (HttpOnly, Secure).</p>
+	</li>
+	<li>
+	<p><strong>Редиректы и обработку ошибок</strong> &mdash; при кодах 301, 302 заголовок Location должен указывать правильный URL.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><strong>Группы заголовков ответа</strong></h3>
+
+<h4><strong>Формат данных</strong></h4>
+
+<p>Эти заголовки описывают, в каком формате возвращаются данные и сколько их.</p>
+
+<p><strong>Content-Type</strong> &mdash; указывает формат возвращаемых данных. Пример:</p>
+
+<p><span>Content-Type: application/json</span></p>
+
+<p>Тестировщик проверяет, что сервер всегда возвращает данные в ожидаемом формате.</p>
+
+<p><strong>Content-Length</strong> &mdash; сообщает размер тела ответа в байтах. Пример:</p>
+
+<p><span>Content-Length: 1234</span></p>
+
+<p>Используется для проверки полноты ответа.</p>
+
+<p>&nbsp;</p>
+
+<h4><strong>Кэширование</strong></h4>
+
+<p>Заголовки управляют тем, как клиент должен кэшировать данные.</p>
+
+<p><strong>Cache-Control</strong> &mdash; задаёт правила кэширования. Пример:</p>
+
+<p><span>Cache-Control: no-cache</span></p>
+
+<p>Если указано no-cache, клиент должен запрашивать свежие данные, а не использовать закэшированные.</p>
+
+<p><strong>ETag</strong> &mdash; уникальный идентификатор версии ресурса. Пример:</p>
+
+<p><span>ETag: &quot;abc123etag&quot;</span></p>
+
+<p>Если ETag совпадает с предыдущим значением, клиент может использовать закэшированные данные.</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Безопасность и сессии</strong></h3>
+
+<p>Эти заголовки обеспечивают защиту API и управление сессиями.</p>
+
+<p><strong>Set-Cookie</strong> &mdash; передаёт клиенту данные сессии. Пример:</p>
+
+<p><span>Set-Cookie: sessionId=xyz456; HttpOnly; Secure</span></p>
+
+<p>Сервер устанавливает сессию, а клиент затем отправляет её обратно в заголовке Cookie:</p>
+
+<p><span>Cookie: sessionId=xyz456</span></p>
+
+<p>Тестировщик проверяет, что:</p>
+
+<ul>
+	<li>
+	<p>Куки устанавливаются корректно.</p>
+	</li>
+	<li>
+	<p>Сервер правильно обрабатывает запросы с переданным Cookie.</p>
+	</li>
+	<li>
+	<p>Присутствуют флаги безопасности (HttpOnly, Secure).</p>
+	</li>
+</ul>
+
+<p><strong>Access-Control-Allow-Origin</strong> &mdash; указывает, какие источники могут обращаться к API. Пример:</p>
+
+<p><span>Access-Control-Allow-Origin: *</span></p>
+
+<p>Если указано *, API доступен с любых доменов, что может быть небезопасно.</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Информация о сервере</strong></h3>
+
+<p>Эти заголовки предоставляют сведения о сервере и управляют перенаправлением.</p>
+
+<p><strong>Server</strong> &mdash; передаёт информацию о сервере, обработавшем запрос. Пример:</p>
+
+<p><span>Server: nginx/1.19.10</span></p>
+
+<p>Обычно этот заголовок не тестируется, но может быть полезен для анализа конфигурации.</p>
+
+<p><strong>Location</strong> &mdash; указывает, куда перенаправлять клиента при редиректах. Пример:</p>
+
+<p>Location: <a href="https://example.com/new-page" target="_blank" rel="noopener noreferrer">https://example.com/new-page</a></p>
+
+<p>Тестировщик проверяет, что при кодах 301 Moved Permanently и 302 Found клиент действительно перенаправляется на новый URL.</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Как понять работу заголовков?</strong></h3>
+
+<p><strong>Set-Cookie и Cookie: работа сессий </strong>Сервер устанавливает сессию через Set-Cookie, а клиент отправляет её обратно через Cookie. Это основа авторизации и сессионного хранения данных.</p>
+
+<p><strong>Content-Type и Content-Length: контроль данных </strong>Они обеспечивают корректную передачу данных клиенту, указывая их формат и размер.</p>
+
+<p><strong>Cache-Control и ETag: управление кэшем </strong>Эти заголовки определяют, нужно ли клиенту загружать новые данные или использовать закэшированные.</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Какие заголовки тестирует тестировщик?</strong></h3>
+
+<p>На практике тестировщик проверяет:</p>
+
+<ul>
+	<li>
+	<p><strong>Set-Cookie и Cookie</strong> &mdash; работа сессий и авторизации.</p>
+	</li>
+	<li>
+	<p><strong>Content-Type и Content-Length</strong> &mdash; корректность формата и размера данных.</p>
+	</li>
+	<li>
+	<p><strong>Cache-Control и ETag</strong> &mdash; правильная работа кэширования.</p>
+	</li>
+	<li>
+	<p><strong>Access-Control-Allow-Origin</strong> &mdash; контроль разрешённых источников API.</p>
+	</li>
+	<li>
+	<p><strong>Location</strong> &mdash; корректность редиректов.</p>
+	</li>
+</ul>
+
+<p>Остальные заголовки тестируются по необходимости, в зависимости от специфики API.</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Итог</strong></h3>
+
+<p>Заголовки ответа помогают клиенту правильно обрабатывать полученные данные, управляют кэшированием, безопасностью и сессиями.</p>
+
+<p>Тестировщик чаще всего работает с <strong>Set-Cookie, Content-Type, Cache-Control и Location</strong>, проверяя корректность авторизации, передачи данных и кэширования. Остальные заголовки используются реже, но понимание их работы помогает эффективнее тестировать API.</p></div>
+          <nav class="pager" aria-label="Навигация между шагами"><a class="prev" href="step-086.html"><small>Назад</small><span>← Лекция «Заголовки запроса в API»</span></a><a class="next" href="step-088.html"><small>Дальше</small><span>Лекция «HTTP-статус-коды: что это и зачем они нужны» →</span></a></nav>
+        </article></div></main>
+  <footer><span>Локальная учебная копия · без отслеживания и отправки ответов</span><a href="../../about.html">О сайте</a></footer>
+</body>
+</html>

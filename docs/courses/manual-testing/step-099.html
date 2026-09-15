@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Лекция &quot;Метод DELETE: как работает и зачем нужен&quot; DELETE является идемпотентным Повторный DELETE-запрос не создаст дубликатов и не изменит состояние , если">
+  <meta name="color-scheme" content="dark light">
+  <title>Лекция «Метод DELETE: как работает и зачем нужен» · QA Конспект</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body data-base="../../">
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="topbar">
+    <a class="brand" href="../../index.html" aria-label="QA Конспект, главная"><span class="brand-mark">QA</span><span>Конспект</span></a>
+    <nav aria-label="Основная навигация">
+      <a href="../../courses/manual-testing/">Ручное тестирование</a>
+      <a href="../../courses/mqa-base/">MQA Base</a>
+      <a href="../../courses/manual-testing/">Курс</a>
+    </nav>
+    <form class="search-mini" action="../../search.html" role="search">
+      <label class="sr-only" for="site-search-2">Поиск по курсам</label>
+      <input id="site-search-2" name="q" type="search" placeholder="Найти тему…" autocomplete="off">
+      <button type="submit" aria-label="Искать">⌕</button>
+    </form>
+  </header>
+  <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="index.html">← Структура курса</a><div class="rail-index"><span>099</span><small>из 168</small></div><p>HTTP-методы в API</p><div class="rail-progress" aria-label="Шаг 6 из 11 в теме"><i style="width:55%"></i></div><small>6 / 11 в теме</small></aside>
+        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><a href="index.html">Ручное тестирование</a><span>/</span><span>Сети</span><span>/</span><span>HTTP-методы в API</span></nav>
+          <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «Метод DELETE: как работает и зачем нужен»</h1><p>Сети · HTTP-методы в API</p></header>
+          <aside class="media-card"><span aria-hidden="true">▶</span><div><strong>К шагу прикреплено видео</strong><p>Видео не включено в локальную копию; сохранена только отметка о его наличии.</p></div></aside><div class="lesson-content"><h1>Лекция &laquo;Метод DELETE: как работает и зачем нужен&raquo;</h1>
+
+<p>&nbsp;</p>
+
+<h4><strong>DELETE является идемпотентным</strong></h4>
+
+<ul>
+	<li>
+	<p><strong>Повторный DELETE-запрос не создаст дубликатов</strong> и <strong>не изменит состояние</strong>, если ресурс уже удалён.</p>
+	</li>
+	<li>
+	<p>Однако, если API <strong>поддерживает мягкое удаление (soft delete)</strong>, <strong>каждый запрос может менять статус объекта</strong> (deleted=true).</p>
+	</li>
+</ul>
+
+<h4><strong>Влияние на безопасность и состояние сервера</strong></h4>
+
+<ul>
+	<li>
+	<p><strong>DELETE изменяет состояние сервера, </strong>так как удаляет существующий ресурс<strong>. </strong>Тем самым<strong> DELETE небезопасен</strong> с точки зрения изменения данных на сервере.</p>
+	</li>
+	<li>
+	<p><strong>Небезопасен с точки зрения передачи данных</strong>, так как <strong>они передаются в URL</strong>, а URL <strong>не шифруется</strong>.</p>
+	</li>
+	<li>
+	<p>Как и другие методы изменения данных, <strong>DELETE требует авторизации</strong>, если ресурс защищён.</p>
+	</li>
+	<li>
+	<p>Некоторые API требуют <strong>дополнительного подтверждения перед удалением</strong> (например, DELETE-запрос может быть <strong>защищён токенами или ролями</strong>).</p>
+	</li>
+</ul>
+
+<h4><strong>Передача данных</strong></h4>
+
+<ul>
+	<li>
+	<p><strong>DELETE обычно не имеет тела запроса</strong>, так как <strong>указание удаляемого объекта происходит через URL</strong>.</p>
+	</li>
+	<li>
+	<p>Однако некоторые API <strong>позволяют передавать дополнительные параметры</strong> (например, <strong>причину удаления</strong>).</p>
+	</li>
+</ul>
+
+<h4><strong>Ограничения длины URL отсутствуют</strong></h4>
+
+<ul>
+	<li>
+	<p><strong>DELETE-запросы передают данные через URL</strong>, а не <strong>в теле</strong>, поэтому их длина <strong>не ограничена</strong>, кроме <strong>стандартных ограничений браузеров и серверов</strong>.</p>
+	</li>
+</ul>
+
+<h4><strong>Форматы данных</strong></h4>
+
+<ul>
+	<li>
+	<p><strong>DELETE чаще всего не возвращает данные</strong>, но может отправлять JSON с подтверждением: <span>{ &quot;status&quot;: &quot;deleted&quot; }</span></p>
+	</li>
+	<li>
+	<p>Некоторые API <strong>поддерживают мягкое удаление </strong>(soft delete) и <strong>возвращают обновлённое состояние объекта</strong>: <span>{ &quot;id&quot;: 1, &quot;deleted&quot;: true }</span></p>
+	</li>
+</ul>
+
+<h4><strong>Кэширование</strong></h4>
+
+<ul>
+	<li>
+	<p><strong>DELETE не кэшируется</strong>, так как он <strong>изменяет состояние сервера</strong>.</p>
+	</li>
+	<li>
+	<p><strong>Браузеры и прокси-серверы не сохраняют результаты DELETE-запросов</strong>.</p>
+	</li>
+</ul>
+
+<h2>&nbsp;</h2>
+
+<h3><strong>Дополнительные особенности метода DELETE</strong></h3>
+
+<h4><strong>DELETE требует проверки существования ресурса</strong></h4>
+
+<ul>
+	<li>
+	<p>Если объект <strong>уже удалён</strong>, сервер может вернуть <strong>404 Not Found</strong>.</p>
+	</li>
+	<li>
+	<p>Некоторые API <strong>не проверяют существование ресурса</strong> и просто отправляют <strong>204 No Content</strong>.</p>
+	</li>
+</ul>
+
+<h4><strong>DELETE работает на уровне конкретного ресурса</strong></h4>
+
+<ul>
+	<li>
+	<p><strong>Запрос выполняется на конкретный объект</strong> (/users/1).</p>
+	</li>
+	<li>
+	<p>В отличие от <strong>PUT</strong> и <strong>PATCH</strong>, которые могут <strong>обновлять данные</strong>, <strong>DELETE только удаляет</strong>.</p>
+	</li>
+</ul>
+
+<h4><strong>DELETE может быть логическим или физическим</strong></h4>
+
+<ul>
+	<li>
+	<p><strong>Физическое удаление</strong> &ndash; данные <strong>стираются навсегда</strong>.</p>
+	</li>
+	<li>
+	<p><strong>Логическое удаление</strong> &ndash; запись <strong>остаётся в базе</strong>, но получает <strong>статус deleted=true</strong>, что <strong>позволяет восстановить её при необходимости</strong>.</p>
+	</li>
+</ul>
+
+<h4><strong>DELETE используется, когда нужно навсегда или временно удалить ресурс</strong></h4>
+
+<ul>
+	<li>
+	<p><strong>Повторные DELETE-запросы не должны изменять систему</strong>, если ресурс уже удалён.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><strong>Итог</strong></h3>
+
+<p>Метод DELETE используется для удаления ресурса и может быть как физическим (перманентным), так и логическим (soft delete). В отличие от <strong>GET</strong>, который только <strong>читает данные</strong>, <strong>DELETE изменяет состояние сервера</strong>.</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Как тестируют DELETE?</strong></h3>
+
+<ul>
+	<li>
+	<p><strong>Если есть доступ к БД</strong>, проверяют, <strong>действительно ли объект удалился</strong>.</p>
+	</li>
+	<li>
+	<p><strong>Если доступа к БД нет</strong>, делают <strong>GET-запрос после DELETE</strong>, чтобы убедиться, что сервер вернёт <strong>404 Not Found</strong>.</p>
+	</li>
+	<li>
+	<p><strong>Проверяют, возвращает ли сервер корректные статус-коды</strong> (204 No Content, 200 OK, 404 Not Found, 403 Forbidden).</p>
+	</li>
+	<li>
+	<p><strong>Тестируют повторные запросы</strong>:</p>
+
+	<ul>
+		<li>
+		<p>Первый <strong>DELETE</strong> должен <strong>удалить объект</strong>.</p>
+		</li>
+		<li>
+		<p>Последующие <strong>не должны изменять состояние</strong> (если API <strong>идемпотентное</strong>).</p>
+		</li>
+	</ul>
+	</li>
+</ul>
+
+<p>DELETE <strong>&mdash; это метод, который нельзя откатить</strong>, поэтому <strong>его использование требует осторожности</strong>. Если API <strong>поддерживает мягкое удаление</strong>, важно проверять <strong>изменение статуса ресурса</strong> вместо <strong>его полного исчезновения</strong>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><strong>Что нужно уметь рассказать</strong><br>
+&ndash; Термин &laquo;метод DELETE&raquo;<br>
+&ndash; Как работает DELETE<br>
+&ndash; Основные свойства метода DELETE<br>
+&ndash; Дополнительные особенности метода DELETE</p>
+
+<p><strong>Всё остальное &mdash; для общего развития</strong></p></div>
+          <nav class="pager" aria-label="Навигация между шагами"><a class="prev" href="step-098.html"><small>Назад</small><span>← Лекция «Метод PATCH: как работает и зачем нужен»</span></a><a class="next" href="step-100.html"><small>Дальше</small><span>Лекция «Метод HEAD: как работает и зачем нужен» →</span></a></nav>
+        </article></div></main>
+  <footer><span>Локальная учебная копия · без отслеживания и отправки ответов</span><a href="../../about.html">О сайте</a></footer>
+</body>
+</html>

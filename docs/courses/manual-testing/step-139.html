@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Лекция &quot;Агрегатные функции&quot; Агрегатные функции вычисляют некоторые скалярные значения в наборе строк. В SQL есть следующие агрегатные функции: - AVG: вычис">
+  <meta name="color-scheme" content="dark light">
+  <title>Лекция «Агрегатные функции» · QA Конспект</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body data-base="../../">
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="topbar">
+    <a class="brand" href="../../index.html" aria-label="QA Конспект, главная"><span class="brand-mark">QA</span><span>Конспект</span></a>
+    <nav aria-label="Основная навигация">
+      <a href="../../courses/manual-testing/">Ручное тестирование</a>
+      <a href="../../courses/mqa-base/">MQA Base</a>
+      <a href="../../courses/manual-testing/">Курс</a>
+    </nav>
+    <form class="search-mini" action="../../search.html" role="search">
+      <label class="sr-only" for="site-search-2">Поиск по курсам</label>
+      <input id="site-search-2" name="q" type="search" placeholder="Найти тему…" autocomplete="off">
+      <button type="submit" aria-label="Искать">⌕</button>
+    </form>
+  </header>
+  <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="index.html">← Структура курса</a><div class="rail-index"><span>139</span><small>из 168</small></div><p>Запросы типа SELECT</p><div class="rail-progress" aria-label="Шаг 4 из 7 в теме"><i style="width:57%"></i></div><small>4 / 7 в теме</small></aside>
+        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><a href="index.html">Ручное тестирование</a><span>/</span><span>SQL</span><span>/</span><span>Запросы типа SELECT</span></nav>
+          <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «Агрегатные функции»</h1><p>SQL · Запросы типа SELECT</p></header>
+          <aside class="media-card"><span aria-hidden="true">▶</span><div><strong>К шагу прикреплено видео</strong><p>Видео не включено в локальную копию; сохранена только отметка о его наличии.</p></div></aside><div class="lesson-content"><h1><strong><span>Лекция &laquo;Агрегатные функции&raquo;</span></strong></h1>
+
+<p>&nbsp;</p>
+
+<p><span>Агрегатные функции вычисляют некоторые скалярные значения в наборе строк. В SQL есть следующие агрегатные функции:</span></p>
+
+<p><span>- AVG: вычисляет среднее значение</span></p>
+
+<p><span>- SUM: вычисляет сумму значений</span></p>
+
+<p><span>- MIN: вычисляет наименьшее значение</span></p>
+
+<p><span>- MAX: вычисляет наибольшее значение</span></p>
+
+<p><span>- COUNT: вычисляет количество строк в запросе</span></p>
+
+<p><span>Все агрегатные функции принимают в качестве параметра выражение, которое представляет критерий для определения значений. Зачастую, в качестве выражения выступает название столбца, над значениями которого надо проводить вычисления.</span></p>
+
+<p><span>Выражения в функциях AVG и SUM должно представлять числовое значение (например, столбец, который хранит числовые значения). Выражение в функциях MIN, MAX и COUNT может представлять числовое или строковое значение или дату.</span></p>
+
+<p><span>Все агрегатные функции за исключением COUNT(*) игнорируют значения NULL.</span></p>
+
+<h2><strong><span>Avg</span></strong></h2>
+
+<p><span>Функция Avg возвращает среднее значение на диапазоне значений столбца таблицы.</span></p>
+
+<p><span>Например, пусть есть следующая таблица товаров Products:</span><br>
+&nbsp;</p>
+
+<pre>
+<code>CREATE TABLE Products
+
+(
+
+Id INT AUTO_INCREMENT PRIMARY KEY,
+
+ProductName VARCHAR(30) NOT NULL,
+
+Manufacturer VARCHAR(20) NOT NULL,
+
+ProductCount INT DEFAULT 0,
+
+Price DECIMAL NOT NULL
+
+);
+
+
+
+INSERT INTO Products(ProductName, Manufacturer, ProductCount, Price)
+
+VALUES
+
+('iPhone X', 'Apple', 3, 76000),
+
+('iPhone 8', 'Apple', 2, 51000),
+
+('iPhone 7', 'Apple', 5, 32000),
+
+('Galaxy S9', 'Samsung', 2, 56000),
+
+('Galaxy S8', 'Samsung', 1, 46000),
+
+('Honor 10', 'Huawei', 5, 28000),
+
+('Nokia 8', 'HMD Global', 6, 38000)</code></pre>
+
+<p><span>Найдем среднюю цену товаров из базы данных:</span></p>
+
+<pre>
+<code>SELECT AVG(Price) AS Average_Price FROM Products</code></pre>
+
+<p><span>Для поиска среднего значения в качестве выражения в функцию передается столбец Price. Для получаемого значения устанавливается псевдоним Average_Price, хотя в принципе устанавливать псевдоним необязательно.</span></p>
+
+<p><span><span><span class="media-note" role="note"><span aria-hidden="true">▧</span> Изображение: иллюстрация · lh5.googleusercontent.com</span></span></span></p>
+
+<p><span>На этапе выборки можно применять фильтрацию. Например, найдем среднюю цену для товаров определенного производителя:</span></p>
+
+<pre>
+<code>SELECT AVG(Price) FROM Products
+
+WHERE Manufacturer='Apple'</code></pre>
+
+<p><span>Также можно находить среднее значение для более сложных выражений. Например, найдем среднюю сумму всех товаров, учитывая их количество:</span></p>
+
+<pre>
+<code>SELECT AVG(Price * ProductCount) FROM Products</code></pre>
+
+<h2>&nbsp;</h2>
+
+<h2><strong><span>Count</span></strong></h2>
+
+<p><span>Функция Count вычисляет количество строк в выборке. Есть две формы этой функции. Первая форма COUNT(*) подсчитывает число строк в выборке:</span></p>
+
+<div>
+<pre>
+<code>SELECT COUNT(*) FROM Products</code></pre>
+
+<p>&nbsp;</p>
+</div>
+
+<p><span><span><span class="media-note" role="note"><span aria-hidden="true">▧</span> Изображение: иллюстрация · lh3.googleusercontent.com</span></span></span></p>
+
+<p><span>Вторая форма функции вычисляет количество строк по определенному столбцу, при этом строки со значениями NULL игнорируются:</span></p>
+
+<pre>
+<code>SELECT COUNT(Manufacturer) FROM Products</code></pre>
+
+<h2>&nbsp;</h2>
+
+<h2><strong><span>Min и Max</span></strong></h2>
+
+<p><span>Функции Min и Max вычисляют минимальное и максимальное значение по столбцу соответственно. Например, найдем минимальную цену среди товаров:</span></p>
+
+<pre>
+<code>SELECT MIN(Price), MAX(Price) FROM Products</code></pre>
+
+<p>&nbsp;</p>
+
+<p><span><span><span class="media-note" role="note"><span aria-hidden="true">▧</span> Изображение: иллюстрация · lh6.googleusercontent.com</span></span></span></p>
+
+<p><span>Данные функции также игнорируют значения NULL и не учитывают их при подсчете.</span></p>
+
+<h2>&nbsp;</h2>
+
+<h2><strong><span>Sum</span></strong></h2>
+
+<p><span>Функция Sum вычисляет сумму значений столбца. Например, подсчитаем общее количество товаров:</span></p>
+
+<pre>
+<code>SELECT SUM(ProductCount) FROM Products</code></pre>
+
+<p><span>Также вместо имени столбца может передаваться вычисляемое выражение. Например, найдем общую стоимость всех имеющихся товаров:</span></p>
+
+<pre>
+<code>SELECT SUM(ProductCount * Price) FROM Products</code></pre>
+
+<h2>&nbsp;</h2>
+
+<h2><strong><span>All и Distinct</span></strong></h2>
+
+<p><span>По умолчанию все вышеперечисленных пять функций учитывают все строки выборки для вычисления результата. Но выборка может содержать повторяющие значения. Если необходимо выполнить вычисления только над уникальными значениями, исключив из набора значений повторяющиеся данные, то для этого применяется оператор DISTINCT.</span></p>
+
+<pre>
+<code>SELECT COUNT(DISTINCT Manufacturer) FROM Products</code></pre>
+
+<p><span>По умолчанию вместо DISTINCT применяется оператор ALL, который выбирает все строки:</span></p>
+
+<pre>
+<code>SELECT COUNT(ALL Manufacturer) FROM Products</code></pre>
+
+<p><span>В данном случае мы видим, что производители могут повторяться в таблице, так как некоторые товары могут иметь одних и тех же производителей. Поэтому чтобы подсчитать количество уникальных производителей, необходимо использовать оператор DISTINCT.</span></p>
+
+<p><span>Так как этот оператор неявно подразумевается при отсутствии DISTINCT, то его можно не указывать.</span></p>
+
+<h2>&nbsp;</h2>
+
+<h2><strong><span>Комбинирование функций</span></strong></h2>
+
+<p><span>Объединим применение нескольких функций:</span></p>
+
+<pre>
+<code>SELECT COUNT(*) AS ProdCount,
+
+SUM(ProductCount) AS TotalCount,
+
+MIN(Price) AS MinPrice,
+
+MAX(Price) AS MaxPrice,
+
+AVG(Price) AS AvgPrice
+
+FROM Products</code></pre>
+
+<p>&nbsp;</p></div>
+          <nav class="pager" aria-label="Навигация между шагами"><a class="prev" href="step-138.html"><small>Назад</small><span>← Лекция «Группировка»</span></a><a class="next" href="step-140.html"><small>Дальше</small><span>Лекция «Группировка и фильтрация оператором HAVING» →</span></a></nav>
+        </article></div></main>
+  <footer><span>Локальная учебная копия · без отслеживания и отправки ответов</span><a href="../../about.html">О сайте</a></footer>
+</body>
+</html>

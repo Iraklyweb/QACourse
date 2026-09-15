@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Лекция &quot;Шпаргалка по основным операторам SQL&quot; 1. Операторы определения данных (Data Definition Language, DDL) ● CREATE создаёт объект базы данных (саму баз">
+  <meta name="color-scheme" content="dark light">
+  <title>Лекция «Шпаргалка по основным операторам SQL» · QA Конспект</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body data-base="../../">
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="topbar">
+    <a class="brand" href="../../index.html" aria-label="QA Конспект, главная"><span class="brand-mark">QA</span><span>Конспект</span></a>
+    <nav aria-label="Основная навигация">
+      <a href="../../courses/manual-testing/">Ручное тестирование</a>
+      <a href="../../courses/mqa-base/">MQA Base</a>
+      <a href="../../courses/manual-testing/">Курс</a>
+    </nav>
+    <form class="search-mini" action="../../search.html" role="search">
+      <label class="sr-only" for="site-search-2">Поиск по курсам</label>
+      <input id="site-search-2" name="q" type="search" placeholder="Найти тему…" autocomplete="off">
+      <button type="submit" aria-label="Искать">⌕</button>
+    </form>
+  </header>
+  <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="index.html">← Структура курса</a><div class="rail-index"><span>148</span><small>из 168</small></div><p>Insert, Update, Delete</p><div class="rail-progress" aria-label="Шаг 3 из 3 в теме"><i style="width:100%"></i></div><small>3 / 3 в теме</small></aside>
+        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><a href="index.html">Ручное тестирование</a><span>/</span><span>SQL</span><span>/</span><span>Insert, Update, Delete</span></nav>
+          <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «Шпаргалка по основным операторам SQL»</h1><p>SQL · Insert, Update, Delete</p></header>
+          <aside class="media-card"><span aria-hidden="true">▶</span><div><strong>К шагу прикреплено видео</strong><p>Видео не включено в локальную копию; сохранена только отметка о его наличии.</p></div></aside><div class="lesson-content"><div>
+<div>
+<p><span><span>&nbsp;</span></span></p>
+</div>
+
+<h1><span>Лекция &laquo;Шпаргалка по основным операторам SQL&raquo;</span></h1>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><span>1. Операторы определения данных (Data Definition Language, DDL)</span></p>
+
+<p><span>&nbsp;</span></p>
+
+<p><span><span>●</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span>CREATE</span><span> создаёт объект базы данных (саму базу, таблицу, представление, пользователя и так далее)</span></p>
+
+<p><span><span>●</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span>ALTER</span><span> изменяет объект</span></p>
+
+<p><span><span>●</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span>DROP</span><span> удаляет объект</span></p>
+
+<p><span>&nbsp;</span></p>
+
+<p><span>2. Операторы манипуляции данными (Data Manipulation Language, DML)</span></p>
+
+<p><span>&nbsp;</span></p>
+
+<p><span><span>●</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span>INSERT</span><span> добавляет новые данные</span></p>
+
+<p><span><span>●</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span>UPDATE</span><span> изменяет существующие данные</span></p>
+
+<p><span><span>●</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span>DELETE</span><span> удаляет данные</span></p>
+
+<p><span><span>●</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span>SELECT</span><span> выбирает данные, удовлетворяющие заданным условиям</span></p>
+
+<p><span>&nbsp;</span></p>
+
+<p><span>2.1 INSERT</span></p>
+
+<p><span>&nbsp;</span></p>
+
+<p><span>INSERT</span><span> [</span><span>INTO</span><span>] имя_таблицы [(список_столбцов)] </span><span>VALUES</span><span> (значение</span><span>1</span><span>, значение</span><span>2</span><span>, ... значениеN)</span></p>
+
+<p><span>&nbsp;</span></p>
+
+<p><span>Пример</span><span>:</span></p>
+
+<p><span>INSERT</span><span> Products(ProductName, Manufacturer, ProductCount, Price)</span></p>
+
+<p><span>VALUES</span><span> (</span><span>&#39;iPhone X&#39;</span><span>, </span><span>&#39;Apple&#39;</span><span>, </span><span>5</span><span>, </span><span>76000</span><span>);</span></p>
+
+<p><span>&nbsp;</span></p>
+
+<p><span>2.2 UPDATE</span></p>
+
+<p><span>&nbsp;</span></p>
+
+<p><span>UPDATE имя_таблицы</span></p>
+
+<p><span>SET</span><span> столбец</span><span>1</span><span> = значение</span><span>1</span><span>, столбец</span><span>2</span><span> = значение</span><span>2</span><span>, ... столбецN = значениеN</span></p>
+
+<p><span>[</span><span>WHERE</span><span> условие_обновления]</span></p>
+
+<p><span>&nbsp;</span></p>
+
+<p><span>Пример</span><span>:</span></p>
+
+<p><span>UPDATE Products</span></p>
+
+<p><span>SET</span><span> Price = Price + </span><span>3000</span><span>;</span></p>
+
+<p><span>&nbsp;</span></p>
+
+<p><span>2.3 DELETE</span></p>
+
+<p><span>&nbsp;</span></p>
+
+<p><span>DELETE</span><span>FROM</span><span> имя_таблицы</span></p>
+
+<p><span>[</span><span>WHERE</span><span> условие_удаления]</span></p>
+
+<p><span>&nbsp;</span></p>
+
+<p><span>Пример</span><span>:</span></p>
+
+<p><span>DELETE</span><span>FROM</span><span> Products</span></p>
+
+<p><span>WHERE</span><span> Manufacturer=</span><span>&#39;Apple&#39;</span><span>AND</span><span> Price &lt; </span><span>60000</span><span>;</span></p>
+
+<p><span>&nbsp;</span></p>
+
+<p><span>2.4 SELECT</span></p>
+
+<p><span>&nbsp;</span></p>
+
+<p><span>SELECT</span><span> список_столбцов </span><span>FROM</span><span> имя_таблицы</span></p>
+
+<p><span>&nbsp;</span></p>
+
+<p><span>*</span><span> для выбора всех столбцов</span></p>
+
+<p><span>AS</span><span> - для определения псевдонима выходного столбца</span></p>
+
+<p><span>&nbsp;</span></p>
+
+<p><span>Для фильтрации данных в команде </span><span>SELECT </span><span>применяется оператор </span><span>WHERE</span><span>, после которого указывается условие:</span></p>
+
+<p><span>WHERE</span><span> условие</span></p>
+
+<p><span>&nbsp;</span></p>
+
+<p><span>В SQL можно использовать следующие логические операторы:</span></p>
+
+<p><span><span>●</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span>выражение</span><span>1</span><span>AND</span><span> выражение</span><span>2 </span><span>(логическое И)</span></p>
+
+<p><span><span>●</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span>выражение</span><span>1</span><span>OR</span><span> выражение</span><span>2 </span><span>(логическое ИЛИ)</span></p>
+
+<p><span><span>●</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span>NOT</span><span> выражение </span><span>(логическое отрицание)</span></p>
+
+<p><span>&nbsp;</span></p>
+
+<p><span>Пример</span><span>:</span></p>
+
+<p><span>SELECT</span><span>*</span><span>FROM</span><span> Products</span></p>
+
+<p><span>WHERE</span><span> Manufacturer </span><span>=</span><span>&#39;Samsung&#39;</span><span>OR</span><span> Price </span><span>&gt;</span><span>50000</span></p>
+
+<p><span>&nbsp;</span></p>
+
+<p><span><span>●</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span>DISTINCT</span><span>для выбора уникальных значений по определенным столбцам</span></p>
+
+<p><span>&nbsp;</span></p>
+
+<p><span>Пример</span><span>:</span></p>
+
+<p><span>SELECT</span><span>DISTINCT</span><span> Manufacturer </span><span>FROM</span><span> Products;</span></p>
+
+<p><span>&nbsp;</span></p>
+
+<p><span><span>●</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span>IN</span><span> определяет набор значений, которые должны иметь столбцы:</span></p>
+
+<p><span>WHERE</span><span> выражение [</span><span>NOT</span><span>] </span><span>IN</span><span> (выражение)</span></p>
+
+<p><span>&nbsp;</span></p>
+
+<p><span>Пример</span><span>:</span></p>
+
+<p><span>SELECT</span><span> * </span><span>FROM</span><span> Products</span></p>
+
+<p><span>WHERE</span><span> Manufacturer </span><span>IN</span><span> (</span><span>&#39;Samsung&#39;</span><span>, </span><span>&#39;HTC&#39;</span><span>, </span><span>&#39;Huawei&#39;</span><span>);</span></p>
+
+<p><span>&nbsp;</span></p>
+
+<p><span><span>●</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span>BETWEEN </span><span>определяет диапазон значений с помощью начального и конечного значения, которому должно соответствовать выражение:</span></p>
+
+<p><span>WHERE</span><span> выражение [</span><span>NOT</span><span>] </span><span>BETWEEN</span><span> начальное_значение </span><span>AND</span><span> конечное_значение</span></p>
+
+<p><span>&nbsp;</span></p>
+
+<p><span>Пример</span><span>:</span></p>
+
+<p><span>SELECT</span><span> * </span><span>FROM</span><span> Products</span></p>
+
+<p><span>WHERE</span><span> Price </span><span>BETWEEN</span><span>20000</span><span>AND</span><span>50000</span><span>;</span></p>
+
+<p><span>&nbsp;</span></p>
+
+<p><span><span>●</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span>LIKE </span><span>принимает шаблон строки, которому должно соответствовать выражение:</span></p>
+
+<p><span>WHERE</span><span> выражение [</span><span>NOT</span><span>] </span><span>LIKE</span><span> шаблон_строки</span></p>
+
+<p><span>&nbsp;</span></p>
+
+<p><span>Пример</span><span>:</span></p>
+
+<p><span>SELECT</span><span> * </span><span>FROM</span><span> Products</span></p>
+
+<p><span>WHERE</span><span> ProductName </span><span>LIKE</span><span>&#39;iPhone%&#39;</span><span>;</span></p>
+
+<p><span>&nbsp;</span></p>
+
+<p><span><span>●</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span>ORDER BY </span><span>сортирует значения по одному или нескольких столбцам:</span></p>
+
+<p><span><span>●</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span>DESC </span><span>задаёт сортировку по убыванию</span></p>
+
+<p><span><span>●</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span>ASC </span><span>задаёт сортировку по возрастанию</span></p>
+
+<p><span>&nbsp;</span></p>
+
+<p><span>Пример</span><span>:</span></p>
+
+<p><span>SELECT</span><span> ProductName, ProductCount</span></p>
+
+<p><span>FROM</span><span> Products</span></p>
+
+<p><span>ORDER</span><span>BY</span><span> ProductCount </span><span>DESC</span><span>;</span></p>
+
+<p><span>&nbsp;</span></p>
+
+<p><span><span>●</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span>LIMIT </span><span>позволяет извлечь определенное количество строк:</span></p>
+
+<p><span>LIMIT [</span><span>offset</span><span>,] rowcount</span></p>
+
+<p><span>&nbsp;</span></p>
+
+<p><span>Пример</span><span>:</span></p>
+
+<p><span>SELECT</span><span> * </span><span>FROM</span><span> Products</span></p>
+
+<p><span>LIMIT </span><span>2</span><span>, </span><span>3</span><span>;</span></p>
+
+<p><span>&nbsp;</span></p>
+
+<p><span>3. Агрегатные функции</span></p>
+
+<p><span>&nbsp;</span></p>
+
+<p><span><span>●</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span>AVG</span><span> вычисляет среднее значение</span></p>
+
+<p><span>&nbsp;</span></p>
+
+<p><span>Пример</span><span>:</span></p>
+
+<p><span>SELECT</span><span>AVG</span><span>(Price) </span><span>FROM</span><span> Products</span></p>
+
+<p><span>&nbsp;</span></p>
+
+<p><span><span>●</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span>SUM </span><span>вычисляет сумму значений</span></p>
+
+<p><span>&nbsp;</span></p>
+
+<p><span>Пример</span><span>:</span></p>
+
+<p><span>SELECT</span><span>SUM</span><span>(ProductCount) </span><span>FROM</span><span> Products</span></p>
+
+<p><span>&nbsp;</span></p>
+
+<p><span><span>●</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span>MIN</span><span> вычисляет наименьшее значение</span></p>
+
+<p><span><span>●</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span>MAX</span><span> вычисляет наибольшее значение</span></p>
+
+<p><span>&nbsp;</span></p>
+
+<p><span>Пример</span><span>:</span></p>
+
+<p><span>SELECT</span><span>MIN</span><span>(Price), </span><span>MAX</span><span>(Price) </span><span>FROM</span><span> Products</span></p>
+
+<p><span>&nbsp;</span></p>
+
+<p><span><span>●</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span>COUNT</span><span> вычисляет количество строк в запросе</span></p>
+
+<p><span>&nbsp;</span></p>
+
+<p><span>Пример</span><span>:</span></p>
+
+<p><span>SELECT</span><span>COUNT</span><span>(Manufacturer) </span><span>FROM</span><span> Products</span></p>
+
+<p><span>&nbsp;</span></p>
+
+<p><span>4. Операторы группировки</span></p>
+
+<p><span>&nbsp;</span></p>
+
+<p><span><span>●</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span>GROUP BY</span><span> определяет, как строки будут группироваться</span></p>
+
+<p><span><span>●</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span>HAVING</span><span> позволяет выполнить фильтрацию групп, то есть определяет, какие группы будут включены в результирующий набор</span></p>
+
+<p><span>&nbsp;</span></p>
+
+<p><span>SELECT</span><span> столбцы</span></p>
+
+<p><span>FROM</span><span> таблица</span></p>
+
+<p><span>[</span><span>WHERE</span><span> условие_фильтрации_строк]</span></p>
+
+<p><span>[</span><span>GROUP</span><span>BY</span><span> столбцы_для_группировки]</span></p>
+
+<p><span>[</span><span>HAVING</span><span> условие_фильтрации_групп]</span></p>
+
+<p><span>[</span><span>ORDER</span><span>BY</span><span> столбцы_для_сортировки]</span></p>
+
+<p><span>&nbsp;</span></p>
+
+<p><span>Пример</span><span>:</span></p>
+
+<p><span>SELECT</span><span> Manufacturer, </span><span>COUNT</span><span>(*) </span><span>AS</span><span> ModelsCount</span></p>
+
+<p><span>FROM</span><span> Products</span></p>
+
+<p><span>GROUP</span><span>BY</span><span> Manufacturer</span></p>
+
+<p><span>HAVING</span><span>COUNT</span><span>(*) &gt; </span><span>1</span></p>
+
+<p><span>&nbsp;</span></p>
+
+<p><span>5. Виды JOIN-ов</span></p>
+
+<p><span>&nbsp;</span></p>
+
+<p><span><span>●</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span>INNER JOIN</span></p>
+
+<p><span>&nbsp;</span></p>
+
+<p><span>Пример</span><span>:</span><br>
+<span>SELECT</span><span> столбцы</span></p>
+
+<p><span>FROM</span><span> таблица</span><span>1</span></p>
+
+<p><span>[</span><span>INNER</span><span>] </span><span>JOIN</span><span> таблица</span><span>2</span></p>
+
+<p><span>ON</span><span> условие</span><span>1</span></p>
+
+<p><span>[[</span><span>INNER</span><span>] </span><span>JOIN</span><span> таблица</span><span>3</span></p>
+
+<p><span>ON</span><span> условие</span><span>2</span><span>]</span></p>
+
+<p><span>&nbsp;</span></p>
+
+<p><span><span>●</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span>LEFT OUTER JOIN</span></p>
+
+<p><span><span>●</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span>RIGHT OUTER JOIN</span></p>
+
+<p><span>&nbsp;</span></p>
+
+<p><span>Пример</span><span>:</span><br>
+<span>SELECT</span><span> столбцы</span></p>
+
+<p><span>FROM</span><span> таблица</span><span>1</span></p>
+
+<p><span>{</span><span>LEFT</span><span>|</span><span>RIGHT</span><span>} [</span><span>OUTER</span><span>] </span><span>JOIN</span><span> таблица</span><span>2</span><span>ON</span><span> условие</span><span>1</span></p>
+
+<p><span>[{</span><span>LEFT</span><span>|</span><span>RIGHT</span><span>} [</span><span>OUTER</span><span>] </span><span>JOIN</span><span> таблица</span><span>3</span><span>ON</span><span> условие</span><span>2</span><span>]...</span></p>
+
+<p><span>&nbsp;</span></p>
+
+<p><span><span>●</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span>FULL OUTER JOIN</span><br>
+<span>&nbsp;</span></p>
+
+<p><span>Пример</span><span>:</span></p>
+
+<p><span>SELECT</span><span>*</span></p>
+
+<p><span>FROM</span><span> table1</span></p>
+
+<p><span>FULL</span><span>OUTER</span><span>JOIN</span><span> table2 </span><span>ON</span><span> table1.parameter</span><span>=</span><span>table2.parameter</span></p>
+
+<p><span>&nbsp;</span></p>
+
+<p><span><span>●</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span>SELF JOIN</span><br>
+<span>&nbsp;</span></p>
+
+<p><span>Пример</span><span>:</span></p>
+
+<p><span>SELECT</span><span>*</span><span>FROM</span><span> products </span><span>JOIN</span><span> products </span><span>ON</span><span> products.product</span><span>=</span><span>products.brand</span></p>
+
+<p><span>&nbsp;</span></p>
+
+<p><span><span>●</span><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span>CROSS JOIN</span></p>
+
+<p><br>
+<span>Пример</span><span>:</span></p>
+
+<p><span>SELECT</span><span>*</span></p>
+
+<p><span>FROM</span><span>table</span><span>1</span></p>
+
+<p><span>CROSS</span><span>JOIN</span><span>table</span><span>2</span></p>
+
+<div>
+<p>&nbsp;</p>
+</div>
+</div></div>
+          <nav class="pager" aria-label="Навигация между шагами"><a class="prev" href="step-147.html"><small>Назад</small><span>← SQL. Практическое задание №4. Проверяемое задание «INSERT, UPDATE, DELETE»</span></a><a class="next" href="step-149.html"><small>Дальше</small><span>Лекция «SQL и собеседования» →</span></a></nav>
+        </article></div></main>
+  <footer><span>Локальная учебная копия · без отслеживания и отправки ответов</span><a href="../../about.html">О сайте</a></footer>
+</body>
+</html>

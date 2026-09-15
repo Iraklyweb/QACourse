@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Лекция &quot;Метод POST: как работает и зачем нужен&quot; Метод POST используется для отправки данных на сервер. В отличие от GET, который только запрашивает данные,">
+  <meta name="color-scheme" content="dark light">
+  <title>Лекция «Метод POST: как работает и зачем нужен» · QA Конспект</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body data-base="../../">
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="topbar">
+    <a class="brand" href="../../index.html" aria-label="QA Конспект, главная"><span class="brand-mark">QA</span><span>Конспект</span></a>
+    <nav aria-label="Основная навигация">
+      <a href="../../courses/manual-testing/">Ручное тестирование</a>
+      <a href="../../courses/mqa-base/">MQA Base</a>
+      <a href="../../courses/manual-testing/">Курс</a>
+    </nav>
+    <form class="search-mini" action="../../search.html" role="search">
+      <label class="sr-only" for="site-search-2">Поиск по курсам</label>
+      <input id="site-search-2" name="q" type="search" placeholder="Найти тему…" autocomplete="off">
+      <button type="submit" aria-label="Искать">⌕</button>
+    </form>
+  </header>
+  <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="index.html">← Структура курса</a><div class="rail-index"><span>096</span><small>из 168</small></div><p>HTTP-методы в API</p><div class="rail-progress" aria-label="Шаг 3 из 11 в теме"><i style="width:27%"></i></div><small>3 / 11 в теме</small></aside>
+        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><a href="index.html">Ручное тестирование</a><span>/</span><span>Сети</span><span>/</span><span>HTTP-методы в API</span></nav>
+          <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «Метод POST: как работает и зачем нужен»</h1><p>Сети · HTTP-методы в API</p></header>
+          <aside class="media-card"><span aria-hidden="true">▶</span><div><strong>К шагу прикреплено видео</strong><p>Видео не включено в локальную копию; сохранена только отметка о его наличии.</p></div></aside><div class="lesson-content"><h1>Лекция &laquo;Метод POST: как работает и зачем нужен&raquo;</h1>
+
+<p>&nbsp;</p>
+
+<p>Метод <strong>POST</strong> используется для отправки данных на сервер. В отличие от GET, который только запрашивает данные, <strong>POST передаёт информацию, создаёт новые ресурсы или запускает серверные процессы</strong>.</p>
+
+<p>Если сравнивать с реальной жизнью, <strong>POST</strong> &mdash; это как заполнение анкеты в банк: вы передаёте свои данные, а система их принимает, обрабатывает и создаёт новый профиль клиента.</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Как работает POST?</strong></h3>
+
+<h5>Метод <strong>POST</strong> позволяет клиенту передавать данные на сервер, создавая новый ресурс или выполняя действие. <strong>POST может создавать несколько ресурсов или выполнять нестандартные операции</strong>. Например:</h5>
+
+<ol>
+	<li>
+	<p><strong>Исходный список пользователей в базе:</strong></p>
+	</li>
+</ol>
+
+<p><span>[</span></p>
+
+<p><span>&nbsp;&nbsp;{</span></p>
+
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;&quot;id&quot;: 1,</span></p>
+
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;&quot;name&quot;: &quot;Alice&quot;,</span></p>
+
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;&quot;email&quot;: &quot;</span><a><span>alice@example.com</span></a><span>&quot;</span></p>
+
+<p><span>&nbsp;&nbsp;}</span></p>
+
+<p><span>]</span></p>
+
+<ol>
+	<li>
+	<p><strong>Клиент отправляет POST-запрос с данными нового пользователя:</strong></p>
+	</li>
+</ol>
+
+<p><span>POST /users HTTP/1.1&nbsp;&nbsp;</span></p>
+
+<p><span>Host: </span><a href="http://api.example.com/" target="_blank" rel="noopener noreferrer"><span>api.example.com</span></a><span>&nbsp;&nbsp;</span></p>
+
+<p><span>Content-Type: application/json&nbsp;&nbsp;</span></p>
+
+<p><span>{</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;name&quot;: &quot;Bob&quot;,</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;email&quot;: &quot;</span><a><span>bob@example.com</span></a><span>&quot;</span></p>
+
+<p><span>}</span></p>
+
+<p>&rarr; Здесь передаётся информация о новом пользователе.</p>
+
+<ol>
+	<li>
+	<p><strong>Сервер обрабатывает запрос:</strong></p>
+
+	<ul>
+		<li>
+		<p>Проверяет, корректны ли передаваемые данные.</p>
+		</li>
+		<li>
+		<p>Создаёт новый ресурс (например, запись в базе данных).</p>
+		</li>
+		<li>
+		<p>Генерирует новый id для созданного пользователя.</p>
+		</li>
+		<li>
+		<p>Записывает данные в базу.</p>
+		</li>
+	</ul>
+	</li>
+	<li>
+	<p><strong>Обновлённый список пользователей после POST:</strong></p>
+	</li>
+</ol>
+
+<p><span>[</span></p>
+
+<p><span>&nbsp;&nbsp;{</span></p>
+
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;&quot;id&quot;: 1,</span></p>
+
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;&quot;name&quot;: &quot;Alice&quot;,</span></p>
+
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;&quot;email&quot;: &quot;</span><a><span>alice@example.com</span></a><span>&quot;</span></p>
+
+<p><span>&nbsp;&nbsp;},</span></p>
+
+<p><span>&nbsp;&nbsp;{</span></p>
+
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;&quot;id&quot;: 2,</span></p>
+
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;&quot;name&quot;: &quot;Bob&quot;,</span></p>
+
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;&quot;email&quot;: &quot;</span><a><span>bob@example.com</span></a><span>&quot;</span></p>
+
+<p><span>&nbsp;&nbsp;}</span></p>
+
+<p><span>]</span></p>
+
+<p>&rarr; Новый пользователь <strong>Bob</strong> добавился в список.</p>
+
+<ol>
+	<li>
+	<p><strong>Сервер отправляет ответ:</strong></p>
+
+	<ul>
+		<li>
+		<p>201 Created, если ресурс успешно создан.</p>
+		</li>
+		<li>
+		<p>200 OK, если ресурс успешно создан или если запрос обработан успешно, но <strong>новый ресурс не создаётся</strong> (например, при поиске через POST или обработке формы).</p>
+		</li>
+		<li>
+		<p>400 Bad Request, если данные некорректны.</p>
+		</li>
+		<li>
+		<p>404 Not Found, если путь указан неверно.</p>
+		</li>
+	</ul>
+	</li>
+</ol>
+
+<p>&nbsp;</p>
+
+<p><strong>Возможный пример ответа:</strong></p>
+
+<p><span>HTTP/1.1 201 Created&nbsp;&nbsp;</span></p>
+
+<p><span>Location: /users/2&nbsp;&nbsp;</span></p>
+
+<p><span>Content-Type: application/json&nbsp;&nbsp;</span></p>
+
+<p><span>{</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;id&quot;: 2,</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;name&quot;: &quot;Bob&quot;,</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;email&quot;: &quot;</span><a><span>bob@example.com</span></a><span>&quot;</span></p>
+
+<p><span>}</span></p>
+
+<p>Метод <strong>POST</strong> удобен, когда нужно <strong>создать новый ресурс</strong> (например, пользователя, заказ, комментарий) или <strong>запустить серверный процесс</strong>, который требует передачи данных (например, авторизация, обработка форм, загрузка файлов).</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>POST как альтернатива GET</strong></h3>
+
+<p>POST может использоваться <strong>вместо GET</strong> в тех случаях, когда:</p>
+
+<ul>
+	<li>
+	<p><strong>Данные не помещаются в URL</strong> (например, сложные фильтры, массивы параметров).</p>
+	</li>
+	<li>
+	<p><strong>Запрос содержит вложенные структуры</strong> (например, JSON с несколькими уровнями вложенности).</p>
+	</li>
+	<li>
+	<p><strong>Конфиденциальные данные не должны отображаться в URL</strong> (например, при поиске по персональным данным).</p>
+	</li>
+</ul>
+
+<p><strong>Пример использования POST для поиска:</strong></p>
+
+<p><span>POST /search HTTP/1.1&nbsp;&nbsp;</span></p>
+
+<p><span>Host: </span><a href="http://api.example.com/" target="_blank" rel="noopener noreferrer"><span>api.example.com</span></a><span>&nbsp;&nbsp;</span></p>
+
+<p><span>Content-Type: application/json&nbsp;&nbsp;</span></p>
+
+<p><span>{</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;query&quot;: &quot;смартфон&quot;,</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;filters&quot;: {&nbsp;</span></p>
+
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;&quot;brand&quot;: &quot;Apple&quot;,&nbsp;</span></p>
+
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;&quot;price&quot;: { &quot;min&quot;: 1000, &quot;max&quot;: 5000 }&nbsp;</span></p>
+
+<p><span>&nbsp;&nbsp;}</span></p>
+
+<p><span>}</span></p>
+
+<p>Здесь передаются <strong>сложные фильтры</strong>, которые в GET-запросе превратились бы в перегруженный URL. POST позволяет передавать такие данные <strong>в теле запроса</strong>, делая его удобнее и безопаснее.</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Основные свойства метода POST</strong></h3>
+
+<h4><strong>POST не является идемпотентным</strong></h4>
+
+<ul>
+	<li>
+	<p>Повторный вызов одного и того же POST-запроса может привести к <strong>разным результатам</strong>.</p>
+	</li>
+	<li>
+	<p>Например, два одинаковых запроса на создание пользователя могут создать <strong>двух разных пользователей</strong> с разными id.</p>
+	</li>
+	<li>
+	<p>В отличие от PUT, который заменяет существующий ресурс, <strong>POST создаёт новые записи или выполняет серверные процесс</strong>.</p>
+	</li>
+</ul>
+
+<h4><strong>Влияние на безопасность и состояние сервера</strong></h4>
+
+<ul>
+	<li>
+	<p><strong>POST изменяет состояние сервера</strong>, так как передаёт данные, которые могут <strong>создавать, изменять или запускать серверные процессы</strong>. Тем самым <strong>POST небезопасен</strong> с точки зрения изменения данных на сервере.</p>
+	</li>
+	<li>
+	<p><strong>Безопасен с точки зрения передачи данных</strong>, так как они передаются <strong>в теле запроса</strong>, а тело в свою очередь <strong>шифруется</strong>.</p>
+	</li>
+	<li>
+	<p><strong>Без HTTPS данные остаются незащищёнными</strong> и могут быть <strong>перехвачены</strong>.</p>
+	</li>
+	<li>
+	<p>В отличие от GET, <strong>POST скрывает данные от истории браузера и логов URL</strong>, но передаваемая информация остаётся уязвимой, если не используется <strong>шифрование на уровне соединения (TLS/HTTPS)</strong>.</p>
+	</li>
+	<li>
+	<p>Как и другие методы изменения данных, <strong>POST требует авторизации</strong>, если ресурс защищён.</p>
+	</li>
+</ul>
+
+<h4><strong>Передача данных</strong></h4>
+
+<ul>
+	<li>
+	<p><strong>POST передаёт только переданные данные, не затрагивая остальные ресурсы</strong>.</p>
+	</li>
+	<li>
+	<p>Это делает запросы компактнее и быстрее, особенно при передаче больших объёмов информации.</p>
+	</li>
+</ul>
+
+<h4><strong>Ограничение длины URL отсутствует</strong></h4>
+
+<ul>
+	<li>
+	<p>Данные передаются в <strong>теле запроса</strong>, а не через <strong>URL</strong>, поэтому POST <strong>не ограничен по размеру данных</strong>.</p>
+	</li>
+	<li>
+	<p>Однако некоторые API могут накладывать свои лимиты на размер тела запроса.</p>
+	</li>
+</ul>
+
+<h4><strong>Форматы данных</strong></h4>
+
+<ul>
+	<li>
+	<p>Чаще всего используется <strong>JSON</strong>, так как REST API обычно работают с этим форматом.</p>
+	</li>
+	<li>
+	<p>Однако <strong>POST может поддерживать XML, файлы или другие форматы</strong> в зависимости от API.</p>
+	</li>
+</ul>
+
+<h4><strong>Кэширование</strong></h4>
+
+<ul>
+	<li>
+	<p><strong>POST не кешируется браузерами и прокси-серверами</strong>, так как он изменяет данные.</p>
+	</li>
+	<li>
+	<p>Однако сервер может использовать заголовки <strong>ETag</strong> и <strong>Last-Modified</strong>, чтобы проверять актуальность данных перед выполнением запроса.</p>
+	</li>
+</ul>
+
+<h2>&nbsp;</h2>
+
+<h3><strong>Дополнительные особенности метода POST</strong></h3>
+
+<h4><strong>POST отправляет данные в теле запроса</strong></h4>
+
+<ul>
+	<li>
+	<p>В отличие от <strong>GET</strong>, который передаёт параметры в <strong>URL</strong>, <strong>POST использует тело запроса</strong>.</p>
+	</li>
+	<li>
+	<p>Это делает его удобным для <strong>структурированных данных</strong> (JSON, XML) и <strong>больших объёмов информации</strong>.</p>
+	</li>
+</ul>
+
+<h4><strong>POST требует существования обработчика</strong></h4>
+
+<ul>
+	<li>
+	<p>Если сервер не поддерживает обработку <strong>POST-запросов по указанному пути</strong>, он вернёт <strong>404 Not Found</strong>.</p>
+	</li>
+	<li>
+	<p>Если <strong>данные в POST-запросе некорректны</strong>, сервер вернёт <strong>400 Bad Request</strong>.</p>
+	</li>
+</ul>
+
+<h4><strong>POST может содержать query-параметры в URL</strong></h4>
+
+<p>Хотя <strong>POST передаёт основные данные в теле запроса</strong>, <strong>query-параметры в URL также могут использоваться</strong>.</p>
+
+<p>Это может быть полезно для передачи <strong>метаинформации</strong>, например: <span>POST /users?admin=true HTTP/1.1&nbsp;&nbsp;</span></p>
+
+<p><span>Host: </span><a href="http://api.example.com/" target="_blank" rel="noopener noreferrer"><span>api.example.com</span></a><span>&nbsp;&nbsp;</span></p>
+
+<p><span>Content-Type: application/json&nbsp;&nbsp;</span></p>
+
+<p><span>{</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;name&quot;: &quot;Bob&quot;,</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;email&quot;: &quot;</span><a><span>bob@example.com</span></a><span>&quot;</span></p>
+
+<p><span>}</span></p>
+
+<p>В этом примере тело запроса создаёт пользователя, а query-параметр admin=true указывает, что он должен быть администратором.</p>
+
+<h4><strong>POST требует существования ресурса</strong></h4>
+
+<ul>
+	<li>
+	<p>Если объект существует, <strong>POST может взаимодействовать с ним, отправляя данные</strong>.</p>
+	</li>
+	<li>
+	<p>Если ресурс не найден, сервер вернёт <strong>404 Not Found</strong>, так как <strong>POST не создаёт ресурс автоматически, если API этого не предусматривает</strong>.</p>
+	</li>
+</ul>
+
+<h4><strong>POST выполняется на уровне коллекции ресурсов</strong></h4>
+
+<p>POST-запрос <strong>обычно выполняется для коллекций</strong>, например: POST /users</p>
+
+<p>POST &mdash; универсальный метод, который подходит для передачи данных, создания новых ресурсов и выполнения серверных процессов.</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Итог</strong></h3>
+
+<p>Метод <strong>POST</strong> используется для отправки данных на сервер и создания новых ресурсов. Он позволяет передавать сложные структуры данных, такие как JSON, файлы и формы, без ограничений на длину URL. POST удобен для случаев, когда необходимо выполнить серверную операцию или передать конфиденциальные данные.</p>
+
+<p>&nbsp;</p>
+
+<h2><strong>Как тестируют POST?</strong></h2>
+
+<ul>
+	<li>
+	<p><strong>Если есть доступ к БД</strong>, проверяют, создался ли новый ресурс и соответствует ли он переданным данным.</p>
+	</li>
+	<li>
+	<p><strong>Если доступа к БД нет</strong>, делают <strong>GET-запрос</strong>, чтобы убедиться, что данные появились.</p>
+	</li>
+	<li>
+	<p><strong>Проверяют, возвращает ли сервер корректные статус-коды</strong> (200 OK,201 Created, 400 Bad Request при ошибке).</p>
+	</li>
+	<li>
+	<p><strong>Тестируют обработку некорректных данных</strong> (например, отправку пустых значений).</p>
+	</li>
+	<li>
+	<p><strong>Проверяют, выполняет ли сервер ожидаемые действия</strong>, например, не создаёт ли он дублирующиеся записи.</p>
+	</li>
+</ul>
+
+<p>POST применяется, когда требуется передача данных на сервер, создание ресурса или выполнение серверного процесса.</p>
+
+<p>&nbsp;</p>
+
+<p><strong>Что нужно уметь рассказать</strong><br>
+&ndash; Термин &laquo;метод POST&raquo;<br>
+&ndash; Как работает POST<br>
+&ndash; Основные свойства метода POST<br>
+&ndash; Дополнительные особенности метода POST</p>
+
+<p><strong>Всё остальное &mdash; для общего развития</strong></p></div>
+          <nav class="pager" aria-label="Навигация между шагами"><a class="prev" href="step-095.html"><small>Назад</small><span>← Лекция «Метод GET: как работает и зачем нужен»</span></a><a class="next" href="step-097.html"><small>Дальше</small><span>Лекция «Метод PUT: как работает и зачем нужен» →</span></a></nav>
+        </article></div></main>
+  <footer><span>Локальная учебная копия · без отслеживания и отправки ответов</span><a href="../../about.html">О сайте</a></footer>
+</body>
+</html>

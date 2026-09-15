@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Лекция &quot;Что означают уровни вложенности (1, 2, 3 уровни) в тестировании API?&quot; Когда в API передаются данные в формате JSON, они могут содержать вложенные с">
+  <meta name="color-scheme" content="dark light">
+  <title>Лекция «Что означают уровни вложенности (1, 2, 3 уровни) в тестировании API?» · QA Конспект</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body data-base="../../">
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="topbar">
+    <a class="brand" href="../../index.html" aria-label="QA Конспект, главная"><span class="brand-mark">QA</span><span>Конспект</span></a>
+    <nav aria-label="Основная навигация">
+      <a href="../../courses/manual-testing/">Ручное тестирование</a>
+      <a href="../../courses/mqa-base/">MQA Base</a>
+      <a href="../../courses/manual-testing/">Курс</a>
+    </nav>
+    <form class="search-mini" action="../../search.html" role="search">
+      <label class="sr-only" for="site-search-2">Поиск по курсам</label>
+      <input id="site-search-2" name="q" type="search" placeholder="Найти тему…" autocomplete="off">
+      <button type="submit" aria-label="Искать">⌕</button>
+    </form>
+  </header>
+  <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="index.html">← Структура курса</a><div class="rail-index"><span>164</span><small>из 168</small></div><p>Практика</p><div class="rail-progress" aria-label="Шаг 14 из 18 в теме"><i style="width:78%"></i></div><small>14 / 18 в теме</small></aside>
+        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><a href="index.html">Ручное тестирование</a><span>/</span><span>SQL</span><span>/</span><span>Практика</span></nav>
+          <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «Что означают уровни вложенности (1, 2, 3 уровни) в тестировании API?»</h1><p>SQL · Практика</p></header>
+          <aside class="media-card"><span aria-hidden="true">▶</span><div><strong>К шагу прикреплено видео</strong><p>Видео не включено в локальную копию; сохранена только отметка о его наличии.</p></div></aside><div class="lesson-content"><h1>Лекция &laquo;Что означают уровни вложенности (1, 2, 3 уровни) в тестировании API?&raquo;</h1>
+
+<p>&nbsp;</p>
+
+<p>Когда в API передаются данные в формате JSON, они могут содержать вложенные структуры. Проверка таких структур требует тестирования разных уровней вложенности.</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>1 уровень вложенности</strong></h3>
+
+<p>Данные передаются <strong>без вложенных объектов</strong> &ndash; это простая структура JSON.</p>
+
+<p><strong>Пример:</strong></p>
+
+<p><span>{</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;id&quot;: 1,</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;name&quot;: &quot;Барсик&quot;,</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;age&quot;: 3</span></p>
+
+<p><span>}</span></p>
+
+<p>Здесь все поля находятся на первом уровне вложенности.</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>2 уровень вложенности</strong></h3>
+
+<p>Данные содержат вложенный объект внутри основного.</p>
+
+<p><strong>Пример:</strong></p>
+
+<p><span>{</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;id&quot;: 1,</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;name&quot;: &quot;Барсик&quot;,</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;age&quot;: 3,</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;owner&quot;: {</span></p>
+
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;&quot;id&quot;: 10,</span></p>
+
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;&quot;name&quot;: &quot;Алексей&quot;</span></p>
+
+<p><span>&nbsp;&nbsp;}</span></p>
+
+<p><span>}</span></p>
+
+<p>Поле owner содержит вложенный объект (2 уровень), который имеет свои поля.</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>3 уровень вложенности</strong></h3>
+
+<p>Данные содержат несколько вложенных объектов, создавая более сложную структуру.</p>
+
+<p><strong>Пример:</strong></p>
+
+<p><span>{</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;id&quot;: 1,</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;name&quot;: &quot;Барсик&quot;,</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;age&quot;: 3,</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;owner&quot;: {</span></p>
+
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;&quot;id&quot;: 10,</span></p>
+
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;&quot;name&quot;: &quot;Алексей&quot;,</span></p>
+
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;&quot;address&quot;: {</span></p>
+
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;city&quot;: &quot;Москва&quot;,</span></p>
+
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;street&quot;: &quot;Тверская&quot;,</span></p>
+
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;building&quot;: 5</span></p>
+
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;}</span></p>
+
+<p><span>&nbsp;&nbsp;}</span></p>
+
+<p><span>}</span></p>
+
+<p>Здесь объект owner (2 уровень) &nbsp;содержит ещё один вложенный объект address (3 уровень).</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Зачем это нужно?</strong></h3>
+
+<ul>
+	<li>
+	<p>Позволяет проверить, как API обрабатывает разные уровни вложенности в JSON.</p>
+	</li>
+	<li>
+	<p>Позволяет выявить ошибки в обработке сложных объектов.</p>
+	</li>
+	<li>
+	<p>Помогает тестировать зависимые структуры данных.</p>
+	</li>
+</ul>
+
+<p>Чем выше уровень вложенности, тем сложнее тест и больше вероятность обнаружить ошибки в обработке данных.</p></div>
+          <nav class="pager" aria-label="Навигация между шагами"><a class="prev" href="step-163.html"><small>Назад</small><span>← Лекция «Пример справочного значения»</span></a><a class="next" href="step-165.html"><small>Дальше</small><span>Лекция «Что такое альтернативный сценарий (путь) в postman (тестировании)?» →</span></a></nav>
+        </article></div></main>
+  <footer><span>Локальная учебная копия · без отслеживания и отправки ответов</span><a href="../../about.html">О сайте</a></footer>
+</body>
+</html>

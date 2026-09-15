@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Лекция &quot;XML и WSDL: основа SOAP&quot; Что такое XML? XML (Extensible Markup Language) — это язык разметки, который используется для структурирования данных. Он ">
+  <meta name="color-scheme" content="dark light">
+  <title>Лекция «XML и WSDL: основа SOAP» · QA Конспект</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body data-base="../../">
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="topbar">
+    <a class="brand" href="../../index.html" aria-label="QA Конспект, главная"><span class="brand-mark">QA</span><span>Конспект</span></a>
+    <nav aria-label="Основная навигация">
+      <a href="../../courses/manual-testing/">Ручное тестирование</a>
+      <a href="../../courses/mqa-base/">MQA Base</a>
+      <a href="../../courses/manual-testing/">Курс</a>
+    </nav>
+    <form class="search-mini" action="../../search.html" role="search">
+      <label class="sr-only" for="site-search-2">Поиск по курсам</label>
+      <input id="site-search-2" name="q" type="search" placeholder="Найти тему…" autocomplete="off">
+      <button type="submit" aria-label="Искать">⌕</button>
+    </form>
+  </header>
+  <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="index.html">← Структура курса</a><div class="rail-index"><span>073</span><small>из 168</small></div><p>SOAP</p><div class="rail-progress" aria-label="Шаг 3 из 3 в теме"><i style="width:100%"></i></div><small>3 / 3 в теме</small></aside>
+        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><a href="index.html">Ручное тестирование</a><span>/</span><span>Сети</span><span>/</span><span>SOAP</span></nav>
+          <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «XML и WSDL: основа SOAP»</h1><p>Сети · SOAP</p></header>
+          <aside class="media-card"><span aria-hidden="true">▶</span><div><strong>К шагу прикреплено видео</strong><p>Видео не включено в локальную копию; сохранена только отметка о его наличии.</p></div></aside><div class="lesson-content"><h1><span>Лекция &laquo;XML и WSDL: основа SOAP&raquo;</span></h1>
+
+<p>&nbsp;</p>
+
+<h3><span><strong>Что такое XML?</strong></span></h3>
+
+<p><span>XML (Extensible Markup Language) &mdash; это язык разметки, который используется для структурирования данных. Он простой, читаемый человеком и машинами, и позволяет передавать данные в строго определённом формате.</span></p>
+
+<p><span><strong>Пример: </strong></span>XML &mdash; это как аккуратно подписанный документ: у каждого поля есть чёткое название и значение<span>, где у каждого поля есть название и значение.</span></p>
+
+<p><span><strong>&lt;Заказ&gt;</strong></span></p>
+
+<p><span><strong>&nbsp;&nbsp;&nbsp;&nbsp;&lt;Номер&gt;12345&lt;/Номер&gt;</strong></span></p>
+
+<p><span><strong>&nbsp;&nbsp;&nbsp;&nbsp;&lt;Клиент&gt;Иван Иванов&lt;/Клиент&gt;</strong></span></p>
+
+<p><span><strong>&nbsp;&nbsp;&nbsp;&nbsp;&lt;Сумма&gt;5000&lt;/Сумма&gt;</strong></span></p>
+
+<p><span><strong>&lt;/Заказ&gt;</strong></span></p>
+
+<ul>
+	<li>
+	<p><span>&lt;Заказ&gt; &mdash; это контейнер (основной объект).</span></p>
+	</li>
+	<li>
+	<p><span>&lt;Номер&gt;, &lt;Клиент&gt;, &lt;Сумма&gt; &mdash; поля с данными.</span></p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><span><strong>Зачем нужен XML в SOAP?</strong></span></h3>
+
+<p><span>SOAP использует XML для упаковки данных, чтобы клиент и сервер могли чётко понимать друг друга.</span></p>
+
+<ul>
+	<li>
+	<p><span>XML описывает, какие данные передаются.</span></p>
+	</li>
+	<li>
+	<p><span>Он строгий: если где-то ошибка (например, отсутствует обязательное поле), запрос не будет обработан.</span></p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><span><strong>Как XML связан с WSDL?</strong></span></h3>
+
+<p><span>Если XML &mdash; это содержимое, то WSDL &mdash; это инструкция, как это содержимое должно выглядеть и использоваться.</span></p>
+
+<ul>
+	<li>
+	<p><span>WSDL описывает, какие данные могут быть в XML, их типы и формат.</span></p>
+	</li>
+	<li>
+	<p><span>Он определяет, как должны выглядеть запросы и ответы в SOAP.</span></p>
+	</li>
+</ul>
+
+<p><span><strong>Пример:</strong></span></p>
+
+<ol>
+	<li>
+	<p><span>WSDL говорит: &quot;В запросе должен быть номер заказа в виде строки&quot;.</span></p>
+	</li>
+</ol>
+
+<p><span>XML-запрос формируется так: &lt;soap:Envelope xmlns:soap=&quot;</span><a href="http://schemas.xmlsoap.org/soap/envelope/" target="_blank" rel="noopener noreferrer"><span>http://schemas.xmlsoap.org/soap/envelope/</span></a><span>&quot;&gt;</span></p>
+
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span><strong>&lt;soap:Body&gt;</strong></span></p>
+
+<p><span><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;GetOrder&gt;</strong></span></p>
+
+<p><span><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;OrderID&gt;12345&lt;/OrderID&gt;</strong></span></p>
+
+<p><span><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/GetOrder&gt;</strong></span></p>
+
+<p><span><strong>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/soap:Body&gt;</strong></span></p>
+
+<p><span><strong>&lt;/soap:Envelope&gt;</strong></span></p>
+
+<p>&nbsp;</p>
+
+<h3><span><strong>Как это выглядит на практике?</strong></span></h3>
+
+<ol>
+	<li>
+	<p><span><strong>WSDL задаёт структуру. </strong>Вы получаете WSDL-файл, который описывает:</span></p>
+
+	<ul>
+		<li>
+		<p><span>Какие операции доступны (например, &quot;Получить заказ&quot;).</span></p>
+		</li>
+		<li>
+		<p><span>Какие данные нужно передать в запросе (например, &quot;OrderID&quot;).</span></p>
+		</li>
+	</ul>
+	</li>
+	<li>
+	<p><span><strong>XML формирует запросы и ответы. </strong>Вы используете XML, чтобы отправить запрос, который соответствует WSDL. Ответ сервера тоже приходит в формате XML, и его нужно проверять.</span></p>
+	</li>
+</ol>
+
+<p>&nbsp;</p>
+
+<h3><span><strong>Теги в XML</strong></span></h3>
+
+<h4><span><strong>Корневой тег</strong> &mdash; основной элемент <strong>XML</strong>-документа, который содержит все остальные теги. В документе может быть только один корневой тег.</span></h4>
+
+<p><span>Пример:</span></p>
+
+<p><span><strong>&lt;Заказ&gt;</strong></span></p>
+
+<p><span><strong>&nbsp;&nbsp;&nbsp;&nbsp;&lt;Номер&gt;12345&lt;/Номер&gt;</strong></span></p>
+
+<p><span><strong>&nbsp;&nbsp;&nbsp;&nbsp;&lt;Клиент&gt;Иван Иванов&lt;/Клиент&gt;</strong></span></p>
+
+<p><span><strong>&nbsp;&nbsp;&nbsp;&nbsp;&lt;Сумма&gt;5000&lt;/Сумма&gt;</strong></span></p>
+
+<p><span><strong>&lt;/Заказ&gt;</strong></span></p>
+
+<p><span>В этом примере &lt;Заказ&gt; &mdash; корневой тег, так как он охватывает все вложенные элементы (&lt;Номер&gt;, &lt;Клиент&gt;, &lt;Сумма&gt;).</span></p>
+
+<p><span>Если в XML-документе несколько корневых тегов, это ошибка. Например:</span></p>
+
+<p><span><strong>&lt;Заказ&gt;...&lt;/Заказ&gt;</strong></span></p>
+
+<p><span><strong>&lt;Товар&gt;...&lt;/Товар&gt;</strong></span></p>
+
+<p><span>Документ будет невалидным. Чтобы исправить, необходимо обернуть их в один общий тег:</span></p>
+
+<p><span><strong>&lt;Данные&gt;</strong></span></p>
+
+<p><span><strong>&nbsp;&nbsp;&nbsp;&nbsp;&lt;Заказ&gt;...&lt;/Заказ&gt;</strong></span></p>
+
+<p><span><strong>&nbsp;&nbsp;&nbsp;&nbsp;&lt;Товар&gt;...&lt;/Товар&gt;</strong></span></p>
+
+<p><span><strong>&lt;/Данные&gt;</strong></span></p>
+
+<p><span>Здесь &lt;Данные&gt; стал корневым тегом, а &lt;Заказ&gt; и &lt;Товар&gt; &mdash; его вложенными элементами.</span></p>
+
+<h1>&nbsp;</h1>
+
+<h3><span><strong>Открывающие/закрывающие и самозакрывающиеся теги</strong></span></h3>
+
+<ul>
+	<li>
+	<p><span><strong>Открывающие и закрывающие теги</strong> применяются, если элемент имеет содержимое:</span></p>
+
+	<p><span><strong>&lt;Клиент&gt;Иван Иванов&lt;/Клиент&gt;</strong></span></p>
+
+	<p><span>Здесь &lt;Клиент&gt; &mdash; открывающий тег, а &lt;/Клиент&gt; &mdash; закрывающий тег.</span></p>
+	</li>
+	<li>
+	<p><span><strong>Самозакрывающиеся теги</strong> используются, если элемент не имеет содержимого, но содержит атрибуты:</span></p>
+
+	<p><span><strong>&lt;Товар id=&quot;123&quot; /&gt;</strong></span></p>
+
+	<p><span>Здесь &lt;Товар id=&quot;123&quot; /&gt; &mdash; самозакрывающийся тег, так как у элемента нет вложенных данных, только атрибуты.</span></p>
+	</li>
+</ul>
+
+<h2>&nbsp;</h2>
+
+<h3><span><strong>Что важно для тестировщика?</strong></span></h3>
+
+<h4><span><strong>Практическое применение</strong></span></h4>
+
+<ol>
+	<li>
+	<p><span><strong>Чтение и анализ XML. </strong>Вам нужно будет проверять SOAP-запросы и ответы, написанные в формате XML, чтобы убедиться, что:</span></p>
+
+	<ul>
+		<li>
+		<p><span>Все поля присутствуют, как описано в WSDL.</span></p>
+		</li>
+		<li>
+		<p><span>Формат данных соответствует требованиям (например, строка вместо числа).</span></p>
+		</li>
+	</ul>
+	</li>
+	<li>
+	<p><span><strong>Работа с WSDL. </strong>Вы будете использовать WSDL для:</span></p>
+
+	<ul>
+		<li>
+		<p><span>Генерации запросов в инструментах вроде SoapUI.</span></p>
+		</li>
+		<li>
+		<p><span>Понимания, какие операции доступны, и какие данные нужно передавать.</span></p>
+		</li>
+	</ul>
+	</li>
+	<li>
+	<p><span><strong>Проверка структуры ответов. </strong>Убедитесь, что ответы сервера соответствуют ожиданиям:</span></p>
+
+	<ul>
+		<li>
+		<p><span>Если сервер возвращает ошибку, она должна быть указана в блоке &lt;Fault&gt;.</span></p>
+		</li>
+		<li>
+		<p><span>Если данные корректны, они должны быть в формате, указанном в WSDL.</span></p>
+		</li>
+	</ul>
+	</li>
+</ol>
+
+<h2>&nbsp;</h2>
+
+<h3><span><strong>Ошибки, которые тестировщик может найти</strong></span></h3>
+
+<ol>
+	<li>
+	<p><span><strong>Ошибка в структуре XML. </strong>Например, сервер вернул XML, в котором отсутствует обязательное поле. Это нужно зафиксировать как баг.</span></p>
+	</li>
+	<li>
+	<p><span><strong>Несоответствие между WSDL и фактическим ответом. </strong>Например, WSDL говорит, что поле &quot;OrderID&quot; должно быть числом, а сервер возвращает строку. Это серьёзная проблема, которая может &ldquo;сломать&rdquo; клиента.</span></p>
+	</li>
+	<li>
+	<p><span><strong>Ошибка в логике сервиса. </strong>Сервер возвращает не то, что ожидается: например, пустой ответ вместо данных о заказе. Тестировщик находит такие моменты, анализируя ответы.</span></p>
+	</li>
+</ol>
+
+<p>&nbsp;</p>
+
+<h3><span><strong>Почему WSDL и XML делают вашу работу проще</strong></span></h3>
+
+<ol>
+	<li>
+	<p><span><strong>Понятная структура. </strong>С WSDL вы всегда знаете, какие данные передавать и что ожидать в ответе. Это упрощает создание тестов.</span></p>
+	</li>
+	<li>
+	<p><span><strong>Возможность автоматизации. </strong>Большинство инструментов для тестирования SOAP могут загружать WSDL, автоматически создавать запросы и проверять ответы. Это экономит ваше время.</span></p>
+	</li>
+	<li>
+	<p><span><strong>Единый стандарт. </strong>Использование WSDL и XML даёт предсказуемость: вы точно знаете, как построен сервис, и можете быстро найти расхождения или ошибки.</span></p>
+	</li>
+</ol>
+
+<p>&nbsp;</p>
+
+<h3><span><strong>Итог</strong></span></h3>
+
+<p><span>XML и WSDL &mdash; </span>основа взаимодействия в SOAP-сервисах.</p>
+
+<ul>
+	<li>
+	<p><strong>XML </strong>отвечает за структуру самих данных: что отправляется и что возвращается.</p>
+	</li>
+	<li>
+	<p><strong>WSDL </strong>описывает &mdash; какие запросы допустимы, какие параметры нужны, и как выглядит ожидаемый ответ.</p>
+	</li>
+</ul>
+
+<p>Для тестировщика умение читать XML и разбираться в WSDL &mdash; это ключ к уверенной работе с SOAP и поиску ошибок.</p></div>
+          <nav class="pager" aria-label="Навигация между шагами"><a class="prev" href="step-072.html"><small>Назад</small><span>← Лекция «WSDL: что это такое?»</span></a><a class="next" href="step-074.html"><small>Дальше</small><span>Лекция «REST: что это и как это работает» →</span></a></nav>
+        </article></div></main>
+  <footer><span>Локальная учебная копия · без отслеживания и отправки ответов</span><a href="../../about.html">О сайте</a></footer>
+</body>
+</html>

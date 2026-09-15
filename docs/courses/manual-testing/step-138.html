@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Лекция &quot;Группировка&quot; Операторы GROUP BY и HAVING позволяют сгруппировать данные. Они употребляются в рамках команды SELECT: SELECT столбцы FROM таблица [WH">
+  <meta name="color-scheme" content="dark light">
+  <title>Лекция «Группировка» · QA Конспект</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body data-base="../../">
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="topbar">
+    <a class="brand" href="../../index.html" aria-label="QA Конспект, главная"><span class="brand-mark">QA</span><span>Конспект</span></a>
+    <nav aria-label="Основная навигация">
+      <a href="../../courses/manual-testing/">Ручное тестирование</a>
+      <a href="../../courses/mqa-base/">MQA Base</a>
+      <a href="../../courses/manual-testing/">Курс</a>
+    </nav>
+    <form class="search-mini" action="../../search.html" role="search">
+      <label class="sr-only" for="site-search-2">Поиск по курсам</label>
+      <input id="site-search-2" name="q" type="search" placeholder="Найти тему…" autocomplete="off">
+      <button type="submit" aria-label="Искать">⌕</button>
+    </form>
+  </header>
+  <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="index.html">← Структура курса</a><div class="rail-index"><span>138</span><small>из 168</small></div><p>Запросы типа SELECT</p><div class="rail-progress" aria-label="Шаг 3 из 7 в теме"><i style="width:43%"></i></div><small>3 / 7 в теме</small></aside>
+        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><a href="index.html">Ручное тестирование</a><span>/</span><span>SQL</span><span>/</span><span>Запросы типа SELECT</span></nav>
+          <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «Группировка»</h1><p>SQL · Запросы типа SELECT</p></header>
+          <div class="lesson-content"><h1><strong><span>Лекция &laquo;Группировка&raquo;</span></strong></h1>
+
+<p>&nbsp;</p>
+
+<p><span>Операторы GROUP BY и HAVING позволяют сгруппировать данные. Они употребляются в рамках команды SELECT:</span><br>
+&nbsp;</p>
+
+<pre>
+<code>SELECT столбцы
+
+FROM таблица
+
+[WHERE условие_фильтрации_строк]
+
+[GROUP BY столбцы_для_группировки]
+
+[HAVING условие_фильтрации_групп]
+
+[ORDER BY столбцы_для_сортировки]</code></pre>
+
+<h2>&nbsp;</h2>
+
+<h2><strong><span>GROUP BY</span></strong></h2>
+
+<p><span>Оператор GROUP BY определяет, как строки будут группироваться.</span></p>
+
+<p><span>Например, сгруппируем товары по производителю</span></p>
+
+<pre>
+<code>SELECT Manufacturer, COUNT(*) AS ModelsCount
+
+FROM Products
+
+GROUP BY Manufacturer</code></pre>
+
+<p><span>Первый столбец в выражении SELECT - Manufacturer представляет название группы, а второй столбец - ModelsCount представляет результат функции Count, которая вычисляет количество строк в группе.</span></p>
+
+<p><span><span><span class="media-note" role="note"><span aria-hidden="true">▧</span> Изображение: иллюстрация · lh4.googleusercontent.com</span></span></span></p>
+
+<p><span>И если в выражении SELECT производится выборка по одному или нескольким столбцам и также используются агрегатные функции, то необходимо использовать выражение GROUP BY. Так, следующий пример работать не будет, так как он не содержит выражение группировки:</span></p>
+
+<pre>
+<code>SELECT Manufacturer, COUNT(*) AS ModelsCount
+
+FROM Products</code></pre>
+
+<p><span>Оператор GROUP BY может выполнять группировку по множеству столбцов. Так, добавим группировку по количеству товаров:</span></p>
+
+<pre>
+<code>SELECT Manufacturer, ProductCount, COUNT(*) AS ModelsCountFROM ProductsGROUP BY Manufacturer, ProductCount</code></pre>
+
+<p><span>Следует учитывать, что выражение GROUP BY должно идти после выражения WHERE, но до выражения ORDER BY:</span></p>
+
+<pre>
+<code>SELECT Manufacturer, COUNT(*) AS ModelsCount
+
+FROM Products
+
+WHERE Price &gt; 30000
+
+GROUP BY Manufacturer
+
+ORDER BY ModelsCount DESC</code></pre>
+
+<p>&nbsp;</p>
+
+<p><span><span><span class="media-note" role="note"><span aria-hidden="true">▧</span> Изображение: иллюстрация · lh4.googleusercontent.com</span></span></span></p>
+
+<h2>&nbsp;</h2>
+
+<h2><strong><span>Фильтрация групп. HAVING</span></strong></h2>
+
+<p><span>Оператор HAVING позволяет выполнить фильтрацию групп, то есть определяет, какие группы будут включены в выходной результат.</span></p>
+
+<p><span>Использование HAVING во многом аналогично применению WHERE. Только если WHERE применяется для фильтрации строк, то HAVING - для фильтрации групп.</span></p>
+
+<p><span>Например, найдем все группы товаров по производителям, для которых определено более 1 модели:</span></p>
+
+<pre>
+<code>SELECT Manufacturer, COUNT(*) AS ModelsCount
+
+FROM Products
+
+GROUP BY Manufacturer
+
+HAVING COUNT(*) &gt; 1</code></pre>
+
+<p>&nbsp;</p>
+
+<p><span><span><span class="media-note" role="note"><span aria-hidden="true">▧</span> Изображение: иллюстрация · lh4.googleusercontent.com</span></span></span></p>
+
+<p><span>В одной команде также можно сочетать выражения WHERE и HAVING:</span></p>
+
+<pre>
+<code>SELECT Manufacturer, COUNT(*) AS ModelsCount
+
+FROM Products
+
+WHERE Price * ProductCount &gt; 80000
+
+GROUP BY Manufacturer
+
+HAVING COUNT(*) &gt; 1;</code></pre>
+
+<p><span>То есть в данном случае сначала фильтруются строки: выбираются те товары, общая стоимость которых больше 80000. Затем выбранные товары группируются по производителям. И далее фильтруются сами группы - выбираются те группы, которые содержат больше 1 модели.</span></p>
+
+<p><span>Если при этом необходимо провести сортировку, то выражение ORDER BY идет после выражения HAVING:</span></p>
+
+<pre>
+<code>SELECT Manufacturer, COUNT(*) AS Models, SUM(ProductCount) AS Units
+
+FROM Products
+
+WHERE Price * ProductCount &gt; 80000
+
+GROUP BY Manufacturer
+
+HAVING SUM(ProductCount) &gt; 2
+
+ORDER BY Units DESC;</code></pre>
+
+<p><span>Здесь группировка идет по производителям, и также выбирается количество моделей для каждого производителя (Models) и общее количество всех товаров по всем этим моделям (Units). В конце группы сортируются по количеству товаров по убыванию.</span></p>
+
+<p><span><span><span class="media-note" role="note"><span aria-hidden="true">▧</span> Изображение: иллюстрация · lh5.googleusercontent.com</span></span></span></p>
+
+<p>&nbsp;</p>
+
+<p><em><span>Более подробно про группировку можно прочитать в статье &ldquo; </span><a href="https://metanit.com/sql/mysql/4.6.php" target="_blank" rel="noopener noreferrer"><span>Группировка</span></a><span>&rdquo;.</span></em></p></div>
+          <nav class="pager" aria-label="Навигация между шагами"><a class="prev" href="step-137.html"><small>Назад</small><span>← Лекция «Другие запросы в SQL»</span></a><a class="next" href="step-139.html"><small>Дальше</small><span>Лекция «Агрегатные функции» →</span></a></nav>
+        </article></div></main>
+  <footer><span>Локальная учебная копия · без отслеживания и отправки ответов</span><a href="../../about.html">О сайте</a></footer>
+</body>
+</html>

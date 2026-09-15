@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Лекция &quot;Запросы SELECT в SQL/MySQL&quot; SELECT FROM Для выборки данных из БД в SQL применяется команда SELECT. В упрощенном виде она имеет следующий синтаксис:">
+  <meta name="color-scheme" content="dark light">
+  <title>Лекция «Запросы SELECT в SQL/MySQL» · QA Конспект</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body data-base="../../">
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="topbar">
+    <a class="brand" href="../../index.html" aria-label="QA Конспект, главная"><span class="brand-mark">QA</span><span>Конспект</span></a>
+    <nav aria-label="Основная навигация">
+      <a href="../../courses/manual-testing/">Ручное тестирование</a>
+      <a href="../../courses/mqa-base/">MQA Base</a>
+      <a href="../../courses/manual-testing/">Курс</a>
+    </nav>
+    <form class="search-mini" action="../../search.html" role="search">
+      <label class="sr-only" for="site-search-2">Поиск по курсам</label>
+      <input id="site-search-2" name="q" type="search" placeholder="Найти тему…" autocomplete="off">
+      <button type="submit" aria-label="Искать">⌕</button>
+    </form>
+  </header>
+  <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="index.html">← Структура курса</a><div class="rail-index"><span>136</span><small>из 168</small></div><p>Запросы типа SELECT</p><div class="rail-progress" aria-label="Шаг 1 из 7 в теме"><i style="width:14%"></i></div><small>1 / 7 в теме</small></aside>
+        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><a href="index.html">Ручное тестирование</a><span>/</span><span>SQL</span><span>/</span><span>Запросы типа SELECT</span></nav>
+          <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «Запросы SELECT в SQL/MySQL»</h1><p>SQL · Запросы типа SELECT</p></header>
+          <div class="lesson-content"><h1><strong>Лекция &laquo;Запросы SELECT в SQL/MySQL&raquo;</strong></h1>
+
+<p>&nbsp;</p>
+
+<h2><strong>SELECT FROM</strong></h2>
+
+<p>Для выборки данных из БД в SQL применяется команда SELECT. В упрощенном виде она имеет следующий синтаксис:</p>
+
+<pre>
+<code>SELECT список_столбцов FROM имя_таблицы</code></pre>
+
+<p>Например, пусть ранее была создана таблица Products, и в нее добавлены некоторые начальные данные:</p>
+
+<pre>
+<code>CREATE TABLE Products
+
+(
+
+Id INT AUTO_INCREMENT PRIMARY KEY,
+
+ProductName VARCHAR(30) NOT NULL,
+
+Manufacturer VARCHAR(20) NOT NULL,
+
+ProductCount INT DEFAULT 0,
+
+Price DECIMAL
+
+);
+
+INSERT INTO Products (ProductName, Manufacturer, ProductCount, Price)
+
+VALUES
+
+('iPhone X', 'Apple', 3, 76000),
+
+('iPhone 8', 'Apple', 2, 51000),
+
+('Galaxy S9', 'Samsung', 2, 56000),
+
+('Galaxy S8', 'Samsung', 1, 41000),
+
+('P20 Pro', 'Huawei', 5, 36000);</code></pre>
+
+<p><br>
+Получим все объекты из этой таблицы:</p>
+
+<div>
+<pre>
+<code>SELECT * FROM Products;</code></pre>
+
+<p>Символ звездочка * указывает, что нам надо получить все столбцы.</p>
+</div>
+
+<p><span class="media-note" role="note"><span aria-hidden="true">▧</span> Изображение: иллюстрация · lh6.googleusercontent.com</span></p>
+
+<p>Стоит отметить, что применение звездочки * для получения данных считается не очень хорошей практикой, так как обычно необходимо получить данные по небольшому набору столбцов. Поэтому более оптимальный подход заключается в указании всех необходимых столбцов после слова SELECT. Исключение составляет тот случай, когда надо получить данные по абсолютно всем столбцам таблицы. Также использование символа * может быть предпочтительно тогда, когда названия столбцов не известны.</p>
+
+<p>Если необходимо получить данные не из всех, а из каких-то конкретных столбцов, тогда спецификации этих столбцов перечисляются через запятую после SELECT:</p>
+
+<pre>
+<code>SELECT ProductName, Price FROM Products;</code></pre>
+
+<div>Спецификация столбца необязательно должна представлять его название. Это может быть любое выражение, например, результат арифметической операции. Так, выполним следующий запрос:</div>
+
+<pre>
+<code>SELECT ProductName, Price * ProductCount
+
+FROM Products;</code></pre>
+
+<p><span class="media-note" role="note"><span aria-hidden="true">▧</span> Изображение: иллюстрация · lh5.googleusercontent.com</span></p>
+
+<p>Здесь при выборке будут создаваться два столбца. Причем второй столбец представляет значение столбца Price, умноженное на значение столбца ProductCount, то есть совокупную стоимость товара.</p>
+
+<p>С помощью оператора<strong> AS</strong> можно изменить название выходного столбца или определить его псевдоним:</p>
+
+<pre>
+<code>SELECT ProductName AS Title, Price * ProductCount AS TotalSum
+
+FROM Products;</code></pre>
+
+<p>Здесь для первого столбца определяется псевдоним Title, хотя в реальности он будет представлять столбец ProductName. Второй столбец TotalSum хранит произведение столбцов ProductCount и Price.</p>
+
+<p>&nbsp;</p>
+
+<p><span class="media-note" role="note"><span aria-hidden="true">▧</span> Изображение: иллюстрация · lh4.googleusercontent.com</span></p>
+
+<h2><br>
+<strong>SELECT WHERE</strong></h2>
+
+<p>Зачастую необходимо извлекать не все данные из БД, а только те, которые соответствуют определенному условию. Для фильтрации данных в команде SELECT применяется оператор WHERE, после которого указывается условие:</p>
+
+<pre>
+<code>WHERE условие</code></pre>
+
+<p>Если условие истинно, то строка попадает в результирующую выборку. В качестве можно использовать операции сравнения, которые сравнивают два выражения:</p>
+
+<p>=: сравнение на равенство</p>
+
+<p>!=: сравнение на неравенство</p>
+
+<p>&lt;&gt;: сравнение на неравенство</p>
+
+<p>&lt;: меньше чем</p>
+
+<p>&gt;: больше чем</p>
+
+<p>&lt;=: меньше чем или равно</p>
+
+<p>&gt;=: больше чем или равно</p>
+
+<p>К примеру, выберем всех товары, производителем которых является компания Samsung:</p>
+
+<pre>
+<code>SELECT * FROM Products
+
+WHERE Manufacturer = 'Samsung';</code></pre>
+
+<p><br>
+<span class="media-note" role="note"><span aria-hidden="true">▧</span> Изображение: иллюстрация · lh5.googleusercontent.com</span></p>
+
+<p>Стоит отметить, что для MySQL не важен регистр символов, и, к примеру, строка &quot;Samsung&quot; будет эквивалентна строке &quot;SAMSUNG&quot; или &quot;sumSunG&quot;.</p>
+
+<p>Другой пример - найдем все товары, количество которых меньше 3:</p>
+
+<pre>
+<code>SELECT * FROM Products
+
+WHERE ProductCount &lt; 3;</code></pre>
+
+<div>Критерий фильтрации может представлять и более сложное составное выражение. Например, найдем все товары, у которых совокупная стоимость больше 100 000:</div>
+
+<pre>
+<code>SELECT * FROM Products
+
+WHERE Price * ProductCount &gt; 100000;</code></pre>
+
+<p><span class="media-note" role="note"><span aria-hidden="true">▧</span> Изображение: иллюстрация · lh6.googleusercontent.com</span></p>
+
+<h2><strong>Логические операторы</strong></h2>
+
+<p>Логические операторы позволяют объединить несколько условий. В SQL можно использовать следующие логические операторы:</p>
+
+<p>- AND: операция логического И. Она объединяет два выражения:</p>
+
+<pre>
+<code>выражение1 AND выражение2</code></pre>
+
+<p>Только если оба этих выражения одновременно истинны, то и общее условие оператора AND также будет истинно. То есть если и первое условие истинно, и второе.</p>
+
+<p>- OR: операция логического ИЛИ. Она также объединяет два выражения:</p>
+
+<pre>
+<code>выражение1 OR выражение2</code></pre>
+
+<p>Если хотя бы одно из этих выражений истинно, то общее условие оператора OR также будет истинно. То есть если или первое условие истинно, или второе.</p>
+
+<p>- NOT: операция логического отрицания. Если выражение в этой операции ложно, то общее условие истинно.</p>
+
+<pre>
+<code>NOT выражение</code></pre>
+
+<p>Например, выберем все товары, у которых производитель Samsung и одновременно цена больше 50000:</p>
+
+<pre>
+<code>SELECT * FROM Products
+
+WHERE Manufacturer = 'Samsung' AND Price &gt; 50000</code></pre>
+
+<p><span class="media-note" role="note"><span aria-hidden="true">▧</span> Изображение: иллюстрация · lh6.googleusercontent.com</span></p>
+
+<p>Теперь изменим оператор на OR. То есть выберем все товары, у которых либо производитель Samsung, либо цена больше 50000:</p>
+
+<pre>
+<code>SELECT * FROM Products
+
+WHERE Manufacturer = 'Samsung' OR Price &gt; 50000</code></pre>
+
+<p><br>
+<span class="media-note" role="note"><span aria-hidden="true">▧</span> Изображение: иллюстрация · lh3.googleusercontent.com</span></p>
+
+<p>Применение оператора NOT - выберем все товары, у которых производитель не Samsung:</p>
+
+<pre>
+<code>SELECT * FROM Products
+
+WHERE NOT Manufacturer = 'Samsung';</code></pre>
+
+<p><span class="media-note" role="note"><span aria-hidden="true">▧</span> Изображение: иллюстрация · lh3.googleusercontent.com</span></p>
+
+<p>Более подробно про оператор Select можно прочитать в статье &ldquo;<a href="https://metanit.com/sql/mysql/3.3.php" target="_blank" rel="noopener noreferrer">Фильтрация данных. Оператор WHERE</a>&rdquo;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><strong>Что нужно уметь рассказать (Здесь описано всё в следующих статьях изучите это)</strong><br>
+&ndash; SELECT<br>
+&ndash; FROM<br>
+&ndash; WHERE<br>
+&ndash; ORDER BY<br>
+&ndash; LIMIT (или TOP)<br>
+&ndash; INSERT INTO<br>
+&ndash; UPDATE<br>
+&ndash; DELETE<br>
+&ndash; CREATE TABLE<br>
+&ndash; DROP TABLE</p>
+
+<p>Агрегатные функции:<br>
+&ndash; COUNT<br>
+&ndash; SUM<br>
+&ndash; AVG<br>
+&ndash; MIN<br>
+&ndash; MAX</p>
+
+<p>JOIN:<br>
+&ndash; INNER JOIN<br>
+&ndash; LEFT JOIN<br>
+&ndash; RIGHT JOIN<br>
+&ndash; FULL JOIN</p>
+
+<p><strong>Всё остальное &mdash; для общего развития</strong></p></div>
+          <nav class="pager" aria-label="Навигация между шагами"><a class="prev" href="step-135.html"><small>Назад</small><span>← Лекция «Зачем тестировщику нужно уметь работать с базами данных?»</span></a><a class="next" href="step-137.html"><small>Дальше</small><span>Лекция «Другие запросы в SQL» →</span></a></nav>
+        </article></div></main>
+  <footer><span>Локальная учебная копия · без отслеживания и отправки ответов</span><a href="../../about.html">О сайте</a></footer>
+</body>
+</html>

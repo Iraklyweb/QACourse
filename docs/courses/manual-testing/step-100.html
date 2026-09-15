@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Лекция &quot;Метод HEAD: как работает и зачем нужен&quot; Метод HEAD работает так же, как GET , но без тела ответа . Он используется, когда нужно получить только мет">
+  <meta name="color-scheme" content="dark light">
+  <title>Лекция «Метод HEAD: как работает и зачем нужен» · QA Конспект</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body data-base="../../">
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="topbar">
+    <a class="brand" href="../../index.html" aria-label="QA Конспект, главная"><span class="brand-mark">QA</span><span>Конспект</span></a>
+    <nav aria-label="Основная навигация">
+      <a href="../../courses/manual-testing/">Ручное тестирование</a>
+      <a href="../../courses/mqa-base/">MQA Base</a>
+      <a href="../../courses/manual-testing/">Курс</a>
+    </nav>
+    <form class="search-mini" action="../../search.html" role="search">
+      <label class="sr-only" for="site-search-2">Поиск по курсам</label>
+      <input id="site-search-2" name="q" type="search" placeholder="Найти тему…" autocomplete="off">
+      <button type="submit" aria-label="Искать">⌕</button>
+    </form>
+  </header>
+  <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="index.html">← Структура курса</a><div class="rail-index"><span>100</span><small>из 168</small></div><p>HTTP-методы в API</p><div class="rail-progress" aria-label="Шаг 7 из 11 в теме"><i style="width:64%"></i></div><small>7 / 11 в теме</small></aside>
+        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><a href="index.html">Ручное тестирование</a><span>/</span><span>Сети</span><span>/</span><span>HTTP-методы в API</span></nav>
+          <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «Метод HEAD: как работает и зачем нужен»</h1><p>Сети · HTTP-методы в API</p></header>
+          <aside class="media-card"><span aria-hidden="true">▶</span><div><strong>К шагу прикреплено видео</strong><p>Видео не включено в локальную копию; сохранена только отметка о его наличии.</p></div></aside><div class="lesson-content"><h1>Лекция &laquo;Метод HEAD: как работает и зачем нужен&raquo;</h1>
+
+<p>&nbsp;</p>
+
+<p>Метод <strong>HEAD</strong> работает так же, как <strong>GET</strong>, но <strong>без тела ответа</strong>. Он используется, когда нужно <strong>получить только метаинформацию о ресурсе (заголовки), не загружая сам контент</strong>.</p>
+
+<p>Если сравнивать с реальной жизнью, <strong>HEAD</strong> &mdash; это как <strong>спросить у курьера, есть ли у него ваша посылка</strong>, но <strong>не получать саму коробку</strong>. Вы узнаёте, <strong>что посылка существует</strong>, но её содержимое <strong>вам не показывают</strong>.</p>
+
+<p>&nbsp;</p>
+
+<h2>Как работает HEAD?</h2>
+
+<p>Метод <strong>HEAD</strong> отправляет запрос так же, как <strong>GET</strong>, но <strong>сервер не возвращает тело ответа</strong>, а только <strong>заголовки</strong>. Это полезно для <strong>проверки существования ресурса</strong> или его <strong>метаданных</strong>.</p>
+
+<h4><strong>1. Клиент отправляет HEAD-запрос:</strong></h4>
+
+<p><span>HEAD /users/1 HTTP/1.1&nbsp;&nbsp;</span></p>
+
+<p><span>Host: </span><a href="http://api.example.com/" target="_blank" rel="noopener noreferrer"><span>api.example.com</span></a><span>&nbsp;&nbsp;</span></p>
+
+<p>&rarr; <strong>Клиент хочет узнать, существует ли пользователь с ID = 1, но не загружать его данные</strong>.</p>
+
+<h4><strong>2. Сервер обрабатывает запрос:</strong></h4>
+
+<ul>
+	<li>
+	<p><strong>Проверяет, существует ли ресурс</strong>.</p>
+	</li>
+	<li>
+	<p><strong>Формирует ответ только с заголовками</strong>, <strong>без тела</strong>.</p>
+	</li>
+</ul>
+
+<h4><strong>3. Сервер отправляет ответ:</strong></h4>
+
+<p><span>HTTP/1.1 200 OK&nbsp;&nbsp;</span></p>
+
+<p><span>Content-Type: application/json&nbsp;&nbsp;</span></p>
+
+<p><span>Content-Length: 125&nbsp;&nbsp;</span></p>
+
+<p><span>Last-Modified: Tue, 06 Feb 2024 12:00:00 GMT&nbsp;</span>&nbsp;</p>
+
+<p>&rarr; <strong>Заголовки показывают формат, размер и дату изменения ресурса, но сам объект не возвращается</strong>.</p>
+
+<h4><strong>4. Если ресурса нет:</strong></h4>
+
+<p><span>HTTP/1.1 404 Not Found&nbsp;&nbsp;</span></p>
+
+<p>&rarr; <strong>Сервер сообщает, что объекта не существует</strong>.</p>
+
+<p>Метод HEAD полезен, когда нужно проверить ресурс без загрузки его содержимого, например, для кэширования или проверки доступности.</p>
+
+<p>&nbsp;</p>
+
+<h2>Основные свойства метода HEAD</h2>
+
+<h4><strong>HEAD является идемпотентным</strong></h4>
+
+<ul>
+	<li>
+	<p>Повторные HEAD-запросы не изменяют состояние сервера.</p>
+	</li>
+	<li>
+	<p>Они просто проверяют наличие ресурса и его заголовки.</p>
+	</li>
+</ul>
+
+<h4><strong>Влияние на безопасность и состояние сервера</strong></h4>
+
+<ul>
+	<li>
+	<p>HEAD не изменяет состояние сервера, а лишь запрашивает данные для их чтения, что делает его безопасным методом.</p>
+	</li>
+	<li>
+	<p>Безопасен с точки зрения передачи данных, так как они не передаются, а только запрашиваются.</p>
+	</li>
+	<li>
+	<p>Может использоваться для проверки доступа к ресурсам без их загрузки.</p>
+	</li>
+</ul>
+
+<h4><strong>Передача данных</strong></h4>
+
+<ul>
+	<li>
+	<p>Тело ответа отсутствует, но заголовки идентичны GET-запросу.</p>
+	</li>
+	<li>
+	<p>Полезен для проверки размера контента перед загрузкой.</p>
+	</li>
+</ul>
+
+<h4><strong>Ограничения длины URL отсутствуют</strong></h4>
+
+<ul>
+	<li>
+	<p>Как и GET, HEAD передаёт параметры через URL.</p>
+	</li>
+	<li>
+	<p>Ограничения зависят только от браузеров и серверов.</p>
+	</li>
+</ul>
+
+<h4><strong>Форматы данных</strong></h4>
+
+<ul>
+	<li>
+	<p>HEAD не передаёт данные, но заголовки могут указывать Content-Type, Content-Length, Last-Modified.</p>
+	</li>
+	<li>
+	<p>Сервер может отказать в обработке HEAD, если API не поддерживает его.</p>
+	</li>
+</ul>
+
+<h4><strong>Кэширование</strong></h4>
+
+<ul>
+	<li>
+	<p>HEAD используется для проверки актуальности кэша.</p>
+	</li>
+	<li>
+	<p>Клиенты могут проверять заголовки (ETag, Last-Modified), чтобы избежать ненужного скачивания данных.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><strong>Дополнительные особенности метода HEAD</strong></h3>
+
+<h4><strong>HEAD помогает проверить ресурс без его загрузки</strong></h4>
+
+<ul>
+	<li>
+	<p>Полезен для оптимизации трафика и быстрого мониторинга доступности API.</p>
+	</li>
+</ul>
+
+<h4><strong>Если ресурс не существует, сервер возвращает 404</strong></h4>
+
+<ul>
+	<li>
+	<p>HEAD-запрос показывает, доступен ли объект, но не передаёт его содержимое.</p>
+	</li>
+</ul>
+
+<h4><strong>Может использоваться для тестирования API</strong></h4>
+
+<ul>
+	<li>
+	<p>Позволяет проверить работу сервера без передачи лишних данных.</p>
+	</li>
+</ul>
+
+<h4><strong>Метод HEAD удобен, когда нужно проверить существование и метаданные ресурса, но не скачивать сам контент.</strong></h4>
+
+<p>&nbsp;</p>
+
+<h3><strong>Итог</strong></h3>
+
+<p>Метод <strong>HEAD</strong> работает как <strong>GET</strong>, но <strong>не возвращает тело ответа, только заголовки</strong>. Он используется <strong>для проверки существования ресурса, оптимизации трафика и кэширования</strong>.</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Как тестируют HEAD?</strong></h3>
+
+<ul>
+	<li>
+	<p>Проверяют, возвращает ли сервер заголовки без тела ответа.</p>
+	</li>
+	<li>
+	<p>Если ресурс существует, сервер должен ответить 200 OK.</p>
+	</li>
+	<li>
+	<p>Если ресурса нет, сервер должен вернуть 404 Not Found.</p>
+	</li>
+	<li>
+	<p>Тестируют корректность заголовков (Content-Length, Last-Modified, ETag).</p>
+	</li>
+	<li>
+	<p>Проверяют, не изменяет ли запрос данные на сервере (HEAD должен быть безопасным).</p>
+	</li>
+</ul>
+
+<p><strong>HEAD удобен для оптимизации работы API, мониторинга доступности ресурсов и экономии трафика.</strong></p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><strong>Что нужно уметь рассказать</strong><br>
+&ndash; Термин &laquo;метод HEAD&raquo;<br>
+&ndash; Как работает HEAD<br>
+&ndash; Основные свойства метода HEAD<br>
+&ndash; Дополнительные особенности метода HEAD</p>
+
+<p><strong>Всё остальное &mdash; для общего развития</strong></p></div>
+          <nav class="pager" aria-label="Навигация между шагами"><a class="prev" href="step-099.html"><small>Назад</small><span>← Лекция «Метод DELETE: как работает и зачем нужен»</span></a><a class="next" href="step-101.html"><small>Дальше</small><span>Лекция «Метод OPTIONS: как работает и зачем нужен» →</span></a></nav>
+        </article></div></main>
+  <footer><span>Локальная учебная копия · без отслеживания и отправки ответов</span><a href="../../about.html">О сайте</a></footer>
+</body>
+</html>

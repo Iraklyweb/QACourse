@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Лекция &quot;Основы HTML и CSS&quot; Что такое HTML? HTML - расшифровывается как HyperText Markup Language (язык гипертекстовой разметки). Это язык разметки документ">
+  <meta name="color-scheme" content="dark light">
+  <title>Лекция «Основы HTML и CSS» · QA Конспект</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body data-base="../../">
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="topbar">
+    <a class="brand" href="../../index.html" aria-label="QA Конспект, главная"><span class="brand-mark">QA</span><span>Конспект</span></a>
+    <nav aria-label="Основная навигация">
+      <a href="../../courses/manual-testing/">Ручное тестирование</a>
+      <a href="../../courses/mqa-base/">MQA Base</a>
+      <a href="../../courses/manual-testing/">Курс</a>
+    </nav>
+    <form class="search-mini" action="../../search.html" role="search">
+      <label class="sr-only" for="site-search-2">Поиск по курсам</label>
+      <input id="site-search-2" name="q" type="search" placeholder="Найти тему…" autocomplete="off">
+      <button type="submit" aria-label="Искать">⌕</button>
+    </form>
+  </header>
+  <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="index.html">← Структура курса</a><div class="rail-index"><span>110</span><small>из 168</small></div><p>DevTools, HTML и CSS</p><div class="rail-progress" aria-label="Шаг 2 из 2 в теме"><i style="width:100%"></i></div><small>2 / 2 в теме</small></aside>
+        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><a href="index.html">Ручное тестирование</a><span>/</span><span>Сети</span><span>/</span><span>DevTools, HTML и CSS</span></nav>
+          <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «Основы HTML и CSS»</h1><p>Сети · DevTools, HTML и CSS</p></header>
+          <div class="lesson-content"><h1>Лекция &laquo;Основы HTML и CSS&raquo;</h1>
+
+<p>&nbsp;</p>
+
+<h2><strong><span>Что такое HTML?</span></strong></h2>
+
+<p><span><strong>HTML</strong> - </span><span>расшифровывается как HyperText Markup Language (язык гипертекстовой разметки). Это язык разметки документов во Всемирной паутине (World Wide Web, WWW). HTML &mdash; это стандартизированный язык, позволяющий составлять форматированный текст. Браузер интерпретирует его и отображает на экране элементы веб-страниц.</span></p>
+
+<p><span>В первую очередь, HTML &mdash; это контент и теги. Теги позволяют задать способ отображения контента на веб-страницах.</span></p>
+
+<h2><strong><span>Что такое тэг в HTML? Правила оформления</span></strong></h2>
+
+<p><span><strong>Тег </strong>&mdash; это специальное служебное слово, заключенное в угловые скобки. Его ещё называют &laquo;элемент HTML&raquo;. Тегов в языке HTML много и каждый что-то делает с контентом, который обычно находится внутри скобок или между тегами.</span></p>
+
+<p><span>Если тег парный, то тегу &lt;ТЕГ&gt; соответствует &lt;/ТЕГ&gt;.</span></p>
+
+<p><span>Существуют одиночные теги, например, <code>&lt;img&gt;</code> &mdash; для изображений. В этом случае контент вместе с другими служебными словами (например, для <code>&lt;img&gt;</code> это может быть <code>src=&rdquo;url изображения&rdquo;</code>) размещается между скобками, но после слова img.</span></p>
+
+<h2><strong><span>Что такое атрибут в HTML?</span></strong></h2>
+
+<p><span>HTML-элементы могут иметь атрибуты, которые используются для решения самых разных задач. Атрибуты это дополнительные значения, которые настраивают элементы или регулируют их поведение различным способом, чтобы соответствовать критериям пользователей.</span></p>
+
+<p><span>Атрибут имеет имя и значение. Имена атрибутов должны состоять из одного или нескольких символов, кроме управляющих, таких как <strong>пробел, &quot;, &#39;, &gt;, / и =</strong>. Имена и значения атрибутов не чувствительны к регистру, но, тем не менее, рекомендуется набирать их в нижнем регистре.</span><br>
+<span>Атрибут title можно использовать не только на параграфах, а на любом элементе страницы. Такие атрибуты называются глобальными, так как не зависят от элемента. В противовес им есть атрибуты, которые уникальны для одного или нескольких тегов. Например, атрибут colspan, который указывает на объединение ячеек в таблицах. Его использование вне таблиц не имеет никакого смысла.</span><br>
+<span>У одного тега может быть указано сразу несколько атрибутов. Тогда они записываются последовательно, при этом порядок указания не имеет значения:</span></p>
+
+<p><strong><span>&lt;p class=&quot;text-center&quot; title=&quot;Этот элемент имеет несколько атрибутов&quot;&gt;Параграф с несколькими атрибутами&lt;/p&gt;</span></strong></p>
+
+<h2><strong><span>Структура HTML документа</span></strong></h2>
+
+<p><span>Любая HTML-страница имеет следующую структуру:</span></p>
+
+<pre>
+<code>&lt;!DOCTYPE html&gt; &lt;!-- Объявление формата документа --&gt;
+
+&lt;html&gt;
+
+&lt;head&gt; &lt;!-- Техническая информация о документе --&gt;
+
+&lt;meta charset="UTF-8"&gt; &lt;!-- Определяем кодировку символов документа --&gt;
+
+&lt;title&gt;...&lt;/title&gt; &lt;!-- Задаем заголовок документа --&gt;
+
+&lt;/head&gt;
+
+&lt;body&gt; &lt;!-- Основная часть документа --&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre>
+
+<p><span>С помощью DevTools (HTML - во вкладке Elements, CSS - Elements =&gt; Styles) можно ознакомиться со структурой любой страницы в сети Интернет. </span></p>
+
+<h2><strong><span>Что такое CSS? Где задавать стили CSS?</span></strong></h2>
+
+<p><span><strong>CSS</strong> (англ. Cascading Style Sheets &laquo;каскадные таблицы стилей&raquo;) &mdash; формальный язык описания внешнего вида документа (веб-страницы), написанного с использованием языка разметки (чаще всего HTML или XHTML). CSS используется создателями веб-страниц для задания цветов, шрифтов, стилей, расположения отдельных блоков и других аспектов представления внешнего вида этих веб-страниц. Основной целью разработки CSS является ограждение и отделение описания логической структуры веб-страницы (которое производится с помощью HTML или других языков разметки) от описания внешнего вида этой веб-страницы (которое теперь производится с помощью формального языка CSS). Такое разделение может увеличить доступность документа, предоставить большую гибкость и возможность управления его представлением, а также уменьшить сложность и повторяемость в структурном содержимом.</span></p>
+
+<p><span>Правила CSS могут располагаться как в самом веб-документе, внешний вид которого они описывают, так и во внешних файлах, имеющих расширение .css. Формат CSS &mdash; это текстовый файл, в котором содержится перечень правил CSS и комментариев к ним.</span></p>
+
+<p><span>Стили CSS могут быть подключены или внедрены в описываемый ими веб-документ четырьмя способами:</span></p>
+
+<p><span>1. Когда описание стилей находится в отдельном файле, оно может быть подключено к документу посредством элемента </span><span>&lt;link&gt;</span><span>, включённого в элемент </span><span>&lt;head&gt;</span><span>:</span></p>
+
+<pre>
+<code>&lt;!DOCTYPE html&gt;
+
+&lt;html&gt;
+
+&lt;head&gt;
+
+.....
+
+&lt;link rel="stylesheet" type="text/css" href="style.css"&gt;
+
+&lt;/head&gt;
+
+&lt;body&gt;
+
+.....
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre>
+
+<p><br>
+<span>2. Когда файл стилей размещается отдельно от родительского документа, он может быть подключён к документу инструкцией @import в элементе<code>&lt;style&gt;</code>:</span></p>
+
+<pre>
+<code>&lt;!DOCTYPE html&gt;
+
+&lt;html&gt;
+
+&lt;head&gt;
+
+.....
+
+&lt;style media="all"&gt;
+
+@import url(style.css);
+
+&lt;/style&gt;
+
+&lt;/head&gt;
+
+&lt;/html&gt;</code></pre>
+
+<p><br>
+<span>3. Когда стили описаны внутри документа, они могут быть включены в элемент <code>&lt;style&gt;</code>, который, включается в элемент <code>&lt;head&gt;</code>:</span></p>
+
+<pre>
+<code>&lt;!DOCTYPE html&gt;
+
+&lt;html&gt;
+
+&lt;head&gt;
+
+.....
+
+&lt;style&gt;
+
+body {
+
+color: red;
+
+}
+
+&lt;/style&gt;
+
+&lt;/head&gt;
+
+&lt;body&gt;
+
+.....
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre>
+
+<p><span>4. Когда стили описаны в теле документа, они могут располагаться в атрибутах отдельного элемента: </span></p>
+
+<pre>
+<code>&lt;!DOCTYPE&gt;
+
+&lt;html&gt;
+
+&lt;head&gt;
+
+.....
+
+&lt;/head&gt;
+
+&lt;body&gt;
+
+&lt;p style="font-size: 20px; color: green; font-family: arial, helvetica, sans-serif"&gt;
+
+.....
+
+&lt;/p&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;</code></pre>
+
+<p><span>В первых двух случаях к документу применены внешние стили, а во вторых &mdash; внутренние стили.</span></p></div>
+          <nav class="pager" aria-label="Навигация между шагами"><a class="prev" href="step-109.html"><small>Назад</small><span>← Лекция «Что такое DevTools»</span></a><a class="next" href="step-111.html"><small>Дальше</small><span>Лекция «Postman» →</span></a></nav>
+        </article></div></main>
+  <footer><span>Локальная учебная копия · без отслеживания и отправки ответов</span><a href="../../about.html">О сайте</a></footer>
+</body>
+</html>

@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Лекция &quot;Метод PATCH: как работает и зачем нужен&quot; Метод PATCH используется для частичного обновления ресурса . В отличие от PUT , который заменяет всю сущно">
+  <meta name="color-scheme" content="dark light">
+  <title>Лекция «Метод PATCH: как работает и зачем нужен» · QA Конспект</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body data-base="../../">
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="topbar">
+    <a class="brand" href="../../index.html" aria-label="QA Конспект, главная"><span class="brand-mark">QA</span><span>Конспект</span></a>
+    <nav aria-label="Основная навигация">
+      <a href="../../courses/manual-testing/">Ручное тестирование</a>
+      <a href="../../courses/mqa-base/">MQA Base</a>
+      <a href="../../courses/manual-testing/">Курс</a>
+    </nav>
+    <form class="search-mini" action="../../search.html" role="search">
+      <label class="sr-only" for="site-search-2">Поиск по курсам</label>
+      <input id="site-search-2" name="q" type="search" placeholder="Найти тему…" autocomplete="off">
+      <button type="submit" aria-label="Искать">⌕</button>
+    </form>
+  </header>
+  <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="index.html">← Структура курса</a><div class="rail-index"><span>098</span><small>из 168</small></div><p>HTTP-методы в API</p><div class="rail-progress" aria-label="Шаг 5 из 11 в теме"><i style="width:45%"></i></div><small>5 / 11 в теме</small></aside>
+        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><a href="index.html">Ручное тестирование</a><span>/</span><span>Сети</span><span>/</span><span>HTTP-методы в API</span></nav>
+          <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «Метод PATCH: как работает и зачем нужен»</h1><p>Сети · HTTP-методы в API</p></header>
+          <aside class="media-card"><span aria-hidden="true">▶</span><div><strong>К шагу прикреплено видео</strong><p>Видео не включено в локальную копию; сохранена только отметка о его наличии.</p></div></aside><div class="lesson-content"><h1>Лекция &laquo;Метод PATCH: как работает и зачем нужен&raquo;</h1>
+
+<p>&nbsp;</p>
+
+<p>Метод <strong>PATCH</strong> используется для <strong>частичного обновления ресурса</strong>. В отличие от <strong>PUT</strong>, который <strong>заменяет всю сущность</strong>, <strong>PATCH позволяет изменить только отдельные поля</strong>, не затрагивая другие данные.</p>
+
+<p>Если сравнивать с реальной жизнью, <strong>PATCH</strong> &mdash; это как <strong>изменение адреса доставки в заказе</strong>: вы обновляете только поле address, а остальные данные (товары, способ оплаты) остаются без изменений.</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Как работает PATCH?</strong></h3>
+
+<p>Метод <strong>PATCH</strong> позволяет <strong>изменить только часть данных</strong>, не затрагивая весь ресурс. В отличие от <strong>PUT</strong>, он обновляет <strong>только переданные поля</strong>, оставляя остальные <strong>без изменений</strong>.</p>
+
+<h4><strong>1. Исходный ресурс в базе:</strong></h4>
+
+<p><span>{</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;id&quot;: 1,</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;name&quot;: &quot;Alice&quot;,</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;email&quot;: &quot;</span><a><span>alice@example.com</span></a><span>&quot;,</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;role&quot;: &quot;admin&quot;</span></p>
+
+<p><span>}</span></p>
+
+<h4><strong>2. Клиент отправляет PATCH-запрос с изменённым email:</strong></h4>
+
+<p><span>PATCH /users/1 HTTP/1.1&nbsp;&nbsp;</span></p>
+
+<p><span>Host: </span><a href="http://api.example.com/" target="_blank" rel="noopener noreferrer"><span>api.example.com</span></a><span>&nbsp;&nbsp;</span></p>
+
+<p><span>Content-Type: application/json&nbsp;&nbsp;</span></p>
+
+<p><span>{</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;email&quot;: &quot;</span><a><span>new.email@example.com</span></a><span>&quot;</span></p>
+
+<p><span>}</span></p>
+
+<p>&rarr; <strong>Передаётся только поле email</strong>, остальные данные остаются <strong>без изменений</strong>.</p>
+
+<h4><strong>3. Сервер обрабатывает запрос:</strong></h4>
+
+<ul>
+	<li>
+	<p><strong>Проверяет, существует ли ресурс</strong> (/users/1).</p>
+	</li>
+	<li>
+	<p><strong>Обновляет только указанные поля</strong>, не затрагивая name и role.</p>
+	</li>
+	<li>
+	<p><strong>Записывает изменения</strong> в базу данных.</p>
+	</li>
+</ul>
+
+<h4><strong>4. Обновлённый ресурс после PATCH:</strong></h4>
+
+<p><span>{</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;id&quot;: 1,</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;name&quot;: &quot;Alice&quot;,</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;email&quot;: &quot;</span><a><span>new.email@example.com</span></a><span>&quot;,</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;role&quot;: &quot;admin&quot;</span></p>
+
+<p><span>}</span></p>
+
+<p>&rarr; <strong>Email изменился, но name и role остались неизменными</strong>.</p>
+
+<h4><strong>5. Сервер отправляет ответ:</strong></h4>
+
+<ul>
+	<li>
+	<p><strong>200 OK</strong>, если обновление прошло успешно, и сервер возвращает обновлённые данные.</p>
+	</li>
+	<li>
+	<p><strong>204 No Content</strong>, если сервер обновил данные, но <strong>не возвращает тело ответа</strong>.</p>
+	</li>
+	<li>
+	<p><strong>400 Bad Request</strong>, если <strong>запрос составлен некорректно</strong>.</p>
+	</li>
+	<li>
+	<p><strong>404 Not Found</strong>, если <strong>ресурс отсутствует</strong>.</p>
+	</li>
+</ul>
+
+<p>PATCH удобен, когда нужно <strong>изменить только отдельные поля</strong>, а <strong>PUT был бы избыточен</strong>.</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Основные свойства метода PATCH</strong></h3>
+
+<h4><strong>PATCH не является идемпотентным</strong></h4>
+
+<ul>
+	<li>
+	<p><strong>Повторный запрос с одинаковыми данными</strong> может привести <strong>к разным результатам</strong>, если сервер выполняет <strong>дополнительные операции</strong> (например, обновляет дату изменения).</p>
+	</li>
+	<li>
+	<p>Однако в большинстве случаев <strong>PATCH-операция просто обновляет указанные поля, не изменяя остальную сущность</strong>.</p>
+	</li>
+	<li>
+	<p><strong>Почему PATCH не является идемпотентным &mdash; неизвестно</strong>, так как в его логике нет явных причин для этого.</p>
+	</li>
+</ul>
+
+<h4><strong>Влияние на безопасность и состояние сервера</strong></h4>
+
+<ul>
+	<li>
+	<p><strong>PATCH изменяет состояние сервера</strong>, так как заменяет существующий ресурс. Тем самым <strong>PATCH небезопасен</strong> с точки зрения изменения данных на сервере.</p>
+	</li>
+	<li>
+	<p><strong>Безопасен с точки зрения передачи данных</strong>, так как они передаются <strong>в теле запроса</strong>, а тело в свою очередь <strong>шифруется</strong>.</p>
+	</li>
+	<li>
+	<p>В отличие от <strong>PUT</strong>, который требует <strong>полный объект</strong>, <strong>PATCH позволяет внести изменения частично</strong>, что снижает <strong>риск потери данных</strong>.</p>
+	</li>
+	<li>
+	<p><strong>Без HTTPS данные остаются незащищёнными</strong> и могут быть <strong>перехвачены</strong>.</p>
+	</li>
+	<li>
+	<p><strong>PATCH скрывает данные от истории браузера и логов URL</strong>, но передаваемая информация остаётся уязвимой, если не используется <strong>шифрование на уровне соединения (TLS/HTTPS)</strong>.</p>
+	</li>
+	<li>
+	<p>Как и другие методы изменения данных, <strong>PATCH требует авторизации</strong>, если ресурс защищён.</p>
+	</li>
+</ul>
+
+<h4><strong>Передача данных</strong></h4>
+
+<ul>
+	<li>
+	<p><strong>PATCH передаёт только изменяемые поля</strong>, а не весь объект, как <strong>PUT</strong>.</p>
+	</li>
+	<li>
+	<p>Это делает запросы <strong>компактнее и быстрее</strong>, особенно при обновлении <strong>больших объектов</strong>.</p>
+	</li>
+</ul>
+
+<h4><strong>Ограничения длины URL отсутствуют</strong></h4>
+
+<ul>
+	<li>
+	<p>Данные передаются <strong>в теле запроса</strong>, а не через <strong>URL</strong>, поэтому <strong>PATCH не ограничен по размеру данных</strong>.</p>
+	</li>
+	<li>
+	<p>Однако некоторые API могут накладывать свои <strong>лимиты на размер тела запроса</strong>.</p>
+	</li>
+</ul>
+
+<h4><strong>Форматы данных</strong></h4>
+
+<ul>
+	<li>
+	<p>Чаще всего используется <strong>JSON</strong>, так как <strong>REST API</strong> обычно работают с этим форматом.</p>
+	</li>
+	<li>
+	<p>Однако <strong>PATCH может поддерживать XML, файлы или другие форматы</strong>, в зависимости от API.</p>
+	</li>
+</ul>
+
+<h4><strong>Кэширование</strong></h4>
+
+<ul>
+	<li>
+	<p><strong>PATCH не кэшируется браузерами и прокси-серверами</strong>, так как он <strong>изменяет данные</strong>.</p>
+	</li>
+	<li>
+	<p>Однако сервер может использовать заголовки <strong>ETag</strong> и <strong>Last-Modified</strong>, чтобы <strong>проверять актуальность данных перед обновлением</strong>.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><strong>Дополнительные особенности метода PATCH</strong></h3>
+
+<h4><strong>PATCH обновляет только указанные поля</strong></h4>
+
+<ul>
+	<li>
+	<p>В <strong>теле запроса передаются только те данные, которые должны измениться</strong>.</p>
+	</li>
+	<li>
+	<p><strong>Остальные поля остаются без изменений</strong>, в отличие от <strong>PUT</strong>, который требует <strong>полный объект</strong>.</p>
+	</li>
+</ul>
+
+<h4><strong>PATCH требует существования ресурса</strong></h4>
+
+<ul>
+	<li>
+	<p>Если объект <strong>существует</strong>, <strong>PATCH обновляет его поля</strong>.</p>
+	</li>
+	<li>
+	<p>Если объект <strong>не найден</strong>, сервер обычно возвращает <strong>404 Not Found</strong>, так как <strong>PATCH не создаёт новый ресурс</strong>, в отличие от <strong>PUT</strong>.</p>
+	</li>
+</ul>
+
+<h4><strong>PATCH работает на уровне конкретного ресурса</strong></h4>
+
+<ul>
+	<li>
+	<p><strong>PATCH-запрос всегда выполняется для конкретного объекта</strong> (/users/1).</p>
+	</li>
+	<li>
+	<p>В отличие от <strong>POST</strong>, который может работать с <strong>коллекциями</strong> (/users).</p>
+	</li>
+</ul>
+
+<h4><strong>PATCH удобен, когда нужно изменить только часть данных</strong></h4>
+
+<ul>
+	<li>
+	<p><strong>Если требуется обновить весь объект</strong>, <strong>используется PUT</strong>.</p>
+	</li>
+	<li>
+	<p><strong>Если нужно изменить только отдельные поля</strong>, <strong>PATCH &mdash; лучший вариант</strong>.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><strong>Итог</strong></h3>
+
+<p>Метод <strong>PATCH</strong> используется для <strong>частичного обновления ресурса</strong>, позволяя изменить <strong>только переданные поля</strong>, не затрагивая остальные. В отличие от <strong>PUT</strong>, который заменяет всю сущность, <strong>PATCH делает запросы компактнее и быстрее</strong>.</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Как тестируют PATCH?</strong></h3>
+
+<ul>
+	<li>
+	<p><strong>Если есть доступ к БД</strong>, проверяют, <strong>обновились ли только переданные поля</strong>, а остальные <strong>остались неизменными</strong>.</p>
+	</li>
+	<li>
+	<p><strong>Если доступа к БД нет</strong>, делают <strong>GET-запрос до и после PATCH</strong>, сравнивая изменения.</p>
+	</li>
+	<li>
+	<p><strong>Проверяют, возвращает ли сервер корректные статус-коды</strong> (200 OK, 204 No Content, 400 Bad Request).</p>
+	</li>
+	<li>
+	<p><strong>Тестируют обработку некорректных данных</strong> (например, если передать <strong>пустой объект</strong>).</p>
+	</li>
+</ul>
+
+<p><strong>PATCH удобен в случаях, когда PUT был бы избыточен</strong>. Однако, если API <strong>требует полного набора данных для обновления</strong>, <strong>нужно использовать PUT вместо PATCH</strong>.</p>
+
+<p>&nbsp;</p>
+
+<p><strong>Что нужно уметь рассказать</strong><br>
+&ndash; Термин &laquo;метод PATCH&raquo;<br>
+&ndash; Как работает PATCH<br>
+&ndash; Основные свойства метода PATCH<br>
+&ndash; Дополнительные особенности метода PATCH</p>
+
+<p><strong>Всё остальное &mdash; для общего развития</strong></p></div>
+          <nav class="pager" aria-label="Навигация между шагами"><a class="prev" href="step-097.html"><small>Назад</small><span>← Лекция «Метод PUT: как работает и зачем нужен»</span></a><a class="next" href="step-099.html"><small>Дальше</small><span>Лекция «Метод DELETE: как работает и зачем нужен» →</span></a></nav>
+        </article></div></main>
+  <footer><span>Локальная учебная копия · без отслеживания и отправки ответов</span><a href="../../about.html">О сайте</a></footer>
+</body>
+</html>

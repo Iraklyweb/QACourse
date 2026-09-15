@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Лекция &quot;Запросы JOIN в SQL/MySQL&quot; Распространенный подход соединения данных из разных таблиц представляет применение оператора JOIN. Общий синтаксис примен">
+  <meta name="color-scheme" content="dark light">
+  <title>Лекция «Запросы JOIN в SQL/MySQL» · QA Конспект</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body data-base="../../">
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="topbar">
+    <a class="brand" href="../../index.html" aria-label="QA Конспект, главная"><span class="brand-mark">QA</span><span>Конспект</span></a>
+    <nav aria-label="Основная навигация">
+      <a href="../../courses/manual-testing/">Ручное тестирование</a>
+      <a href="../../courses/mqa-base/">MQA Base</a>
+      <a href="../../courses/manual-testing/">Курс</a>
+    </nav>
+    <form class="search-mini" action="../../search.html" role="search">
+      <label class="sr-only" for="site-search-2">Поиск по курсам</label>
+      <input id="site-search-2" name="q" type="search" placeholder="Найти тему…" autocomplete="off">
+      <button type="submit" aria-label="Искать">⌕</button>
+    </form>
+  </header>
+  <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="index.html">← Структура курса</a><div class="rail-index"><span>144</span><small>из 168</small></div><p>Запросы JOIN</p><div class="rail-progress" aria-label="Шаг 2 из 3 в теме"><i style="width:67%"></i></div><small>2 / 3 в теме</small></aside>
+        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><a href="index.html">Ручное тестирование</a><span>/</span><span>SQL</span><span>/</span><span>Запросы JOIN</span></nav>
+          <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «Запросы JOIN в SQL/MySQL»</h1><p>SQL · Запросы JOIN</p></header>
+          <div class="lesson-content"><h1><strong><span>Лекция &laquo;Запросы JOIN в SQL/MySQL&raquo;</span></strong></h1>
+
+<p>&nbsp;</p>
+
+<p><span>Распространенный подход соединения данных из разных таблиц представляет применение оператора JOIN. Общий синтаксис применения оператора <strong>INNER JOIN</strong>:</span></p>
+
+<pre>
+<code>SELECT столбцы
+
+FROM таблица1
+
+[INNER] JOIN таблица2
+
+ON условие1
+
+[[INNER] JOIN таблица3
+
+ON условие2]</code></pre>
+
+<p><span>После оператора JOIN идет название второй таблицы, из которой надо добавить данные в выборку. Перед JOIN может использоваться необязательное ключевое слово INNER. Его наличие или отсутствие ни на что не влияет. Затем после ключевого слова ON указывается условие соединения. Это условие устанавливает, как две таблицы будут сравниваться. В большинстве случаев для соединения применяется первичный ключ главной таблицы и внешний ключ зависимой таблицы.</span></p>
+
+<p><span>Возьмем таблицы с данными:</span></p>
+
+<pre>
+<code>CREATE TABLE Products
+
+(
+
+Id INT AUTO_INCREMENT PRIMARY KEY,
+
+ProductName VARCHAR(30) NOT NULL,
+
+Manufacturer VARCHAR(20) NOT NULL,
+
+ProductCount INT DEFAULT 0,
+
+Price DECIMAL NOT NULL
+
+);
+
+CREATE TABLE Customers
+
+(
+
+Id INT AUTO_INCREMENT PRIMARY KEY,
+
+FirstName VARCHAR(30) NOT NULL
+
+);
+
+CREATE TABLE Orders
+
+(
+
+Id INT AUTO_INCREMENT PRIMARY KEY,
+
+ProductId INT NOT NULL,
+
+CustomerId INT NOT NULL,
+
+CreatedAt DATE NOT NULL,
+
+ProductCount INT DEFAULT 1,
+
+Price DECIMAL NOT NULL,
+
+FOREIGN KEY (ProductId) REFERENCES Products(Id) ON DELETE CASCADE,
+
+FOREIGN KEY (CustomerId) REFERENCES Customers(Id) ON DELETE CASCADE
+
+);</code></pre>
+
+<p><span>Используя JOIN, выберем все заказы и добавим к ним информацию о товарах:</span></p>
+
+<pre>
+<code>SELECT Orders.CreatedAt, Orders.ProductCount, Products.ProductName
+
+FROM Orders
+
+JOIN Products ON Products.Id = Orders.ProductId;</code></pre>
+
+<p><span>Поскольку таблицы могут содержать столбцы с одинаковыми названиями, то при указании столбцов для выборки указывается их полное имя вместе с именем таблицы, например, &quot;Orders.ProductCount&quot;.</span></p>
+
+<p><span><span><span class="media-note" role="note"><span aria-hidden="true">▧</span> Изображение: иллюстрация · lh4.googleusercontent.com</span></span></span></p>
+
+<p>&nbsp;</p>
+
+<p><span>Используя псевдонимы для таблиц, можно сократить код:</span></p>
+
+<pre>
+<code>SELECT O.CreatedAt, O.ProductCount, P.ProductName
+
+FROM Orders AS O
+
+JOIN Products AS P
+
+ON P.Id = O.ProductId;</code></pre>
+
+<p><span>Также можно присоединять данные сразу из нескольких таблиц. Например, добавим к заказу информацию о покупателе из таблицы Customers:</span></p>
+
+<pre>
+<code>SELECT Orders.CreatedAt, Customers.FirstName, Products.ProductName
+
+FROM Orders
+
+JOIN Products ON Products.Id = Orders.ProductId
+
+JOIN Customers ON Customers.Id=Orders.CustomerId;</code></pre>
+
+<p>&nbsp;</p>
+
+<p><span><span><span class="media-note" role="note"><span aria-hidden="true">▧</span> Изображение: иллюстрация · lh6.googleusercontent.com</span></span></span></p>
+
+<p><span>Благодаря соединению таблиц мы можем использовать их столбцы для фильтрации выборки или ее сортировки:</span></p>
+
+<pre>
+<code>SELECT Orders.CreatedAt, Customers.FirstName, Products.ProductName
+
+FROM Orders
+
+JOIN Products ON Products.Id = Orders.ProductId
+
+JOIN Customers ON Customers.Id=Orders.CustomerId
+
+WHERE Products.Price &gt; 45000
+
+ORDER BY Customers.FirstName;</code></pre>
+
+<p><span>Условия после ключевого слова ON могут быть более сложными по составу:</span></p>
+
+<pre>
+<code>SELECT Orders.CreatedAt, Customers.FirstName, Products.ProductName
+
+FROM Orders
+
+JOIN Products ON Products.Id = Orders.ProductId AND Products.Manufacturer='Apple'
+
+JOIN Customers ON Customers.Id=Orders.CustomerId
+
+ORDER BY Customers.FirstName;</code></pre>
+
+<p><span>В данном случае выбираем все заказы на товары, производителем которых является Apple.</span></p>
+
+<p><span>При использовании оператора JOIN следует учитывать, что процесс соединения таблиц может быть ресурсоемким, поэтому следует соединять только те таблицы, данные из которых действительно необходимы. Чем больше таблиц соединяется, тем больше снижается производительность.</span></p>
+
+<h2>&nbsp;</h2>
+
+<h2><strong><span>Outer Join</span></strong></h2>
+
+<p><span>В SQL мы можем использовать и так называемое внешнее соединение или Outer Join. В отличие от Inner Join внешнее соединение возвращает все строки одной или двух таблиц, которые участвуют в соединении.</span></p>
+
+<p><span>Outer Join имеет следующий синтаксис:</span></p>
+
+<pre>
+<code>SELECT столбцы
+
+FROM таблица1
+
+{LEFT|RIGHT} [OUTER] JOIN таблица2 ON условие1
+
+[{LEFT|RIGHT} [OUTER] JOIN таблица3 ON условие2]...</code></pre>
+
+<p><span>Перед оператором JOIN указывается одно из ключевых слов LEFT или RIGHT, которые определяют тип соединения:</span></p>
+
+<p><span><strong>LEFT:</strong> выборка будет содержать все строки из первой или левой таблицы</span></p>
+
+<p><span><strong>RIGHT:</strong> выборка будет содержать все строки из второй или правой таблицы</span></p>
+
+<p><span>Также перед оператором JOIN может указываться ключевое слово OUTER, но его применение необязательно. Далее после JOIN указывается присоединяемая таблица, а затем идет условие соединения.</span></p>
+
+<p><span>Например, соединим таблицы Orders и Customers:</span></p>
+
+<pre>
+<code>SELECT FirstName, CreatedAt, ProductCount, Price, ProductId
+
+FROM Orders LEFT JOIN Customers
+
+ON Orders.CustomerId = Customers.Id</code></pre>
+
+<p><span>Таблица Orders является первой или левой таблицей, а таблица Customers - правой таблицей. Поэтому, так как здесь используется выборка по левой таблице, то вначале будут выбираться все строки из Orders, а затем к ним по условию Orders.CustomerId = Customers.Id будут добавляться связанные строки из Customers.</span></p>
+
+<p><span><span><span class="media-note" role="note"><span aria-hidden="true">▧</span> Изображение: иллюстрация · lh4.googleusercontent.com</span></span></span></p>
+
+<p><span>По вышеприведенному результату может показаться, что левостороннее соединение аналогично INNER Join, но это не так. Inner Join объединяет строки из двух таблиц при соответствии условию. Если одна из таблиц содержит строки, которые не соответствуют этому условию, то данные строки не включаются в выходную выборку. Left Join выбирает все строки первой таблицы и затем присоединяет к ним строки правой таблицы. К примеру, возьмем таблицу Customers и добавим к покупателям информацию об их заказах:</span></p>
+
+<pre>
+<code>#INNER JOIN
+
+SELECT FirstName, CreatedAt, ProductCount, Price
+
+FROM Customers JOIN Orders
+
+ON Orders.CustomerId = Customers.Id;
+
+
+
+#LEFT JOIN
+
+SELECT FirstName, CreatedAt, ProductCount, Price
+
+FROM Customers LEFT JOIN Orders
+
+ON Orders.CustomerId = Customers.Id;</code></pre>
+
+<p>&nbsp;</p>
+
+<p><span><span><span class="media-note" role="note"><span aria-hidden="true">▧</span> Изображение: иллюстрация · lh3.googleusercontent.com</span></span></span></p>
+
+<p><span>В случае с LEFT JOIN MySQL выбирает сначала всех покупателей из таблицы Customers, затем сопоставляет их с заказами из таблицы Orders через условие Orders.CustomerId = Customers.Id. Однако не у всех покупателей есть заказы. В этом случае покупателю для соответствующих столбцов устанавливаются значения NULL.</span></p>
+
+<p><span>Изменим в примере выше тип соединения для OUTER JOIN с левостороннего на правостороннее:</span></p>
+
+<pre>
+<code>SELECT FirstName, CreatedAt, ProductCount, Price
+
+FROM Customers RIGHT JOIN Orders
+
+ON Orders.CustomerId = Customers.Id;</code></pre>
+
+<p><span>Теперь будут выбираться все строки из Orders (из правой таблицы), а к ним уже будет присоединяться связанные по условию строки из таблицы Customers:</span></p>
+
+<p><span><span><span class="media-note" role="note"><span aria-hidden="true">▧</span> Изображение: иллюстрация · lh5.googleusercontent.com</span></span></span></p>
+
+<p><span>Используем левостороннее соединение для добавления к заказам информации о пользователях и товарах:</span></p>
+
+<pre>
+<code>SELECT Customers.FirstName, Orders.CreatedAt,
+
+Products.ProductName, Products.Manufacturer
+
+FROM Orders
+
+LEFT JOIN Customers ON Orders.CustomerId = Customers.Id
+
+LEFT JOIN Products ON Orders.ProductId = Products.Id;</code></pre>
+
+<p>&nbsp;</p>
+
+<p><span><span><span class="media-note" role="note"><span aria-hidden="true">▧</span> Изображение: иллюстрация · lh6.googleusercontent.com</span></span></span></p>
+
+<p><span>И также можно применять более комплексные условия с фильтрацией и сортировкой. Например, выберем все заказы с информацией о клиентах и товарах по тем товарам, у которых цена больше 45000, и отсортируем по дате заказа:</span></p>
+
+<pre>
+<code>SELECT Customers.FirstName, Orders.CreatedAt,
+
+Products.ProductName, Products.Manufacturer
+
+FROM Orders
+
+LEFT JOIN Customers ON Orders.CustomerId = Customers.Id
+
+LEFT JOIN Products ON Orders.ProductId = Products.Id
+
+WHERE Products.Price &gt; 45000
+
+ORDER BY Orders.CreatedAt;</code></pre>
+
+<p><span>Или выберем всех пользователей из Customers, у которых нет заказов в таблице Orders:</span></p>
+
+<pre>
+<code>SELECT FirstName FROM Customers
+
+LEFT JOIN Orders ON Customers.Id = Orders.CustomerId
+
+WHERE Orders.CustomerId IS NULL;</code></pre>
+
+<p><span>Также можно комбинировать Inner Join и Outer Join:</span></p>
+
+<pre>
+<code>SELECT Customers.FirstName, Orders.CreatedAt,
+
+Products.ProductName, Products.Manufacturer
+
+FROM Orders
+
+JOIN Products ON Orders.ProductId = Products.Id AND Products.Price &gt; 45000
+
+LEFT JOIN Customers ON Orders.CustomerId = Customers.Id
+
+ORDER BY Orders.CreatedAt;</code></pre>
+
+<p><span>Вначале по условию к таблице Orders через Inner Join присоединяется связанная информация из Products, затем через Outer Join добавляется информация из таблицы Customers.</span></p>
+
+<h2>&nbsp;</h2>
+
+<h2><strong><span>Full Outer</span></strong></h2>
+
+<p><span>Это вариант для тех, кто хочет использовать сразу два разных критерия для поиска какого-либо контента. Давайте возьмем за пример базу данных из музыкального приложения. Join Full может пригодиться, если вы хотите послушать либо что-то на русском, либо любой рэп. Вам не важны какие-либо другие параметры. Вас волнуют исключительно две характеристики. При этом вам не так важно, будут ли они пересекаться. То есть вам все равно, будет рэп на русском или же на русском будет какой-то агрессивный металл.</span><br>
+<span>SQL-запрос с таким Join мог бы выглядеть следующим образом:</span></p>
+
+<pre>
+<code>SELECT *
+
+FROM table1
+
+FULL OUTER JOIN table2 ON table1.parameter=table2.parameter</code></pre>
+
+<p><span>Можно исключить из результатов фильтрации все пары. То есть можно выбрать только рэп, но ни в коем случае не русский, и русскую музыку, но ни в коем случае не рэп (вполне могу понять такой выбор, кстати говоря). </span><br>
+<span>Чтобы это сделать, необходимо написать следующий SQL-запрос. </span></p>
+
+<pre>
+<code>SELECT *
+
+FROM Russian
+
+FULL OUTER JOIN Rap ON Russian.genreId=Rap.genreId
+
+WHERE Russian.genreId IS NULL OR Rap.genreId IS NULL</code></pre>
+
+<h2>&nbsp;</h2>
+
+<h2><strong><span>Self Join</span></strong></h2>
+
+<p><span>Запросы Self Join полезны в тех случаях, когда необходимо выполнить фильтрацию контента внутри одной таблицы. Например, у вас есть список товаров в базе данных. У каждого из них указан свой бренд, но есть и те, что поставляются одним производителем. Self Join можно использовать для объединения двух стеков информации из одной таблицы. </span></p>
+
+<p><span>Например, можно запросить информацию о наименовании товара и параллельно обратиться к базе с названием бренда. Результатом работы функции станет появление нового списка товаров, соответствующего критериям.</span></p>
+
+<pre>
+<code>SELECT * FROM products JOIN products ON products.product=products.brand</code></pre>
+
+<p><span>Такой сценарий полезен практически в любом виде баз данных, так как в одной таблице нередко может храниться информация о товарах или контенте, имеющим большое количество общих параметров. </span></p>
+
+<h2>&nbsp;</h2>
+
+<h2><strong><span>Cross Join</span></strong></h2>
+
+<p><span>Самый специфичный вариант фильтрации данных. Он подразумевает сбор сразу всех комбинаций элементов из нескольких таблиц, без обращения к какой-либо дополнительной информации (не требуется указывать id или любую другую строку в таблице).</span></p>
+
+<p><span>Стандартный SQL-запрос с Cross Join может выглядеть следующим образом:</span></p>
+
+<pre>
+<code>SELECT *
+
+FROM table-1
+
+CROSS JOIN table-2</code></pre>
+
+<p><span>Этого достаточно, чтобы создать новый список элементов, в котором будут собраны все строки из базы данных, отфильтрованные только по выбранным таблицам. </span></p>
+
+<p><span>Полученный набор данных называют декартовым произведением. Схематично его часто изображают как большое количество перекрестий между двумя группами элементов. </span></p>
+
+<p><span>Такой вид JOIN применяется в онлайн-магазинах для вывода всех возможных пар по выбранным характеристикам одежды (цвету и размеру или другим параметрам).</span></p>
+
+<p>&nbsp;</p>
+
+<p><em><span>Полные версии статей можно прочитать по ссылкам &ldquo;</span><a href="https://metanit.com/sql/mysql/5.2.php" target="_blank" rel="noopener noreferrer"><span>Inner Join</span></a><span>&rdquo;, &ldquo;</span><a href="https://metanit.com/sql/mysql/5.3.php" target="_blank" rel="noopener noreferrer"><span>Outer Join</span></a><span>&rdquo;.</span></em></p></div>
+          <nav class="pager" aria-label="Навигация между шагами"><a class="prev" href="step-143.html"><small>Назад</small><span>← Лекция «Вложенные запросы»</span></a><a class="next" href="step-145.html"><small>Дальше</small><span>SQL. Практическое задание №3. Проверяемое задание «JOIN» →</span></a></nav>
+        </article></div></main>
+  <footer><span>Локальная учебная копия · без отслеживания и отправки ответов</span><a href="../../about.html">О сайте</a></footer>
+</body>
+</html>

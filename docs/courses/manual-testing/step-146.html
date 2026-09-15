@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Лекция &quot;Операторы INSERT, UPDATE, DELETE&quot; Мы уже говорили с вами про оператор Insert для ввода данных. Добавление данных. Команда INSERT Для добавления дан">
+  <meta name="color-scheme" content="dark light">
+  <title>Лекция «Операторы INSERT, UPDATE, DELETE» · QA Конспект</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body data-base="../../">
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="topbar">
+    <a class="brand" href="../../index.html" aria-label="QA Конспект, главная"><span class="brand-mark">QA</span><span>Конспект</span></a>
+    <nav aria-label="Основная навигация">
+      <a href="../../courses/manual-testing/">Ручное тестирование</a>
+      <a href="../../courses/mqa-base/">MQA Base</a>
+      <a href="../../courses/manual-testing/">Курс</a>
+    </nav>
+    <form class="search-mini" action="../../search.html" role="search">
+      <label class="sr-only" for="site-search-2">Поиск по курсам</label>
+      <input id="site-search-2" name="q" type="search" placeholder="Найти тему…" autocomplete="off">
+      <button type="submit" aria-label="Искать">⌕</button>
+    </form>
+  </header>
+  <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="index.html">← Структура курса</a><div class="rail-index"><span>146</span><small>из 168</small></div><p>Insert, Update, Delete</p><div class="rail-progress" aria-label="Шаг 1 из 3 в теме"><i style="width:33%"></i></div><small>1 / 3 в теме</small></aside>
+        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><a href="index.html">Ручное тестирование</a><span>/</span><span>SQL</span><span>/</span><span>Insert, Update, Delete</span></nav>
+          <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «Операторы INSERT, UPDATE, DELETE»</h1><p>SQL · Insert, Update, Delete</p></header>
+          <div class="lesson-content"><h1><strong><span>Лекция &laquo;Операторы INSERT, UPDATE, DELETE&raquo;</span></strong></h1>
+
+<p>&nbsp;</p>
+
+<p><span>Мы уже говорили с вами про оператор Insert для ввода данных. </span></p>
+
+<p><em><span>Добавление данных. Команда INSERT</span></em><br>
+<br>
+<span>Для добавления данных в БД в MySQL используется команда INSERT, которая имеет следующий синтаксис:</span></p>
+
+<pre>
+<code>INSERT [INTO] имя_таблицы [(список_столбцов)] VALUES (значение1, значение2, ... значениеN)</code></pre>
+
+<p><span>После выражения INSERT INTO в скобках можно указать список столбцов через запятую, в которые надо добавлять данные, и в конце после слова VALUES скобках перечисляют добавляемые для столбцов значения.</span></p>
+
+<p><span>Например, пусть в базе данных productsdb есть следующая таблица Products:</span></p>
+
+<pre>
+<code>CREATE DATABASE productsdb;
+
+USE productsdb;
+
+CREATE TABLE Products
+
+(
+
+Id INT AUTO_INCREMENT PRIMARY KEY,
+
+ProductName VARCHAR(30) NOT NULL,
+
+Manufacturer VARCHAR(20) NOT NULL,
+
+ProductCount INT DEFAULT 0,
+
+Price DECIMAL NOT NULL
+
+);</code></pre>
+
+<p><span>Добавим в эту таблицу одну строку с помощью следующего кода:</span></p>
+
+<div>
+<pre>
+<code>INSERT Products(ProductName, Manufacturer, ProductCount, Price)
+
+VALUES ('iPhone X', 'Apple', 5, 76000);</code></pre>
+
+<p><span>В данном случае значения будут передаваться столбцам по позиции. То есть столбцу ProductName передается строка &quot;iPhone X&quot;, столбцу Manufacturer - строка &quot;Apple&quot; и так далее.</span></p>
+</div>
+
+<p><span>Важно, чтобы между значениями и типами данных столбцов было соответствие. Так, столбец ProductName представляет тип varchar, то есть строку. Соответственно этому столбцу мы можем передать строковое значение в одинарных кавычках. А столбец ProductCount представляет тип int, то есть целое число, поэтому данному столбцу нужно передать целые числа, но никак не строки.</span></p>
+
+<p><span>После удачного выполнения в MySQL Workbench в поле вывода должны появиться зеленый маркер и сообщение &quot;1 row(s) affected&quot;:</span></p>
+
+<p><span><span><span class="media-note" role="note"><span aria-hidden="true">▧</span> Изображение: иллюстрация · lh5.googleusercontent.com</span></span></span></p>
+
+<p><span>Необязательно при добавлении данных указывать значения абсолютно для всех столбцов таблицы. Например, в примере выше не указано значение для столбца Id. Но поскольку для данного столбца определен атрибут AUTO_INCREMENT, то его значение будет автоматически генерироваться.</span></p>
+
+<p><span>Также мы можем опускать при добавлении такие столбцы, которые поддерживают значение NULL или для которых указано значение по умолчанию, то есть для них определены атрибуты NULL или DEFAULT. Так, в таблице Products столбец ProductCount имеет значение по умолчанию - число 0. Поэтому мы можем при добавлении опустить этот столбец, и ему будет передаваться число 0:</span></p>
+
+<pre>
+<code>INSERT Products(ProductName, Manufacturer, Price)
+
+VALUES ('Galaxy S9', 'Samsung', 63000);</code></pre>
+
+<p><span>С помощью ключевых слов DEFAULT и NULL можно указать, что в качестве значения будет использовать значение по умолчанию или NULL соответственно:</span></p>
+
+<pre>
+<code>INSERT Products(ProductName, Manufacturer, Price, ProductCount)
+
+VALUES ('Nokia 9', 'HDM Global', 41000, DEFAULT);</code></pre>
+
+<p><span>или</span></p>
+
+<pre>
+<code>INSERT Products(ProductName, Manufacturer, Price, ProductCount)
+
+VALUES ('Nokia 9', 'HDM Global', 41000, NULL);</code></pre>
+
+<p><span>Множественное добавление</span></p>
+
+<p><span>Также мы можем добавить сразу несколько строк:</span></p>
+
+<pre>
+<code>INSERT Products(ProductName, Manufacturer, Price, ProductCount)
+
+VALUES
+
+('iPhone 8', 'Apple', 51000, 3),
+
+('P20 Lite', 'Huawei', 34000, 4),
+
+('Galaxy S8', 'Samsung', 46000, 2);</code></pre>
+
+<p><span>Давайте теперь изучим операторы update и delete.</span></p>
+
+<p><span>Команда UPDATE применяется для обновления уже имеющихся строк. Она имеет следующий синтаксис:</span></p>
+
+<pre>
+<code>UPDATE имя_таблицы
+
+SET столбец1 = значение1, столбец2 = значение2, ... столбецN = значениеN
+
+[WHERE условие_обновления]</code></pre>
+
+<p><span>Например, увеличим у всех товаров цену на 3000:</span></p>
+
+<pre>
+<code>UPDATE Products
+
+SET Price = Price + 3000;</code></pre>
+
+<p><span>Однако при выполнении данного запроса в MySQL Workbench мы можем столкнуться с ошибкой:</span></p>
+
+<p><span><span><span class="media-note" role="note"><span aria-hidden="true">▧</span> Изображение: иллюстрация · lh6.googleusercontent.com</span></span></span></p>
+
+<p><span>Ошибка говорит о том, что мы находимся в безопасном режиме. И чтобы его отключить, в MySQL Workbench надо перейти в меню Edit -&gt; Preferences и в открывшемся окне перейти к пункту SQL Editor:</span></p>
+
+<p><span><span><span class="media-note" role="note"><span aria-hidden="true">▧</span> Изображение: иллюстрация · lh4.googleusercontent.com</span></span></span></p>
+
+<p><span>В открывшейся вкладке в самом низу надо снять флажок с поля &quot;Safe Updates (reject UPDATEs and DELETEs with no restrictions)&quot; и затем сохранить изменения, нажав на кнопку OK. После этого надо переподключиться к серверу.</span></p>
+
+<p><span>Используем выражение WHERE и изменим название производителя с &quot;Samsung&quot; на &quot;Samsung Inc.&quot;:</span></p>
+
+<pre>
+<code>UPDATE Products
+
+SET Manufacturer = 'Samsung Inc.'
+
+WHERE Manufacturer = 'Samsung';</code></pre>
+
+<p><span>Также можно обновлять сразу несколько столбцов:</span></p>
+
+<pre>
+<code>UPDATE Products
+
+SET Manufacturer = 'Samsung',
+
+ProductCount = ProductCount + 3
+
+WHERE Manufacturer = 'Samsung Inc.';</code></pre>
+
+<p><span>При обновлении вместо конкретных значений и выражений мы можем использовать ключевые слова DEFAULT и NULL для установки соответственно значения по умолчанию или NULL:</span></p>
+
+<pre>
+<code>UPDATE Products
+
+SET ProductCount= DEFAULT
+
+WHERE Manufacturer = 'Huawei';</code></pre>
+
+<p><span>Команда DELETE</span><span> удаляет данные из БД. Она имеет следующий синтаксис:</span></p>
+
+<pre>
+<code>DELETE FROM имя_таблицы
+
+[WHERE условие_удаления]</code></pre>
+
+<p><span>Например, удалим строки, у которых производитель - Huawei:</span></p>
+
+<pre>
+<code>DELETE FROM Products
+
+WHERE Manufacturer='Huawei';</code></pre>
+
+<p>&nbsp;</p>
+
+<p><span><span><span class="media-note" role="note"><span aria-hidden="true">▧</span> Изображение: иллюстрация · lh3.googleusercontent.com</span></span></span></p>
+
+<p><span>Или удалим все товары, производителем которых является Apple и которые имеют цену меньше 60000:</span></p>
+
+<pre>
+<code>DELETE FROM Products
+
+WHERE Manufacturer='Apple' AND Price &lt; 60000;</code></pre>
+
+<p><span>Если необходимо вовсе удалить все строки вне зависимости от условия, то условие можно не указывать:</span></p>
+
+<div>
+<pre>
+<code>DELETE FROM Products;</code></pre>
+
+<p><span>Полную статью можно прочитать по ссылкам &ldquo; </span><a href="https://metanit.com/sql/mysql/3.1.php" target="_blank" rel="noopener noreferrer"><span>Добавление данных. Команда INSERT</span></a><span>&ldquo;, </span><a href="https://metanit.com/sql/mysql/3.4.php" target="_blank" rel="noopener noreferrer"><span>&ldquo;Обновление данных. Команда UPDATE&rdquo;</span></a><span>, &ldquo; </span><a href="https://metanit.com/sql/mysql/3.5.php" target="_blank" rel="noopener noreferrer"><span>Удаление данных. Команда DELETE</span></a><span>&ldquo;.</span></p>
+</div></div>
+          <nav class="pager" aria-label="Навигация между шагами"><a class="prev" href="step-145.html"><small>Назад</small><span>← SQL. Практическое задание №3. Проверяемое задание «JOIN»</span></a><a class="next" href="step-147.html"><small>Дальше</small><span>SQL. Практическое задание №4. Проверяемое задание «INSERT, UPDATE, DELETE» →</span></a></nav>
+        </article></div></main>
+  <footer><span>Локальная учебная копия · без отслеживания и отправки ответов</span><a href="../../about.html">О сайте</a></footer>
+</body>
+</html>

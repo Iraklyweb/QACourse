@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Лекция &quot;WSDL: что это такое?&quot; WSDL (Web Services Description Language) — это язык описания веб-сервисов, который используется вместе с SOAP. Если SOAP — эт">
+  <meta name="color-scheme" content="dark light">
+  <title>Лекция «WSDL: что это такое?» · QA Конспект</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body data-base="../../">
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="topbar">
+    <a class="brand" href="../../index.html" aria-label="QA Конспект, главная"><span class="brand-mark">QA</span><span>Конспект</span></a>
+    <nav aria-label="Основная навигация">
+      <a href="../../courses/manual-testing/">Ручное тестирование</a>
+      <a href="../../courses/mqa-base/">MQA Base</a>
+      <a href="../../courses/manual-testing/">Курс</a>
+    </nav>
+    <form class="search-mini" action="../../search.html" role="search">
+      <label class="sr-only" for="site-search-2">Поиск по курсам</label>
+      <input id="site-search-2" name="q" type="search" placeholder="Найти тему…" autocomplete="off">
+      <button type="submit" aria-label="Искать">⌕</button>
+    </form>
+  </header>
+  <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="index.html">← Структура курса</a><div class="rail-index"><span>072</span><small>из 168</small></div><p>SOAP</p><div class="rail-progress" aria-label="Шаг 2 из 3 в теме"><i style="width:67%"></i></div><small>2 / 3 в теме</small></aside>
+        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><a href="index.html">Ручное тестирование</a><span>/</span><span>Сети</span><span>/</span><span>SOAP</span></nav>
+          <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «WSDL: что это такое?»</h1><p>Сети · SOAP</p></header>
+          <aside class="media-card"><span aria-hidden="true">▶</span><div><strong>К шагу прикреплено видео</strong><p>Видео не включено в локальную копию; сохранена только отметка о его наличии.</p></div></aside><div class="lesson-content"><h1><span>Лекция &laquo;WSDL: что это такое?&raquo;</span></h1>
+
+<p>&nbsp;</p>
+
+<p><span><strong>WSDL (Web Services Description Language)</strong> &mdash; это язык описания веб-сервисов, который используется вместе с SOAP. Если SOAP &mdash; это &quot;способ общения&quot;, то WSDL &mdash; это его &quot;инструкция&quot;. Он описывает, какие <strong>операции</strong> доступны в веб-сервисе, какие данные нужно передать для выполнения этих <strong>операций</strong>, и что вернётся в ответ. </span>Файл WSDL обычно создаёт разработчик. Тестировщик использует его, чтобы понимать, какие запросы можно отправлять и что ожидается в ответе.</p>
+
+<p>&nbsp;</p>
+
+<h3><span><strong>Как это понять?</strong></span></h3>
+
+<p><span>Представьте, что вы заказали доставку еды из ресторана, а вместе с заказом вам дали меню. Это меню описывает:</span></p>
+
+<ul>
+	<li>
+	<p><span>Какие блюда вы можете заказать.</span></p>
+	</li>
+	<li>
+	<p><span>Какие ингредиенты нужны (например, пицца = тесто + сыр + томатный соус).</span></p>
+	</li>
+	<li>
+	<p><span>Как блюдо выглядит (описание результата).</span></p>
+	</li>
+</ul>
+
+<p><span><strong>WSDL делает то же самое для SOAP:</strong></span></p>
+
+<ul>
+	<li>
+	<p><span>Он описывает, какие функции доступны в сервисе.</span></p>
+	</li>
+	<li>
+	<p><span>Показывает, какие данные нужно передать в запросе.</span></p>
+	</li>
+	<li>
+	<p><span>Определяет, что вы получите в ответ.</span></p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><span><strong>Что содержит WSDL?</strong></span></h3>
+
+<p><span>WSDL-файл пишется на XML и состоит из следующих частей:</span></p>
+
+<ol>
+	<li>
+	<p><span><strong>Типы данных (Types): </strong>Определяет, какие типы данных используются в запросах и ответах (например, строки, числа или сложные объекты).</span></p>
+	</li>
+	<li>
+	<p><span><strong>Сообщения (Messages): </strong>Описывает, какие данные нужно отправить в запросе и какие придут в ответ.</span></p>
+	</li>
+	<li>
+	<p><span><strong>Операции (Operations): </strong>Перечисляет, какие действия доступны в веб-сервисе (например, получить список пользователей, добавить заказ и т.д.).</span></p>
+	</li>
+	<li>
+	<p><span><strong>Привязка (Binding): </strong>Описывает, как запросы и ответы передаются через протокол (обычно SOAP поверх HTTP).</span></p>
+	</li>
+	<li>
+	<p><span><strong>Сервис (Service): </strong>Указывает, где находится веб-сервис (его URL), чтобы клиенты знали, куда отправлять запросы.</span></p>
+	</li>
+</ol>
+
+<p>&nbsp;</p>
+
+<h3><span><strong>Пример WSDL на пальцах</strong></span></h3>
+
+<p><span>Представим веб-сервис, который позволяет проверить баланс на банковском счёте. Его WSDL-файл может описывать:</span></p>
+
+<ol>
+	<li>
+	<p><span><strong>Тип данных: </strong>Номер счёта &mdash; строка, баланс &mdash; число.</span></p>
+	</li>
+	<li>
+	<p><span><strong>Сообщения:</strong></span></p>
+
+	<ul>
+		<li>
+		<p><span>В запросе нужно передать номер счёта.</span></p>
+		</li>
+		<li>
+		<p><span>В ответе вернётся баланс.</span></p>
+		</li>
+	</ul>
+	</li>
+	<li>
+	<p><span><strong>Операция: </strong>&quot;Получить баланс&quot; &mdash; это доступная функция веб-сервиса.</span></p>
+	</li>
+	<li>
+	<p><span><strong>Привязка: </strong>Все запросы отправляются через SOAP поверх HTTP.</span></p>
+	</li>
+	<li>
+	<p><span><strong>Сервис: </strong>URL для отправки запросов: </span><a href="https://example.com/banking" target="_blank" rel="noopener noreferrer"><span>https://example.com/banking</span></a><span>.</span></p>
+	</li>
+</ol>
+
+<p>&nbsp;</p>
+
+<h3><span><strong>Зачем нужен WSDL?</strong></span></h3>
+
+<ol>
+	<li>
+	<p><strong>Упрощение</strong>: WSDL позволяет автоматически генерировать код и запросы для работы с веб-сервисом.<span> Многие инструменты, такие как SoapUI, Postman или библиотеки в языках программирования, могут &quot;прочитать&quot; WSDL и сгенерировать функции для отправки запросов.</span></p>
+	</li>
+	<li>
+	<p><span><strong>Стандартизация: </strong>Это стандарт, который делает работу с веб-сервисами предсказуемой и понятной для разработчиков.</span></p>
+	</li>
+	<li>
+	<p><span><strong>Документация: </strong>WSDL &mdash; это фактически документ, который описывает, как взаимодействовать с веб-сервисом. Это удобно, когда вы работаете с чужим или сложным API.</span></p>
+	</li>
+</ol>
+
+<p>&nbsp;</p>
+
+<h3><span><strong>Что важно знать для работы и собеседования?</strong></span></h3>
+
+<ol>
+	<li>
+	<p><span><strong>WSDL связан с SOAP. </strong>Это файл, который описывает, как использовать SOAP-веб-сервис.</span></p>
+	</li>
+	<li>
+	<p><span><strong>Основные разделы:</strong></span></p>
+
+	<ul>
+		<li>
+		<p><span>Типы данных.</span></p>
+		</li>
+		<li>
+		<p><span>Сообщения (что передаётся и что возвращается).</span></p>
+		</li>
+		<li>
+		<p><span>Операции (какие функции доступны).</span></p>
+		</li>
+	</ul>
+	</li>
+	<li>
+	<p><span><strong>Как использовать:</strong></span></p>
+
+	<ul>
+		<li>
+		<p><span>WSDL позволяет автоматически генерировать запросы в инструментах вроде SoapUI или Postman.</span></p>
+		</li>
+		<li>
+		<p><span>Если у вас есть WSDL-файл, вы всегда знаете, что и как отправлять на сервер.</span></p>
+		</li>
+	</ul>
+	</li>
+</ol>
+
+<p>&nbsp;</p>
+
+<h3><span><strong>Итог</strong></span></h3>
+
+<p><strong>WSDL </strong>&mdash; это &quot;инструкция&quot; по использованию SOAP-сервиса. Он описывает, какие запросы можно отправлять, какие данные требуются и что вернётся в ответ. Для тестировщика WSDL &mdash; это не просто файл, а источник всей информации: какие есть методы, какие параметры обязательны, как выглядят ответы. С его помощью можно быстрее начать тестировать и быть уверенным, что вы отправляете всё правильно. Если REST можно понять &laquo;на глаз&raquo;, то с SOAP без WSDL &mdash; никуда.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><strong>Что нужно уметь рассказать</strong><br>
+&ndash; Термин &laquo;WSDL&raquo;<br>
+&ndash; WSDL связан с SOAP и описывает, как пользоваться сервисом</p>
+
+<p><strong>Всё остальное &mdash; для общего развития</strong></p></div>
+          <nav class="pager" aria-label="Навигация между шагами"><a class="prev" href="step-071.html"><small>Назад</small><span>← Лекция «SOAP: что это и зачем нужно?»</span></a><a class="next" href="step-073.html"><small>Дальше</small><span>Лекция «XML и WSDL: основа SOAP» →</span></a></nav>
+        </article></div></main>
+  <footer><span>Локальная учебная копия · без отслеживания и отправки ответов</span><a href="../../about.html">О сайте</a></footer>
+</body>
+</html>

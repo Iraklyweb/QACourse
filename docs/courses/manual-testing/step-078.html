@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Лекция &quot;Формат JSON&quot; JSON организует данные с помощью объектов и массивов , которые могут содержать различные типы данных. Разберём всё подробно и структур">
+  <meta name="color-scheme" content="dark light">
+  <title>Лекция «Формат JSON» · QA Конспект</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body data-base="../../">
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="topbar">
+    <a class="brand" href="../../index.html" aria-label="QA Конспект, главная"><span class="brand-mark">QA</span><span>Конспект</span></a>
+    <nav aria-label="Основная навигация">
+      <a href="../../courses/manual-testing/">Ручное тестирование</a>
+      <a href="../../courses/mqa-base/">MQA Base</a>
+      <a href="../../courses/manual-testing/">Курс</a>
+    </nav>
+    <form class="search-mini" action="../../search.html" role="search">
+      <label class="sr-only" for="site-search-2">Поиск по курсам</label>
+      <input id="site-search-2" name="q" type="search" placeholder="Найти тему…" autocomplete="off">
+      <button type="submit" aria-label="Искать">⌕</button>
+    </form>
+  </header>
+  <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="index.html">← Структура курса</a><div class="rail-index"><span>078</span><small>из 168</small></div><p>REST</p><div class="rail-progress" aria-label="Шаг 5 из 14 в теме"><i style="width:36%"></i></div><small>5 / 14 в теме</small></aside>
+        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><a href="index.html">Ручное тестирование</a><span>/</span><span>Сети</span><span>/</span><span>REST</span></nav>
+          <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «Формат JSON»</h1><p>Сети · REST</p></header>
+          <aside class="media-card"><span aria-hidden="true">▶</span><div><strong>К шагу прикреплено видео</strong><p>Видео не включено в локальную копию; сохранена только отметка о его наличии.</p></div></aside><div class="lesson-content"><h1>Лекция &laquo;Формат JSON&raquo;</h1>
+
+<p>&nbsp;</p>
+
+<p>JSON организует данные с помощью <strong>объектов</strong> и <strong>массивов</strong>, которые могут содержать различные типы данных. Разберём всё подробно и структурированно.</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>1. Объекты</strong></h3>
+
+<p>Объект в JSON &mdash; это структура данных, заключённая в фигурные скобки { }.</p>
+
+<ul>
+	<li>
+	<p>Объект состоит из пар <strong>&quot;ключ: значение&quot;</strong>.</p>
+	</li>
+	<li>
+	<p><strong>Ключ</strong> &mdash; всегда строка, заключённая в двойные кавычки.</p>
+	</li>
+	<li>
+	<p><strong>Значение</strong> может быть любого типа: строки, числа, логического значения, массива, вложенного объекта или null.</p>
+	</li>
+</ul>
+
+<p>Объекты используются для описания сущностей с их характеристиками (например, пользователя, продукта, адреса).</p>
+
+<p><strong>Пример объекта:</strong></p>
+
+<p><span>{</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;name&quot;: &quot;Иван&quot;,</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;age&quot;: 30,</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;isMarried&quot;: true,</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;birthDate&quot;: &quot;1993-05-20&quot;,</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;address&quot;: {</span></p>
+
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;&quot;city&quot;: &quot;Москва&quot;,</span></p>
+
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;&quot;zip&quot;: 123456</span></p>
+
+<p><span>&nbsp;&nbsp;}</span></p>
+
+<p><span>}</span></p>
+
+<p><strong>Разберём:</strong></p>
+
+<ul>
+	<li>
+	<p>&quot;name&quot;: &quot;Иван&quot; &mdash; ключ name связан со строкой &quot;Иван&quot;.</p>
+	</li>
+	<li>
+	<p>&quot;age&quot;: 30 &mdash; ключ age связан с числом 30.</p>
+	</li>
+	<li>
+	<p>&quot;isMarried&quot;: true &mdash; ключ isMarried связан с логическим значением true.</p>
+	</li>
+	<li>
+	<p>&quot;birthDate&quot;: &quot;1993-05-20&quot; &mdash; ключ birthDate содержит строку, представляющую дату в формате ISO 8601 (гггг-мм-дд).</p>
+	</li>
+	<li>
+	<p>&quot;address&quot; &mdash; вложенный объект, описывающий адрес с полями city и zip.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h4><strong>Вложенные объекты:</strong></h4>
+
+<p>Объект может содержать другие объекты. Это позволяет описывать сложные структуры.</p>
+
+<h4><strong>Пример вложенного объекта:</strong></h4>
+
+<p><span>{</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;company&quot;: {</span></p>
+
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;&quot;name&quot;: &quot;TechCorp&quot;,</span></p>
+
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;&quot;location&quot;: {</span></p>
+
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;city&quot;: &quot;Москва&quot;,</span></p>
+
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;street&quot;: &quot;Ленина, 10&quot;</span></p>
+
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;}</span></p>
+
+<p><span>&nbsp;&nbsp;}</span></p>
+
+<p><span>}</span></p>
+
+<ul>
+	<li>
+	<p>В объекте &quot;company&quot; есть вложенный объект &quot;location&quot;, описывающий местоположение.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><strong>2. Массивы</strong></h3>
+
+<p>Массив &mdash; это упорядоченный список значений, заключённый в квадратные скобки [ ].</p>
+
+<ul>
+	<li>
+	<p>Каждый элемент массива имеет индекс, начиная с <strong>0</strong> (нулевая нумерация).</p>
+	</li>
+	<li>
+	<p>Элементы массива могут быть разных типов: строки, числа, объекты, массивы или даже null.</p>
+	</li>
+	<li>
+	<p>Вложенные массивы и объекты позволяют описывать данные любой сложности.</p>
+	</li>
+</ul>
+
+<p>Массивы используются для представления списков однотипных данных (например, список пользователей, навыков или городов).</p>
+
+<p><strong>Простой массив:</strong></p>
+
+<p>[&quot;Москва&quot;, &quot;Санкт-Петербург&quot;, &quot;Казань&quot;]</p>
+
+<ul>
+	<li>
+	<p>Индекс 0: &quot;Москва&quot;.</p>
+	</li>
+	<li>
+	<p>Индекс 1: &quot;Санкт-Петербург&quot;.</p>
+	</li>
+	<li>
+	<p>Индекс 2: &quot;Казань&quot;.</p>
+	</li>
+</ul>
+
+<p><strong>Массив объектов:</strong></p>
+
+<p>Массив может содержать объекты. Это удобно для описания списков сложных данных.</p>
+
+<p>[</p>
+
+<p>&nbsp;&nbsp;{ &quot;city&quot;: &quot;Москва&quot;, &quot;population&quot;: 12506468 },</p>
+
+<p>&nbsp;&nbsp;{ &quot;city&quot;: &quot;Санкт-Петербург&quot;, &quot;population&quot;: 5351935 }</p>
+
+<p>]</p>
+
+<ul>
+	<li>
+	<p>Первый элемент массива: объект с данными о Москве.</p>
+	</li>
+	<li>
+	<p>Второй элемент массива: объект с данными о Санкт-Петербурге.</p>
+	</li>
+</ul>
+
+<p><strong>Вложенные массивы:</strong></p>
+
+<p>Массив может содержать другие массивы, что позволяет описывать многоуровневые списки.</p>
+
+<p>[</p>
+
+<p>&nbsp;&nbsp;[&quot;Python&quot;, &quot;Java&quot;, &quot;SQL&quot;],</p>
+
+<p>&nbsp;&nbsp;[&quot;C++&quot;, &quot;Go&quot;, &quot;Rust&quot;]</p>
+
+<p>]</p>
+
+<ul>
+	<li>
+	<p>Первый элемент: массив языков программирования первой группы.</p>
+	</li>
+	<li>
+	<p>Второй элемент: массив языков второй группы.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><strong>Типы данных в JSON</strong></h3>
+
+<p>JSON поддерживает шесть типов данных:</p>
+
+<ol>
+	<li>
+	<p><strong>Строка (String):</strong></p>
+
+	<ul>
+		<li>
+		<p>Текстовые данные, заключённые в двойные кавычки.</p>
+		</li>
+		<li>
+		<p>Может содержать буквы, цифры и специальные символы.</p>
+		</li>
+	</ul>
+	</li>
+</ol>
+
+<p><strong>Пример:</strong> &quot;name&quot;: &quot;Анна&quot;</p>
+
+<ol>
+	<li>
+	<p><strong>Число (Number):</strong></p>
+
+	<ul>
+		<li>
+		<p>Может быть целым (25) или дробным (3.14).</p>
+		</li>
+		<li>
+		<p>Также используется для представления дат в виде числа (например, UNIX timestamp).</p>
+		</li>
+	</ul>
+	</li>
+</ol>
+
+<p><strong>Пример:</strong> &quot;price&quot;: 499.99</p>
+
+<ol>
+	<li>
+	<p><strong>Логическое значение (Boolean):</strong></p>
+
+	<ul>
+		<li>
+		<p>Логическое выражение: true (истина) или false (ложь).</p>
+		</li>
+	</ul>
+	</li>
+</ol>
+
+<p><strong>Пример:</strong> &quot;isAvailable&quot;: true</p>
+
+<ol>
+	<li>
+	<p><strong>Объект (Object):</strong></p>
+
+	<ul>
+		<li>
+		<p>Набор пар &quot;ключ: значение&quot;.</p>
+		</li>
+	</ul>
+	</li>
+</ol>
+
+<p><strong>Пример:</strong><span> &quot;address&quot;: {</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;city&quot;: &quot;Москва&quot;,</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;zip&quot;: 123456</span></p>
+
+<p><span>}</span></p>
+
+<ol>
+	<li>
+	<p><strong>Массив (Array):</strong></p>
+
+	<ul>
+		<li>
+		<p>Упорядоченный список значений.</p>
+		</li>
+	</ul>
+	</li>
+</ol>
+
+<p><strong>Пример:</strong> &quot;skills&quot;: [&quot;Python&quot;, &quot;Java&quot;, &quot;SQL&quot;]</p>
+
+<ol>
+	<li>
+	<p><strong>Null:</strong></p>
+
+	<ul>
+		<li>
+		<p>Специальное значение, обозначающее отсутствие данных.</p>
+		</li>
+		<li>
+		<p>null и &quot;null&quot; &mdash; разное, первое как null (ничего), второе как &quot;строка&quot;</p>
+		</li>
+	</ul>
+	</li>
+</ol>
+
+<p><strong>Пример:</strong> &quot;spouse&quot;: null</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Пример JSON с комбинированными структурами:</strong></h3>
+
+<p><span>{</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;id&quot;: 101,</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;name&quot;: &quot;Иван&quot;,</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;age&quot;: 30,</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;skills&quot;: [&quot;Java&quot;, &quot;Python&quot;, &quot;SQL&quot;],</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;projects&quot;: [</span></p>
+
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;{ &quot;name&quot;: &quot;CRM&quot;, &quot;duration&quot;: 12 },</span></p>
+
+<p><span>&nbsp;&nbsp;&nbsp;&nbsp;{ &quot;name&quot;: &quot;E-commerce&quot;, &quot;duration&quot;: 8 }</span></p>
+
+<p><span>&nbsp;&nbsp;],</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;isEmployed&quot;: true,</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;spouse&quot;: null</span></p>
+
+<p><span>}</span></p>
+
+<ul>
+	<li>
+	<p>Поле &quot;skills&quot; содержит массив строк.</p>
+	</li>
+	<li>
+	<p>Поле &quot;projects&quot; содержит массив объектов, описывающих проекты.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><strong>Форматы дат, с которыми вы встретитесь на работе</strong></h3>
+
+<p>При тестировании API вы часто будете работать с датами и временем. В разных системах могут использоваться разные форматы:</p>
+
+<h4><strong>Date (Дата, без времени)</strong></h4>
+
+<p>Представляет только дату без указания времени. Пример:</p>
+
+<p>&quot;date&quot;: &quot;2024-02-06&quot;</p>
+
+<p>Используется для обозначения дней, например, даты регистрации или срока действия подписки.</p>
+
+<p>&nbsp;</p>
+
+<ol>
+	<li>
+	<p><strong>DateTime (Дата и время)</strong></p>
+	</li>
+</ol>
+
+<p>Содержит дату и точное время, обычно в формате ISO 8601. Пример:</p>
+
+<p>&quot;datetime&quot;: &quot;2024-02-06T15:30:00Z&quot;</p>
+
+<p>Здесь T разделяет дату и время, а Z означает, что время указано в UTC.</p>
+
+<ol>
+	<li>
+	<p><strong>Timestamp (Метка времени)</strong></p>
+	</li>
+</ol>
+
+<p>Числовое представление времени в секундах или миллисекундах с 1 января 1970 года (Unix-время). Пример:</p>
+
+<p>&quot;timestamp&quot;: 1707223800</p>
+
+<p>Используется в журналах учета событий (логах) и системах, где важно точное время события.</p>
+
+<p>Эти форматы важно уметь различать, так как API могут требовать разные представления даты и времени в запросах и ответах.</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Итог</strong></h3>
+
+<p>JSON поддерживает простые типы данных (строки, числа, логические значения, null) и сложные структуры (объекты, массивы). Благодаря вложенности объектов и массивов JSON способен описывать данные практически любой сложности. Нумерация в массивах начинается с нуля, что важно учитывать при обработке данных. JSON &mdash; это универсальный и мощный формат для работы с данными, особенно в контексте API.</p></div>
+          <nav class="pager" aria-label="Навигация между шагами"><a class="prev" href="step-077.html"><small>Назад</small><span>← Лекция «JSON: основной формат передачи данных»</span></a><a class="next" href="step-079.html"><small>Дальше</small><span>Лекция «Вложенность и уровни в JSON»  →</span></a></nav>
+        </article></div></main>
+  <footer><span>Локальная учебная копия · без отслеживания и отправки ответов</span><a href="../../about.html">О сайте</a></footer>
+</body>
+</html>

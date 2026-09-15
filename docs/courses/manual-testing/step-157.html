@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Практическое задание №5 Создать JSON согласно данным требованиям. Значения любые согласно требованиям. Созданный JSON прислать в Google Таблицах. Как сдава">
+  <meta name="color-scheme" content="dark light">
+  <title>JSON. Практическое задание №5 · QA Конспект</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body data-base="../../">
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="topbar">
+    <a class="brand" href="../../index.html" aria-label="QA Конспект, главная"><span class="brand-mark">QA</span><span>Конспект</span></a>
+    <nav aria-label="Основная навигация">
+      <a href="../../courses/manual-testing/">Ручное тестирование</a>
+      <a href="../../courses/mqa-base/">MQA Base</a>
+      <a href="../../courses/manual-testing/">Курс</a>
+    </nav>
+    <form class="search-mini" action="../../search.html" role="search">
+      <label class="sr-only" for="site-search-2">Поиск по курсам</label>
+      <input id="site-search-2" name="q" type="search" placeholder="Найти тему…" autocomplete="off">
+      <button type="submit" aria-label="Искать">⌕</button>
+    </form>
+  </header>
+  <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="index.html">← Структура курса</a><div class="rail-index"><span>157</span><small>из 168</small></div><p>Практика</p><div class="rail-progress" aria-label="Шаг 7 из 18 в теме"><i style="width:39%"></i></div><small>7 / 18 в теме</small></aside>
+        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><a href="index.html">Ручное тестирование</a><span>/</span><span>SQL</span><span>/</span><span>Практика</span></nav>
+          <header class="lesson-head"><span class="type-chip">Практическое задание</span><h1>JSON. Практическое задание №5</h1><p>SQL · Практика</p></header>
+          <aside class="notice"><strong>Справочный режим</strong><p>Задание сохранено для чтения. На этой странице нет полей ввода, проверки или отправки ответов в Kata Academy.</p></aside><div class="lesson-content"><h1>Практическое задание №5</h1>
+
+<p>&nbsp;</p>
+
+<p>Создать JSON согласно данным требованиям. Значения любые согласно требованиям. Созданный JSON прислать в Google Таблицах.</p>
+
+<p><strong>Как сдавать ДЗ:</strong><br>
+В Google Таблицу.<br>
+В первую строку &mdash; слово JSON.<br>
+В эту же колонку, во вторую строку, и в одну ячейку &mdash; весь JSON, целиком, в одну ячейку, который по заданию.<br>
+<b>Пример:&nbsp;</b><a href="https://disk.yandex.ru/i/nr_kxJOv-ENuGw" target="_blank" rel="noopener noreferrer">Фото</a></p>
+
+
+
+<table>
+	
+		
+	
+	<tbody>
+		<tr>
+			<td>JSON</td>
+		</tr>
+		<tr>
+			<td>
+			<p>{
+			
+			{&quot;dasdasdata&quot;:{<br>
+			&quot;asdasd&quot;: {<br>
+			&quot;sdasd&quot;: &quot;sdasd&quot;,<br>
+			&quot;asdasda&quot;: &quot;asdasda&quot;,<br>
+			&quot;asdasdasd&quot;: &quot;asdasdasd&quot;,<br>
+			&quot;asdasda&quot;: true<br>
+			}}</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>Для более продуктивного усвоения информации&nbsp;не используйте различные JSON Валидаторы, AI - помощники. Только теорию и примеры из интернета.</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Требования для создания JSON:</strong></h3>
+
+<ol>
+	<li>
+	<p><strong>Массив клиентов</strong> (clients) должен содержать несколько объектов с данными клиентов.</p>
+	</li>
+	<li>
+	<p>Каждый объект в массиве клиентов должен иметь следующие поля:</p>
+
+	<ul>
+		<li>
+		<p>id (число) &mdash; уникальный идентификатор клиента.</p>
+		</li>
+		<li>
+		<p>name (строка) &mdash; полное имя клиента (например, &quot;Иван Иванов&quot;).</p>
+		</li>
+		<li>
+		<p>email (строка) &mdash; адрес электронной почты клиента.</p>
+		</li>
+		<li>
+		<p>isActive (булевое) &mdash; статус активности клиента (true, если активен, false, если не активен).</p>
+		</li>
+		<li>
+		<p>registrationDate (строка) &mdash; дата регистрации клиента в формате &quot;YYYY-MM-DD&quot;.</p>
+		</li>
+		<li>
+		<p>address (объект) &mdash; объект с данными о адресе клиента:</p>
+
+		<ul>
+			<li>
+			<p>street (строка) &mdash; улица.</p>
+			</li>
+			<li>
+			<p>city (строка) &mdash; город.</p>
+			</li>
+			<li>
+			<p>postalCode (строка) &mdash; почтовый индекс.</p>
+			</li>
+		</ul>
+		</li>
+		<li>
+		<p>orders (массив объектов) &mdash; массив заказов, сделанных клиентом. Каждый объект заказа должен содержать:</p>
+
+		<ul>
+			<li>
+			<p>orderId (число) &mdash; уникальный идентификатор заказа.</p>
+			</li>
+			<li>
+			<p>orderDate (строка) &mdash; дата оформления заказа.</p>
+			</li>
+			<li>
+			<p>totalAmount (число) &mdash; общая сумма заказа.</p>
+			</li>
+			<li>
+			<p>isShipped (булевое) &mdash; статус отправки (true, если отправлен, false, если нет).</p>
+			</li>
+		</ul>
+		</li>
+	</ul>
+	</li>
+</ol>
+
+<p>&nbsp;</p>
+
+<h3><strong>Формат сдачи:</strong></h3>
+
+<p>Используйте предоставленный <strong> </strong>шаблон для сдачи ДЗ <a href="https://docs.google.com/spreadsheets/d/1GtYg6ViPWow23gIIo4dzHjmRtxvEDnPovClB4hdMzOI/edit?gid=946514350#gid=946514350" target="_blank" rel="noopener noreferrer"><u>Шаблон</u></a>.</p>
+
+<p>&nbsp;</p>
+
+<p>Необходимо скопировать файл себе:</p>
+
+<ol>
+	<li>
+	<p>Файл &gt; Создать копию</p>
+	</li>
+	<li>
+	<p>На листе &quot;Техническая инфа&quot; заполнить колонку &quot;Репортер&quot; любыми данными (опционально)</p>
+	</li>
+	<li>
+	<p>Для удобства колонка &quot;ID&quot; автоматически заполняется.</p>
+	</li>
+</ol>
+
+<p>Все последующие домашние задания, до особого распоряжения, выполняем в копии созданного шаблона</p>
+
+<p>&nbsp;</p>
+
+<p>Сдавать домашнее задание можно только в Google Таблицах. Задания, отправленные в других форматах (Excel, Word и т.д.), приниматься не будут. Убедитесь, что вы правильно организовали свою работу и предоставили доступ к документу. Это обязательное условие для сдачи урока.</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Инструкция, как в Google Таблицах дать доступ:</strong></h3>
+
+<ol>
+	<li>
+	<p>Нажать &quot;Настройки доступа&quot;. В правом верхнем углу</p>
+	</li>
+	<li>
+	<p>Назовите согласно шаблону: Название модуля, Номер задания, Фамилия Имя. Например, &quot;1.6 Практика. Задание 1. Иванов Иван&quot;</p>
+	</li>
+	<li>
+	<p>Нажать &quot;Сохранить&quot;</p>
+	</li>
+	<li>
+	<p>В разделе &quot;Общий доступ&quot; сменить &quot;Доступ ограничен&quot; на &quot;Все, у кого ссылка&quot;</p>
+	</li>
+	<li>
+	<p>&quot;Читатель&quot; заменить на &quot;Редактор&quot;</p>
+	</li>
+	<li>
+	<p>Нажать &quot;Готово&quot;</p>
+	</li>
+</ol></div>
+          <nav class="pager" aria-label="Навигация между шагами"><a class="prev" href="step-156.html"><small>Назад</small><span>← DevTools. Практическое задание №6</span></a><a class="next" href="step-158.html"><small>Дальше</small><span>БР. Практическое задание №4 →</span></a></nav>
+        </article></div></main>
+  <footer><span>Локальная учебная копия · без отслеживания и отправки ответов</span><a href="../../about.html">О сайте</a></footer>
+</body>
+</html>

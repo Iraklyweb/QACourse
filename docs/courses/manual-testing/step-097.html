@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Лекция &quot;Метод PUT: как работает и зачем нужен&quot; Метод PUT используется для полного обновления ресурса или его создания , если он ещё не существует. В отличи">
+  <meta name="color-scheme" content="dark light">
+  <title>Лекция «Метод PUT: как работает и зачем нужен» · QA Конспект</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body data-base="../../">
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="topbar">
+    <a class="brand" href="../../index.html" aria-label="QA Конспект, главная"><span class="brand-mark">QA</span><span>Конспект</span></a>
+    <nav aria-label="Основная навигация">
+      <a href="../../courses/manual-testing/">Ручное тестирование</a>
+      <a href="../../courses/mqa-base/">MQA Base</a>
+      <a href="../../courses/manual-testing/">Курс</a>
+    </nav>
+    <form class="search-mini" action="../../search.html" role="search">
+      <label class="sr-only" for="site-search-2">Поиск по курсам</label>
+      <input id="site-search-2" name="q" type="search" placeholder="Найти тему…" autocomplete="off">
+      <button type="submit" aria-label="Искать">⌕</button>
+    </form>
+  </header>
+  <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="index.html">← Структура курса</a><div class="rail-index"><span>097</span><small>из 168</small></div><p>HTTP-методы в API</p><div class="rail-progress" aria-label="Шаг 4 из 11 в теме"><i style="width:36%"></i></div><small>4 / 11 в теме</small></aside>
+        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><a href="index.html">Ручное тестирование</a><span>/</span><span>Сети</span><span>/</span><span>HTTP-методы в API</span></nav>
+          <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «Метод PUT: как работает и зачем нужен»</h1><p>Сети · HTTP-методы в API</p></header>
+          <aside class="media-card"><span aria-hidden="true">▶</span><div><strong>К шагу прикреплено видео</strong><p>Видео не включено в локальную копию; сохранена только отметка о его наличии.</p></div></aside><div class="lesson-content"><h1>Лекция &laquo;Метод PUT: как работает и зачем нужен&raquo;</h1>
+
+<p>&nbsp;</p>
+
+<p>Метод <strong>PUT</strong> используется для <strong>полного обновления ресурса</strong> или его <strong>создания</strong>, если он ещё не существует. В отличие от <strong>POST</strong>, который добавляет новые данные, <strong>PUT заменяет существующие</strong>.</p>
+
+<p>Если сравнивать с реальной жизнью, <strong>PUT</strong> &mdash; это как <strong>редактирование профиля</strong>: вы отправляете обновлённые данные, и сервер <strong>полностью заменяет</strong> старые значения новыми.</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Как работает PUT?</strong></h3>
+
+<p>Метод <strong>PUT</strong> применяется, когда клиенту необходимо <strong>обновить существующий ресурс</strong> или <strong>создать его</strong>, если он отсутствует. Данные передаются <strong>в теле запроса</strong>, а сам запрос отправляется по <strong>конкретному URL</strong>, который идентифицирует изменяемый ресурс.</p>
+
+<h4><strong>1. Клиент отправляет запрос:</strong></h4>
+
+<p>Клиент формирует <strong>PUT-запрос</strong> с <strong>полным набором данных</strong>, которые должны <strong>заменить текущий ресурс</strong>.</p>
+
+<p><strong>Пример запроса:</strong></p>
+
+<p><span>PUT /users/1 HTTP/1.1&nbsp;&nbsp;</span></p>
+
+<p><span>Host: </span><a href="http://api.example.com/" target="_blank" rel="noopener noreferrer"><span>api.example.com</span></a><span>&nbsp;&nbsp;</span></p>
+
+<p><span>Content-Type: application/json&nbsp;&nbsp;</span></p>
+
+<p><span>{</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;id&quot;: 1,</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;name&quot;: &quot;Alice&quot;,</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;email&quot;: &quot;</span><a><span>alice@example.com</span></a><span>&quot;,</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;role&quot;: &quot;admin&quot;</span></p>
+
+<p><span>}</span></p>
+
+<p>&rarr; <strong>Отправляются все поля</strong>, даже если изменяется только одно.</p>
+
+<h4><strong>2. Сервер обрабатывает запрос:</strong></h4>
+
+<ul>
+	<li>
+	<p><strong>Проверяет, существует ли ресурс с таким ID.</strong></p>
+	</li>
+	<li>
+	<p><strong>Если ресурс существует</strong> &rarr; обновляет данные (<strong>перезаписывает всю сущность</strong>).</p>
+	</li>
+	<li>
+	<p><strong>Если ресурс не существует</strong> &rarr; создаёт новый (если API это поддерживает).</p>
+	</li>
+</ul>
+
+<h4><strong>3. Сервер отправляет ответ:</strong></h4>
+
+<ul>
+	<li>
+	<p><strong>200 OK</strong>, если обновление прошло успешно.</p>
+	</li>
+	<li>
+	<p><strong>201 Created</strong>, если ресурс был <strong>создан</strong> (PUT иногда используется для этого).</p>
+	</li>
+	<li>
+	<p><strong>400 Bad Request</strong>, если <strong>не хватает данных</strong>.</p>
+	</li>
+	<li>
+	<p><strong>404 Not Found</strong>, если <strong>ресурс отсутствует и API не поддерживает его создание</strong>.</p>
+	</li>
+</ul>
+
+<p><strong>Пример ответа:</strong></p>
+
+<p><span>HTTP/1.1 200 OK&nbsp;&nbsp;</span></p>
+
+<p><span>Content-Type: application/json&nbsp;&nbsp;</span></p>
+
+<p><span>{</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;id&quot;: 1,</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;name&quot;: &quot;Alice&quot;,</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;email&quot;: &quot;</span><a><span>alice@example.com</span></a><span>&quot;,</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;role&quot;: &quot;admin&quot;</span></p>
+
+<p><span>}</span></p>
+
+<p>PUT-запрос <strong>всегда заменяет весь объект</strong>, даже если изменилось только одно поле. Если нужно частично обновить данные, используется <strong>PATCH</strong>.</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Что будет, если не указать все поля?</strong></h3>
+
+<p>Так как <strong>PUT заменяет весь ресурс</strong>, если отправить запрос без некоторых полей, сервер может <strong>удалить отсутствующие данные</strong> или <strong>вернуть ошибку</strong>.</p>
+
+<h4><strong>1. Исходный ресурс в базе:</strong></h4>
+
+<p><span>{</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;id&quot;: 1,</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;name&quot;: &quot;Alice&quot;,</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;email&quot;: &quot;</span><a><span>alice@example.com</span></a><span>&quot;,</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;role&quot;: &quot;admin&quot;</span></p>
+
+<p><span>}</span></p>
+
+<h4><strong>2. Клиент отправляет PUT-запрос, забыв указать поле role:</strong></h4>
+
+<p><span>PUT /users/1 HTTP/1.1&nbsp;&nbsp;</span></p>
+
+<p><span>Host: </span><a href="http://api.example.com/" target="_blank" rel="noopener noreferrer"><span>api.example.com</span></a><span>&nbsp;&nbsp;</span></p>
+
+<p><span>Content-Type: application/json&nbsp;&nbsp;</span></p>
+
+<p><span>{</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;id&quot;: 1,</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;name&quot;: &quot;Alice&quot;,</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;email&quot;: &quot;</span><a><span>alice@example.com</span></a><span>&quot;</span></p>
+
+<p><span>}</span></p>
+
+<h4><strong>3. Что может сделать сервер?</strong></h4>
+
+<p><strong>Если сервер перезаписывает ресурс</strong>, поле role будет <strong>удалено</strong>. Новый ресурс в базе:</p>
+
+<p><span>{</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;id&quot;: 1,</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;name&quot;: &quot;Alice&quot;,</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;email&quot;: &quot;</span><a><span>alice@example.com</span></a><span>&quot;</span></p>
+
+<p><span>}</span></p>
+
+<p>Поле &quot;role&quot; <strong>исчезло</strong>.</p>
+
+<p><strong>Если сервер требует полный набор данных</strong>, он может вернуть <strong>400 Bad Request</strong> с сообщением об ошибке:</p>
+
+<p><span>HTTP/1.1 400 Bad Request&nbsp;&nbsp;</span></p>
+
+<p><span>Content-Type: application/json&nbsp;&nbsp;</span></p>
+
+<p><span>{</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;error&quot;: &quot;Missing required field: role&quot;</span></p>
+
+<p><span>}</span></p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Основные свойства метода PUT</strong></h3>
+
+<p>Метод <strong>PUT</strong> предназначен для <strong>полного обновления ресурса</strong>. Он имеет несколько ключевых особенностей, которые отличающих его от других методов.</p>
+
+<h4><strong>PUT является идемпотентным</strong></h4>
+
+<ul>
+	<li>
+	<p>Повторный запрос с одинаковыми данными <strong>не создаст новых ресурсов</strong>, а просто <strong>перезапишет существующие</strong>.</p>
+	</li>
+	<li>
+	<p>Если отправить один и тот же <strong>PUT-запрос несколько раз</strong>, состояние ресурса <strong>не изменится после первого успешного выполнения</strong>.</p>
+	</li>
+</ul>
+
+<h4><strong>Влияние на безопасность и состояние сервера</strong></h4>
+
+<ul>
+	<li>
+	<p><strong>PUT изменяет состояние сервера</strong>, так как заменяет существующий ресурс. Тем самым <strong>PUT небезопасен</strong> с точки зрения изменения данных на сервере.</p>
+	</li>
+	<li>
+	<p><strong>Безопасен с точки зрения передачи данных</strong>, так как они передаются <strong>в теле запроса</strong>, а тело в свою очередь <strong>шифруется</strong>.</p>
+	</li>
+	<li>
+	<p>В отличие от <strong>PATCH</strong>, который обновляет отдельные поля, <strong>PUT требует полного набора данных</strong>, что может <strong>привести к потере информации</strong>, если какие-то поля не переданы.</p>
+	</li>
+	<li>
+	<p><strong>Без HTTPS данные остаются незащищёнными</strong> и могут быть <strong>перехвачены</strong>.</p>
+	</li>
+	<li>
+	<p><strong>PUT скрывает данные от истории браузера и логов URL</strong>, но передаваемая информация остаётся уязвимой, если не используется <strong>шифрование на уровне соединения (TLS/HTTPS)</strong>.</p>
+	</li>
+	<li>
+	<p>Как и другие методы изменения данных, <strong>PUT требует авторизации</strong>, если ресурс защищён.</p>
+	</li>
+</ul>
+
+<h4><strong>Передача данных</strong></h4>
+
+<ul>
+	<li>
+	<p><strong>PUT передаёт весь объект целиком</strong>, даже если изменяется только одно поле.</p>
+	</li>
+	<li>
+	<p>Это делает запросы <strong>более ресурсоёмкими</strong>, особенно при работе с большими объектами.</p>
+	</li>
+</ul>
+
+<h4><strong>Ограничения длины URL отсутствуют</strong></h4>
+
+<ul>
+	<li>
+	<p>Данные передаются <strong>в теле запроса</strong>, а не через <strong>URL</strong>, поэтому <strong>PUT не ограничен по размеру данных</strong>.</p>
+	</li>
+	<li>
+	<p>Однако некоторые API могут накладывать свои <strong>лимиты на размер тела запроса</strong>.</p>
+	</li>
+</ul>
+
+<h4><strong>Форматы данных</strong></h4>
+
+<ul>
+	<li>
+	<p>Чаще всего используется <strong>JSON</strong>, так как REST API обычно работают с этим форматом.</p>
+	</li>
+	<li>
+	<p>Однако <strong>PUT может поддерживать XML, файлы или другие форматы</strong>, в зависимости от API.</p>
+	</li>
+</ul>
+
+<h4><strong>Кэширование</strong></h4>
+
+<ul>
+	<li>
+	<p><strong>PUT не кэшируется браузерами и прокси-серверами</strong>, так как он изменяет данные.</p>
+	</li>
+	<li>
+	<p>Однако сервер может использовать заголовки <strong>ETag</strong> и <strong>Last-Modified</strong>, чтобы проверять актуальность данных перед обновлением.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><strong>Дополнительные особенности метода PUT</strong></h3>
+
+<h4><strong>PUT заменяет весь объект</strong></h4>
+
+<ul>
+	<li>
+	<p>В теле запроса передаются <strong>все поля</strong>, даже если изменяется только одно.</p>
+	</li>
+	<li>
+	<p>В отличие от <strong>PATCH</strong>, который обновляет только переданные поля, <strong>PUT требует полный объект</strong>.</p>
+	</li>
+</ul>
+
+<h4><strong>PUT требует существования ресурса</strong></h4>
+
+<ul>
+	<li>
+	<p>Если объект существует, <strong>PUT заменяет его</strong>.</p>
+	</li>
+	<li>
+	<p>Если объекта не существует, <strong>PUT создает его. По логике с POST.</strong></p>
+	</li>
+	<li>
+	<p>Если объект <strong>не найден</strong>, сервер может вернуть <strong>404 Not Found</strong>, если API <strong>не поддерживает создание ресурса через PUT</strong>.</p>
+	</li>
+</ul>
+
+<h4><strong>PUT работает на уровне конкретного ресурса</strong></h4>
+
+<ul>
+	<li>
+	<p><strong>PUT-запрос всегда выполняется для конкретного объекта</strong> (/users/1).</p>
+	</li>
+	<li>
+	<p>В отличие от <strong>POST</strong>, который может работать с коллекциями (/users).</p>
+	</li>
+</ul>
+
+<h4><strong>PUT удобен, когда нужно обновить весь ресурс</strong></h4>
+
+<ul>
+	<li>
+	<p>Если нужно заменить <strong>все данные</strong>, <strong>PUT</strong> &mdash; подходящий метод.</p>
+	</li>
+	<li>
+	<p>Если же требуется изменить <strong>только часть информации</strong>, <strong>используется PATCH</strong>.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><strong>Итог</strong></h3>
+
+<p>Метод <strong>PUT</strong> используется для <strong>полного обновления ресурса</strong>. Если отправить <strong>PUT-запрос</strong>, сервер <strong>перезапишет всю сущность</strong>, даже если изменилось только одно поле.</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Как тестируют PUT?</strong></h3>
+
+<ul>
+	<li>
+	<p><strong>Если есть доступ к БД</strong>, проверяют, обновились ли <strong>все данные</strong>.</p>
+	</li>
+	<li>
+	<p><strong>Если доступа к БД нет</strong>, делают <strong>GET-запрос</strong>, чтобы убедиться, что изменения применились.</p>
+	</li>
+	<li>
+	<p><strong>Проверяют, возвращает ли сервер корректный статус-код</strong> (200 OK при обновлении, 201 Created, если ресурс создаётся, 400 Bad Request при ошибке).</p>
+	</li>
+	<li>
+	<p><strong>Тестируют обработку неполных данных</strong> (что делает сервер, если не передать все поля).</p>
+	</li>
+</ul>
+
+<p><strong>PUT чаще всего используется для замены существующих данных</strong>, но в некоторых API его применяют и для <strong>создания ресурса, если он отсутствует</strong>. Если нужно изменить <strong>только одно поле</strong>, вместо <strong>PUT</strong> лучше использовать <strong>PATCH</strong>.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><strong>Что нужно уметь рассказать</strong><br>
+&ndash; Термин &laquo;метод PUT&raquo;<br>
+&ndash; Как работает PUT<br>
+&ndash; Основные свойства метода PUT<br>
+&ndash; Дополнительные особенности метода PUT</p>
+
+<p><strong>Всё остальное &mdash; для общего развития</strong></p></div>
+          <nav class="pager" aria-label="Навигация между шагами"><a class="prev" href="step-096.html"><small>Назад</small><span>← Лекция «Метод POST: как работает и зачем нужен»</span></a><a class="next" href="step-098.html"><small>Дальше</small><span>Лекция «Метод PATCH: как работает и зачем нужен» →</span></a></nav>
+        </article></div></main>
+  <footer><span>Локальная учебная копия · без отслеживания и отправки ответов</span><a href="../../about.html">О сайте</a></footer>
+</body>
+</html>

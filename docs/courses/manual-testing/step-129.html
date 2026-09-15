@@ -1,0 +1,902 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Лекция &quot;Клиентские проблемы&quot; 1. Кнопка &quot;не кнопка&quot; Проблема: Элемент визуально выглядит как кнопка, но в коде это может быть &amp;lt;div&amp;gt; или &amp;lt;span&amp;gt; б">
+  <meta name="color-scheme" content="dark light">
+  <title>Лекция «Клиентские проблемы»  · QA Конспект</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body data-base="../../">
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="topbar">
+    <a class="brand" href="../../index.html" aria-label="QA Конспект, главная"><span class="brand-mark">QA</span><span>Конспект</span></a>
+    <nav aria-label="Основная навигация">
+      <a href="../../courses/manual-testing/">Ручное тестирование</a>
+      <a href="../../courses/mqa-base/">MQA Base</a>
+      <a href="../../courses/manual-testing/">Курс</a>
+    </nav>
+    <form class="search-mini" action="../../search.html" role="search">
+      <label class="sr-only" for="site-search-2">Поиск по курсам</label>
+      <input id="site-search-2" name="q" type="search" placeholder="Найти тему…" autocomplete="off">
+      <button type="submit" aria-label="Искать">⌕</button>
+    </form>
+  </header>
+  <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="index.html">← Структура курса</a><div class="rail-index"><span>129</span><small>из 168</small></div><p>Заметки &quot;как тестировать&quot;</p><div class="rail-progress" aria-label="Шаг 8 из 10 в теме"><i style="width:80%"></i></div><small>8 / 10 в теме</small></aside>
+        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><a href="index.html">Ручное тестирование</a><span>/</span><span>Тестирование на деле</span><span>/</span><span>Заметки &quot;как тестировать&quot;</span></nav>
+          <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «Клиентские проблемы» </h1><p>Тестирование на деле · Заметки &quot;как тестировать&quot;</p></header>
+          <aside class="media-card"><span aria-hidden="true">▶</span><div><strong>К шагу прикреплено видео</strong><p>Видео не включено в локальную копию; сохранена только отметка о его наличии.</p></div></aside><div class="lesson-content"><h1>Лекция &laquo;Клиентские проблемы&raquo;</h1>
+
+<p>&nbsp;</p>
+
+<h3><strong>1. Кнопка &quot;не кнопка&quot;</strong></h3>
+
+<p><strong>Проблема: </strong>Элемент визуально выглядит как кнопка, но в коде это может быть &lt;div&gt; или &lt;span&gt; без привязанного функционала (onclick или других событий).</p>
+
+<p><strong>Пример: </strong>HTML:</p>
+
+<p>&lt;div class=&quot;button&quot;&gt;Отправить&lt;/div&gt;</p>
+
+<p>Вместо этого должно быть:</p>
+
+<p>&lt;button onclick=&quot;submitForm()&quot;&gt;Отправить&lt;/button&gt;</p>
+
+<p><strong>Как проверить:</strong></p>
+
+<ol>
+	<li>
+	<p>Откройте DevTools &rarr; вкладка <strong>Elements</strong>, найдите элемент кнопки в DOM-дереве.</p>
+	</li>
+	<li>
+	<p>Убедитесь, что это настоящий элемент кнопки (&lt;button&gt; или &lt;input type=&quot;button&quot;&gt;).</p>
+	</li>
+	<li>
+	<p>Проверьте вкладку <strong>Event Listeners</strong>, чтобы убедиться, что к кнопке привязан обработчик события.</p>
+	</li>
+</ol>
+
+<p><strong>Последствия:</strong></p>
+
+<ul>
+	<li>
+	<p>Нажатие не вызывает действий.</p>
+	</li>
+	<li>
+	<p>Запрос к серверу не отправляется.</p>
+	</li>
+</ul>
+
+<p><strong>Возможные статус-коды:</strong></p>
+
+<ul>
+	<li>
+	<p>Нет, так как запрос не отправляется.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><strong>2. Кнопка задизейблена (неактивна/невозможно взаимодействовать)</strong></h3>
+
+<p><strong>Проблема: </strong>Кнопка отключена (задизейблена disabled), из-за чего пользователь не может её нажать.</p>
+
+<p><strong>Пример: </strong>HTML:</p>
+
+<p>&lt;button disabled&gt;Отправить&lt;/button&gt;</p>
+
+<p><strong>Как проверить:</strong></p>
+
+<ol>
+	<li>
+	<p>Откройте DevTools &rarr; вкладка <strong>Elements</strong>.</p>
+	</li>
+	<li>
+	<p>Проверьте, есть ли у кнопки атрибут disabled.</p>
+	</li>
+	<li>
+	<p>Удалите disabled и проверьте, срабатывает ли кнопка после этого.</p>
+	</li>
+</ol>
+
+<p><strong>Последствия:</strong></p>
+
+<ul>
+	<li>
+	<p>Запрос к серверу не отправляется.</p>
+	</li>
+</ul>
+
+<p><strong>Возможные статус-коды:</strong></p>
+
+<ul>
+	<li>
+	<p>Нет, так как запрос не отправляется.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><strong>3. Нарушен путь к кнопке в HTML</strong></h3>
+
+<p><strong>Проблема: </strong>Кнопка может быть неправильно встроена в структуру DOM, из-за чего обработчик события или привязка к логике не работают.</p>
+
+<p><strong>Пример:</strong></p>
+
+<ul>
+	<li>
+	<p>Изначально логика привязана к:</p>
+	</li>
+</ul>
+
+<p>&lt;button id=&quot;submit&quot;&gt;Отправить&lt;/button&gt;</p>
+
+<ul>
+	<li>
+	<p>После рефакторинга кнопка переместилась или изменила ID:</p>
+	</li>
+</ul>
+
+<p>&lt;button id=&quot;send&quot;&gt;Отправить&lt;/button&gt;</p>
+
+<p><strong>Как проверить:</strong></p>
+
+<ol>
+	<li>
+	<p>Проверьте DOM-структуру в DevTools &rarr; вкладка <strong>Elements</strong>.</p>
+	</li>
+	<li>
+	<p>Убедитесь, что кнопка находится в правильном месте относительно других элементов.</p>
+	</li>
+	<li>
+	<p>Проверьте, подключены ли связанные события или логика работы кнопки.</p>
+	</li>
+</ol>
+
+<p><strong>Последствия:</strong></p>
+
+<ul>
+	<li>
+	<p>Нажатие не вызывает действий.</p>
+	</li>
+	<li>
+	<p>Запрос к серверу не отправляется.</p>
+	</li>
+</ul>
+
+<p><strong>Возможные статус-коды:</strong></p>
+
+<ul>
+	<li>
+	<p>Нет, так как запрос не отправляется.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><strong>4. Неправильный URL или эндпоинт</strong></h3>
+
+<p><strong>Проблема: </strong>Кнопка отправляет запрос на неправильный URL.</p>
+
+<p><strong>Пример запроса: </strong>Клиент отправляет:</p>
+
+<p>POST /api/wrong-endpoint HTTP/1.1</p>
+
+<p>Host: <a href="http://example.com/" target="_blank" rel="noopener noreferrer">example.com</a></p>
+
+<p>Content-Type: application/json</p>
+
+<p>Ожидается:</p>
+
+<p>POST /api/correct-endpoint HTTP/1.1</p>
+
+<p>Host: <a href="http://example.com/" target="_blank" rel="noopener noreferrer">example.com</a></p>
+
+<p>Content-Type: application/json</p>
+
+<p><strong>Как проверить:</strong></p>
+
+<ol>
+	<li>
+	<p>Проверьте логи запросов в DevTools &rarr; вкладка <strong>Network</strong>.</p>
+	</li>
+	<li>
+	<p>Убедитесь, что URL соответствует документации API.</p>
+	</li>
+</ol>
+
+<p><strong>Последствия:</strong></p>
+
+<ul>
+	<li>
+	<p>Сервер возвращает ошибку 404 Not Found.</p>
+	</li>
+</ul>
+
+<p><strong>Возможные статус-коды:</strong></p>
+
+<ul>
+	<li>
+	<p>404 Not Found &mdash; ресурс не найден.</p>
+	</li>
+	<li>
+	<p>400 Bad Request, если URL содержит некорректные параметры.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><strong>5. Пустое тело запроса</strong></h3>
+
+<p><strong>Проблема: </strong>Кнопка отправляет запрос, но без данных в теле.</p>
+
+<p><strong>Пример запроса: </strong>Клиент отправляет:</p>
+
+<p>POST /api/submit HTTP/1.1</p>
+
+<p>Host: <a href="http://example.com/" target="_blank" rel="noopener noreferrer">example.com</a></p>
+
+<p>Content-Type: application/json</p>
+
+<p>{}</p>
+
+<p>Ожидается:</p>
+
+<p>POST /api/submit HTTP/1.1</p>
+
+<p>Host: <a href="http://example.com/" target="_blank" rel="noopener noreferrer">example.com</a></p>
+
+<p>Content-Type: application/json</p>
+
+<p>{</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&quot;name&quot;: &quot;John Doe&quot;,</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&quot;email&quot;: &quot;<a>john.doe@example.com</a>&quot;</p>
+
+<p>}</p>
+
+<p><strong>Как проверить:</strong></p>
+
+<ol>
+	<li>
+	<p>Откройте DevTools &rarr; вкладка <strong>Network</strong>, проверьте тело отправленного запроса.</p>
+	</li>
+	<li>
+	<p>Сравните с ожидаемой структурой запроса, указанной в документации.</p>
+	</li>
+</ol>
+
+<p><strong>Последствия:</strong></p>
+
+<ul>
+	<li>
+	<p>Сервер отклоняет запрос, возвращая ошибку.</p>
+	</li>
+</ul>
+
+<p><strong>Возможные статус-коды:</strong></p>
+
+<ul>
+	<li>
+	<p>400 Bad Request, если сервер ожидает данные.</p>
+	</li>
+	<li>
+	<p>500 Internal Server Error, если сервер не обрабатывает пустое тело корректно.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><strong>6. 401 Unauthorized</strong></h3>
+
+<p><strong>Проблема: </strong>Клиент отправляет запрос, но сервер требует аутентификации.</p>
+
+<p><strong>Пример запроса: </strong>Клиент отправляет:</p>
+
+<p>GET /api/secure-resource HTTP/1.1</p>
+
+<p>Host: <a href="http://example.com/" target="_blank" rel="noopener noreferrer">example.com</a></p>
+
+<p>Ожидается:</p>
+
+<p>GET /api/secure-resource HTTP/1.1</p>
+
+<p>Host: <a href="http://example.com/" target="_blank" rel="noopener noreferrer">example.com</a></p>
+
+<p>Authorization: Bearer valid_token</p>
+
+<p><strong>Как проверить:</strong></p>
+
+<ol>
+	<li>
+	<p>Проверьте наличие заголовка Authorization в запросе.</p>
+	</li>
+	<li>
+	<p>Убедитесь, что токен авторизации корректен и не истёк.</p>
+	</li>
+</ol>
+
+<p><strong>Последствия:</strong></p>
+
+<ul>
+	<li>
+	<p>Сервер отклоняет запрос, возвращая ошибку 401 Unauthorized.</p>
+	</li>
+</ul>
+
+<p><strong>Возможные статус-коды:</strong></p>
+
+<ul>
+	<li>
+	<p>401 Unauthorized.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><strong>7. 403 Forbidden</strong></h3>
+
+<p><strong>Проблема: </strong>Клиент аутентифицирован, но не имеет прав на выполнение операции.</p>
+
+<p><strong>Пример запроса: </strong>Клиент отправляет:</p>
+
+<p>POST /api/admin-action HTTP/1.1</p>
+
+<p>Host: <a href="http://example.com/" target="_blank" rel="noopener noreferrer">example.com</a></p>
+
+<p>Authorization: Bearer valid_user_token</p>
+
+<p>Ожидается:</p>
+
+<p>POST /api/admin-action HTTP/1.1</p>
+
+<p>Host: <a href="http://example.com/" target="_blank" rel="noopener noreferrer">example.com</a></p>
+
+<p>Authorization: Bearer admin_token</p>
+
+<p><strong>Как проверить:</strong></p>
+
+<ol>
+	<li>
+	<p>Убедитесь, что роль пользователя соответствует уровню доступа к ресурсу.</p>
+	</li>
+	<li>
+	<p>Проверьте права доступа для запрашиваемого эндпоинта.</p>
+	</li>
+</ol>
+
+<p><strong>Последствия:</strong></p>
+
+<ul>
+	<li>
+	<p>Сервер отклоняет запрос, возвращая ошибку 403 Forbidden.</p>
+	</li>
+</ul>
+
+<p><strong>Возможные статус-коды:</strong></p>
+
+<ul>
+	<li>
+	<p>403 Forbidden.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><strong>8. Некорректные данные в запросе</strong></h3>
+
+<p><strong>Проблема: </strong>Кнопка отправляет запрос с неверными параметрами или значениями (например, атрибуты не соответствуют требованиям).</p>
+
+<p><strong>Пример запроса: </strong>Клиент отправляет:</p>
+
+<p>POST /api/submit HTTP/1.1</p>
+
+<p>Host: <a href="http://example.com/" target="_blank" rel="noopener noreferrer">example.com</a></p>
+
+<p>Content-Type: application/json</p>
+
+<p>{</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&quot;name&quot;: &quot;John Doe&quot;,</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&quot;email&quot;: &quot;not-an-email&quot;</p>
+
+<p>}</p>
+
+<p>Ожидается:</p>
+
+<p>POST /api/submit HTTP/1.1</p>
+
+<p>Host: <a href="http://example.com/" target="_blank" rel="noopener noreferrer">example.com</a></p>
+
+<p>Content-Type: application/json</p>
+
+<p>{</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&quot;name&quot;: &quot;John Doe&quot;,</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&quot;email&quot;: &quot;<a>john.doe@example.com</a>&quot;</p>
+
+<p>}</p>
+
+<p><strong>Как проверить:</strong></p>
+
+<ol>
+	<li>
+	<p>Проверьте параметры запроса в DevTools &rarr; вкладка <strong>Network</strong>.</p>
+	</li>
+	<li>
+	<p>Сравните с требованиями API.</p>
+	</li>
+</ol>
+
+<p><strong>Последствия:</strong></p>
+
+<ul>
+	<li>
+	<p>Сервер возвращает ошибку валидации.</p>
+	</li>
+</ul>
+
+<p><strong>Возможные статус-коды:</strong></p>
+
+<ul>
+	<li>
+	<p>400 Bad Request.</p>
+	</li>
+	<li>
+	<p>422 Unprocessable Entity.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><strong>9. Чувствительность к регистру</strong></h3>
+
+<p><strong>Проблема: </strong>Значения параметров или атрибутов зависят от регистра. Например, сервер ожидает Active, но клиент отправляет active.</p>
+
+<p><strong>Пример запроса: </strong>Клиент отправляет:</p>
+
+<p>POST /api/user-status HTTP/1.1</p>
+
+<p>Host: <a href="http://example.com/" target="_blank" rel="noopener noreferrer">example.com</a></p>
+
+<p>Content-Type: application/json</p>
+
+<p>{</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&quot;status&quot;: &quot;active&quot;</p>
+
+<p>}</p>
+
+<p>Ожидается:</p>
+
+<p>POST /api/user-status HTTP/1.1</p>
+
+<p>Host: <a href="http://example.com/" target="_blank" rel="noopener noreferrer">example.com</a></p>
+
+<p>Content-Type: application/json</p>
+
+<p>{</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&quot;status&quot;: &quot;Active&quot;</p>
+
+<p>}</p>
+
+<p><strong>Как проверить:</strong></p>
+
+<ol>
+	<li>
+	<p>Убедитесь, что регистр параметров совпадает с требованиями API.</p>
+	</li>
+	<li>
+	<p>Попробуйте разные варианты регистра для значений атрибутов.</p>
+	</li>
+</ol>
+
+<p><strong>Возможные статус-коды:</strong></p>
+
+<ul>
+	<li>
+	<p>400 Bad Request.</p>
+	</li>
+	<li>
+	<p>422 Unprocessable Entity.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><strong>10. Проблемы с обработкой ответа на фронте</strong></h3>
+
+<p><strong>Проблема: </strong>Фронтенд не может обработать данные, возвращённые сервером. Например, сервер вернул данные в неожиданном формате.</p>
+
+<p><strong>Пример ответа: </strong>Сервер возвращает:</p>
+
+<p>{</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&quot;user&quot;: {</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;name&quot;: &quot;John Doe&quot;</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+
+<p>}</p>
+
+<p>Ожидается:</p>
+
+<p>{</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&quot;username&quot;: &quot;John Doe&quot;</p>
+
+<p>}</p>
+
+<p><strong>Как проверить:</strong></p>
+
+<ol>
+	<li>
+	<p>Проверьте формат возвращаемых данных через DevTools &rarr; вкладка <strong>Network</strong>.</p>
+	</li>
+	<li>
+	<p>Убедитесь, что фронтенд обрабатывает возвращённые данные корректно.</p>
+	</li>
+</ol>
+
+<p><strong>Последствия:</strong></p>
+
+<ul>
+	<li>
+	<p>Интерфейс приложения не отображает или неправильно отображает данные.</p>
+	</li>
+</ul>
+
+<p><strong>Возможные статус-коды:</strong></p>
+
+<ul>
+	<li>
+	<p>200 OK, но данные не отображаются.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><strong>11. Некорректное значение атрибута</strong></h3>
+
+<p><strong>Проблема: </strong>Клиент передаёт значение, которое не соответствует ожидаемому.</p>
+
+<p><strong>Пример запроса: </strong>Клиент отправляет:</p>
+
+<p>POST /api/product HTTP/1.1</p>
+
+<p>Host: <a href="http://example.com/" target="_blank" rel="noopener noreferrer">example.com</a></p>
+
+<p>Content-Type: application/json</p>
+
+<p>{</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&quot;price&quot;: &quot;ten dollars&quot;</p>
+
+<p>}</p>
+
+<p>Ожидается:</p>
+
+<p>POST /api/product HTTP/1.1</p>
+
+<p>Host: <a href="http://example.com/" target="_blank" rel="noopener noreferrer">example.com</a></p>
+
+<p>Content-Type: application/json</p>
+
+<p>{</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&quot;price&quot;: 10.00</p>
+
+<p>}</p>
+
+<p><strong>Как проверить:</strong></p>
+
+<ol>
+	<li>
+	<p>Сравните передаваемые значения с требованиями документации API.</p>
+	</li>
+	<li>
+	<p>Используйте DevTools &rarr; вкладка <strong>Network</strong>, чтобы проверить тело запроса.</p>
+	</li>
+</ol>
+
+<p><strong>Возможные статус-коды:</strong></p>
+
+<ul>
+	<li>
+	<p>400 Bad Request.</p>
+	</li>
+	<li>
+	<p>422 Unprocessable Entity.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><strong>12. Отсутствие значения у атрибута</strong></h3>
+
+<p><strong>Проблема: </strong>Значение атрибута отсутствует, хотя оно обязательно.</p>
+
+<p><strong>Пример запроса: </strong>Клиент отправляет:</p>
+
+<p>POST /api/product HTTP/1.1</p>
+
+<p>Host: <a href="http://example.com/" target="_blank" rel="noopener noreferrer">example.com</a></p>
+
+<p>Content-Type: application/json</p>
+
+<p>{</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&quot;name&quot;: &quot;Laptop&quot;,</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&quot;price&quot;: &quot;&quot;</p>
+
+<p>}</p>
+
+<p>Ожидается:</p>
+
+<p>POST /api/product HTTP/1.1</p>
+
+<p>Host: <a href="http://example.com/" target="_blank" rel="noopener noreferrer">example.com</a></p>
+
+<p>Content-Type: application/json</p>
+
+<p>{</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&quot;name&quot;: &quot;Laptop&quot;,</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&quot;price&quot;: 1000.00</p>
+
+<p>}</p>
+
+<p><strong>Как проверить:</strong></p>
+
+<ol>
+	<li>
+	<p>Убедитесь, что все обязательные поля заполнены.</p>
+	</li>
+	<li>
+	<p>Проверьте структуру запроса через DevTools &rarr; вкладка <strong>Network</strong>.</p>
+	</li>
+</ol>
+
+<p><strong>Возможные статус-коды:</strong></p>
+
+<ul>
+	<li>
+	<p>400 Bad Request.</p>
+	</li>
+	<li>
+	<p>422 Unprocessable Entity.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><strong>13. Тип значения не соответствует ожидаемому</strong></h3>
+
+<p><strong>Проблема: </strong>Тип данных атрибута неверен.</p>
+
+<p><strong>Пример запроса: </strong>Клиент отправляет:</p>
+
+<p>POST /api/user HTTP/1.1</p>
+
+<p>Host: <a href="http://example.com/" target="_blank" rel="noopener noreferrer">example.com</a></p>
+
+<p>Content-Type: application/json</p>
+
+<p>{</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&quot;age&quot;: &quot;twenty&quot;</p>
+
+<p>}</p>
+
+<p>Ожидается:</p>
+
+<p>POST /api/user HTTP/1.1</p>
+
+<p>Host: <a href="http://example.com/" target="_blank" rel="noopener noreferrer">example.com</a></p>
+
+<p>Content-Type: application/json</p>
+
+<p>{</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&quot;age&quot;: 20</p>
+
+<p>}</p>
+
+<p><strong>Как проверить:</strong></p>
+
+<ol>
+	<li>
+	<p>Убедитесь, что тип данных совпадает с требованиями API.</p>
+	</li>
+	<li>
+	<p>Отправьте запрос через Postman или DevTools.</p>
+	</li>
+</ol>
+
+<p><strong>Возможные статус-коды:</strong></p>
+
+<ul>
+	<li>
+	<p>400 Bad Request.</p>
+	</li>
+	<li>
+	<p>422 Unprocessable Entity.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><strong>14. Некорректный формат значения</strong></h3>
+
+<p><strong>Проблема: </strong>Значение соответствует типу, но его формат некорректен.</p>
+
+<p><strong>Пример запроса: </strong>Клиент отправляет:</p>
+
+<p>POST /api/user HTTP/1.1</p>
+
+<p>Host: <a href="http://example.com/" target="_blank" rel="noopener noreferrer">example.com</a></p>
+
+<p>Content-Type: application/json</p>
+
+<p>{</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&quot;birthdate&quot;: &quot;31-12-1990&quot;</p>
+
+<p>}</p>
+
+<p>Ожидается:</p>
+
+<p>POST /api/user HTTP/1.1</p>
+
+<p>Host: <a href="http://example.com/" target="_blank" rel="noopener noreferrer">example.com</a></p>
+
+<p>Content-Type: application/json</p>
+
+<p>{</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&quot;birthdate&quot;: &quot;1990-12-31&quot;</p>
+
+<p>}</p>
+
+<p><strong>Как проверить:</strong></p>
+
+<ol>
+	<li>
+	<p>Проверьте формат данных в документации API.</p>
+	</li>
+	<li>
+	<p>Убедитесь, что сервер принимает отправленный формат.</p>
+	</li>
+</ol>
+
+<p><strong>Возможные статус-коды:</strong></p>
+
+<ul>
+	<li>
+	<p>400 Bad Request.</p>
+	</li>
+	<li>
+	<p>422 Unprocessable Entity.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><strong>15. Атрибут имеет слишком длинное или короткое значение</strong></h3>
+
+<p><strong>Проблема: </strong>Длина значения атрибута выходит за допустимые границы.</p>
+
+<p><strong>Пример запроса: </strong>Клиент отправляет:</p>
+
+<p>POST /api/comment HTTP/1.1</p>
+
+<p>Host: <a href="http://example.com/" target="_blank" rel="noopener noreferrer">example.com</a></p>
+
+<p>Content-Type: application/json</p>
+
+<p>{</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&quot;text&quot;: &quot;&quot;</p>
+
+<p>}</p>
+
+<p>Ожидается:</p>
+
+<p>POST /api/comment HTTP/1.1</p>
+
+<p>Host: <a href="http://example.com/" target="_blank" rel="noopener noreferrer">example.com</a></p>
+
+<p>Content-Type: application/json</p>
+
+<p>{</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&quot;text&quot;: &quot;This is a valid comment.&quot;</p>
+
+<p>}</p>
+
+<p><strong>Как проверить:</strong></p>
+
+<ol>
+	<li>
+	<p>Проверьте минимальные и максимальные ограничения длины для атрибута.</p>
+	</li>
+	<li>
+	<p>Отправьте запрос с длиной значения в допустимых пределах.</p>
+	</li>
+</ol>
+
+<p><strong>Возможные статус-коды:</strong></p>
+
+<ul>
+	<li>
+	<p>400 Bad Request.</p>
+	</li>
+	<li>
+	<p>422 Unprocessable Entity.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><strong>16. Проблема в кодировке данных</strong></h3>
+
+<p><strong>Проблема: </strong>Данные отправляются в неправильной кодировке (например, вместо UTF-8 используется ISO-8859-1).</p>
+
+<p><strong>Пример запроса: </strong>Клиент отправляет:</p>
+
+<p>POST /api/submit HTTP/1.1</p>
+
+<p>Host: <a href="http://example.com/" target="_blank" rel="noopener noreferrer">example.com</a></p>
+
+<p>Content-Type: text/plain; charset=ISO-8859-1</p>
+
+<p>Ожидается:</p>
+
+<p>POST /api/submit HTTP/1.1</p>
+
+<p>Host: <a href="http://example.com/" target="_blank" rel="noopener noreferrer">example.com</a></p>
+
+<p>Content-Type: text/plain; charset=UTF-8</p>
+
+<p><strong>Как проверить:</strong></p>
+
+<ol>
+	<li>
+	<p>Проверьте заголовок Content-Type и кодировку данных.</p>
+	</li>
+	<li>
+	<p>Убедитесь, что сервер поддерживает используемую кодировку.</p>
+	</li>
+</ol>
+
+<p><strong>Возможные статус-коды:</strong></p>
+
+<ul>
+	<li>
+	<p>400 Bad Request.</p>
+	</li>
+	<li>
+	<p>500 Internal Server Error.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><strong>Что нужно уметь рассказать</strong><br>
+Нужно уметь как можно больше пунктов назвать и уметь их объяснить</p></div>
+          <nav class="pager" aria-label="Навигация между шагами"><a class="prev" href="step-128.html"><small>Назад</small><span>← Лекция «Когда ты нажимаешь кнопку, а ничего не происходит: как думать и что проверять»</span></a><a class="next" href="step-130.html"><small>Дальше</small><span>Лекция «Серверные проблемы: База данных и 500 ошибки»  →</span></a></nav>
+        </article></div></main>
+  <footer><span>Локальная учебная копия · без отслеживания и отправки ответов</span><a href="../../about.html">О сайте</a></footer>
+</body>
+</html>

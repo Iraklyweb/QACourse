@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Лекция &quot;HTTP и HTTPS: основы и зачем это знать&quot; Что такое HTTP? HTTP (HyperText Transfer Protocol) — это протокол, который определяет, как данные передаютс">
+  <meta name="color-scheme" content="dark light">
+  <title>Лекция «HTTP и HTTPS: основы и зачем это знать» · QA Конспект</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body data-base="../../">
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="topbar">
+    <a class="brand" href="../../index.html" aria-label="QA Конспект, главная"><span class="brand-mark">QA</span><span>Конспект</span></a>
+    <nav aria-label="Основная навигация">
+      <a href="../../courses/manual-testing/">Ручное тестирование</a>
+      <a href="../../courses/mqa-base/">MQA Base</a>
+      <a href="../../courses/manual-testing/">Курс</a>
+    </nav>
+    <form class="search-mini" action="../../search.html" role="search">
+      <label class="sr-only" for="site-search-2">Поиск по курсам</label>
+      <input id="site-search-2" name="q" type="search" placeholder="Найти тему…" autocomplete="off">
+      <button type="submit" aria-label="Искать">⌕</button>
+    </form>
+  </header>
+  <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="index.html">← Структура курса</a><div class="rail-index"><span>068</span><small>из 168</small></div><p>HTTP и HTTPS</p><div class="rail-progress" aria-label="Шаг 1 из 3 в теме"><i style="width:33%"></i></div><small>1 / 3 в теме</small></aside>
+        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><a href="index.html">Ручное тестирование</a><span>/</span><span>Сети</span><span>/</span><span>HTTP и HTTPS</span></nav>
+          <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «HTTP и HTTPS: основы и зачем это знать»</h1><p>Сети · HTTP и HTTPS</p></header>
+          <aside class="media-card"><span aria-hidden="true">▶</span><div><strong>К шагу прикреплено видео</strong><p>Видео не включено в локальную копию; сохранена только отметка о его наличии.</p></div></aside><div class="lesson-content"><h1><span>Лекция &laquo;HTTP и HTTPS: основы и зачем это знать&raquo;</span></h1>
+
+<p>&nbsp;</p>
+
+<h3><span><strong>Что такое HTTP?</strong></span></h3>
+
+<p><span>HTTP (HyperText Transfer Protocol) &mdash; это протокол, который определяет, как данные передаются между клиентом (например, браузером или приложением) и сервером. Это основной &quot;язык&quot; общения в интернете. Когда вы открываете веб-страницу или приложение загружает данные, клиент и сервер обмениваются информацией через HTTP.</span></p>
+
+<p>&nbsp;</p>
+
+<p><span><strong>Пример на пальцах</strong></span></p>
+
+<p><span>Представьте, что у вас есть смартфон (клиент), и вы заказываете пиццу через сайт.</span></p>
+
+<ol>
+	<li>
+	<p><span><strong>Вы открываете сайт пиццерии и нажимаете кнопку &quot;Посмотреть меню&quot;</strong></span></p>
+	</li>
+</ol>
+
+<ul>
+	<li>
+	<p><span>Ваш телефон <strong>отправляет запрос</strong> на сервер пиццерии.</span></p>
+	</li>
+	<li>
+	<p><span>Запрос должен быть составлен <strong>по правилам, </strong></span>в соответствии с тем, как это было предусмотрено в API<span>. Они решили, что если клиент хочет получить меню, он должен отправить именно такой запрос, а не любой произвольный текст.</span></p>
+	</li>
+	<li>
+	<p><span>Сервер <strong>принимает запрос</strong> и <strong>разбирает его по заданным разработчиками правилам</strong>. Он знает, что если клиент запрашивает меню, то нужно взять список блюд и сформировать ответ.</span></p>
+	</li>
+	<li>
+	<p><span>Ответ тоже <strong>составляется по установленным разработчиками правилам</strong>, чтобы клиент мог его корректно обработать. Сервер отправляет: <strong>&quot;Вот меню: Пепперони, Маргарита, Четыре сыра&quot;</strong>.</span></p>
+	</li>
+</ul>
+
+<ol>
+	<li>
+	<p><span><strong>Вы выбираете пиццу и нажимаете &quot;Заказать&quot;</strong></span></p>
+	</li>
+</ol>
+
+<ul>
+	<li>
+	<p><span>Телефон снова <strong>отправляет запрос</strong> серверу. Разработчики заранее решили, что заказ должен содержать название пиццы, иначе сервер не сможет его обработать.</span></p>
+	</li>
+	<li>
+	<p><span>Сервер <strong>разбирает запрос по установленным правилам</strong>, проверяя, есть ли в нём все необходимые данные.</span></p>
+	</li>
+	<li>
+	<p><span>Если всё правильно, сервер выполняет нужные действия (оформляет заказ) и <strong>отправляет ответ в заранее определённом формате</strong>: <strong>&quot;Заказ принят, будет готов через 30 минут&quot;</strong>.</span></p>
+	</li>
+</ul>
+
+<p>HTTP &mdash; это не просто обмен данными. Это строго определённый способ общения между клиентом и сервером, описанный разработчиками заранее<span>. Они задают, <strong>как должен выглядеть запрос, какую информацию он должен содержать и в каком формате сервер должен отвечать</strong>. Клиенту остаётся только <strong>следовать этим правилам</strong>, иначе сервер не сможет понять, что от него хотят.</span></p>
+
+<p>&nbsp;</p>
+
+<h3><span><strong>Что такое протокол?</strong></span></h3>
+
+<p><span><strong>Протокол</strong> &mdash; это набор правил, которые определяют, как две системы или устройства должны обмениваться данными. Чтобы взаимодействие было успешным, обе стороны должны следовать этим правилам: какие запросы можно отправлять, в каком формате должны быть ответы и как обрабатываются ошибки. Если правила соблюдаются, системы могут понимать друг друга, даже если используют разные технологии.</span></p>
+
+<p>&nbsp;</p>
+
+<p><strong>На примере</strong></p>
+
+<p><span>Представьте, что два человека из разных стран хотят поговорить. Если один говорит на русском, а другой на английском, они не поймут друг друга. Чтобы общение состоялось, они договариваются, например, говорить на английском &mdash; это и есть их &quot;протокол&quot;.</span></p>
+
+<p><span>В IT всё работает по тому же принципу. Если клиент (приложение) и сервер &quot;говорят&quot; на одном протоколе, они могут обмениваться данными. Протокол определяет:</span></p>
+
+<ul>
+	<li>
+	<p><span><strong>Как передавать данные.</strong></span></p>
+	</li>
+	<li>
+	<p><span><strong>В каком формате.</strong></span></p>
+	</li>
+	<li>
+	<p><span><strong>Как обрабатывать ошибки.</strong></span></p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><span><strong>Примеры протоколов</strong></span></h3>
+
+<ol>
+	<li>
+	<p><span><strong>HTTP</strong> &mdash; для передачи данных между браузером и сервером.</span></p>
+	</li>
+	<li>
+	<p><span><strong>FTP</strong> &mdash; для передачи файлов.</span></p>
+	</li>
+	<li>
+	<p><span><strong>SOAP</strong> &mdash; для строгого обмена данными между системами.</span></p>
+	</li>
+</ol>
+
+<p><span>Протоколы нужны, чтобы компьютеры, приложения и устройства могли взаимодействовать независимо от языка программирования, операционной системы или места расположения.</span></p>
+
+<p>&nbsp;</p>
+
+<h3><span><strong>Что такое HTTPS и чем он отличается?</strong></span></h3>
+
+<p><span>HTTPS (HyperText Transfer Protocol Secure) &mdash; это тот же HTTP, но с добавлением защиты. Когда вы используете HTTPS, данные между клиентом и сервером передаются в зашифрованном виде. Это значит, что никто не сможет подслушать, что именно передаётся.</span></p>
+
+<p>&nbsp;</p>
+
+<p><span><strong>Зачем нужна защита?</strong></span></p>
+
+<ul>
+	<li>
+	<p><span>Чтобы никто не смог &quot;перехватить&quot; данные, которые вы отправляете (например, логины, пароли или данные карты).</span></p>
+	</li>
+	<li>
+	<p><span>Чтобы гарантировать, что вы общаетесь именно с нужным сервером, а не с фальшивым.</span></p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<p><span><strong>Как это работает?</strong></span></p>
+
+<ol>
+	<li>
+	<p><span><strong>HTTP</strong> передаёт данные &quot;как есть&quot;. Например, если вы отправляете серверу сообщение &quot;Привет&quot;, то любой, кто перехватит этот запрос, увидит &quot;Привет&quot;.</span></p>
+	</li>
+	<li>
+	<p><span><strong>HTTPS</strong> шифрует данные перед отправкой. Вместо &quot;Привет&quot; в запросе будет что-то вроде &quot;z2kJH@z!3#&quot; </span>(это пример, на самом деле данные выглядят ещё сложнее)<span>. Только сервер, с которым вы общаетесь, сможет расшифровать это и понять, что вы сказали &quot;Привет&quot;.</span></p>
+	</li>
+</ol>
+
+<p><span>Шифрование работает благодаря специальным сертификатам, которые устанавливаются на сервере (они называются SSL или TLS).</span></p>
+
+<p>&nbsp;</p>
+
+<h3><span><strong>Порты в HTTP/HTTPS: что это и зачем нужны?</strong></span></h3>
+
+<p><span>Порты &mdash; это <strong>виртуальные &quot;входы&quot; в сервер</strong>, через которые передаются данные. Они помогают <strong>разделять трафик</strong> разных сервисов, работающих на одном устройстве.</span></p>
+
+<p>Представьте ситуацию из жизни: многоквартирный дом<span> (сервер). У каждого жильца (сервиса) свой номер квартиры (порт). Чтобы отправить письмо конкретному человеку, нужно знать <strong>не только адрес дома (IP-адрес), но и номер квартиры (порт)</strong>.</span></p>
+
+<p>&nbsp;</p>
+
+<table>
+	
+		
+		
+		
+	
+	<tbody>
+		<tr>
+			<td>
+			<p><span><strong>Протокол</strong></span></p>
+			</td>
+			<td>
+			<p><span><strong>Порт (по умолчанию)</strong></span></p>
+			</td>
+			<td>
+			<p><span><strong>Пример запроса</strong></span></p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><span><strong>HTTP</strong> (обычный, без шифрования)</span></p>
+			</td>
+			<td>
+			<p><span>80</span></p>
+			</td>
+			<td>
+			<p><a href="http://example.com/" target="_blank" rel="noopener noreferrer"><span>http://example.com</span></a><span> &rarr; 80</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p><span><strong>HTTPS</strong> (защищённый, с шифрованием)</span></p>
+			</td>
+			<td>
+			<p><span>443</span></p>
+			</td>
+			<td>
+			<p><a href="https://example.com/" target="_blank" rel="noopener noreferrer"><span>https://example.com</span></a><span> &rarr; 443</span></p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>&nbsp;</p>
+
+<p><span>Когда в браузере вводят </span><a href="https://example.com/" target="_blank" rel="noopener noreferrer"><span>https://example.com</span></a><span>, он <strong>автоматически</strong> использует порт 443, а </span><a href="http://example.com/" target="_blank" rel="noopener noreferrer"><span>http://example.com</span></a><span> &mdash; порт 80.</span></p>
+
+<ul>
+	<li>
+	<p><span><strong>HTTP (порт 80)</strong> &mdash; как обычный телефонный звонок: слышно, но любой может подслушать.</span></p>
+	</li>
+	<li>
+	<p><span><strong>HTTPS (порт 443)</strong> &mdash; как звонок по зашифрованному мессенджеру (WhatsApp, Telegram): данные защищены, их нельзя перехватить.</span></p>
+	</li>
+</ul>
+
+<p><span>Если сервер работает на <strong>нестандартном порту</strong>, его указывают явно, например:</span></p>
+
+<p><a href="https://example.com:8443/" target="_blank" rel="noopener noreferrer"><span>https://example.com:8443</span></a></p>
+
+<p><span>&rarr; Запрос пойдёт на <strong>порт 8443</strong>, а не 443.</span></p>
+
+<p><span><strong>Порты помогают разделять запросы и обеспечивать безопасность данных.</strong></span></p>
+
+<p>&nbsp;</p>
+
+<h3><span><strong>Почему это важно?</strong></span></h3>
+
+<ol>
+	<li>
+	<p><span><strong>Безопасность данных. </strong>HTTPS стал стандартом, особенно для сайтов и приложений, где передаются чувствительные данные: пароли, номера карт, личная информация. Если приложение использует только HTTP, ваши данные могут быть перехвачены.</span></p>
+	</li>
+	<li>
+	<p><span><strong>Доверие пользователя. </strong>Если вы заходите на сайт и видите в адресной строке значок &quot;замок&quot; &mdash; это значит, что используется HTTPS. Для пользователей это знак, что данные передаются безопасно. Отсутствие HTTPS может вызвать недоверие.</span></p>
+	</li>
+	<li>
+	<p><span><strong>Требование времени. </strong>Сегодня почти все приложения и сайты используют HTTPS, и тестировщик должен понимать разницу между HTTP и HTTPS, чтобы оценивать безопасность данных.</span></p>
+	</li>
+</ol>
+
+<p>&nbsp;</p>
+
+<h3><span><strong>Итог</strong></span></h3>
+
+<p>HTTP &mdash; это протокол для передачи данных, а HTTPS &mdash; это тот же протокол, но с защитой<span><strong>. </strong>Разница в том, что HTTP передаёт данные в открытом виде, а HTTPS шифрует их, обеспечивая безопасность.</span></p>
+
+<p><span>В тестировании вы будете сталкиваться с обоими вариантами, но важно помнить: HTTPS стал стандартом для всех современных приложений, где важна защита данных. Ваши знания помогут выявлять проблемы с безопасностью и обеспечивать стабильную и защищённую работу приложений.</span></p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><strong>Что нужно уметь рассказать</strong><br>
+&ndash; Термин &laquo;HTTP&raquo;<br>
+&ndash; Термин &laquo;HTTPS&raquo;<br>
+&ndash; Разница между ними<br>
+&ndash; Что такое порт 80 и 443<br>
+&ndash; Что значит &laquo;замок&raquo; в браузере</p>
+
+<p><strong>Всё остальное &mdash; для общего развития</strong></p></div>
+          <nav class="pager" aria-label="Навигация между шагами"><a class="prev" href="step-067.html"><small>Назад</small><span>← Лекция «Контекст для работы с клиент-серверной архитектурой»</span></a><a class="next" href="step-069.html"><small>Дальше</small><span>Лекция «Как это работает в HTTPS?» →</span></a></nav>
+        </article></div></main>
+  <footer><span>Локальная учебная копия · без отслеживания и отправки ответов</span><a href="../../about.html">О сайте</a></footer>
+</body>
+</html>

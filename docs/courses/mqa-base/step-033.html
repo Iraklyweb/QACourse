@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Шаги воспроизведения Шаги воспроизведения — последовательность действий, которые приводят к нужному результату или воспроизводят дефект. Должны быть чётким">
+  <meta name="color-scheme" content="dark light">
+  <title>Лекция «Шаги воспроизведения» · QA Конспект</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body data-base="../../">
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="topbar">
+    <a class="brand" href="../../index.html" aria-label="QA Конспект, главная"><span class="brand-mark">QA</span><span>Конспект</span></a>
+    <nav aria-label="Основная навигация">
+      <a href="../../courses/manual-testing/">Ручное тестирование</a>
+      <a href="../../courses/mqa-base/">MQA Base</a>
+      <a href="../../courses/mqa-base/">Курс</a>
+    </nav>
+    <form class="search-mini" action="../../search.html" role="search">
+      <label class="sr-only" for="site-search-2">Поиск по курсам</label>
+      <input id="site-search-2" name="q" type="search" placeholder="Найти тему…" autocomplete="off">
+      <button type="submit" aria-label="Искать">⌕</button>
+    </form>
+  </header>
+  <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="index.html">← Структура курса</a><div class="rail-index"><span>033</span><small>из 127</small></div><p>Структура документа</p><div class="rail-progress" aria-label="Шаг 10 из 16 в теме"><i style="width:63%"></i></div><small>10 / 16 в теме</small></aside>
+        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><a href="index.html">MQA Base</a><span>/</span><span>Тестовая документация</span><span>/</span><span>Структура документа</span></nav>
+          <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «Шаги воспроизведения»</h1><p>Тестовая документация · Структура документа</p></header>
+          <aside class="media-card"><span aria-hidden="true">▶</span><div><strong>К шагу прикреплено видео</strong><p>Видео не включено в локальную копию; сохранена только отметка о его наличии.</p></div></aside><div class="lesson-content"><div>
+
+<h1>Шаги воспроизведения</h1>
+
+<div>
+<div>
+<div>
+<p><strong>Шаги воспроизведения</strong> &mdash; последовательность действий, которые приводят к нужному результату или воспроизводят дефект. Должны быть чёткими и повторяемыми.</p>
+
+<p>Шаги фиксируют последовательность действий, выполняемых во время проверки.</p>
+
+<p>Они показывают, что именно делается и как система реагирует на каждое действие.</p>
+</div>
+
+<div>
+<p><strong>В тест-кейсах шаги &mdash; основа сценария.</strong></p>
+
+<p>Они описывают конкретные действия, выполняемые во время проверки, в отличие от предусловий, которые задают состояние до её начала.</p>
+
+<p>Дублировать предусловия в шагах не имеет смысла &mdash; это избыточно и нарушает структуру сценария.</p>
+</div>
+
+<div>
+<p>Каждый шаг должен быть коротким, конкретным и последовательным.</p>
+
+<p>Шаг &mdash; это одно действие, которое можно выполнить и проверить результат.</p>
+
+<p>Если шагов много, логика должна оставаться линейной и понятной, без двусмысленности и лишних пояснений.</p>
+</div>
+
+<div>
+<p><strong>В чек-листах шагов нет.</strong></p>
+</div>
+
+<div>
+<p>В баг-репортах шаги фиксируют последовательность действий, которые приводят к проявлению дефекта.</p>
+
+<p>Они идут по порядку и заканчиваются тем действием, после которого появляется ошибка.</p>
+
+<p>Такая структура помогает быстро воспроизвести баг и проверить, устранён ли он после исправления.</p>
+</div>
+
+<div>
+<p>Хорошие шаги читаются как чёткая последовательность &mdash; из них видно, что выполняется, где это происходит и какой результат ожидается после каждого действия.</p>
+</div>
+</div>
+</div>
+</div></div>
+          <nav class="pager" aria-label="Навигация между шагами"><a class="prev" href="step-032.html"><small>Назад</small><span>← Лекция «Описание»</span></a><a class="next" href="step-034.html"><small>Дальше</small><span>Лекция «Пояснение к теме “Шаги”» →</span></a></nav>
+        </article></div></main>
+  <footer><span>Локальная учебная копия · без отслеживания и отправки ответов</span><a href="../../about.html">О сайте</a></footer>
+</body>
+</html>

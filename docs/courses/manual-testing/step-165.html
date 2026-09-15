@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Лекция &quot;Что такое альтернативный сценарий (путь) в postman (тестировании)?&quot; В тестировании есть ситуации, когда одно и то же действие можно выполнить по-ра">
+  <meta name="color-scheme" content="dark light">
+  <title>Лекция «Что такое альтернативный сценарий (путь) в postman (тестировании)?» · QA Конспект</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body data-base="../../">
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="topbar">
+    <a class="brand" href="../../index.html" aria-label="QA Конспект, главная"><span class="brand-mark">QA</span><span>Конспект</span></a>
+    <nav aria-label="Основная навигация">
+      <a href="../../courses/manual-testing/">Ручное тестирование</a>
+      <a href="../../courses/mqa-base/">MQA Base</a>
+      <a href="../../courses/manual-testing/">Курс</a>
+    </nav>
+    <form class="search-mini" action="../../search.html" role="search">
+      <label class="sr-only" for="site-search-2">Поиск по курсам</label>
+      <input id="site-search-2" name="q" type="search" placeholder="Найти тему…" autocomplete="off">
+      <button type="submit" aria-label="Искать">⌕</button>
+    </form>
+  </header>
+  <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="index.html">← Структура курса</a><div class="rail-index"><span>165</span><small>из 168</small></div><p>Практика</p><div class="rail-progress" aria-label="Шаг 15 из 18 в теме"><i style="width:83%"></i></div><small>15 / 18 в теме</small></aside>
+        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><a href="index.html">Ручное тестирование</a><span>/</span><span>SQL</span><span>/</span><span>Практика</span></nav>
+          <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «Что такое альтернативный сценарий (путь) в postman (тестировании)?»</h1><p>SQL · Практика</p></header>
+          <aside class="media-card"><span aria-hidden="true">▶</span><div><strong>К шагу прикреплено видео</strong><p>Видео не включено в локальную копию; сохранена только отметка о его наличии.</p></div></aside><div class="lesson-content"><h1>Лекция &laquo;Что такое альтернативный сценарий (путь) в postman (тестировании)?&raquo;</h1>
+
+<p>&nbsp;</p>
+
+<p>В тестировании есть ситуации, когда одно и то же действие можно выполнить по-разному. Тогда появляются два сценария:</p>
+
+<ul>
+	<li>
+	<p><strong>Основной сценарий</strong> &mdash; самый распространённый и простой путь, который выбирается в первую очередь.</p>
+	</li>
+	<li>
+	<p><strong>Альтернативный сценарий</strong> &mdash; другой возможный путь, который отличается от основного, но в итоге приводит к тому же результату.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<p><strong>Пример из жизни: </strong>Вы идёте в магазин. Обычно выбираете короткую дорогу &mdash; это ваш основной сценарий. Но иногда эта дорога закрыта, или вы просто хотите пройти другим путём. Тогда выбираете другой маршрут &mdash; это альтернативный сценарий. Оба пути разные, но вы всё равно приходите в один и тот же магазин.</p>
+
+<p>В API-тестировании аналогично жизненным примерам выделяют:</p>
+
+<ul>
+	<li>
+	<p><strong>Основной сценарий </strong>Это самый очевидный путь, по которому будет выполняться запрос. Как правило, его определяют на основе требований к продукту и логики работы приложения. Например: Представьте, что вы заказываете доставку пиццы. Основной сценарий &mdash; курьер привозит пиццу прямо к двери.</p>
+	</li>
+	<li>
+	<p><strong>Альтернативный сценарий </strong>Это другой способ достижения той же конечной цели, но с другими условиями или поведением системы. Он определяется требованиями и отличается именно ходом выполнения, а не количеством или типом передаваемых данных. Например: Та же доставка пиццы, но вы сами приходите забирать её из кафе. Конечная цель (получить пиццу) остаётся неизменной, но путь доставки изменился.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<p>Однако, <strong>конкретно в примере на скрине с созданием питомца нельзя применить классическое разделение на основной и альтернативный сценарий</strong>, так как здесь нет разных путей достижения одного и того же результата.</p>
+
+<p>Вместо этого здесь показано максимальное количество вариантов, чтобы продемонстрировать, как можно и нужно тестировать API, если есть возможность. Для создания таких тестов используется техника тест-дизайна &mdash; &laquo;состояние-переход&raquo;.</p></div>
+          <nav class="pager" aria-label="Навигация между шагами"><a class="prev" href="step-164.html"><small>Назад</small><span>← Лекция «Что означают уровни вложенности (1, 2, 3 уровни) в тестировании API?»</span></a><a class="next" href="step-166.html"><small>Дальше</small><span>Лекция «Как сдавать ДЗ по POSTMAN» →</span></a></nav>
+        </article></div></main>
+  <footer><span>Локальная учебная копия · без отслеживания и отправки ответов</span><a href="../../about.html">О сайте</a></footer>
+</body>
+</html>

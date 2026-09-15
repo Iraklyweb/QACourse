@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Лекция &quot;REST: что это и как это работает&quot; Что такое REST? REST (Representational State Transfer) — это архитектурный стиль, который определяет правила для ">
+  <meta name="color-scheme" content="dark light">
+  <title>Лекция «REST: что это и как это работает» · QA Конспект</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body data-base="../../">
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="topbar">
+    <a class="brand" href="../../index.html" aria-label="QA Конспект, главная"><span class="brand-mark">QA</span><span>Конспект</span></a>
+    <nav aria-label="Основная навигация">
+      <a href="../../courses/manual-testing/">Ручное тестирование</a>
+      <a href="../../courses/mqa-base/">MQA Base</a>
+      <a href="../../courses/manual-testing/">Курс</a>
+    </nav>
+    <form class="search-mini" action="../../search.html" role="search">
+      <label class="sr-only" for="site-search-2">Поиск по курсам</label>
+      <input id="site-search-2" name="q" type="search" placeholder="Найти тему…" autocomplete="off">
+      <button type="submit" aria-label="Искать">⌕</button>
+    </form>
+  </header>
+  <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="index.html">← Структура курса</a><div class="rail-index"><span>074</span><small>из 168</small></div><p>REST</p><div class="rail-progress" aria-label="Шаг 1 из 14 в теме"><i style="width:7%"></i></div><small>1 / 14 в теме</small></aside>
+        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><a href="index.html">Ручное тестирование</a><span>/</span><span>Сети</span><span>/</span><span>REST</span></nav>
+          <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «REST: что это и как это работает»</h1><p>Сети · REST</p></header>
+          <aside class="media-card"><span aria-hidden="true">▶</span><div><strong>К шагу прикреплено видео</strong><p>Видео не включено в локальную копию; сохранена только отметка о его наличии.</p></div></aside><div class="lesson-content"><h1>Лекция &laquo;REST: что это и как это работает&raquo;</h1>
+
+<p>&nbsp;</p>
+
+<h3><strong>Что такое REST?</strong></h3>
+
+<p><strong>REST (Representational State Transfer)</strong> &mdash; это архитектурный стиль, который определяет правила для взаимодействия между клиентом и сервером. REST не является протоколом, как SOAP, а представляет собой набор принципов, которые упрощают и делают гибкой передачу данных. В REST данные представлены как <strong>ресурсы</strong>, каждый из которых доступен по уникальному <strong>URL</strong>.</p>
+
+<p>REST работает поверх протокола <strong>HTTP </strong>и позволяет клиенту получать или отправлять данные на сервер, используя понятные запросы. Данные передаются в различных форматах, чаще всего в <strong>JSON </strong>(популярен благодаря своей простоте) или <strong>XML </strong>(используется реже и более громоздкий).</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Архитектурный стиль: что это и как понимать</strong></h3>
+
+<p>Архитектурный стиль &mdash; это совокупность принципов, которые определяют, как компоненты системы взаимодействуют друг с другом. Он задаёт &quot;рамки&quot;, но позволяет разработчикам выбирать конкретные способы реализации.</p>
+
+<p><strong>Пример: </strong>Представьте, что архитектурный стиль &mdash; это планировка квартиры.</p>
+
+<ul>
+	<li>
+	<p>Стиль задаёт общие принципы: где будет кухня, гостиная и ванная, какие комнаты должны быть соединены.</p>
+	</li>
+	<li>
+	<p>Но как именно будет выглядеть мебель, какого она цвета, и где она будет стоять, решают владельцы.</p>
+	</li>
+</ul>
+
+<p>REST работает аналогично: он определяет, как клиент и сервер должны взаимодействовать (например, через HTTP, используя стандартные методы), но детали реализации остаются на усмотрение разработчиков.</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Как работает REST?</strong></h3>
+
+<ol>
+	<li>
+	<p><strong>Клиент отправляет запрос. </strong>Например, мобильное приложение запрашивает список товаров в интернет-магазине. Запрос отправляется на сервер по определённому адресу (URL).</p>
+	</li>
+	<li>
+	<p><strong>Сервер обрабатывает запрос. </strong>Сервер анализирует запрос, выполняет необходимую операцию (например, извлекает данные из базы) и готовит ответ.</p>
+	</li>
+</ol>
+
+<p><strong>Сервер возвращает ответ. </strong>Ответ формируется в формате данных (обычно JSON) и отправляется клиенту. Например, клиент получает список товаров в виде:</p>
+
+<p><strong>[</strong></p>
+
+<p><strong>&nbsp;&nbsp;&nbsp;&nbsp;{ &quot;id&quot;: 1, &quot;name&quot;: &quot;Телефон&quot;, &quot;price&quot;: 50000 },</strong></p>
+
+<p><strong>&nbsp;&nbsp;&nbsp;&nbsp;{ &quot;id&quot;: 2, &quot;name&quot;: &quot;Ноутбук&quot;, &quot;price&quot;: 70000 }</strong></p>
+
+<p><strong>]</strong></p>
+
+<p>&nbsp;</p>
+
+<p>Клиент отображает эти данные в удобном для пользователя виде.</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Почему REST стал таким популярным?</strong></h3>
+
+<ol>
+	<li>
+	<p><strong>Простота. </strong>REST понятен, легко читаем и не требует сложных инструментов для работы. Можно отправлять запросы прямо из браузера или через инструменты вроде Postman.</p>
+	</li>
+	<li>
+	<p><strong>Гибкость. </strong>REST можно использовать в мобильных, веб-приложениях, и даже в IoT-устройствах. Он подходит практически для любых задач.</p>
+	</li>
+	<li>
+	<p><strong>Разные форматы данных. </strong>REST поддерживает JSON, XML, и даже простые текстовые файлы. JSON стал стандартом из-за своей компактности и удобства.</p>
+	</li>
+	<li>
+	<p><strong>Широкая поддержка. </strong>Почти все современные приложения используют REST, что делает его изучение полезным и востребованным.</p>
+	</li>
+</ol>
+
+<p>&nbsp;</p>
+
+<h3><strong>Итог</strong></h3>
+
+<p>REST &mdash; это современный стандарт для общения между клиентом и сервером. Благодаря своей простоте, гибкости и широкому использованию, он стал основой для большинства веб-приложений.</p>
+
+<p>Для тестировщика важно понимать, как REST работает, знать, что данные чаще всего передаются в JSON, и уметь проверять запросы и ответы, используя инструменты вроде Postman. Эти знания помогут вам уверенно тестировать API и выявлять ошибки в их работе.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><strong>Что нужно уметь рассказать</strong><br>
+&ndash; Термин &laquo;REST&raquo;<br>
+&ndash; REST = архитектурный стиль, а не протокол<br>
+&ndash; Работает поверх HTTP, использует стандартные методы (GET, POST, PUT, DELETE и др.)<br>
+&ndash; Данные чаще всего в JSON, реже XML</p>
+
+<p><strong>Всё остальное &mdash; для общего развития</strong></p></div>
+          <nav class="pager" aria-label="Навигация между шагами"><a class="prev" href="step-073.html"><small>Назад</small><span>← Лекция «XML и WSDL: основа SOAP»</span></a><a class="next" href="step-075.html"><small>Дальше</small><span>Лекция «WADL: аналог WSDL для REST» →</span></a></nav>
+        </article></div></main>
+  <footer><span>Локальная учебная копия · без отслеживания и отправки ответов</span><a href="../../about.html">О сайте</a></footer>
+</body>
+</html>

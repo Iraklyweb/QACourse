@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Лекция &quot;HTTP-статус-коды 400: клиентские ошибки&quot; Статус-коды группы 400 сигнализируют о том, что запрос клиента не может быть обработан из-за ошибки с его ">
+  <meta name="color-scheme" content="dark light">
+  <title>Лекция «HTTP-статус-коды 400: клиентские ошибки» · QA Конспект</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body data-base="../../">
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="topbar">
+    <a class="brand" href="../../index.html" aria-label="QA Конспект, главная"><span class="brand-mark">QA</span><span>Конспект</span></a>
+    <nav aria-label="Основная навигация">
+      <a href="../../courses/manual-testing/">Ручное тестирование</a>
+      <a href="../../courses/mqa-base/">MQA Base</a>
+      <a href="../../courses/manual-testing/">Курс</a>
+    </nav>
+    <form class="search-mini" action="../../search.html" role="search">
+      <label class="sr-only" for="site-search-2">Поиск по курсам</label>
+      <input id="site-search-2" name="q" type="search" placeholder="Найти тему…" autocomplete="off">
+      <button type="submit" aria-label="Искать">⌕</button>
+    </form>
+  </header>
+  <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="index.html">← Структура курса</a><div class="rail-index"><span>091</span><small>из 168</small></div><p>Cтатус-коды</p><div class="rail-progress" aria-label="Шаг 4 из 6 в теме"><i style="width:67%"></i></div><small>4 / 6 в теме</small></aside>
+        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><a href="index.html">Ручное тестирование</a><span>/</span><span>Сети</span><span>/</span><span>Cтатус-коды</span></nav>
+          <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «HTTP-статус-коды 400: клиентские ошибки»</h1><p>Сети · Cтатус-коды</p></header>
+          <aside class="media-card"><span aria-hidden="true">▶</span><div><strong>К шагу прикреплено видео</strong><p>Видео не включено в локальную копию; сохранена только отметка о его наличии.</p></div></aside><div class="lesson-content"><h1>Лекция &laquo;HTTP-статус-коды 400: клиентские ошибки&raquo;</h1>
+
+<p>&nbsp;</p>
+
+<p>Статус-коды группы <strong>400</strong> сигнализируют о том, что запрос клиента не может быть обработан из-за ошибки с его стороны. Такие коды являются ключевыми для тестировщиков, так как они помогают определить, где запрос был составлен неправильно, и в чём именно проблема.</p>
+
+<h2>&nbsp;</h2>
+
+<h3><strong>Что это значит?</strong></h3>
+
+<p>Коды 400 означают, что ошибка произошла на стороне клиента, а не сервера. Это может быть:</p>
+
+<ul>
+	<li>
+	<p>Некорректный формат данных.</p>
+	</li>
+	<li>
+	<p>Отсутствие необходимых параметров.</p>
+	</li>
+	<li>
+	<p>Ошибки авторизации или доступа.</p>
+	</li>
+	<li>
+	<p>Слишком частые запросы.</p>
+	</li>
+</ul>
+
+<p>Важно понимать, что вы можете получить эти ошибки как из-за неисправности самого продукта, так и из-за некорректного запроса, созданного специально для проверки работы API. Ваша задача как тестировщика &mdash; не только интерпретировать эти ошибки, но и уметь сознательно их вызывать, чтобы проверить, что система работает так, как задумано.</p>
+
+<p>Со стороны браузера такие ошибки сложнее воспроизводить без дополнительных инструментов. Именно поэтому для тестирования API используются специализированные инструменты, такие как <strong>Postman</strong> или <strong>Insomnia</strong>. С их помощью вы можете управлять запросами и вызывать ошибки, задавая неверные параметры или авторизационные данные.</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Основные коды 400 и как их получить</strong></h3>
+
+<h4><strong>400 Bad Request</strong></h4>
+
+<p><strong>Что это значит? </strong>Сервер не может обработать запрос из-за его некорректности. Это может быть некорректный синтаксис, отсутствие обязательных параметров или неправильный формат данных.</p>
+
+<p><strong>Как получить?</strong></p>
+
+<p>Отправьте запрос с некорректным синтаксисом: Пример:</p>
+
+<p><span>GET /products?price=invalid HTTP/1.1</span></p>
+
+<p><span>Host: </span><a href="http://example.com/" target="_blank" rel="noopener noreferrer"><span>example.com</span></a></p>
+
+<p>Ответ: 400 Bad Request</p>
+
+<p><span>{</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;error&quot;: &quot;Invalid parameter: price&quot;</span></p>
+
+<p><span>}</span></p>
+
+<p><strong>Где это встречается?</strong></p>
+
+<ul>
+	<li>
+	<p>Когда обязательные параметры отсутствуют.</p>
+	</li>
+	<li>
+	<p>Если данные имеют неверный формат (например, ожидается число, а передаётся текст).</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h4><strong>401 Unauthorized</strong></h4>
+
+<p><strong>Что это значит? </strong>Клиент не предоставил правильные данные для авторизации, или доступ к ресурсу требует аутентификации.</p>
+
+<p><strong>Как получить?</strong></p>
+
+<p>Отправьте запрос без заголовка авторизации: Пример:</p>
+
+<p><span>GET /users/me HTTP/1.1</span></p>
+
+<p><span>Host: </span><a href="http://example.com/" target="_blank" rel="noopener noreferrer"><span>example.com</span></a></p>
+
+<p>Ответ: 401 Unauthorized</p>
+
+<p><span>{</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;error&quot;: &quot;Authentication required&quot;</span></p>
+
+<p><span>}</span></p>
+
+<p><strong>Где это встречается?</strong></p>
+
+<ul>
+	<li>
+	<p>При попытке получить доступ к защищённым ресурсам без токена авторизации.</p>
+	</li>
+	<li>
+	<p>Когда предоставленный токен недействителен или истёк.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h4><strong>403 Forbidden</strong></h4>
+
+<p><strong>Что это значит? </strong>Клиент аутентифицирован, но не имеет прав доступа к ресурсу. Это ошибка авторизации на уровне доступа.</p>
+
+<p><strong>Как получить?</strong></p>
+
+<p>Отправьте запрос с авторизацией, но к ресурсу, к которому у вас нет прав: Пример:</p>
+
+<p><span>GET /admin/dashboard HTTP/1.1</span></p>
+
+<p><span>Host: </span><a href="http://example.com/" target="_blank" rel="noopener noreferrer"><span>example.com</span></a></p>
+
+<p><span>Authorization: Bearer valid_token</span></p>
+
+<p>Ответ: 403 Forbidden</p>
+
+<p><span>{</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;error&quot;: &quot;You do not have permission to access this resource&quot;</span></p>
+
+<p><span>}</span></p>
+
+<p><strong>Где это встречается?</strong></p>
+
+<ul>
+	<li>
+	<p>При попытке доступа к ресурсам, требующим административных прав.</p>
+	</li>
+	<li>
+	<p>Когда пользователь имеет ограничения по ролям.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h4><strong>404 Not Found</strong></h4>
+
+<p><strong>Что это значит? </strong>Сервер не может найти запрашиваемый ресурс. Это может быть связано с неправильным URL или отсутствием ресурса на сервере.</p>
+
+<p><strong>Как получить?</strong></p>
+
+<p>Отправьте запрос на несуществующий ресурс: Пример:</p>
+
+<p><span>GET /nonexistent-path HTTP/1.1</span></p>
+
+<p><span>Host: </span><a href="http://example.com/" target="_blank" rel="noopener noreferrer"><span>example.com</span></a></p>
+
+<p>Ответ: 404 Not Found</p>
+
+<p><span>{</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;error&quot;: &quot;Resource not found&quot;</span></p>
+
+<p><span>}</span></p>
+
+<p><strong>Где это встречается?</strong></p>
+
+<ul>
+	<li>
+	<p>Когда клиент использует неправильный путь или идентификатор.</p>
+	</li>
+	<li>
+	<p>Если ресурс был удалён.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h4><strong>429 Too Many Requests</strong></h4>
+
+<p><strong>Что это значит? </strong>Клиент отправил слишком много запросов за короткий промежуток времени, и сервер временно блокирует дальнейшие запросы.</p>
+
+<p><strong>Как получить?</strong></p>
+
+<p>Отправьте несколько запросов подряд за короткий промежуток времени: Пример:</p>
+
+<p><span>GET /products HTTP/1.1</span></p>
+
+<p><span>Host: </span><a href="http://example.com/" target="_blank" rel="noopener noreferrer"><span>example.com</span></a></p>
+
+<p>Ответ: 429 Too Many Requests</p>
+
+<p><span>{</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;error&quot;: &quot;Rate limit exceeded. Try again later.&quot;</span></p>
+
+<p><span>}</span></p>
+
+<p><strong>Где это встречается?</strong></p>
+
+<ul>
+	<li>
+	<p>При настройке лимитов запросов на стороне сервера (rate limiting), что ограничивает количество запросов за определённый период.</p>
+	</li>
+	<li>
+	<p>Когда клиент злоупотребляет API.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h4><strong>422 Unprocessable Entity</strong></h4>
+
+<h4><strong>Что это значит?</strong></h4>
+
+<p>Код 422 сигнализирует, что сервер понял запрос, но не может его обработать из-за некорректных данных, которые не соответствуют валидации или бизнес-логике.</p>
+
+<p><strong>Пример для POST: </strong>Если клиент отправляет запрос с неправильной структурой JSON:</p>
+
+<p><span>POST /users HTTP/1.1&nbsp;&nbsp;</span></p>
+
+<p><span>Host: </span><a href="http://example.com/" target="_blank" rel="noopener noreferrer"><span>example.com</span></a><span>&nbsp;&nbsp;</span></p>
+
+<p><span>Content-Type: application/json&nbsp;&nbsp;</span></p>
+
+<p><span>{&nbsp;&nbsp;</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;name&quot;: &quot;Alice&quot;,&nbsp;&nbsp;</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;email&quot;: &quot;not-an-email&quot;&nbsp;&nbsp;</span></p>
+
+<p><span>}</span></p>
+
+<p><strong>Ответ:</strong></p>
+
+<p><span>HTTP/1.1 422 Unprocessable Entity&nbsp;&nbsp;</span></p>
+
+<p><span>Content-Type: application/json&nbsp;&nbsp;</span></p>
+
+<p><span>{&nbsp;&nbsp;</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;error&quot;: &quot;Invalid email format&quot;&nbsp;&nbsp;</span></p>
+
+<p><span>}</span></p>
+
+<h4><strong>Где это встречается?</strong></h4>
+
+<ul>
+	<li>
+	<p>Если сервер <strong>не может обработать данные</strong>, потому что <strong>они не прошли валидацию</strong>.</p>
+	</li>
+	<li>
+	<p>Если <strong>JSON имеет правильный синтаксис, но его содержимое некорректное</strong> (например, email невалидный).</p>
+	</li>
+	<li>
+	<p>Если переданы <strong>обязательные поля, но с недопустимыми значениями</strong>.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><strong>Связь с 400 Bad Request</strong></h3>
+
+<p>Код 422 &mdash; это <strong>ранний вариант 400 Bad Request</strong>. Раньше его использовали для случаев, когда запрос <strong>технически правильный</strong>, но сервер <strong>не может его обработать</strong>. Сейчас 400 используется как <strong>стандарт</strong>, но 422 всё ещё встречается в некоторых API.</p>
+
+<p>Если видите <strong>422</strong>, воспринимайте его так же, как <strong>400 Bad Request</strong>.</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Рекомендательный характер</strong></h3>
+
+<p>Коды группы 400 &mdash; это стандартные рекомендации, но серверы могут обрабатывать клиентские ошибки по-разному:</p>
+
+<ul>
+	<li>
+	<p>Сервер может вернуть 400 Bad Request, даже если отсутствует токен авторизации, вместо 401 Unauthorized.</p>
+	</li>
+	<li>
+	<p>404 Not Found может возвращаться вместо 403 Forbidden в случае, если доступ к ресурсу не разрешён и нужно скрыть его существование.</p>
+	</li>
+	<li>
+	<p>Коды, связанные с лимитами, могут варьироваться в зависимости от политики сервера.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><strong>Почему это нужно понимать?</strong></h3>
+
+<p>Эти коды важны, потому что они помогают тестировщику:</p>
+
+<ul>
+	<li>
+	<p>Выявлять ошибки в запросах клиента.</p>
+	</li>
+	<li>
+	<p>Понимать, как API обрабатывает некорректные запросы.</p>
+	</li>
+	<li>
+	<p>Проверять, правильно ли настроена система авторизации и доступа.</p>
+	</li>
+	<li>
+	<p>Тестировать работу ограничений, таких как лимиты запросов.</p>
+	</li>
+</ul>
+
+<p>Помимо того, что такие ошибки могут указывать на проблемы в продукте, тестировщик должен уметь сознательно вызывать их, чтобы проверить, что они возвращаются корректно. Используйте инструменты, такие как <strong>Postman</strong> или <strong>Insomnia</strong>, чтобы управлять параметрами запросов и анализировать ответы сервера. Это поможет вам не только находить проблемы, но и уверенно объяснять их разработчикам.</p></div>
+          <nav class="pager" aria-label="Навигация между шагами"><a class="prev" href="step-090.html"><small>Назад</small><span>← Лекция «HTTP-статус-коды 300: перенаправления»</span></a><a class="next" href="step-092.html"><small>Дальше</small><span>Лекция «HTTP-статус-коды 500: серверные ошибки» →</span></a></nav>
+        </article></div></main>
+  <footer><span>Локальная учебная копия · без отслеживания и отправки ответов</span><a href="../../about.html">О сайте</a></footer>
+</body>
+</html>

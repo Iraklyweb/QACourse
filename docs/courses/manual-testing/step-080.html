@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Лекция &quot; Обязательные и необязательные поля&quot; Что это такое Обязательное поле — это то, что должно присутствовать в структуре. В зависимости от ситуации реч">
+  <meta name="color-scheme" content="dark light">
+  <title>Лекция «Обязательные и необязательные поля»  · QA Конспект</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body data-base="../../">
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="topbar">
+    <a class="brand" href="../../index.html" aria-label="QA Конспект, главная"><span class="brand-mark">QA</span><span>Конспект</span></a>
+    <nav aria-label="Основная навигация">
+      <a href="../../courses/manual-testing/">Ручное тестирование</a>
+      <a href="../../courses/mqa-base/">MQA Base</a>
+      <a href="../../courses/manual-testing/">Курс</a>
+    </nav>
+    <form class="search-mini" action="../../search.html" role="search">
+      <label class="sr-only" for="site-search-2">Поиск по курсам</label>
+      <input id="site-search-2" name="q" type="search" placeholder="Найти тему…" autocomplete="off">
+      <button type="submit" aria-label="Искать">⌕</button>
+    </form>
+  </header>
+  <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="index.html">← Структура курса</a><div class="rail-index"><span>080</span><small>из 168</small></div><p>REST</p><div class="rail-progress" aria-label="Шаг 7 из 14 в теме"><i style="width:50%"></i></div><small>7 / 14 в теме</small></aside>
+        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><a href="index.html">Ручное тестирование</a><span>/</span><span>Сети</span><span>/</span><span>REST</span></nav>
+          <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «Обязательные и необязательные поля» </h1><p>Сети · REST</p></header>
+          <aside class="media-card"><span aria-hidden="true">▶</span><div><strong>К шагу прикреплено видео</strong><p>Видео не включено в локальную копию; сохранена только отметка о его наличии.</p></div></aside><div class="lesson-content"><h1><b>Лекция </b><b>&laquo;</b><b>Обязательные и необязательные поля&raquo;</b></h1>
+
+<p>&nbsp;</p>
+
+<h2><b>Что это такое</b></h2>
+
+<p>Обязательное поле &mdash; это то, что должно присутствовать в структуре. В зависимости от ситуации речь может идти либо о запросе, либо об ответе. Необязательное поле &mdash; может отсутствовать без нарушения логики.</p>
+
+<p>Если поле обязательное &mdash; его отсутствие считается отклонением от требований.<br>
+Если поле необязательное &mdash; отсутствие допустимо.</p>
+
+<h2>&nbsp;</h2>
+
+<h2><b>Откуда появляется</b></h2>
+
+<p>Обязательность задаётся аналитиком при проектировании API. В документации это указывается:</p>
+
+<p>&ndash; для запроса: какие поля клиент должен обязательно передать, чтобы запрос был принят<br>
+&ndash; для ответа: какие поля сервер должен возвращать при тех или иных условиях</p>
+
+<p>Это может быть оформлено:</p>
+
+<p>&ndash; через флаг required в OpenAPI/Swagger<br>
+&ndash; отдельной колонкой в таблице требований<br>
+&ndash; через описание условий в таблице требований json: &ldquo;если пользователь авторизован&rdquo; &ndash; то поле обязательно, &ldquo;только для статуса Х&rdquo;-- поле обязательно/необязательно</p>
+
+<p>Если это не зафиксировано &mdash; тестировщик уточняет.</p>
+
+<h2>&nbsp;</h2>
+
+<h2><b>Что делает тестировщик</b></h2>
+
+<p>В запросе:<br>
+&ndash; Проверяет, что без обязательного поля сервер возвращает ошибку (400, 401, 403 и т.д.)<br>
+&ndash; Проверяет, что с обязательным полем &mdash; всё проходит<br>
+&ndash; Если поле необязательное, можно отправить без него &mdash; и не должно быть ошибки</p>
+
+<p>В ответе:<br>
+&ndash; Проверяет, что обязательное поле приходит всегда<br>
+&ndash; Если поле не пришло, а должно &mdash; это расхождение<br>
+&ndash; Если поле необязательное, оно может приходить или не приходить &mdash; в зависимости от ситуации, описанной в требованиях</p>
+
+<p>Общий принцип:<br>
+&ndash; Если поле отсутствует, но ты не знаешь, должно ли оно быть &mdash; сначала уточни<br>
+&ndash; Отсутствие обязательного &mdash; потенциальный баг<br>
+&ndash; Отсутствие необязательного &mdash; допустимо<br>
+&ndash; Если нет ясности &mdash; это точка для диалога, а не сразу дефект</p>
+
+<h2><b>Итог</b></h2>
+
+<p>Обязательность поля &mdash; это требование, которое влияет на корректность работы API. В запросе оно означает: без поля нельзя отправить. В ответе &mdash; поле должно присутствовать. Всё, что не описано явно, требует уточнения. Проверка обязательности &mdash; это не только структура, но и логика. Неуказанная обязательность &mdash; причина задать вопрос, а не придумывать правило самому.</p>
+
+<p>&nbsp;</p></div>
+          <nav class="pager" aria-label="Навигация между шагами"><a class="prev" href="step-079.html"><small>Назад</small><span>← Лекция «Вложенность и уровни в JSON» </span></a><a class="next" href="step-081.html"><small>Дальше</small><span>Лекция «REST vs SOAP: В чём разница?» →</span></a></nav>
+        </article></div></main>
+  <footer><span>Локальная учебная копия · без отслеживания и отправки ответов</span><a href="../../about.html">О сайте</a></footer>
+</body>
+</html>

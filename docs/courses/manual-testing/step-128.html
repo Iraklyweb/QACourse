@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Лекция &quot;Когда ты нажимаешь кнопку, а ничего не происходит: как думать и что проверять&quot; Ранее мы уже обсуждали тему &quot;Как тестировать API: основные подходы и">
+  <meta name="color-scheme" content="dark light">
+  <title>Лекция «Когда ты нажимаешь кнопку, а ничего не происходит: как думать и что проверять» · QA Конспект</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body data-base="../../">
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="topbar">
+    <a class="brand" href="../../index.html" aria-label="QA Конспект, главная"><span class="brand-mark">QA</span><span>Конспект</span></a>
+    <nav aria-label="Основная навигация">
+      <a href="../../courses/manual-testing/">Ручное тестирование</a>
+      <a href="../../courses/mqa-base/">MQA Base</a>
+      <a href="../../courses/manual-testing/">Курс</a>
+    </nav>
+    <form class="search-mini" action="../../search.html" role="search">
+      <label class="sr-only" for="site-search-2">Поиск по курсам</label>
+      <input id="site-search-2" name="q" type="search" placeholder="Найти тему…" autocomplete="off">
+      <button type="submit" aria-label="Искать">⌕</button>
+    </form>
+  </header>
+  <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="index.html">← Структура курса</a><div class="rail-index"><span>128</span><small>из 168</small></div><p>Заметки &quot;как тестировать&quot;</p><div class="rail-progress" aria-label="Шаг 7 из 10 в теме"><i style="width:70%"></i></div><small>7 / 10 в теме</small></aside>
+        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><a href="index.html">Ручное тестирование</a><span>/</span><span>Тестирование на деле</span><span>/</span><span>Заметки &quot;как тестировать&quot;</span></nav>
+          <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «Когда ты нажимаешь кнопку, а ничего не происходит: как думать и что проверять»</h1><p>Тестирование на деле · Заметки &quot;как тестировать&quot;</p></header>
+          <aside class="media-card"><span aria-hidden="true">▶</span><div><strong>К шагу прикреплено видео</strong><p>Видео не включено в локальную копию; сохранена только отметка о его наличии.</p></div></aside><div class="lesson-content"><h1>Лекция &laquo;Когда ты нажимаешь кнопку, а ничего не происходит: как думать и что проверять&raquo;</h1>
+
+<p>&nbsp;</p>
+
+<p>Ранее мы уже обсуждали тему <strong>&laquo;Как тестировать API: основные подходы и сценарии&raquo;</strong> &mdash; это была базовая картина. Сейчас &mdash; погружаемся глубже: <strong>что делать, если при нажатии на кнопку не происходит ничего.</strong> Как локализовать проблему, как не потеряться, на что обращать внимание &mdash; и как это всё связано с твоей работой и собеседованием.</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Почему это важно?</strong></h3>
+
+<p>Такой тип задач встречается <strong>и в работе, и на собеседованиях. </strong>Тебе могут задать примерно такой вопрос:</p>
+
+<p>&laquo;Вот есть интернет-магазин. Нажимаешь &ldquo;Добавить в корзину&rdquo; &mdash; и ничего не происходит. Что будешь делать?&raquo;</p>
+
+<p>На деле, это универсальная постановка. Она применима не только к &laquo;добавлению в корзину&raquo;, а ко <strong>всем кейсам, где пользователь нажимает кнопку, и в ответ нет никакой реакции</strong>: ни ошибки, ни сообщения, ни смены состояния. Просто тишина.</p>
+
+<p>В таких ситуациях есть только один путь &mdash; <strong>пройтись по чёткому алгоритму действий</strong>. Этот алгоритм помогает тебе исключать возможные причины и шаг за шагом приближаться к источнику бага. Важно не теряться, не &quot;тыкать наугад&quot;, а <strong>двигаться методично</strong>.</p>
+
+<h2>&nbsp;</h2>
+
+<h3><strong>Что нужно выяснить в начале?</strong></h3>
+
+<p>На собеседовании (и в работе) формулировка задачи может быть разной. Есть <strong>два варианта</strong>:</p>
+
+<ol>
+	<li>
+	<p><strong>Найти конкретную причину</strong>, которую &laquo;загадал&raquo; собеседующий.</p>
+	</li>
+	<li>
+	<p><strong>Назвать как можно больше возможных причин, без акцента на одну.</strong></p>
+	</li>
+</ol>
+
+<p>Чтобы не гадать &mdash; <strong>лучше</strong> <strong>сразу спросить</strong>:</p>
+
+<p>&ldquo;Мне нужно найти конкретную проблему, которую вы имеете в виду, или просто перечислить возможные причины?&rdquo;</p>
+
+<ul>
+	<li>
+	<p>Если <strong>первый вариант</strong> &mdash; слушай внимательно и действуй по подсказкам. Начинай с самого простого: &mdash; почисти кэш и куки, &mdash; попробуй другой браузер, &mdash; посмотри, авторизован ли пользователь, &mdash; открой DevTools &rarr; вкладка Network.</p>
+	</li>
+	<li>
+	<p>Если <strong>второй вариант</strong> &mdash; спокойно <strong>раскладывай весь алгоритм</strong>: шаг за шагом, как по чек-листу.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><strong>Почему такой кейс опасен?</strong></h3>
+
+<p>Фраза <strong>&laquo;ничего не происходит&raquo;</strong> &mdash; одна из самых коварных в тестировании.</p>
+
+<ul>
+	<li>
+	<p>Нет ошибки.</p>
+	</li>
+	<li>
+	<p>Нет подсказки.</p>
+	</li>
+	<li>
+	<p>Нет визуального отклика.</p>
+	</li>
+	<li>
+	<p><strong>Нет даже намёка.</strong></p>
+	</li>
+</ul>
+
+<p>А баг &mdash; есть. И ты единственный, кто должен его <strong>найти и объяснить.</strong></p>
+
+<p>Что это может быть:</p>
+
+<ul>
+	<li>
+	<p>Фронт не отправил запрос вообще</p>
+	</li>
+	<li>
+	<p>Запрос ушёл, но вернулся с ошибкой (500 / 403 / 422&hellip;)</p>
+	</li>
+	<li>
+	<p>Данные невалидны</p>
+	</li>
+	<li>
+	<p>Нарушена логика в условиях</p>
+	</li>
+	<li>
+	<p>Пользователь не авторизован</p>
+	</li>
+	<li>
+	<p>После вчерашнего релиза поломался старый сценарий</p>
+	</li>
+</ul>
+
+<p>И если ты не знаешь, с чего начать &mdash; <strong>будешь просто &ldquo;тыкать&rdquo;.</strong> А надо <strong>исключать шаг за шагом.</strong></p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Метафора, которую легко запомнить</strong></h3>
+
+<p>Представь, тебе дали <strong>сломанный пульт от телевизора.</strong> Кнопка не работает.</p>
+
+<p>Ты же не начинаешь с разборки платы, правда?</p>
+
+<p>Сначала:</p>
+
+<ul>
+	<li>
+	<p>Проверишь батарейки</p>
+	</li>
+	<li>
+	<p>Убедишься, что телевизор включён</p>
+	</li>
+	<li>
+	<p>Посмотришь, не переключено ли на HDMI вместо TV</p>
+	</li>
+</ul>
+
+<p>Только если всё это исключено &mdash; полезешь глубже.</p>
+
+<p>Вот и с багами так же. Сначала &mdash; простое. Потом &mdash; техническое. Потом &mdash; логика.</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Что чаще всего валит на собеседовании?</strong></h3>
+
+<p>На собеседованиях валятся не из-за незнания, а из-за хаотичного мышления.</p>
+
+<p>Люди начинают с Postman, не проверив, ушёл ли вообще запрос. Говорят &quot;посмотрю DevTools&quot; &mdash; но не уточняют, <strong>что именно хотят найти. </strong>Нет чёткой структуры. Нет понимания, куда и зачем смотреть.</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Что от тебя ждут?</strong></h3>
+
+<p>Твоя задача &mdash; <strong>не просто найти баг</strong>, а <strong>показать, как ты к нему пришёл. </strong>Это интервью. Люди смотрят на твоё <strong>мышление</strong>, а не на угадал/не угадал.</p>
+
+<p>Ты &mdash; <strong>расследуешь</strong>. Как детектив. С холодной головой и понятным планом действий.</p></div>
+          <nav class="pager" aria-label="Навигация между шагами"><a class="prev" href="step-127.html"><small>Назад</small><span>← Лекция «Совместное написание баг-репорта»</span></a><a class="next" href="step-129.html"><small>Дальше</small><span>Лекция «Клиентские проблемы»  →</span></a></nav>
+        </article></div></main>
+  <footer><span>Локальная учебная копия · без отслеживания и отправки ответов</span><a href="../../about.html">О сайте</a></footer>
+</body>
+</html>

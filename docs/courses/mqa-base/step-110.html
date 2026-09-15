@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Попарное тестирование Попарное тестирование — это техника тест-дизайна, при которой проверяются все возможные пары параметров хотя бы один раз. Метод испол">
+  <meta name="color-scheme" content="dark light">
+  <title>Лекция «Попарное тестирование» · QA Конспект</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body data-base="../../">
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="topbar">
+    <a class="brand" href="../../index.html" aria-label="QA Конспект, главная"><span class="brand-mark">QA</span><span>Конспект</span></a>
+    <nav aria-label="Основная навигация">
+      <a href="../../courses/manual-testing/">Ручное тестирование</a>
+      <a href="../../courses/mqa-base/">MQA Base</a>
+      <a href="../../courses/mqa-base/">Курс</a>
+    </nav>
+    <form class="search-mini" action="../../search.html" role="search">
+      <label class="sr-only" for="site-search-2">Поиск по курсам</label>
+      <input id="site-search-2" name="q" type="search" placeholder="Найти тему…" autocomplete="off">
+      <button type="submit" aria-label="Искать">⌕</button>
+    </form>
+  </header>
+  <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="index.html">← Структура курса</a><div class="rail-index"><span>110</span><small>из 127</small></div><p>Теоретические сведения</p><div class="rail-progress" aria-label="Шаг 10 из 19 в теме"><i style="width:53%"></i></div><small>10 / 19 в теме</small></aside>
+        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><a href="index.html">MQA Base</a><span>/</span><span>Техники тест-дизайна</span><span>/</span><span>Теоретические сведения</span></nav>
+          <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «Попарное тестирование»</h1><p>Техники тест-дизайна · Теоретические сведения</p></header>
+          <aside class="media-card"><span aria-hidden="true">▶</span><div><strong>К шагу прикреплено видео</strong><p>Видео не включено в локальную копию; сохранена только отметка о его наличии.</p></div></aside><div class="lesson-content"><div>
+
+<h1>Попарное тестирование</h1>
+
+<div>
+<div>
+<div>
+<p><strong>Попарное тестирование</strong> &mdash; это техника тест-дизайна, при которой проверяются все возможные пары параметров хотя бы один раз.</p>
+
+<p>Метод используется, когда комбинаций слишком много, и полный перебор нецелесообразен. Вместо проверки всех вариантов тестировщик концентрируется на взаимодействии параметров попарно, потому что большая часть дефектов проявляется именно на стыке двух значений.</p>
+</div>
+
+<div>
+<p><strong>Пример:</strong></p>
+
+<p>Есть три параметра фильтра &mdash; размер, цвет и тип товара.</p>
+
+<ul>
+	<li>Размер: S, M, L, XL</li>
+	<li>Цвет: Красный, Синий, Зелёный</li>
+	<li>Тип: Одежда, Обувь</li>
+</ul>
+
+<p>Полный перебор даёт 4&times;3&times;2 = 24 комбинации.</p>
+
+<p>Попарное тестирование сокращает их примерно до 12, сохраняя покрытие всех пар.</p>
+
+<p>Один тест, например &ldquo;S + Красный + Одежда&rdquo;, закрывает сразу три пары:</p>
+
+<ul>
+	<li>S + Красный</li>
+	<li>S + Одежда</li>
+	<li>Красный + Одежда</li>
+</ul>
+
+<p>То есть цель &mdash; не пройти все возможные сценарии, а убедиться, что каждая пара параметров была проверена хотя бы один раз.</p>
+</div>
+
+<div>
+<p><strong>На практике метод применяют, когда:</strong></p>
+
+<ul>
+	<li>&mdash; у функции есть несколько входных параметров (настройки, фильтры, конфигурации);</li>
+	<li>&mdash; параметры могут влиять друг на друга;</li>
+	<li>&mdash; полный перебор значений приведёт к сотням или тысячам тестов.</li>
+</ul>
+</div>
+
+<div>
+<p><strong>Пример:</strong></p>
+
+<p>Кофемашина имеет параметры:</p>
+
+<ul>
+	<li>Размер чашки &mdash; Маленькая, Средняя, Большая</li>
+	<li>Тип напитка &mdash; Эспрессо, Американо</li>
+	<li>Молоко &mdash; Без молока, С молоком</li>
+	<li>Сахар &mdash; Без сахара, С сахаром</li>
+</ul>
+
+<p>Полный перебор = 3&times;2&times;2&times;2 = 24 комбинации.</p>
+
+<p>Попарное тестирование даёт 6&ndash;8 тестов, которые закрывают все пары.</p>
+
+<p><strong>Например:</strong></p>
+
+<ul>
+	<li>Маленькая + Эспрессо + Без молока + Без сахара</li>
+	<li>Средняя + Американо + С молоком + С сахаром</li>
+	<li>Большая + Эспрессо + С молоком + Без сахара</li>
+	<li>Маленькая + Американо + Без молока + С сахаром</li>
+	<li>Средняя + Эспрессо + Без молока + С сахаром</li>
+	<li>Большая + Американо + С молоком + Без сахара</li>
+</ul>
+
+<p>Каждая пара параметров встречается хотя бы раз &mdash; этого достаточно, чтобы выявить дефекты на уровне взаимодействия настроек.</p>
+</div>
+
+<div>
+<p>Попарное тестирование применяют в системах с множеством зависимых параметров: фильтры, конфигурации, настройки окружения, товары с вариантами характеристик.</p>
+
+<p>Метод экономит время, снижает избыточность тестов и позволяет удерживать охват без потери глубины.</p>
+
+<p>Для автоматизации подбора комбинаций используются инструменты вроде Pairwise Testing Tool, AllPairs или PICT &mdash; они подбирают минимальный набор тестов, покрывающий все пары.</p>
+</div>
+</div>
+</div>
+</div></div>
+          <nav class="pager" aria-label="Навигация между шагами"><a class="prev" href="step-109.html"><small>Назад</small><span>← Лекция «Общее понимание техник тест-дизайна»</span></a><a class="next" href="step-111.html"><small>Дальше</small><span>Лекция «Работа с валидными и невалидными значениями — практическое применение» →</span></a></nav>
+        </article></div></main>
+  <footer><span>Локальная учебная копия · без отслеживания и отправки ответов</span><a href="../../about.html">О сайте</a></footer>
+</body>
+</html>

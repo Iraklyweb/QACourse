@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Лекция &quot;Как тестировать бэкенд?&quot; Бэкенд отвечает за обработку логики и данных. В отличие от фронтенда, тестирование бэкенда требует работы с API, базы данн">
+  <meta name="color-scheme" content="dark light">
+  <title>Лекция «Как тестировать бэкенд?» · QA Конспект</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script src="../../assets/site.js" defer></script>
+</head>
+<body data-base="../../">
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="topbar">
+    <a class="brand" href="../../index.html" aria-label="QA Конспект, главная"><span class="brand-mark">QA</span><span>Конспект</span></a>
+    <nav aria-label="Основная навигация">
+      <a href="../../courses/manual-testing/">Ручное тестирование</a>
+      <a href="../../courses/mqa-base/">MQA Base</a>
+      <a href="../../courses/manual-testing/">Курс</a>
+    </nav>
+    <form class="search-mini" action="../../search.html" role="search">
+      <label class="sr-only" for="site-search-2">Поиск по курсам</label>
+      <input id="site-search-2" name="q" type="search" placeholder="Найти тему…" autocomplete="off">
+      <button type="submit" aria-label="Искать">⌕</button>
+    </form>
+  </header>
+  <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="index.html">← Структура курса</a><div class="rail-index"><span>126</span><small>из 168</small></div><p>Заметки &quot;как тестировать&quot;</p><div class="rail-progress" aria-label="Шаг 5 из 10 в теме"><i style="width:50%"></i></div><small>5 / 10 в теме</small></aside>
+        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><a href="index.html">Ручное тестирование</a><span>/</span><span>Тестирование на деле</span><span>/</span><span>Заметки &quot;как тестировать&quot;</span></nav>
+          <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «Как тестировать бэкенд?»</h1><p>Тестирование на деле · Заметки &quot;как тестировать&quot;</p></header>
+          <aside class="media-card"><span aria-hidden="true">▶</span><div><strong>К шагу прикреплено видео</strong><p>Видео не включено в локальную копию; сохранена только отметка о его наличии.</p></div></aside><div class="lesson-content"><h1>Лекция &laquo;Как тестировать бэкенд?&raquo;</h1>
+
+<p>&nbsp;</p>
+
+<p>Бэкенд отвечает за обработку логики и данных. В отличие от фронтенда, тестирование бэкенда требует работы с API, базы данных и проверки бизнес-логики.</p>
+
+<p>Для полноценного тестирования бэкенда важно собрать как можно больше информации из требований, от разработчика или интервьюера, если вы на собеседовании. Используя приведенные ниже материал, вы сможете найти нужные данные и задать правильные вопросы. С этой информацией можно приступать к тестированию, обеспечив более точные и эффективные результаты.</p>
+
+<p>Для успешного тестирования необходимо выяснить следующие моменты:</p>
+
+<ol>
+	<li>
+	<p>URL и эндпоинт</p>
+	</li>
+	<li>
+	<p>Какие квери параметры</p>
+	</li>
+	<li>
+	<p>Формат сообщения (JSON, XML и т.д.)</p>
+	</li>
+	<li>
+	<p>Какое заголовок/тело запроса</p>
+
+	<ol>
+		<li>
+		<p>Количество атрибутов</p>
+		</li>
+		<li>
+		<p>Название атрибутов</p>
+		</li>
+		<li>
+		<p>Тип данных</p>
+		</li>
+		<li>
+		<p>Обязательные и не обязательные</p>
+		</li>
+		<li>
+		<p>Классы эквивалентности</p>
+		</li>
+		<li>
+		<p>Ограничения</p>
+
+		<ol>
+			<li>
+			<p>На длину/дату/время</p>
+			</li>
+			<li>
+			<p>Доступности роли</p>
+			</li>
+		</ol>
+		</li>
+	</ol>
+	</li>
+	<li>
+	<p>Какое тело ответа</p>
+
+	<ol>
+		<li>
+		<p>Успешный результат</p>
+		</li>
+		<li>
+		<p>Неуспешный результат</p>
+
+		<ol>
+			<li>
+			<p>Не тот метод (ожидаем А, отправляем Б) - 405</p>
+			</li>
+			<li>
+			<p>Пустое тело - 400</p>
+			</li>
+			<li>
+			<p>Отсутствуют обязательные поля - 400</p>
+			</li>
+			<li>
+			<p>Пустые обязательные поля &quot;&quot; - 400</p>
+			</li>
+			<li>
+			<p>null обязательные поля - 400</p>
+			</li>
+			<li>
+			<p>Неверный тип данных - 400</p>
+			</li>
+			<li>
+			<p>Превышены ограничения - 400</p>
+			</li>
+			<li>
+			<p>Отсутствуют права - 403</p>
+			</li>
+			<li>
+			<p>Отсутствует авторизация - 401</p>
+			</li>
+			<li>
+			<p>Нельзя выполнить процесс, т.к. он занят (Процесс стоит на этапе сборки товара, а мы пытаемся еще раз оплатить). - 409</p>
+			</li>
+			<li>
+			<p>Сущность не существует - 404</p>
+			</li>
+			<li>
+			<p>Текст ошибки соответствует и понятный ошибке то что описано выше</p>
+			</li>
+			<li>
+			<p>При этом всем проверка на соответствие статус кода по этим ошибкам (400, 401, 403, 404, 405, 409)</p>
+			</li>
+			<li>
+			<p>Недоступный сервер - 500, 503, 504</p>
+			</li>
+		</ol>
+		</li>
+	</ol>
+	</li>
+	<li>
+	<p>Что происходит с сущностью в БД при её создании, обновлении или удалении</p>
+	</li>
+	<li>
+	<p>Дублируется ли или создастся новое, что предусмотрено логикой API</p>
+	</li>
+	<li>
+	<p>Ограничения на количество запросов за определенное время, как с одного IP или как с одного устройства</p>
+	</li>
+</ol>
+
+<p>&nbsp;</p>
+
+<p><strong>ЭТО ВСЁ ВЫУЧИТЬ НА ЗУБОК. ОТ 1 ДО 8. Прям всё? Да, всё.&nbsp;</strong></p>
+
+<p>Не всё проверяется на работе, потому что не все методы можно протестировать таким образом из-за особенностей их реализации</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Что </strong>тестируем на<strong> бэкенде?</strong></h3>
+
+<ul>
+	<li>
+	<p><strong>API</strong> &rarr; Отвечает ли сервер на запросы? Корректно ли возвращает данные?</p>
+	</li>
+	<li>
+	<p><strong>База данных</strong> &rarr; Сохраняются ли данные правильно? Нет ли потерь?</p>
+	</li>
+	<li>
+	<p><strong>Бизнес-логика</strong> &rarr; Выполняются ли расчёты, проверки, условия?</p>
+	</li>
+	<li>
+	<p><strong>Безопасность</strong> &rarr; Можно ли получить данные без авторизации?</p>
+	</li>
+	<li>
+	<p><strong>Ошибки</strong> &rarr; Как API обрабатывает некорректные запросы?</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><strong>Как тестировать API?</strong></h3>
+
+<p>Для тестирования API используются <strong>Postman, Swagger</strong> и другие инструменты, которые позволяют отправлять запросы и анализировать ответы.</p>
+
+<p><strong>Основные проверки:</strong></p>
+
+<ul>
+	<li>
+	<p><strong>Ответы сервера</strong> &rarr; Кода 200, 400, 500</p>
+	</li>
+	<li>
+	<p><strong>Структура данных</strong> &rarr; Совпадает ли с документацией? Количество и название</p>
+	</li>
+	<li>
+	<p><strong>Граничные значения</strong> &rarr; Что будет, если передать неверные или слишком большие данные?</p>
+	</li>
+	<li>
+	<p><strong>Безопасность</strong> &rarr; Можно ли получить данные без токена или с чужими правами?</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><strong>Создание товара: пример тестирования</strong></h3>
+
+<p>Создание выполняется через <strong>POST-запрос</strong>.</p>
+
+<p>Что важно:</p>
+
+<ul>
+	<li>
+	<p><strong>URL</strong> &rarr; /api/products</p>
+	</li>
+	<li>
+	<p><strong>Метод</strong> &rarr; <strong>POST</strong></p>
+	</li>
+	<li>
+	<p><strong>Заголовки</strong> &rarr; Content-Type: application/json, Authorization: Bearer &lt;токен&gt;</p>
+	</li>
+	<li>
+	<p><strong>Тело запроса</strong>:</p>
+	</li>
+</ul>
+
+<p><span>{</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;name&quot;: &quot;Смартфон&quot;,</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;price&quot;: 999,</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;category&quot;: &quot;Электроника&quot;,</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;stock&quot;: 10</span></p>
+
+<p><span>}</span></p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Что проверяем?</strong></h3>
+
+<ul>
+	<li>
+	<p>Успешное создание &rarr; Код <strong>200 ОК </strong>или <strong>201 Created</strong>, API возвращает id товара, в нашем случае, но не обязательно.</p>
+	</li>
+	<li>
+	<p>Данные в базе &rarr; Проверяем, что товар появился. Если нет доступа к БД, вытаскиваем через <strong>GET-запрос</strong>.</p>
+	</li>
+	<li>
+	<p>Обязательные поля &rarr; Убираем как по 1 так и массово name, price, category, ожидаем <strong>400 Bad Request</strong>. Смотри как реагирует ли только на первое поле или на все. Если только на одном, придется проверять по одному полю, если сразу на всё. То сэкономите время</p>
+	</li>
+	<li>
+	<p>Обработка ошибок &rarr; Если передаём price: &quot;100&quot; (в виде строки), сервер должен вернуть ошибку. <strong>400 Bad Request</strong>.</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><strong>Что тестируем в теле запроса?</strong></h3>
+
+<ul>
+	<li>
+	<p><strong>Какие атрибуты передаются</strong> &rarr; Название, структура, количество.</p>
+	</li>
+	<li>
+	<p><strong>Типы данных</strong> &rarr; Строка, число, массив и т. д.</p>
+	</li>
+	<li>
+	<p><strong>Все заполненные поля </strong>&rarr; убедиться, что система работает</p>
+	</li>
+	<li>
+	<p><strong>Обязательные и необязательные поля</strong> &rarr; Какие можно опустить? Убедиться, что необязательные поля действительно необязательные и обязательные действительно обязательные.</p>
+	</li>
+	<li>
+	<p><strong>Границы значений</strong> &rarr; Минимальные, максимальные значения и +-1 от границы</p>
+	</li>
+	<li>
+	<p><strong>Пустые значения</strong> &rarr; name: null или name: &ldquo;&rdquo;&rarr; API должно реагировать и выдавать ошибку, если обязательное поле.</p>
+	</li>
+	<li>
+	<p><strong>Пустое тело</strong> &rarr;&nbsp; тело без всех полей, но должно сохранять формат данных, например JSON {},&nbsp;</p>
+	</li>
+	<li>
+	<p><strong>Неверный тип данных</strong> &rarr; price: &quot;100&quot; &rarr; API должно вернуть ошибку, т.к. это строка.</p>
+	</li>
+</ul>
+
+<p><strong>Изменение типа данных </strong>В большинстве случаев это не нужно проверять, так как с этим редко бывают проблемы. Но для своего спокойствия &mdash; можно протестировать.</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Что тестируем в заголовках запроса?</strong></h3>
+
+<p><strong>1. Content-Type</strong> &rarr; Соответствует ли передаваемым данным?</p>
+
+<ul>
+	<li>
+	<p>Если указано Content-Type: application/json, но тело запроса не JSON, сервер должен вернуть <strong>415 Unsupported Media Type</strong>.</p>
+	</li>
+	<li>
+	<p>Если Content-Type отсутствует, API может либо проигнорировать его, либо вернуть ошибку.</p>
+	</li>
+</ul>
+
+<p>Некоторые API требуют аутентификацию.</p>
+
+<p><strong>2. Authorization</strong> &rarr; Работает ли аутентификация?</p>
+
+<ul>
+	<li>
+	<p><strong>Без токена</strong> &rarr; Ожидаем <strong>401 Unauthorized</strong>.</p>
+	</li>
+	<li>
+	<p><strong>С неверным токеном</strong> &rarr; Ожидаем <strong>401 Unauthorized</strong>.</p>
+	</li>
+	<li>
+	<p><strong>С правильным токеном, но недостаточными правами</strong> &rarr; Ожидаем <strong>403 Forbidden</strong>.</p>
+	</li>
+	<li>
+	<p><strong>Время жизни токена</strong> &rarr; Проверяем, как сервер реагирует на <strong>истёкший токен</strong> (должен вернуть <strong>401 Unauthorized</strong>).</p>
+	</li>
+	<li>
+	<p><strong>Запрос с правильным токеном, но недостаточными правами</strong> &rarr; Ожидаем <strong>403 Forbidden</strong>.</p>
+	</li>
+</ul>
+
+<p><strong>Стандартные заголовки (Host, User-Agent, Accept, Referer) обычно не тестируются, если нет специфических требований. </strong>Но если API использует кастомные заголовки (X-Correlation-ID, X-Request-ID), их тестирование проводится <strong>согласно требованиям</strong>, проверяя, как сервер обрабатывает их наличие, отсутствие или некорректные значения.</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Обновление данных (PUT vs PATCH)</strong></h3>
+
+<p><strong>PUT</strong> &mdash; заменяет весь объект, требует передачу всех полей. <strong>PATCH</strong> &mdash; обновляет только переданные поля.</p>
+
+<p>Пример <strong>PATCH</strong>:</p>
+
+<p><span>{</span></p>
+
+<p><span>&nbsp;&nbsp;&quot;price&quot;: 899</span></p>
+
+<p><span>}</span></p>
+
+<p><strong>Что проверяем?</strong></p>
+
+<ul>
+	<li>
+	<p><strong>PUT</strong> &rarr; Удаляет ли не переданные поля?</p>
+	</li>
+	<li>
+	<p><strong>PATCH</strong> &rarr; Сохраняет ли старые данные?</p>
+	</li>
+	<li>
+	<p><strong>Валидация</strong> &rarr; Можно ли отправить пустые поля?</p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><strong>Удаление товара</strong></h3>
+
+<p>Удаление выполняется методом <strong>DELETE</strong>.</p>
+
+<p><strong>Что проверяем?</strong></p>
+
+<ul>
+	<li>
+	<p><strong>Успешное удаление</strong> &rarr; <strong>200 OK</strong> или <strong>204 No Content</strong>.</p>
+	</li>
+	<li>
+	<p><strong>Повторное удаление</strong> &rarr; <strong>404 Not Found</strong>.</p>
+	</li>
+	<li>
+	<p><strong>Можно ли удалить товар, если он уже используется?</strong> Если да &mdash; <strong>баг</strong>.</p>
+	</li>
+</ul>
+
+<h3>&nbsp;</h3>
+
+<h3><strong>Разные роли пользователей</strong></h3>
+
+<p>Проверяем:</p>
+
+<ul>
+	<li>
+	<p><strong>Администратор</strong> &rarr; Может создавать, обновлять, удалять товары.</p>
+	</li>
+	<li>
+	<p><strong>Пользователь</strong> &rarr; Может только просматривать.</p>
+	</li>
+	<li>
+	<p><strong>Гость</strong> &rarr; Не должен видеть закрытые товары.</p>
+	</li>
+</ul>
+
+<p>Если нет прав &rarr; <strong>403 Forbidden</strong>.</p>
+
+<p>&nbsp;</p>
+
+<h3><strong>Ошибки и обработка исключений</strong></h3>
+
+<p>API должно правильно обрабатывать ошибки:</p>
+
+<ul>
+	<li>
+	<p><span>400 Bad Request &mdash; неверные данные.</span></p>
+	</li>
+	<li>
+	<p><span>401 Unauthorized &mdash; нет авторизации.</span></p>
+	</li>
+	<li>
+	<p><span>403 Forbidden &mdash; нет прав.</span></p>
+	</li>
+	<li>
+	<p><span>404 Not Found &mdash; ресурс не найден.</span></p>
+	</li>
+	<li>
+	<p><span>409 Conflict &mdash; конфликт (например, товар уже существует).</span></p>
+	</li>
+	<li>
+	<p><span>500 Internal Server Error &mdash; сервер сломался (и этого быть не должно).</span></p>
+	</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<h3><strong>Итог</strong></h3>
+
+<p>Тестирование бэкенда &mdash; это проверка API, структуры данных, базы и авторизации.</p>
+
+<ol>
+	<li>
+	<p><strong>Проверяем, что запрос отправляется правильно</strong> &rarr; Метод, URL, заголовки, тело.</p>
+	</li>
+	<li>
+	<p><strong>Проверяем, что сервер отвечает корректно</strong> &rarr; Код ответа, структура данных.</p>
+	</li>
+	<li>
+	<p><strong>Проверяем, что данные сохраняются в БД</strong> &rarr; Если доступа к БД нет, смотрим через GET-запрос.</p>
+	</li>
+	<li>
+	<p><strong>Тестируем ошибки</strong> &rarr; Отсутствие полей, неверные значения, токены.</p>
+	</li>
+</ol>
+
+<p>Без требований тестирование бэкенда превращается в угадайку. Запросите у разработчиков примеры запросов и ожидаемые результаты. Это упростит тестирование и поможет избежать бессмысленной работы.</p>
+
+<p><strong>Это практически всё</strong>, что вам нужно знать <strong>для успешного прохождения собеседований и работы, остальное специфичное и изучите на месте.</strong></p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><strong>Что нужно уметь рассказать</strong><br>
+&ndash; Что именно тестируем: API, база данных, бизнес-логика, безопасность, ошибки<br>
+&ndash; Как тестируем API: метод, URL, заголовки, тело, структура ответа<br>
+&ndash; Проверка обязательных и необязательных полей<br>
+&ndash; Проверка типов данных и граничных значений<br>
+&ndash; GET/POST могут использоваться для поиска данных<br>
+&ndash; POST используется для создания и иногда обновления<br>
+&ndash; PUT/PATCH &mdash; обновление (PUT полностью заменяет, PATCH частично меняет поля)<br>
+&ndash; DELETE &mdash; удаление ресурса (физическое или логическое)<br>
+&ndash; Обработка ошибок (400, 401, 403, 404, 405, 409, 500, 503, 504)<br>
+&ndash; Проверка разных ролей пользователей (админ, пользователь, гость)</p>
+
+<p><strong>Всё остальное &mdash; для общего развития</strong></p></div>
+          <nav class="pager" aria-label="Навигация между шагами"><a class="prev" href="step-125.html"><small>Назад</small><span>← Лекция «Как определить, что нужно тестировать?»</span></a><a class="next" href="step-127.html"><small>Дальше</small><span>Лекция «Совместное написание баг-репорта» →</span></a></nav>
+        </article></div></main>
+  <footer><span>Локальная учебная копия · без отслеживания и отправки ответов</span><a href="../../about.html">О сайте</a></footer>
+</body>
+</html>
