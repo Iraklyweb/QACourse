@@ -5,6 +5,7 @@
   "scripts": {
     "build": "node scripts/build-site.mjs",
     "check": "node scripts/check-site.mjs",
+    "compose": "node scripts/compose-pages.mjs",
     "preview": "node scripts/serve-site.mjs"
   }
 }

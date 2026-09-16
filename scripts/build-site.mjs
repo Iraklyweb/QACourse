@@ -8,6 +8,11 @@ const sourceDirName = process.env.COURSE_EXPORT_DIR || fs.readdirSync(root, { wi
 if (!sourceDirName) throw new Error('Не найден локальный каталог выгрузки курса');
 const sourceDir = path.join(root, sourceDirName);
 const outDir = path.join(root, 'docs');
+const siteEnvironment = process.env.SITE_ENV || 'production';
+if (!['production', 'development'].includes(siteEnvironment)) {
+  throw new Error(`Неизвестное окружение: ${siteEnvironment}`);
+}
+const isDevelopment = siteEnvironment === 'development';
 
 const retiredHost = ['ka', 'ta', '.academy'].join('');
 const retiredHostPattern = ['ka', 'ta', '\\.academy'].join('');
@@ -157,6 +162,9 @@ function faviconData() {
 function shell({ title, description, depth = 0, body, current = '' }) {
   const base = '../'.repeat(depth);
   const navCourse = current ? `<a href="${base}courses/${current}/">Курс</a>` : '';
+  const environmentNav = isDevelopment
+    ? `\n    <span class="env-badge" aria-label="Среда разработки">DEV</span><a class="production-link" data-production-link href="${base}../">Продакшен</a>`
+    : '';
   return `<!doctype html>
 <html lang="ru">
 <head>
@@ -169,10 +177,10 @@ function shell({ title, description, depth = 0, body, current = '' }) {
   <link rel="stylesheet" href="${base}assets/site.css">
   <script src="${base}assets/site.js" defer></script>
 </head>
-<body data-base="${base}">
+<body data-base="${base}" data-environment="${siteEnvironment}">
   <a class="skip-link" href="#main">К содержанию</a>
   <header class="topbar">
-    <a class="brand" href="${base}index.html" aria-label="Персональный курс QA, главная"><span class="brand-mark">QA</span><span>Персональный курс QA</span></a>
+    <a class="brand" href="${base}index.html" aria-label="Персональный курс QA, главная"><span class="brand-mark">QA</span><span>Персональный курс QA</span></a>${environmentNav}
     <nav aria-label="Основная навигация">
       <a href="${base}courses/manual-testing/">Ручное тестирование</a>
       <a href="${base}courses/mqa-base/">MQA Base</a>
@@ -349,4 +357,4 @@ write('.nojekyll', '');
 write('assets/site.css', fs.readFileSync(path.join(root, 'site-src', 'site.css'), 'utf8'));
 write('assets/site.js', fs.readFileSync(path.join(root, 'site-src', 'site.js'), 'utf8'));
 
-console.log(JSON.stringify({ courses: courses.length, chapters: totalChapters, pages: totalPages, searchRecords: searchIndex.length, output: outDir }));
+console.log(JSON.stringify({ environment: siteEnvironment, courses: courses.length, chapters: totalChapters, pages: totalPages, searchRecords: searchIndex.length, output: outDir }));

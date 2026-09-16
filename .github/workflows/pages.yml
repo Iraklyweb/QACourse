@@ -2,7 +2,7 @@ name: Deploy static site to GitHub Pages
 
 on:
   push:
-    branches: ["main", "master"]
+    branches: ["main", "develop"]
   workflow_dispatch:
 
 permissions:
@@ -11,7 +11,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages
+  group: pages-prod-dev
   cancel-in-progress: true
 
 jobs:
@@ -21,11 +21,24 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - name: Checkout production from main
+        uses: actions/checkout@v6
+        with:
+          ref: main
+          path: source-main
+          persist-credentials: false
+      - name: Checkout development from develop
+        uses: actions/checkout@v6
+        with:
+          ref: develop
+          path: source-develop
+          persist-credentials: false
+      - name: Compose and verify production and development trees
+        run: node source-main/scripts/compose-pages.mjs source-main/docs source-develop/docs artifact
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v4
         with:
-          path: docs
+          path: artifact
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

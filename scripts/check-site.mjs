@@ -3,7 +3,11 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const outDir = path.join(root, 'docs');
+const outDir = path.resolve(root, process.argv[2] || 'docs');
+const expectedEnvironment = process.argv[3] || 'production';
+if (!['production', 'development'].includes(expectedEnvironment)) {
+  throw new Error(`Неизвестное окружение проверки: ${expectedEnvironment}`);
+}
 const failures = [];
 const htmlFiles = [];
 const forbiddenPublishedPatterns = [
@@ -35,6 +39,18 @@ const unsafePatterns = [
 
 for (const file of htmlFiles) {
   const html = fs.readFileSync(file, 'utf8');
+  const declaredEnvironment = html.match(/<body\b[^>]*\bdata-environment=["']([^"']+)["']/i)?.[1];
+  if (declaredEnvironment !== expectedEnvironment) {
+    failures.push(`${path.relative(root, file)}: окружение ${declaredEnvironment || 'не указано'}, ожидалось ${expectedEnvironment}`);
+  }
+  const devBadges = [...html.matchAll(/class=["'][^"']*\benv-badge\b[^"']*["']/gi)].length;
+  const productionLinks = [...html.matchAll(/\bdata-production-link\b/gi)].length;
+  if (expectedEnvironment === 'development') {
+    if (devBadges !== 1) failures.push(`${path.relative(root, file)}: DEV-бейджей ${devBadges}, ожидался 1`);
+    if (productionLinks !== 1) failures.push(`${path.relative(root, file)}: ссылок на продакшен ${productionLinks}, ожидалась 1`);
+  } else if (devBadges || productionLinks) {
+    failures.push(`${path.relative(root, file)}: dev-индикатор попал в production`);
+  }
   for (const [pattern, label] of unsafePatterns) {
     if (pattern.test(html)) failures.push(`${path.relative(root, file)}: ${label}`);
   }
@@ -46,6 +62,18 @@ for (const file of htmlFiles) {
     if (ref && !/^(?:https?:|data:|#)/i.test(ref)) {
       const clean = ref.split(/[?#]/)[0];
       const target = path.resolve(path.dirname(file), clean);
+      const outsideTree = path.relative(outDir, target).startsWith('..') || path.isAbsolute(path.relative(outDir, target));
+      const isProductionLink = /\bdata-production-link\b/i.test(tag[0]);
+      if (isProductionLink) {
+        if (expectedEnvironment !== 'development' || target !== path.dirname(outDir)) {
+          failures.push(`${path.relative(root, file)}: некорректная ссылка на продакшен ${ref}`);
+        }
+        continue;
+      }
+      if (outsideTree) {
+        failures.push(`${path.relative(root, file)}: ссылка выходит за пределы ${expectedEnvironment}: ${ref}`);
+        continue;
+      }
       if (clean && !fs.existsSync(target)) failures.push(`${path.relative(root, file)}: нет ${ref}`);
     }
   }
@@ -58,6 +86,13 @@ for (const file of htmlFiles) {
 const lessonFiles = htmlFiles.filter((file) => /step-\d{3}\.html$/.test(file));
 const searchText = fs.readFileSync(path.join(outDir, 'assets', 'search-index.json'), 'utf8');
 const search = JSON.parse(searchText);
+for (const record of search) {
+  if (typeof record.url !== 'string' || record.url.startsWith('/') || record.url.includes('..')) {
+    failures.push(`Поиск: URL выходит за пределы окружения: ${record.url}`);
+  } else if (!fs.existsSync(path.join(outDir, record.url))) {
+    failures.push(`Поиск: нет страницы ${record.url}`);
+  }
+}
 for (const [pattern, label] of forbiddenPublishedPatterns) {
   if (pattern.test(searchText)) failures.push(`docs/assets/search-index.json: ${label}`);
 }
@@ -69,4 +104,4 @@ if (failures.length) {
   console.error(failures.join('\n'));
   process.exit(1);
 }
-console.log(JSON.stringify({ htmlFiles: htmlFiles.length, lessonPages: lessonFiles.length, searchRecords: search.length, unsafeFindings: 0, brokenLocalReferences: 0 }));
+console.log(JSON.stringify({ environment: expectedEnvironment, htmlFiles: htmlFiles.length, lessonPages: lessonFiles.length, searchRecords: search.length, unsafeFindings: 0, brokenLocalReferences: 0, escapedEnvironmentReferences: 0 }));

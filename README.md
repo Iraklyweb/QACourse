@@ -14,3 +14,12 @@ npm run check
 ```
 
 Готовый сайт создаётся в `docs/` и не требует серверной части.
+
+## Production и development
+
+- `main` публикуется в production: https://iraklyweb.github.io/QACourse/
+- `develop` публикуется отдельно: https://iraklyweb.github.io/QACourse/dev/
+
+Обычный процесс: изменения вносятся в `develop`, проверяются локально и по dev-адресу, а после одобрения переносятся в `main`. Production обновляется только содержимым ветки `main`.
+
+Pages workflow при каждом push в `main` или `develop` атомарно собирает один артефакт: корень берётся из `main`, а каталог `dev/` — из `develop`. Компоновщик сверяет оба дерева по SHA-256 и запускает проверки ссылок, поиска, безопасности и границ окружений.
