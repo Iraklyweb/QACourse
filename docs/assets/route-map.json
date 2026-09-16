@@ -5407,6 +5407,63 @@
   {
     "source": {
       "course": "manual-testing",
+      "step": 53,
+      "module": "Виды тестирования",
+      "chapter": "Работа и собеседования"
+    },
+    "route": {
+      "stage": "end-to-end",
+      "stageTitle": "8. Сквозная практика",
+      "topic": "Разбор готовых сценариев",
+      "stageOrder": 8,
+      "topicOrder": 1,
+      "lessonOrder": 285,
+      "role": "reference"
+    },
+    "title": "Лекция «Как виды тестирования выглядят на практике»",
+    "url": "courses/manual-testing/step-053.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 54,
+      "module": "Виды тестирования",
+      "chapter": "Работа и собеседования"
+    },
+    "route": {
+      "stage": "end-to-end",
+      "stageTitle": "8. Сквозная практика",
+      "topic": "Разбор готовых сценариев",
+      "stageOrder": 8,
+      "topicOrder": 1,
+      "lessonOrder": 286,
+      "role": "reference"
+    },
+    "title": "Лекция «Все виды тестирования на проекте»",
+    "url": "courses/manual-testing/step-054.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 131,
+      "module": "Тестирование на деле",
+      "chapter": "Заметки \"как тестировать\""
+    },
+    "route": {
+      "stage": "end-to-end",
+      "stageTitle": "8. Сквозная практика",
+      "topic": "Разбор готовых сценариев",
+      "stageOrder": 8,
+      "topicOrder": 1,
+      "lessonOrder": 287,
+      "role": "reference"
+    },
+    "title": "Обратная связь по модулю «Тестирование на деле» ",
+    "url": "courses/manual-testing/step-131.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
       "step": 125,
       "module": "Тестирование на деле",
       "chapter": "Заметки \"как тестировать\""
@@ -5416,8 +5473,8 @@
       "stageTitle": "8. Сквозная практика",
       "topic": "Выбрать и уточнить требование",
       "stageOrder": 8,
-      "topicOrder": 1,
-      "lessonOrder": 285,
+      "topicOrder": 2,
+      "lessonOrder": 288,
       "role": "practice"
     },
     "title": "Лекция «Как определить, что нужно тестировать?»",
@@ -5435,8 +5492,8 @@
       "stageTitle": "8. Сквозная практика",
       "topic": "Выбрать и уточнить требование",
       "stageOrder": 8,
-      "topicOrder": 1,
-      "lessonOrder": 286,
+      "topicOrder": 2,
+      "lessonOrder": 289,
       "role": "practice"
     },
     "title": "Требования. Практическое задание №1",
@@ -5454,8 +5511,8 @@
       "stageTitle": "8. Сквозная практика",
       "topic": "Спроектировать и записать проверки",
       "stageOrder": 8,
-      "topicOrder": 2,
-      "lessonOrder": 287,
+      "topicOrder": 3,
+      "lessonOrder": 290,
       "role": "practice"
     },
     "title": "ТК. Практическое задание №5",
@@ -5473,8 +5530,8 @@
       "stageTitle": "8. Сквозная практика",
       "topic": "Спроектировать и записать проверки",
       "stageOrder": 8,
-      "topicOrder": 2,
-      "lessonOrder": 288,
+      "topicOrder": 3,
+      "lessonOrder": 291,
       "role": "practice"
     },
     "title": "ТК. Практическое задание №6 ",
@@ -5492,8 +5549,8 @@
       "stageTitle": "8. Сквозная практика",
       "topic": "Проверить веб, API и данные",
       "stageOrder": 8,
-      "topicOrder": 3,
-      "lessonOrder": 289,
+      "topicOrder": 4,
+      "lessonOrder": 292,
       "role": "practice"
     },
     "title": "API. Практическое задание №3",
@@ -5511,8 +5568,8 @@
       "stageTitle": "8. Сквозная практика",
       "topic": "Проверить веб, API и данные",
       "stageOrder": 8,
-      "topicOrder": 3,
-      "lessonOrder": 290,
+      "topicOrder": 4,
+      "lessonOrder": 293,
       "role": "practice"
     },
     "title": "SQL. Практическое задание №7",
@@ -5530,8 +5587,8 @@
       "stageTitle": "8. Сквозная практика",
       "topic": "Описать найденный дефект",
       "stageOrder": 8,
-      "topicOrder": 4,
-      "lessonOrder": 291,
+      "topicOrder": 5,
+      "lessonOrder": 294,
       "role": "practice"
     },
     "title": "БР. Практическое задание №2",
@@ -5549,68 +5606,11 @@
       "stageTitle": "8. Сквозная практика",
       "topic": "Описать найденный дефект",
       "stageOrder": 8,
-      "topicOrder": 4,
-      "lessonOrder": 292,
+      "topicOrder": 5,
+      "lessonOrder": 295,
       "role": "practice"
     },
     "title": "БР. Практическое задание №4",
     "url": "courses/manual-testing/step-158.html"
-  },
-  {
-    "source": {
-      "course": "manual-testing",
-      "step": 53,
-      "module": "Виды тестирования",
-      "chapter": "Работа и собеседования"
-    },
-    "route": {
-      "stage": "end-to-end",
-      "stageTitle": "8. Сквозная практика",
-      "topic": "Разбор готовых сценариев",
-      "stageOrder": 8,
-      "topicOrder": 5,
-      "lessonOrder": 293,
-      "role": "practice"
-    },
-    "title": "Лекция «Как виды тестирования выглядят на практике»",
-    "url": "courses/manual-testing/step-053.html"
-  },
-  {
-    "source": {
-      "course": "manual-testing",
-      "step": 54,
-      "module": "Виды тестирования",
-      "chapter": "Работа и собеседования"
-    },
-    "route": {
-      "stage": "end-to-end",
-      "stageTitle": "8. Сквозная практика",
-      "topic": "Разбор готовых сценариев",
-      "stageOrder": 8,
-      "topicOrder": 5,
-      "lessonOrder": 294,
-      "role": "practice"
-    },
-    "title": "Лекция «Все виды тестирования на проекте»",
-    "url": "courses/manual-testing/step-054.html"
-  },
-  {
-    "source": {
-      "course": "manual-testing",
-      "step": 131,
-      "module": "Тестирование на деле",
-      "chapter": "Заметки \"как тестировать\""
-    },
-    "route": {
-      "stage": "end-to-end",
-      "stageTitle": "8. Сквозная практика",
-      "topic": "Итог и обратная связь",
-      "stageOrder": 8,
-      "topicOrder": 6,
-      "lessonOrder": 295,
-      "role": "reference"
-    },
-    "title": "Обратная связь по модулю «Тестирование на деле» ",
-    "url": "courses/manual-testing/step-131.html"
   }
 ]
