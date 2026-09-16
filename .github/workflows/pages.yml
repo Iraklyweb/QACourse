@@ -35,6 +35,8 @@ jobs:
           persist-credentials: false
       - name: Compose and verify production and development trees
         run: node source-main/scripts/compose-pages.mjs source-main/docs source-develop/docs artifact
+      - name: Verify the unified development route
+        run: node source-develop/scripts/check-curriculum.mjs source-develop/docs
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v4
         with:

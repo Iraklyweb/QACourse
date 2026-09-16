@@ -1,0 +1,5616 @@
+[
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 1,
+      "module": "Тестовая документация",
+      "chapter": "Тестовая документация (ТК, ЧЛ, БР)"
+    },
+    "route": {
+      "stage": "start",
+      "stageTitle": "1. Старт и устройство продукта",
+      "topic": "Зачем тестировать",
+      "stageOrder": 1,
+      "topicOrder": 1,
+      "lessonOrder": 1,
+      "role": "core"
+    },
+    "title": "Вводная лекция",
+    "url": "courses/mqa-base/step-001.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 59,
+      "module": "Сети",
+      "chapter": "Клиент-серверная архитектура"
+    },
+    "route": {
+      "stage": "start",
+      "stageTitle": "1. Старт и устройство продукта",
+      "topic": "Клиент, сервер, фронтенд и бэкенд",
+      "stageOrder": 1,
+      "topicOrder": 2,
+      "lessonOrder": 2,
+      "role": "core"
+    },
+    "title": "Лекция «Клиент-серверная архитектура: от основ до понимания»",
+    "url": "courses/manual-testing/step-059.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 60,
+      "module": "Сети",
+      "chapter": "Клиент-серверная архитектура"
+    },
+    "route": {
+      "stage": "start",
+      "stageTitle": "1. Старт и устройство продукта",
+      "topic": "Клиент, сервер, фронтенд и бэкенд",
+      "stageOrder": 1,
+      "topicOrder": 2,
+      "lessonOrder": 3,
+      "role": "core"
+    },
+    "title": "Лекция «Многозвенная архитектура: как справляться с миллиардами пользователей»",
+    "url": "courses/manual-testing/step-060.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 61,
+      "module": "Сети",
+      "chapter": "Клиент-серверная архитектура"
+    },
+    "route": {
+      "stage": "start",
+      "stageTitle": "1. Старт и устройство продукта",
+      "topic": "Клиент, сервер, фронтенд и бэкенд",
+      "stageOrder": 1,
+      "topicOrder": 2,
+      "lessonOrder": 4,
+      "role": "core"
+    },
+    "title": "Лекция «Тонкий и толстый клиенты: что это и как понять?»",
+    "url": "courses/manual-testing/step-061.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 62,
+      "module": "Сети",
+      "chapter": "Клиент-серверная архитектура"
+    },
+    "route": {
+      "stage": "start",
+      "stageTitle": "1. Старт и устройство продукта",
+      "topic": "Клиент, сервер, фронтенд и бэкенд",
+      "stageOrder": 1,
+      "topicOrder": 2,
+      "lessonOrder": 5,
+      "role": "core"
+    },
+    "title": "Лекция «Что такое API, и как это понимать?»",
+    "url": "courses/manual-testing/step-062.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 63,
+      "module": "Сети",
+      "chapter": "Клиент-серверная архитектура"
+    },
+    "route": {
+      "stage": "start",
+      "stageTitle": "1. Старт и устройство продукта",
+      "topic": "Клиент, сервер, фронтенд и бэкенд",
+      "stageOrder": 1,
+      "topicOrder": 2,
+      "lessonOrder": 6,
+      "role": "core"
+    },
+    "title": "Лекция «Сервис, сервер, веб-сервис, веб-сайт и веб-приложение: в чём разница?»",
+    "url": "courses/manual-testing/step-063.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 64,
+      "module": "Сети",
+      "chapter": "Клиент-серверная архитектура"
+    },
+    "route": {
+      "stage": "start",
+      "stageTitle": "1. Старт и устройство продукта",
+      "topic": "Клиент, сервер, фронтенд и бэкенд",
+      "stageOrder": 1,
+      "topicOrder": 2,
+      "lessonOrder": 7,
+      "role": "core"
+    },
+    "title": "Лекция «Фронтенд и бэкенд: что это и в чём разница?»",
+    "url": "courses/manual-testing/step-064.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 65,
+      "module": "Сети",
+      "chapter": "Клиент-серверная архитектура"
+    },
+    "route": {
+      "stage": "start",
+      "stageTitle": "1. Старт и устройство продукта",
+      "topic": "Клиент, сервер, фронтенд и бэкенд",
+      "stageOrder": 1,
+      "topicOrder": 2,
+      "lessonOrder": 8,
+      "role": "core"
+    },
+    "title": "Лекция «API в клиент-серверной архитектуре: примеры на основе трёхзвенной системы»",
+    "url": "courses/manual-testing/step-065.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 71,
+      "module": "Тестовая документация",
+      "chapter": "Практика"
+    },
+    "route": {
+      "stage": "start",
+      "stageTitle": "1. Старт и устройство продукта",
+      "topic": "Архитектура и роли в работе",
+      "stageOrder": 1,
+      "topicOrder": 3,
+      "lessonOrder": 9,
+      "role": "reference"
+    },
+    "title": "Лекция «Роли в IT проекте»",
+    "url": "courses/mqa-base/step-071.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 66,
+      "module": "Сети",
+      "chapter": "Клиент-серверная архитектура"
+    },
+    "route": {
+      "stage": "start",
+      "stageTitle": "1. Старт и устройство продукта",
+      "topic": "Архитектура и роли в работе",
+      "stageOrder": 1,
+      "topicOrder": 3,
+      "lessonOrder": 10,
+      "role": "reference"
+    },
+    "title": "Лекция «Клиент-серверная архитектура: как отвечать на собеседовании»",
+    "url": "courses/manual-testing/step-066.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 67,
+      "module": "Сети",
+      "chapter": "Клиент-серверная архитектура"
+    },
+    "route": {
+      "stage": "start",
+      "stageTitle": "1. Старт и устройство продукта",
+      "topic": "Архитектура и роли в работе",
+      "stageOrder": 1,
+      "topicOrder": 3,
+      "lessonOrder": 11,
+      "role": "reference"
+    },
+    "title": "Лекция «Контекст для работы с клиент-серверной архитектурой»",
+    "url": "courses/manual-testing/step-067.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 80,
+      "module": "Требования",
+      "chapter": "Теоретические сведения"
+    },
+    "route": {
+      "stage": "requirements",
+      "stageTitle": "2. Требования",
+      "topic": "Смысл, типы и качество требований",
+      "stageOrder": 2,
+      "topicOrder": 1,
+      "lessonOrder": 12,
+      "role": "core"
+    },
+    "title": "Лекция «Требования» ",
+    "url": "courses/mqa-base/step-080.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 81,
+      "module": "Требования",
+      "chapter": "Теоретические сведения"
+    },
+    "route": {
+      "stage": "requirements",
+      "stageTitle": "2. Требования",
+      "topic": "Смысл, типы и качество требований",
+      "stageOrder": 2,
+      "topicOrder": 1,
+      "lessonOrder": 13,
+      "role": "core"
+    },
+    "title": "Лекция «Как воспринимать на практике» ",
+    "url": "courses/mqa-base/step-081.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 82,
+      "module": "Требования",
+      "chapter": "Теоретические сведения"
+    },
+    "route": {
+      "stage": "requirements",
+      "stageTitle": "2. Требования",
+      "topic": "Смысл, типы и качество требований",
+      "stageOrder": 2,
+      "topicOrder": 1,
+      "lessonOrder": 14,
+      "role": "core"
+    },
+    "title": "Лекция «Основные типы требований» ",
+    "url": "courses/mqa-base/step-082.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 83,
+      "module": "Требования",
+      "chapter": "Теоретические сведения"
+    },
+    "route": {
+      "stage": "requirements",
+      "stageTitle": "2. Требования",
+      "topic": "Смысл, типы и качество требований",
+      "stageOrder": 2,
+      "topicOrder": 1,
+      "lessonOrder": 15,
+      "role": "core"
+    },
+    "title": "Лекция «Пример типов требований» ",
+    "url": "courses/mqa-base/step-083.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 84,
+      "module": "Требования",
+      "chapter": "Теоретические сведения"
+    },
+    "route": {
+      "stage": "requirements",
+      "stageTitle": "2. Требования",
+      "topic": "Смысл, типы и качество требований",
+      "stageOrder": 2,
+      "topicOrder": 1,
+      "lessonOrder": 16,
+      "role": "core"
+    },
+    "title": "Лекция «Атрибуты качественных требований» ",
+    "url": "courses/mqa-base/step-084.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 85,
+      "module": "Требования",
+      "chapter": "Теоретические сведения"
+    },
+    "route": {
+      "stage": "requirements",
+      "stageTitle": "2. Требования",
+      "topic": "Источники и работа с изменениями",
+      "stageOrder": 2,
+      "topicOrder": 2,
+      "lessonOrder": 17,
+      "role": "core"
+    },
+    "title": "Лекция «Источники требований» ",
+    "url": "courses/mqa-base/step-085.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 86,
+      "module": "Требования",
+      "chapter": "Теоретические сведения"
+    },
+    "route": {
+      "stage": "requirements",
+      "stageTitle": "2. Требования",
+      "topic": "Источники и работа с изменениями",
+      "stageOrder": 2,
+      "topicOrder": 2,
+      "lessonOrder": 18,
+      "role": "core"
+    },
+    "title": "Лекция «Источники требований: примеры из практики» ",
+    "url": "courses/mqa-base/step-086.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 87,
+      "module": "Требования",
+      "chapter": "Теоретические сведения"
+    },
+    "route": {
+      "stage": "requirements",
+      "stageTitle": "2. Требования",
+      "topic": "Источники и работа с изменениями",
+      "stageOrder": 2,
+      "topicOrder": 2,
+      "lessonOrder": 19,
+      "role": "core"
+    },
+    "title": "Лекция «Работа с источниками требований на проекте»",
+    "url": "courses/mqa-base/step-087.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 88,
+      "module": "Требования",
+      "chapter": "Теоретические сведения"
+    },
+    "route": {
+      "stage": "requirements",
+      "stageTitle": "2. Требования",
+      "topic": "Источники и работа с изменениями",
+      "stageOrder": 2,
+      "topicOrder": 2,
+      "lessonOrder": 20,
+      "role": "core"
+    },
+    "title": "Лекция «Как тестировщик работает с требованиями»",
+    "url": "courses/mqa-base/step-088.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 89,
+      "module": "Требования",
+      "chapter": "Теоретические сведения"
+    },
+    "route": {
+      "stage": "requirements",
+      "stageTitle": "2. Требования",
+      "topic": "Источники и работа с изменениями",
+      "stageOrder": 2,
+      "topicOrder": 2,
+      "lessonOrder": 21,
+      "role": "core"
+    },
+    "title": "Лекция «Требования и тестовая документация»",
+    "url": "courses/mqa-base/step-089.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 90,
+      "module": "Требования",
+      "chapter": "Теоретические сведения"
+    },
+    "route": {
+      "stage": "requirements",
+      "stageTitle": "2. Требования",
+      "topic": "Источники и работа с изменениями",
+      "stageOrder": 2,
+      "topicOrder": 2,
+      "lessonOrder": 22,
+      "role": "core"
+    },
+    "title": "Лекция «UI‑проверки: макет как источник требований»",
+    "url": "courses/mqa-base/step-090.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 91,
+      "module": "Требования",
+      "chapter": "Теоретические сведения"
+    },
+    "route": {
+      "stage": "requirements",
+      "stageTitle": "2. Требования",
+      "topic": "Источники и работа с изменениями",
+      "stageOrder": 2,
+      "topicOrder": 2,
+      "lessonOrder": 23,
+      "role": "core"
+    },
+    "title": "Лекция «Работа с изменениями требований»",
+    "url": "courses/mqa-base/step-091.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 92,
+      "module": "Требования",
+      "chapter": "Теоретические сведения"
+    },
+    "route": {
+      "stage": "requirements",
+      "stageTitle": "2. Требования",
+      "topic": "Источники и работа с изменениями",
+      "stageOrder": 2,
+      "topicOrder": 2,
+      "lessonOrder": 24,
+      "role": "core"
+    },
+    "title": "Лекция «Типичные проблемы с требованиями»",
+    "url": "courses/mqa-base/step-092.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 123,
+      "module": "Тестирование на деле",
+      "chapter": "Заметки \"как тестировать\""
+    },
+    "route": {
+      "stage": "requirements",
+      "stageTitle": "2. Требования",
+      "topic": "Источники и работа с изменениями",
+      "stageOrder": 2,
+      "topicOrder": 2,
+      "lessonOrder": 25,
+      "role": "core"
+    },
+    "title": "Лекция «Как работать с требованиями»",
+    "url": "courses/manual-testing/step-123.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 94,
+      "module": "Требования",
+      "chapter": "Практика"
+    },
+    "route": {
+      "stage": "requirements",
+      "stageTitle": "2. Требования",
+      "topic": "Практика требований",
+      "stageOrder": 2,
+      "topicOrder": 3,
+      "lessonOrder": 26,
+      "role": "practice"
+    },
+    "title": "БР. Практическое задание №1 ",
+    "url": "courses/mqa-base/step-094.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 95,
+      "module": "Требования",
+      "chapter": "Практика"
+    },
+    "route": {
+      "stage": "requirements",
+      "stageTitle": "2. Требования",
+      "topic": "Практика требований",
+      "stageOrder": 2,
+      "topicOrder": 3,
+      "lessonOrder": 27,
+      "role": "practice"
+    },
+    "title": "БР. Практическое задание №2",
+    "url": "courses/mqa-base/step-095.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 96,
+      "module": "Требования",
+      "chapter": "Практика"
+    },
+    "route": {
+      "stage": "requirements",
+      "stageTitle": "2. Требования",
+      "topic": "Практика требований",
+      "stageOrder": 2,
+      "topicOrder": 3,
+      "lessonOrder": 28,
+      "role": "practice"
+    },
+    "title": "БР. Практическое задание №3",
+    "url": "courses/mqa-base/step-096.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 97,
+      "module": "Требования",
+      "chapter": "Практика"
+    },
+    "route": {
+      "stage": "requirements",
+      "stageTitle": "2. Требования",
+      "topic": "Практика требований",
+      "stageOrder": 2,
+      "topicOrder": 3,
+      "lessonOrder": 29,
+      "role": "practice"
+    },
+    "title": "ЧЛ. Практическое задание №4 ",
+    "url": "courses/mqa-base/step-097.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 55,
+      "module": "Виды тестирования",
+      "chapter": "Практика"
+    },
+    "route": {
+      "stage": "requirements",
+      "stageTitle": "2. Требования",
+      "topic": "Практика требований",
+      "stageOrder": 2,
+      "topicOrder": 3,
+      "lessonOrder": 30,
+      "role": "practice"
+    },
+    "title": "Требования. Практическое задание №1",
+    "url": "courses/manual-testing/step-055.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 93,
+      "module": "Требования",
+      "chapter": "Теоретические сведения"
+    },
+    "route": {
+      "stage": "requirements",
+      "stageTitle": "2. Требования",
+      "topic": "Разбор и дальнейшее чтение",
+      "stageOrder": 2,
+      "topicOrder": 4,
+      "lessonOrder": 31,
+      "role": "reference"
+    },
+    "title": "Лекция «Требования на собеседовании»",
+    "url": "courses/mqa-base/step-093.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 100,
+      "module": "Требования",
+      "chapter": "Практика"
+    },
+    "route": {
+      "stage": "requirements",
+      "stageTitle": "2. Требования",
+      "topic": "Разбор и дальнейшее чтение",
+      "stageOrder": 2,
+      "topicOrder": 4,
+      "lessonOrder": 32,
+      "role": "reference"
+    },
+    "title": "Обратная связь по модулю «Требования» ",
+    "url": "courses/mqa-base/step-100.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 1,
+      "module": "Виды тестирования",
+      "chapter": "Введение в виды тестирования"
+    },
+    "route": {
+      "stage": "checks",
+      "stageTitle": "3. Основные виды проверок",
+      "topic": "Функциональные и UI-проверки",
+      "stageOrder": 3,
+      "topicOrder": 1,
+      "lessonOrder": 33,
+      "role": "core"
+    },
+    "title": "Лекция «Введение в виды тестирования»",
+    "url": "courses/manual-testing/step-001.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 2,
+      "module": "Виды тестирования",
+      "chapter": "По цели (By Objective). Функциональное"
+    },
+    "route": {
+      "stage": "checks",
+      "stageTitle": "3. Основные виды проверок",
+      "topic": "Функциональные и UI-проверки",
+      "stageOrder": 3,
+      "topicOrder": 1,
+      "lessonOrder": 34,
+      "role": "core"
+    },
+    "title": "Лекция «Функциональное тестирование»",
+    "url": "courses/manual-testing/step-002.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 3,
+      "module": "Виды тестирования",
+      "chapter": "По цели (By Objective). Функциональное"
+    },
+    "route": {
+      "stage": "checks",
+      "stageTitle": "3. Основные виды проверок",
+      "topic": "Функциональные и UI-проверки",
+      "stageOrder": 3,
+      "topicOrder": 1,
+      "lessonOrder": 35,
+      "role": "core"
+    },
+    "title": "Лекция «Функциональное тестирование: как применять 6 ключевых подходов на практике»",
+    "url": "courses/manual-testing/step-003.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 4,
+      "module": "Виды тестирования",
+      "chapter": "По цели (By Objective). Нефункциональное"
+    },
+    "route": {
+      "stage": "checks",
+      "stageTitle": "3. Основные виды проверок",
+      "topic": "Функциональные и UI-проверки",
+      "stageOrder": 3,
+      "topicOrder": 1,
+      "lessonOrder": 36,
+      "role": "core"
+    },
+    "title": "Лекция «Нефункциональное тестирование»",
+    "url": "courses/manual-testing/step-004.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 5,
+      "module": "Виды тестирования",
+      "chapter": "UI/UX тестирование"
+    },
+    "route": {
+      "stage": "checks",
+      "stageTitle": "3. Основные виды проверок",
+      "topic": "Функциональные и UI-проверки",
+      "stageOrder": 3,
+      "topicOrder": 1,
+      "lessonOrder": 37,
+      "role": "core"
+    },
+    "title": "Лекция «UI/UX тестирование»",
+    "url": "courses/manual-testing/step-005.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 6,
+      "module": "Виды тестирования",
+      "chapter": "UI/UX тестирование"
+    },
+    "route": {
+      "stage": "checks",
+      "stageTitle": "3. Основные виды проверок",
+      "topic": "Функциональные и UI-проверки",
+      "stageOrder": 3,
+      "topicOrder": 1,
+      "lessonOrder": 38,
+      "role": "core"
+    },
+    "title": "Лекция «UI/UX тестирование: как применять 4 ключевых подхода на практике»",
+    "url": "courses/manual-testing/step-006.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 20,
+      "module": "Виды тестирования",
+      "chapter": "По позитивности (By Positivity):"
+    },
+    "route": {
+      "stage": "checks",
+      "stageTitle": "3. Основные виды проверок",
+      "topic": "Позитивные и негативные сценарии",
+      "stageOrder": 3,
+      "topicOrder": 2,
+      "lessonOrder": 39,
+      "role": "core"
+    },
+    "title": "Лекция «Позитивное тестирование»",
+    "url": "courses/manual-testing/step-020.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 21,
+      "module": "Виды тестирования",
+      "chapter": "По позитивности (By Positivity):"
+    },
+    "route": {
+      "stage": "checks",
+      "stageTitle": "3. Основные виды проверок",
+      "topic": "Позитивные и негативные сценарии",
+      "stageOrder": 3,
+      "topicOrder": 2,
+      "lessonOrder": 40,
+      "role": "core"
+    },
+    "title": "Лекция «Негативное тестирование»",
+    "url": "courses/manual-testing/step-021.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 22,
+      "module": "Виды тестирования",
+      "chapter": "По степени детализации (By Level of Detail)"
+    },
+    "route": {
+      "stage": "checks",
+      "stageTitle": "3. Основные виды проверок",
+      "topic": "Уровни, готовность и способ выполнения",
+      "stageOrder": 3,
+      "topicOrder": 3,
+      "lessonOrder": 41,
+      "role": "core"
+    },
+    "title": "Лекция «Модульное тестирование»",
+    "url": "courses/manual-testing/step-022.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 23,
+      "module": "Виды тестирования",
+      "chapter": "По степени детализации (By Level of Detail)"
+    },
+    "route": {
+      "stage": "checks",
+      "stageTitle": "3. Основные виды проверок",
+      "topic": "Уровни, готовность и способ выполнения",
+      "stageOrder": 3,
+      "topicOrder": 3,
+      "lessonOrder": 42,
+      "role": "core"
+    },
+    "title": "Лекция «Интеграционное тестирование»",
+    "url": "courses/manual-testing/step-023.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 24,
+      "module": "Виды тестирования",
+      "chapter": "По степени детализации (By Level of Detail)"
+    },
+    "route": {
+      "stage": "checks",
+      "stageTitle": "3. Основные виды проверок",
+      "topic": "Уровни, готовность и способ выполнения",
+      "stageOrder": 3,
+      "topicOrder": 3,
+      "lessonOrder": 43,
+      "role": "core"
+    },
+    "title": "Лекция «Системное тестирование»",
+    "url": "courses/manual-testing/step-024.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 25,
+      "module": "Виды тестирования",
+      "chapter": "По степени детализации (By Level of Detail)"
+    },
+    "route": {
+      "stage": "checks",
+      "stageTitle": "3. Основные виды проверок",
+      "topic": "Уровни, готовность и способ выполнения",
+      "stageOrder": 3,
+      "topicOrder": 3,
+      "lessonOrder": 44,
+      "role": "core"
+    },
+    "title": "Лекция «Приёмочное тестирование»",
+    "url": "courses/manual-testing/step-025.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 26,
+      "module": "Виды тестирования",
+      "chapter": "По степени детализации (By Level of Detail)"
+    },
+    "route": {
+      "stage": "checks",
+      "stageTitle": "3. Основные виды проверок",
+      "topic": "Уровни, готовность и способ выполнения",
+      "stageOrder": 3,
+      "topicOrder": 3,
+      "lessonOrder": 45,
+      "role": "core"
+    },
+    "title": "Лекция «Сквозной сценарий: от модуля до приёмки»",
+    "url": "courses/manual-testing/step-026.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 27,
+      "module": "Виды тестирования",
+      "chapter": "По степени готовности (By Readiness Level)"
+    },
+    "route": {
+      "stage": "checks",
+      "stageTitle": "3. Основные виды проверок",
+      "topic": "Уровни, готовность и способ выполнения",
+      "stageOrder": 3,
+      "topicOrder": 3,
+      "lessonOrder": 46,
+      "role": "core"
+    },
+    "title": "Лекция «Альфа-тестирование»",
+    "url": "courses/manual-testing/step-027.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 28,
+      "module": "Виды тестирования",
+      "chapter": "По степени готовности (By Readiness Level)"
+    },
+    "route": {
+      "stage": "checks",
+      "stageTitle": "3. Основные виды проверок",
+      "topic": "Уровни, готовность и способ выполнения",
+      "stageOrder": 3,
+      "topicOrder": 3,
+      "lessonOrder": 47,
+      "role": "core"
+    },
+    "title": "Лекция «Бета-тестирование»",
+    "url": "courses/manual-testing/step-028.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 29,
+      "module": "Виды тестирования",
+      "chapter": "По степени готовности (By Readiness Level)"
+    },
+    "route": {
+      "stage": "checks",
+      "stageTitle": "3. Основные виды проверок",
+      "topic": "Уровни, готовность и способ выполнения",
+      "stageOrder": 3,
+      "topicOrder": 3,
+      "lessonOrder": 48,
+      "role": "core"
+    },
+    "title": "Лекция «MVP (Minimum Viable Product)»",
+    "url": "courses/manual-testing/step-029.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 30,
+      "module": "Виды тестирования",
+      "chapter": "По степени готовности (By Readiness Level)"
+    },
+    "route": {
+      "stage": "checks",
+      "stageTitle": "3. Основные виды проверок",
+      "topic": "Уровни, готовность и способ выполнения",
+      "stageOrder": 3,
+      "topicOrder": 3,
+      "lessonOrder": 49,
+      "role": "core"
+    },
+    "title": "Лекция «MVP, альфа и бета: в чём разница»",
+    "url": "courses/manual-testing/step-030.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 31,
+      "module": "Виды тестирования",
+      "chapter": "По степени автоматизации (By Automation Level)"
+    },
+    "route": {
+      "stage": "checks",
+      "stageTitle": "3. Основные виды проверок",
+      "topic": "Уровни, готовность и способ выполнения",
+      "stageOrder": 3,
+      "topicOrder": 3,
+      "lessonOrder": 50,
+      "role": "core"
+    },
+    "title": "Лекция «Ручное тестирование»",
+    "url": "courses/manual-testing/step-031.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 32,
+      "module": "Виды тестирования",
+      "chapter": "По степени автоматизации (By Automation Level)"
+    },
+    "route": {
+      "stage": "checks",
+      "stageTitle": "3. Основные виды проверок",
+      "topic": "Уровни, готовность и способ выполнения",
+      "stageOrder": 3,
+      "topicOrder": 3,
+      "lessonOrder": 51,
+      "role": "core"
+    },
+    "title": "Лекция «Автоматизированное тестирование»",
+    "url": "courses/manual-testing/step-032.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 33,
+      "module": "Виды тестирования",
+      "chapter": "Связанные с изменением (Change-Related Testing)"
+    },
+    "route": {
+      "stage": "checks",
+      "stageTitle": "3. Основные виды проверок",
+      "topic": "Smoke, регрессия и повторная проверка",
+      "stageOrder": 3,
+      "topicOrder": 4,
+      "lessonOrder": 52,
+      "role": "core"
+    },
+    "title": "Лекция «Дымовое (смоук) тестирование»",
+    "url": "courses/manual-testing/step-033.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 34,
+      "module": "Виды тестирования",
+      "chapter": "Связанные с изменением (Change-Related Testing)"
+    },
+    "route": {
+      "stage": "checks",
+      "stageTitle": "3. Основные виды проверок",
+      "topic": "Smoke, регрессия и повторная проверка",
+      "stageOrder": 3,
+      "topicOrder": 4,
+      "lessonOrder": 53,
+      "role": "core"
+    },
+    "title": "Лекция «Регрессионное тестирование»",
+    "url": "courses/manual-testing/step-034.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 35,
+      "module": "Виды тестирования",
+      "chapter": "Связанные с изменением (Change-Related Testing)"
+    },
+    "route": {
+      "stage": "checks",
+      "stageTitle": "3. Основные виды проверок",
+      "topic": "Smoke, регрессия и повторная проверка",
+      "stageOrder": 3,
+      "topicOrder": 4,
+      "lessonOrder": 54,
+      "role": "core"
+    },
+    "title": "Лекция «Санити тестирование»",
+    "url": "courses/manual-testing/step-035.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 36,
+      "module": "Виды тестирования",
+      "chapter": "Связанные с изменением (Change-Related Testing)"
+    },
+    "route": {
+      "stage": "checks",
+      "stageTitle": "3. Основные виды проверок",
+      "topic": "Smoke, регрессия и повторная проверка",
+      "stageOrder": 3,
+      "topicOrder": 4,
+      "lessonOrder": 55,
+      "role": "alternative"
+    },
+    "title": "Лекция «Общее о смоуке, регрессе и санити тестировании»",
+    "url": "courses/manual-testing/step-036.html",
+    "alternativeTo": "M33"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 37,
+      "module": "Виды тестирования",
+      "chapter": "Связанные с изменением (Change-Related Testing)"
+    },
+    "route": {
+      "stage": "checks",
+      "stageTitle": "3. Основные виды проверок",
+      "topic": "Smoke, регрессия и повторная проверка",
+      "stageOrder": 3,
+      "topicOrder": 4,
+      "lessonOrder": 56,
+      "role": "core"
+    },
+    "title": "Лекция «Повторное тестирование (ре-тестирование)»",
+    "url": "courses/manual-testing/step-037.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 40,
+      "module": "Виды тестирования",
+      "chapter": "Без требований (Without Requirements)"
+    },
+    "route": {
+      "stage": "checks",
+      "stageTitle": "3. Основные виды проверок",
+      "topic": "Исследовательский подход и критический путь",
+      "stageOrder": 3,
+      "topicOrder": 5,
+      "lessonOrder": 57,
+      "role": "core"
+    },
+    "title": "Лекция «Исследовательское тестирование»",
+    "url": "courses/manual-testing/step-040.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 41,
+      "module": "Виды тестирования",
+      "chapter": "Без требований (Without Requirements)"
+    },
+    "route": {
+      "stage": "checks",
+      "stageTitle": "3. Основные виды проверок",
+      "topic": "Исследовательский подход и критический путь",
+      "stageOrder": 3,
+      "topicOrder": 5,
+      "lessonOrder": 58,
+      "role": "core"
+    },
+    "title": "Лекция «Тестирование критического пути»",
+    "url": "courses/manual-testing/step-041.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 42,
+      "module": "Виды тестирования",
+      "chapter": "Без требований (Without Requirements)"
+    },
+    "route": {
+      "stage": "checks",
+      "stageTitle": "3. Основные виды проверок",
+      "topic": "Исследовательский подход и критический путь",
+      "stageOrder": 3,
+      "topicOrder": 5,
+      "lessonOrder": 59,
+      "role": "core"
+    },
+    "title": "Лекция «Расширенное тестирование»",
+    "url": "courses/manual-testing/step-042.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 43,
+      "module": "Виды тестирования",
+      "chapter": "Без требований (Without Requirements)"
+    },
+    "route": {
+      "stage": "checks",
+      "stageTitle": "3. Основные виды проверок",
+      "topic": "Исследовательский подход и критический путь",
+      "stageOrder": 3,
+      "topicOrder": 5,
+      "lessonOrder": 60,
+      "role": "core"
+    },
+    "title": "Лекция «Случайное тестирование (Monkey Testing)»",
+    "url": "courses/manual-testing/step-043.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 44,
+      "module": "Виды тестирования",
+      "chapter": "Без требований (Without Requirements)"
+    },
+    "route": {
+      "stage": "checks",
+      "stageTitle": "3. Основные виды проверок",
+      "topic": "Исследовательский подход и критический путь",
+      "stageOrder": 3,
+      "topicOrder": 5,
+      "lessonOrder": 61,
+      "role": "core"
+    },
+    "title": "Лекция «Свободное тестирование (Ad-hoc Testing)»",
+    "url": "courses/manual-testing/step-044.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 45,
+      "module": "Виды тестирования",
+      "chapter": "Без требований (Without Requirements)"
+    },
+    "route": {
+      "stage": "checks",
+      "stageTitle": "3. Основные виды проверок",
+      "topic": "Исследовательский подход и критический путь",
+      "stageOrder": 3,
+      "topicOrder": 5,
+      "lessonOrder": 62,
+      "role": "core"
+    },
+    "title": "Лекция «Чёткое различие: где хаос, а где просто нет чётких задач»",
+    "url": "courses/manual-testing/step-045.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 46,
+      "module": "Виды тестирования",
+      "chapter": "По запуску кода (By Code Execution)"
+    },
+    "route": {
+      "stage": "checks",
+      "stageTitle": "3. Основные виды проверок",
+      "topic": "Статические и динамические проверки",
+      "stageOrder": 3,
+      "topicOrder": 6,
+      "lessonOrder": 63,
+      "role": "core"
+    },
+    "title": "Лекция «Статическое тестирование»",
+    "url": "courses/manual-testing/step-046.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 47,
+      "module": "Виды тестирования",
+      "chapter": "По запуску кода (By Code Execution)"
+    },
+    "route": {
+      "stage": "checks",
+      "stageTitle": "3. Основные виды проверок",
+      "topic": "Статические и динамические проверки",
+      "stageOrder": 3,
+      "topicOrder": 6,
+      "lessonOrder": 64,
+      "role": "core"
+    },
+    "title": "Лекция «Динамическое тестирование»",
+    "url": "courses/manual-testing/step-047.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 7,
+      "module": "Виды тестирования",
+      "chapter": "Тестирование производительности"
+    },
+    "route": {
+      "stage": "checks",
+      "stageTitle": "3. Основные виды проверок",
+      "topic": "Расширенные нефункциональные направления",
+      "stageOrder": 3,
+      "topicOrder": 7,
+      "lessonOrder": 65,
+      "role": "advanced"
+    },
+    "title": "Лекция «Тестирование производительности»",
+    "url": "courses/manual-testing/step-007.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 8,
+      "module": "Виды тестирования",
+      "chapter": "Тестирование производительности"
+    },
+    "route": {
+      "stage": "checks",
+      "stageTitle": "3. Основные виды проверок",
+      "topic": "Расширенные нефункциональные направления",
+      "stageOrder": 3,
+      "topicOrder": 7,
+      "lessonOrder": 66,
+      "role": "advanced"
+    },
+    "title": "Лекция «Нагрузочное тестирование",
+    "url": "courses/manual-testing/step-008.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 9,
+      "module": "Виды тестирования",
+      "chapter": "Тестирование производительности"
+    },
+    "route": {
+      "stage": "checks",
+      "stageTitle": "3. Основные виды проверок",
+      "topic": "Расширенные нефункциональные направления",
+      "stageOrder": 3,
+      "topicOrder": 7,
+      "lessonOrder": 67,
+      "role": "advanced"
+    },
+    "title": "Лекция «Стрессовое тестирование»",
+    "url": "courses/manual-testing/step-009.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 10,
+      "module": "Виды тестирования",
+      "chapter": "Тестирование производительности"
+    },
+    "route": {
+      "stage": "checks",
+      "stageTitle": "3. Основные виды проверок",
+      "topic": "Расширенные нефункциональные направления",
+      "stageOrder": 3,
+      "topicOrder": 7,
+      "lessonOrder": 68,
+      "role": "advanced"
+    },
+    "title": "Лекция «Вертикальное и горизонтальное масштабирование»",
+    "url": "courses/manual-testing/step-010.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 11,
+      "module": "Виды тестирования",
+      "chapter": "Тестирование отказа и восстановления"
+    },
+    "route": {
+      "stage": "checks",
+      "stageTitle": "3. Основные виды проверок",
+      "topic": "Расширенные нефункциональные направления",
+      "stageOrder": 3,
+      "topicOrder": 7,
+      "lessonOrder": 69,
+      "role": "advanced"
+    },
+    "title": "Лекция «Тестирование отказа и восстановления»",
+    "url": "courses/manual-testing/step-011.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 12,
+      "module": "Виды тестирования",
+      "chapter": "Тестирование отказа и восстановления"
+    },
+    "route": {
+      "stage": "checks",
+      "stageTitle": "3. Основные виды проверок",
+      "topic": "Расширенные нефункциональные направления",
+      "stageOrder": 3,
+      "topicOrder": 7,
+      "lessonOrder": 70,
+      "role": "advanced"
+    },
+    "title": "Лекция «Сквозной пример: как не убить Ozon на «Чёрную пятницу»»",
+    "url": "courses/manual-testing/step-012.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 13,
+      "module": "Виды тестирования",
+      "chapter": "Тестирование безопасности"
+    },
+    "route": {
+      "stage": "checks",
+      "stageTitle": "3. Основные виды проверок",
+      "topic": "Расширенные нефункциональные направления",
+      "stageOrder": 3,
+      "topicOrder": 7,
+      "lessonOrder": 71,
+      "role": "advanced"
+    },
+    "title": "Лекция «Тестирование безопасности»",
+    "url": "courses/manual-testing/step-013.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 14,
+      "module": "Виды тестирования",
+      "chapter": "Тестирование локализации"
+    },
+    "route": {
+      "stage": "checks",
+      "stageTitle": "3. Основные виды проверок",
+      "topic": "Расширенные нефункциональные направления",
+      "stageOrder": 3,
+      "topicOrder": 7,
+      "lessonOrder": 72,
+      "role": "advanced"
+    },
+    "title": "Лекция «Тестирование локализации»",
+    "url": "courses/manual-testing/step-014.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 15,
+      "module": "Виды тестирования",
+      "chapter": "Тестирование локализации"
+    },
+    "route": {
+      "stage": "checks",
+      "stageTitle": "3. Основные виды проверок",
+      "topic": "Расширенные нефункциональные направления",
+      "stageOrder": 3,
+      "topicOrder": 7,
+      "lessonOrder": 73,
+      "role": "advanced"
+    },
+    "title": "Лекция «Тестирование локализации: как применять 4 ключевых подхода на практике»",
+    "url": "courses/manual-testing/step-015.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 16,
+      "module": "Виды тестирования",
+      "chapter": "Инсталляционное тестирование"
+    },
+    "route": {
+      "stage": "checks",
+      "stageTitle": "3. Основные виды проверок",
+      "topic": "Расширенные нефункциональные направления",
+      "stageOrder": 3,
+      "topicOrder": 7,
+      "lessonOrder": 74,
+      "role": "advanced"
+    },
+    "title": "Лекция «Инсталляционное тестирование»",
+    "url": "courses/manual-testing/step-016.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 17,
+      "module": "Виды тестирования",
+      "chapter": "Инсталляционное тестирование"
+    },
+    "route": {
+      "stage": "checks",
+      "stageTitle": "3. Основные виды проверок",
+      "topic": "Расширенные нефункциональные направления",
+      "stageOrder": 3,
+      "topicOrder": 7,
+      "lessonOrder": 75,
+      "role": "advanced"
+    },
+    "title": "Лекция «Инсталляционное тестирование: как применять 4 ключевых подхода на практике»",
+    "url": "courses/manual-testing/step-017.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 18,
+      "module": "Виды тестирования",
+      "chapter": "Объемное тестирование"
+    },
+    "route": {
+      "stage": "checks",
+      "stageTitle": "3. Основные виды проверок",
+      "topic": "Расширенные нефункциональные направления",
+      "stageOrder": 3,
+      "topicOrder": 7,
+      "lessonOrder": 76,
+      "role": "advanced"
+    },
+    "title": "Лекция «Объемное тестирование»",
+    "url": "courses/manual-testing/step-018.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 19,
+      "module": "Виды тестирования",
+      "chapter": "Объемное тестирование"
+    },
+    "route": {
+      "stage": "checks",
+      "stageTitle": "3. Основные виды проверок",
+      "topic": "Расширенные нефункциональные направления",
+      "stageOrder": 3,
+      "topicOrder": 7,
+      "lessonOrder": 77,
+      "role": "advanced"
+    },
+    "title": "Лекция «Объёмное тестирование: как применять 4 ключевых подхода на практике»",
+    "url": "courses/manual-testing/step-019.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 38,
+      "module": "Виды тестирования",
+      "chapter": "Связанные с изменением (Change-Related Testing)"
+    },
+    "route": {
+      "stage": "checks",
+      "stageTitle": "3. Основные виды проверок",
+      "topic": "Расширенные нефункциональные направления",
+      "stageOrder": 3,
+      "topicOrder": 7,
+      "lessonOrder": 78,
+      "role": "advanced"
+    },
+    "title": "Лекция «A/B-тестирование»",
+    "url": "courses/manual-testing/step-038.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 39,
+      "module": "Виды тестирования",
+      "chapter": "Без требований (Without Requirements)"
+    },
+    "route": {
+      "stage": "checks",
+      "stageTitle": "3. Основные виды проверок",
+      "topic": "Полевые примеры и вопросы собеседования",
+      "stageOrder": 3,
+      "topicOrder": 8,
+      "lessonOrder": 79,
+      "role": "reference"
+    },
+    "title": "Лекция «Наставление»",
+    "url": "courses/manual-testing/step-039.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 48,
+      "module": "Виды тестирования",
+      "chapter": "По степени доступности (By Accessibility)"
+    },
+    "route": {
+      "stage": "checks",
+      "stageTitle": "3. Основные виды проверок",
+      "topic": "Полевые примеры и вопросы собеседования",
+      "stageOrder": 3,
+      "topicOrder": 8,
+      "lessonOrder": 80,
+      "role": "reference"
+    },
+    "title": "Лекция «Не парьтесь с ящиками»",
+    "url": "courses/manual-testing/step-048.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 49,
+      "module": "Виды тестирования",
+      "chapter": "Работа и собеседования"
+    },
+    "route": {
+      "stage": "checks",
+      "stageTitle": "3. Основные виды проверок",
+      "topic": "Полевые примеры и вопросы собеседования",
+      "stageOrder": 3,
+      "topicOrder": 8,
+      "lessonOrder": 81,
+      "role": "reference"
+    },
+    "title": "Лекция «Виды тестирования: как отвечать на собеседовании»",
+    "url": "courses/manual-testing/step-049.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 50,
+      "module": "Виды тестирования",
+      "chapter": "Работа и собеседования"
+    },
+    "route": {
+      "stage": "checks",
+      "stageTitle": "3. Основные виды проверок",
+      "topic": "Полевые примеры и вопросы собеседования",
+      "stageOrder": 3,
+      "topicOrder": 8,
+      "lessonOrder": 82,
+      "role": "reference"
+    },
+    "title": "Лекция «Какие виды тестирования применяли на практике»",
+    "url": "courses/manual-testing/step-050.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 51,
+      "module": "Виды тестирования",
+      "chapter": "Работа и собеседования"
+    },
+    "route": {
+      "stage": "checks",
+      "stageTitle": "3. Основные виды проверок",
+      "topic": "Полевые примеры и вопросы собеседования",
+      "stageOrder": 3,
+      "topicOrder": 8,
+      "lessonOrder": 83,
+      "role": "reference"
+    },
+    "title": "Лекция «Какие виды тестирования применяли на практике. Часть 2»",
+    "url": "courses/manual-testing/step-051.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 52,
+      "module": "Виды тестирования",
+      "chapter": "Работа и собеседования"
+    },
+    "route": {
+      "stage": "checks",
+      "stageTitle": "3. Основные виды проверок",
+      "topic": "Полевые примеры и вопросы собеседования",
+      "stageOrder": 3,
+      "topicOrder": 8,
+      "lessonOrder": 84,
+      "role": "reference"
+    },
+    "title": "Лекция «Типовые уточняющие вопросы от интервьюера»",
+    "url": "courses/manual-testing/step-052.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 57,
+      "module": "Виды тестирования",
+      "chapter": "Практика"
+    },
+    "route": {
+      "stage": "checks",
+      "stageTitle": "3. Основные виды проверок",
+      "topic": "Практика и ревью видов проверок",
+      "stageOrder": 3,
+      "topicOrder": 9,
+      "lessonOrder": 85,
+      "role": "practice"
+    },
+    "title": "Обратная связь по модулю «Виды тестирования» ",
+    "url": "courses/manual-testing/step-057.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 58,
+      "module": "Виды тестирования",
+      "chapter": "Практика"
+    },
+    "route": {
+      "stage": "checks",
+      "stageTitle": "3. Основные виды проверок",
+      "topic": "Практика и ревью видов проверок",
+      "stageOrder": 3,
+      "topicOrder": 9,
+      "lessonOrder": 86,
+      "role": "practice"
+    },
+    "title": "Ревью по темам «Виды тестирования»",
+    "url": "courses/manual-testing/step-058.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 2,
+      "module": "Тестовая документация",
+      "chapter": "Тестовая документация (ТК, ЧЛ, БР)"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Три основных документа и их связь",
+      "stageOrder": 4,
+      "topicOrder": 1,
+      "lessonOrder": 87,
+      "role": "core"
+    },
+    "title": "Лекция ««Тестовая документация (ТК, ЧЛ, БР)»»",
+    "url": "courses/mqa-base/step-002.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 3,
+      "module": "Тестовая документация",
+      "chapter": "Тестовая документация (ТК, ЧЛ, БР)"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Три основных документа и их связь",
+      "stageOrder": 4,
+      "topicOrder": 1,
+      "lessonOrder": 88,
+      "role": "core"
+    },
+    "title": "Лекция «Тест-кейс: проверка, которую можно повторить»",
+    "url": "courses/mqa-base/step-003.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 4,
+      "module": "Тестовая документация",
+      "chapter": "Тестовая документация (ТК, ЧЛ, БР)"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Три основных документа и их связь",
+      "stageOrder": 4,
+      "topicOrder": 1,
+      "lessonOrder": 89,
+      "role": "core"
+    },
+    "title": "Лекция «Чек-лист»",
+    "url": "courses/mqa-base/step-004.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 5,
+      "module": "Тестовая документация",
+      "chapter": "Тестовая документация (ТК, ЧЛ, БР)"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Три основных документа и их связь",
+      "stageOrder": 4,
+      "topicOrder": 1,
+      "lessonOrder": 90,
+      "role": "core"
+    },
+    "title": "Лекция «Баг-репорт: фиксируем ошибку так, чтобы её исправили»",
+    "url": "courses/mqa-base/step-005.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 6,
+      "module": "Тестовая документация",
+      "chapter": "Тестовая документация (ТК, ЧЛ, БР)"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Три основных документа и их связь",
+      "stageOrder": 4,
+      "topicOrder": 1,
+      "lessonOrder": 91,
+      "role": "core"
+    },
+    "title": "Лекция «Баг, дефект, ошибка и фейл: что есть что и почему все путают»",
+    "url": "courses/mqa-base/step-006.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 7,
+      "module": "Тестовая документация",
+      "chapter": "Тестовая документация (ТК, ЧЛ, БР)"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Три основных документа и их связь",
+      "stageOrder": 4,
+      "topicOrder": 1,
+      "lessonOrder": 92,
+      "role": "core"
+    },
+    "title": "Лекция «От требований к задачам: зачем фиксировать результат тестирования»",
+    "url": "courses/mqa-base/step-007.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 8,
+      "module": "Тестовая документация",
+      "chapter": "Тестовая документация (ТК, ЧЛ, БР)"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Три основных документа и их связь",
+      "stageOrder": 4,
+      "topicOrder": 1,
+      "lessonOrder": 93,
+      "role": "core"
+    },
+    "title": "Лекция «Тест-кейсы, чек-листы и баг-репорты: как они связаны»",
+    "url": "courses/mqa-base/step-008.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 9,
+      "module": "Тестовая документация",
+      "chapter": "Паспорт и классификация документа"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Паспорт, состояние и окружение",
+      "stageOrder": 4,
+      "topicOrder": 2,
+      "lessonOrder": 94,
+      "role": "core"
+    },
+    "title": "Лекция «Паспорт документа: как не потерять тесты, чек-листы и баги»",
+    "url": "courses/mqa-base/step-009.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 10,
+      "module": "Тестовая документация",
+      "chapter": "Паспорт и классификация документа"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Паспорт, состояние и окружение",
+      "stageOrder": 4,
+      "topicOrder": 2,
+      "lessonOrder": 95,
+      "role": "core"
+    },
+    "title": "Лекция «ID»",
+    "url": "courses/mqa-base/step-010.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 11,
+      "module": "Тестовая документация",
+      "chapter": "Паспорт и классификация документа"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Паспорт, состояние и окружение",
+      "stageOrder": 4,
+      "topicOrder": 2,
+      "lessonOrder": 96,
+      "role": "core"
+    },
+    "title": "Лекция «Автор»",
+    "url": "courses/mqa-base/step-011.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 12,
+      "module": "Тестовая документация",
+      "chapter": "Паспорт и классификация документа"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Паспорт, состояние и окружение",
+      "stageOrder": 4,
+      "topicOrder": 2,
+      "lessonOrder": 97,
+      "role": "core"
+    },
+    "title": "Лекция «Исполнитель»",
+    "url": "courses/mqa-base/step-012.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 13,
+      "module": "Тестовая документация",
+      "chapter": "Паспорт и классификация документа"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Паспорт, состояние и окружение",
+      "stageOrder": 4,
+      "topicOrder": 2,
+      "lessonOrder": 98,
+      "role": "core"
+    },
+    "title": "Лекция «Проект, модуль и теги: навигация по тестовой документации»",
+    "url": "courses/mqa-base/step-013.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 14,
+      "module": "Тестовая документация",
+      "chapter": "Паспорт и классификация документа"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Паспорт, состояние и окружение",
+      "stageOrder": 4,
+      "topicOrder": 2,
+      "lessonOrder": 99,
+      "role": "core"
+    },
+    "title": "Лекция «Ссылки и связи»",
+    "url": "courses/mqa-base/step-014.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 15,
+      "module": "Тестовая документация",
+      "chapter": "Состояние документа"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Паспорт, состояние и окружение",
+      "stageOrder": 4,
+      "topicOrder": 2,
+      "lessonOrder": 100,
+      "role": "core"
+    },
+    "title": "Лекция «Состояние документа»",
+    "url": "courses/mqa-base/step-015.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 16,
+      "module": "Тестовая документация",
+      "chapter": "Состояние документа"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Паспорт, состояние и окружение",
+      "stageOrder": 4,
+      "topicOrder": 2,
+      "lessonOrder": 101,
+      "role": "core"
+    },
+    "title": "Лекция «Статус»",
+    "url": "courses/mqa-base/step-016.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 17,
+      "module": "Тестовая документация",
+      "chapter": "Состояние документа"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Паспорт, состояние и окружение",
+      "stageOrder": 4,
+      "topicOrder": 2,
+      "lessonOrder": 102,
+      "role": "core"
+    },
+    "title": "Лекция «Статусы в тест-кейсах и чек-листах»",
+    "url": "courses/mqa-base/step-017.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 18,
+      "module": "Тестовая документация",
+      "chapter": "Состояние документа"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Паспорт, состояние и окружение",
+      "stageOrder": 4,
+      "topicOrder": 2,
+      "lessonOrder": 103,
+      "role": "core"
+    },
+    "title": "Лекция «Статусы в баг-репортах»",
+    "url": "courses/mqa-base/step-018.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 19,
+      "module": "Тестовая документация",
+      "chapter": "Состояние документа"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Паспорт, состояние и окружение",
+      "stageOrder": 4,
+      "topicOrder": 2,
+      "lessonOrder": 104,
+      "role": "core"
+    },
+    "title": "Лекция «Версия: где нашли дефект и в каком релизе ждать исправление»",
+    "url": "courses/mqa-base/step-019.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 20,
+      "module": "Тестовая документация",
+      "chapter": "Состояние документа"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Паспорт, состояние и окружение",
+      "stageOrder": 4,
+      "topicOrder": 2,
+      "lessonOrder": 105,
+      "role": "core"
+    },
+    "title": "Лекция «Окружение: при каких условиях выполнялась проверка»",
+    "url": "courses/mqa-base/step-020.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 21,
+      "module": "Тестовая документация",
+      "chapter": "Состояние документа"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Паспорт, состояние и окружение",
+      "stageOrder": 4,
+      "topicOrder": 2,
+      "lessonOrder": 106,
+      "role": "core"
+    },
+    "title": "Лекция «Стенд / Среда»",
+    "url": "courses/mqa-base/step-021.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 22,
+      "module": "Тестовая документация",
+      "chapter": "Состояние документа"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Паспорт, состояние и окружение",
+      "stageOrder": 4,
+      "topicOrder": 2,
+      "lessonOrder": 107,
+      "role": "core"
+    },
+    "title": "Лекция «Среда / окружение / стенд»",
+    "url": "courses/mqa-base/step-022.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 23,
+      "module": "Тестовая документация",
+      "chapter": "Состояние документа"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Паспорт, состояние и окружение",
+      "stageOrder": 4,
+      "topicOrder": 2,
+      "lessonOrder": 108,
+      "role": "alternative"
+    },
+    "title": "Лекция «Среда, окружение и стенд — практическое применение»",
+    "url": "courses/mqa-base/step-023.html",
+    "alternativeTo": "Q20"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 24,
+      "module": "Тестовая документация",
+      "chapter": "Структура документа"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Шаги, ожидание и фактический результат",
+      "stageOrder": 4,
+      "topicOrder": 3,
+      "lessonOrder": 109,
+      "role": "core"
+    },
+    "title": "Лекция «Структура документа»",
+    "url": "courses/mqa-base/step-024.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 25,
+      "module": "Тестовая документация",
+      "chapter": "Структура документа"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Шаги, ожидание и фактический результат",
+      "stageOrder": 4,
+      "topicOrder": 3,
+      "lessonOrder": 110,
+      "role": "core"
+    },
+    "title": "Лекция «Предусловие»",
+    "url": "courses/mqa-base/step-025.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 26,
+      "module": "Тестовая документация",
+      "chapter": "Структура документа"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Шаги, ожидание и фактический результат",
+      "stageOrder": 4,
+      "topicOrder": 3,
+      "lessonOrder": 111,
+      "role": "alternative"
+    },
+    "title": "Лекция «Пояснение к теме “Предусловие”»",
+    "url": "courses/mqa-base/step-026.html",
+    "alternativeTo": "Q25"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 27,
+      "module": "Тестовая документация",
+      "chapter": "Структура документа"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Шаги, ожидание и фактический результат",
+      "stageOrder": 4,
+      "topicOrder": 3,
+      "lessonOrder": 112,
+      "role": "core"
+    },
+    "title": "Лекция «Название»",
+    "url": "courses/mqa-base/step-027.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 28,
+      "module": "Тестовая документация",
+      "chapter": "Структура документа"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Шаги, ожидание и фактический результат",
+      "stageOrder": 4,
+      "topicOrder": 3,
+      "lessonOrder": 113,
+      "role": "core"
+    },
+    "title": "Лекция «Логика формулировки: где / что»",
+    "url": "courses/mqa-base/step-028.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 29,
+      "module": "Тестовая документация",
+      "chapter": "Структура документа"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Шаги, ожидание и фактический результат",
+      "stageOrder": 4,
+      "topicOrder": 3,
+      "lessonOrder": 114,
+      "role": "core"
+    },
+    "title": "Лекция «Через действие или через результат»",
+    "url": "courses/mqa-base/step-029.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 30,
+      "module": "Тестовая документация",
+      "chapter": "Структура документа"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Шаги, ожидание и фактический результат",
+      "stageOrder": 4,
+      "topicOrder": 3,
+      "lessonOrder": 115,
+      "role": "core"
+    },
+    "title": "Лекция «Типичные ошибки формулировок»",
+    "url": "courses/mqa-base/step-030.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 31,
+      "module": "Тестовая документация",
+      "chapter": "Структура документа"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Шаги, ожидание и фактический результат",
+      "stageOrder": 4,
+      "topicOrder": 3,
+      "lessonOrder": 116,
+      "role": "core"
+    },
+    "title": "Лекция «Название: где и что проверяется»",
+    "url": "courses/mqa-base/step-031.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 32,
+      "module": "Тестовая документация",
+      "chapter": "Структура документа"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Шаги, ожидание и фактический результат",
+      "stageOrder": 4,
+      "topicOrder": 3,
+      "lessonOrder": 117,
+      "role": "core"
+    },
+    "title": "Лекция «Описание»",
+    "url": "courses/mqa-base/step-032.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 33,
+      "module": "Тестовая документация",
+      "chapter": "Структура документа"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Шаги, ожидание и фактический результат",
+      "stageOrder": 4,
+      "topicOrder": 3,
+      "lessonOrder": 118,
+      "role": "core"
+    },
+    "title": "Лекция «Шаги воспроизведения»",
+    "url": "courses/mqa-base/step-033.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 34,
+      "module": "Тестовая документация",
+      "chapter": "Структура документа"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Шаги, ожидание и фактический результат",
+      "stageOrder": 4,
+      "topicOrder": 3,
+      "lessonOrder": 119,
+      "role": "alternative"
+    },
+    "title": "Лекция «Пояснение к теме “Шаги”»",
+    "url": "courses/mqa-base/step-034.html",
+    "alternativeTo": "Q33"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 35,
+      "module": "Тестовая документация",
+      "chapter": "Структура документа"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Шаги, ожидание и фактический результат",
+      "stageOrder": 4,
+      "topicOrder": 3,
+      "lessonOrder": 120,
+      "role": "core"
+    },
+    "title": "Лекция «Ожидаемый результат»",
+    "url": "courses/mqa-base/step-035.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 36,
+      "module": "Тестовая документация",
+      "chapter": "Структура документа"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Шаги, ожидание и фактический результат",
+      "stageOrder": 4,
+      "topicOrder": 3,
+      "lessonOrder": 121,
+      "role": "alternative"
+    },
+    "title": "Лекция «Пояснения к теме “Ожидаемый результат (ОР)”»",
+    "url": "courses/mqa-base/step-036.html",
+    "alternativeTo": "Q35"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 37,
+      "module": "Тестовая документация",
+      "chapter": "Структура документа"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Шаги, ожидание и фактический результат",
+      "stageOrder": 4,
+      "topicOrder": 3,
+      "lessonOrder": 122,
+      "role": "core"
+    },
+    "title": "Лекция «Фактический результат»",
+    "url": "courses/mqa-base/step-037.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 38,
+      "module": "Тестовая документация",
+      "chapter": "Структура документа"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Шаги, ожидание и фактический результат",
+      "stageOrder": 4,
+      "topicOrder": 3,
+      "lessonOrder": 123,
+      "role": "alternative"
+    },
+    "title": "Лекция «Пояснение к теме “Фактический результат (ФР)”»",
+    "url": "courses/mqa-base/step-038.html",
+    "alternativeTo": "Q37"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 39,
+      "module": "Тестовая документация",
+      "chapter": "Структура документа"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Шаги, ожидание и фактический результат",
+      "stageOrder": 4,
+      "topicOrder": 3,
+      "lessonOrder": 124,
+      "role": "core"
+    },
+    "title": "Лекция «Постусловие»",
+    "url": "courses/mqa-base/step-039.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 40,
+      "module": "Тестовая документация",
+      "chapter": "Дополнительные поля"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Приоритет, серьёзность и вложения",
+      "stageOrder": 4,
+      "topicOrder": 4,
+      "lessonOrder": 125,
+      "role": "core"
+    },
+    "title": "Лекция «Дополнительные поля (обработка и коммуникация)»",
+    "url": "courses/mqa-base/step-040.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 41,
+      "module": "Тестовая документация",
+      "chapter": "Дополнительные поля"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Приоритет, серьёзность и вложения",
+      "stageOrder": 4,
+      "topicOrder": 4,
+      "lessonOrder": 126,
+      "role": "core"
+    },
+    "title": "Лекция «Приоритет в ТК ЧЛ»",
+    "url": "courses/mqa-base/step-041.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 42,
+      "module": "Тестовая документация",
+      "chapter": "Дополнительные поля"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Приоритет, серьёзность и вложения",
+      "stageOrder": 4,
+      "topicOrder": 4,
+      "lessonOrder": 127,
+      "role": "core"
+    },
+    "title": "Лекция «Приоритет в баг-репортах»",
+    "url": "courses/mqa-base/step-042.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 43,
+      "module": "Тестовая документация",
+      "chapter": "Дополнительные поля"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Приоритет, серьёзность и вложения",
+      "stageOrder": 4,
+      "topicOrder": 4,
+      "lessonOrder": 128,
+      "role": "core"
+    },
+    "title": "Лекция «Серьёзность»",
+    "url": "courses/mqa-base/step-043.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 44,
+      "module": "Тестовая документация",
+      "chapter": "Дополнительные поля"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Приоритет, серьёзность и вложения",
+      "stageOrder": 4,
+      "topicOrder": 4,
+      "lessonOrder": 129,
+      "role": "core"
+    },
+    "title": "Лекция «Еще немного про серьезность и приоритет»",
+    "url": "courses/mqa-base/step-044.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 45,
+      "module": "Тестовая документация",
+      "chapter": "Дополнительные поля"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Приоритет, серьёзность и вложения",
+      "stageOrder": 4,
+      "topicOrder": 4,
+      "lessonOrder": 130,
+      "role": "core"
+    },
+    "title": "Лекция «Комментарий»",
+    "url": "courses/mqa-base/step-045.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 46,
+      "module": "Тестовая документация",
+      "chapter": "Дополнительные поля"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Приоритет, серьёзность и вложения",
+      "stageOrder": 4,
+      "topicOrder": 4,
+      "lessonOrder": 131,
+      "role": "core"
+    },
+    "title": "Лекция «Вложения»",
+    "url": "courses/mqa-base/step-046.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 47,
+      "module": "Тестовая документация",
+      "chapter": "Контекст и применение"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Выбор формата и поддержка проверок",
+      "stageOrder": 4,
+      "topicOrder": 5,
+      "lessonOrder": 132,
+      "role": "core"
+    },
+    "title": "Лекция «Контекст и применение»",
+    "url": "courses/mqa-base/step-047.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 48,
+      "module": "Тестовая документация",
+      "chapter": "Контекст и применение"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Выбор формата и поддержка проверок",
+      "stageOrder": 4,
+      "topicOrder": 5,
+      "lessonOrder": 133,
+      "role": "core"
+    },
+    "title": "Лекция «Когда использовать тест-кейсы и чек-листы»",
+    "url": "courses/mqa-base/step-048.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 49,
+      "module": "Тестовая документация",
+      "chapter": "Контекст и применение"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Выбор формата и поддержка проверок",
+      "stageOrder": 4,
+      "topicOrder": 5,
+      "lessonOrder": 134,
+      "role": "core"
+    },
+    "title": "Лекция «Плюсы и минусы тест-кейсов и чек-листов»",
+    "url": "courses/mqa-base/step-049.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 50,
+      "module": "Тестовая документация",
+      "chapter": "Контекст и применение"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Выбор формата и поддержка проверок",
+      "stageOrder": 4,
+      "topicOrder": 5,
+      "lessonOrder": 135,
+      "role": "core"
+    },
+    "title": "Лекция «Стремление к единому стилю»",
+    "url": "courses/mqa-base/step-050.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 51,
+      "module": "Тестовая документация",
+      "chapter": "Контекст и применение"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Выбор формата и поддержка проверок",
+      "stageOrder": 4,
+      "topicOrder": 5,
+      "lessonOrder": 136,
+      "role": "core"
+    },
+    "title": "Лекция «Почему на практике не всегда «1 = 1»»",
+    "url": "courses/mqa-base/step-051.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 52,
+      "module": "Тестовая документация",
+      "chapter": "Контекст и применение"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Выбор формата и поддержка проверок",
+      "stageOrder": 4,
+      "topicOrder": 5,
+      "lessonOrder": 137,
+      "role": "core"
+    },
+    "title": "Лекция «Когда делить на несколько проверок»",
+    "url": "courses/mqa-base/step-052.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 53,
+      "module": "Тестовая документация",
+      "chapter": "Контекст и применение"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Выбор формата и поддержка проверок",
+      "stageOrder": 4,
+      "topicOrder": 5,
+      "lessonOrder": 138,
+      "role": "core"
+    },
+    "title": "Лекция «Количество проверок не говорит о качестве тестирования»",
+    "url": "courses/mqa-base/step-053.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 54,
+      "module": "Тестовая документация",
+      "chapter": "Контекст и применение"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Выбор формата и поддержка проверок",
+      "stageOrder": 4,
+      "topicOrder": 5,
+      "lessonOrder": 139,
+      "role": "core"
+    },
+    "title": "Лекция «Один баг-репорт = одна проблема»",
+    "url": "courses/mqa-base/step-054.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 55,
+      "module": "Тестовая документация",
+      "chapter": "Контекст и применение"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Выбор формата и поддержка проверок",
+      "stageOrder": 4,
+      "topicOrder": 5,
+      "lessonOrder": 140,
+      "role": "core"
+    },
+    "title": "Лекция «Почему проверки устаревают»",
+    "url": "courses/mqa-base/step-055.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 56,
+      "module": "Тестовая документация",
+      "chapter": "Подходы к составу полей"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Выбор формата и поддержка проверок",
+      "stageOrder": 4,
+      "topicOrder": 5,
+      "lessonOrder": 141,
+      "role": "core"
+    },
+    "title": "Лекция «Подходы к составу полей»",
+    "url": "courses/mqa-base/step-056.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 57,
+      "module": "Тестовая документация",
+      "chapter": "Подходы к составу полей"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Выбор формата и поддержка проверок",
+      "stageOrder": 4,
+      "topicOrder": 5,
+      "lessonOrder": 142,
+      "role": "core"
+    },
+    "title": "Лекция «Минимальный состав полей»",
+    "url": "courses/mqa-base/step-057.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 58,
+      "module": "Тестовая документация",
+      "chapter": "Подходы к составу полей"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Выбор формата и поддержка проверок",
+      "stageOrder": 4,
+      "topicOrder": 5,
+      "lessonOrder": 143,
+      "role": "core"
+    },
+    "title": "Лекция «Как на работе»",
+    "url": "courses/mqa-base/step-058.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 59,
+      "module": "Тестовая документация",
+      "chapter": "Подходы к составу полей"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Выбор формата и поддержка проверок",
+      "stageOrder": 4,
+      "topicOrder": 5,
+      "lessonOrder": 144,
+      "role": "core"
+    },
+    "title": "Лекция «Таблица «Полный состав полей в документации»»",
+    "url": "courses/mqa-base/step-059.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 124,
+      "module": "Тестирование на деле",
+      "chapter": "Заметки \"как тестировать\""
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Выбор формата и поддержка проверок",
+      "stageOrder": 4,
+      "topicOrder": 5,
+      "lessonOrder": 145,
+      "role": "core"
+    },
+    "title": "Лекция «Нужно ли писать чек-листы и тест-кейсы на всё это?»",
+    "url": "courses/manual-testing/step-124.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 60,
+      "module": "Тестовая документация",
+      "chapter": "Примеры"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Разобранные примеры",
+      "stageOrder": 4,
+      "topicOrder": 6,
+      "lessonOrder": 146,
+      "role": "practice"
+    },
+    "title": "Лекция «Введение. Часть 1»",
+    "url": "courses/mqa-base/step-060.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 61,
+      "module": "Тестовая документация",
+      "chapter": "Примеры"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Разобранные примеры",
+      "stageOrder": 4,
+      "topicOrder": 6,
+      "lessonOrder": 147,
+      "role": "practice"
+    },
+    "title": "Лекция «Введение. Часть 2»",
+    "url": "courses/mqa-base/step-061.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 62,
+      "module": "Тестовая документация",
+      "chapter": "Примеры"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Разобранные примеры",
+      "stageOrder": 4,
+      "topicOrder": 6,
+      "lessonOrder": 148,
+      "role": "practice"
+    },
+    "title": "Лекция «Введение. Часть 3»",
+    "url": "courses/mqa-base/step-062.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 63,
+      "module": "Тестовая документация",
+      "chapter": "Примеры"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Разобранные примеры",
+      "stageOrder": 4,
+      "topicOrder": 6,
+      "lessonOrder": 149,
+      "role": "practice"
+    },
+    "title": "Лекция «Форма «Консультация»»",
+    "url": "courses/mqa-base/step-063.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 64,
+      "module": "Тестовая документация",
+      "chapter": "Примеры"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Разобранные примеры",
+      "stageOrder": 4,
+      "topicOrder": 6,
+      "lessonOrder": 150,
+      "role": "practice"
+    },
+    "title": "Лекция «Переход к баг-репортам»",
+    "url": "courses/mqa-base/step-064.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 65,
+      "module": "Тестовая документация",
+      "chapter": "Примеры"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Разобранные примеры",
+      "stageOrder": 4,
+      "topicOrder": 6,
+      "lessonOrder": 151,
+      "role": "practice"
+    },
+    "title": "Лекция «Баг-репорт на основе проваленного тест-кейса»",
+    "url": "courses/mqa-base/step-065.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 66,
+      "module": "Тестовая документация",
+      "chapter": "Примеры"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Разобранные примеры",
+      "stageOrder": 4,
+      "topicOrder": 6,
+      "lessonOrder": 152,
+      "role": "practice"
+    },
+    "title": "Лекция «Приоритет и серьёзность — не одно и то же»",
+    "url": "courses/mqa-base/step-066.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 67,
+      "module": "Тестовая документация",
+      "chapter": "Примеры"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Разобранные примеры",
+      "stageOrder": 4,
+      "topicOrder": 6,
+      "lessonOrder": 153,
+      "role": "practice"
+    },
+    "title": "Лекция «Баг-репорт из чек-листа»",
+    "url": "courses/mqa-base/step-067.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 68,
+      "module": "Тестовая документация",
+      "chapter": "Примеры"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Разобранные примеры",
+      "stageOrder": 4,
+      "topicOrder": 6,
+      "lessonOrder": 154,
+      "role": "practice"
+    },
+    "title": "Лекция «Ещё один пример: визуальные баги»",
+    "url": "courses/mqa-base/step-068.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 69,
+      "module": "Тестовая документация",
+      "chapter": "Примеры"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Разобранные примеры",
+      "stageOrder": 4,
+      "topicOrder": 6,
+      "lessonOrder": 155,
+      "role": "practice"
+    },
+    "title": "Лекция «Итог»",
+    "url": "courses/mqa-base/step-069.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 127,
+      "module": "Тестирование на деле",
+      "chapter": "Заметки \"как тестировать\""
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Разобранные примеры",
+      "stageOrder": 4,
+      "topicOrder": 6,
+      "lessonOrder": 156,
+      "role": "practice"
+    },
+    "title": "Лекция «Совместное написание баг-репорта»",
+    "url": "courses/manual-testing/step-127.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 74,
+      "module": "Тестовая документация",
+      "chapter": "Практика"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Практика документов и баг-репортов",
+      "stageOrder": 4,
+      "topicOrder": 7,
+      "lessonOrder": 157,
+      "role": "practice"
+    },
+    "title": "БР. Практическое задание №1",
+    "url": "courses/mqa-base/step-074.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 75,
+      "module": "Тестовая документация",
+      "chapter": "Практика"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Практика документов и баг-репортов",
+      "stageOrder": 4,
+      "topicOrder": 7,
+      "lessonOrder": 158,
+      "role": "practice"
+    },
+    "title": "БР. Практическое задание №2 ",
+    "url": "courses/mqa-base/step-075.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 76,
+      "module": "Тестовая документация",
+      "chapter": "Практика"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Практика документов и баг-репортов",
+      "stageOrder": 4,
+      "topicOrder": 7,
+      "lessonOrder": 159,
+      "role": "practice"
+    },
+    "title": "БР. Практическое задание №3 ",
+    "url": "courses/mqa-base/step-076.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 77,
+      "module": "Тестовая документация",
+      "chapter": "Практика"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Практика документов и баг-репортов",
+      "stageOrder": 4,
+      "topicOrder": 7,
+      "lessonOrder": 160,
+      "role": "practice"
+    },
+    "title": "ЧЛ. Практическое задание №4 ",
+    "url": "courses/mqa-base/step-077.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 78,
+      "module": "Тестовая документация",
+      "chapter": "Практика"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Практика документов и баг-репортов",
+      "stageOrder": 4,
+      "topicOrder": 7,
+      "lessonOrder": 161,
+      "role": "practice"
+    },
+    "title": "ТК. Практическое задание №5 ",
+    "url": "courses/mqa-base/step-078.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 99,
+      "module": "Требования",
+      "chapter": "Практика"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Практика документов и баг-репортов",
+      "stageOrder": 4,
+      "topicOrder": 7,
+      "lessonOrder": 162,
+      "role": "practice"
+    },
+    "title": "Ревью по теме «Тестовая документация; Требования»",
+    "url": "courses/mqa-base/step-099.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 70,
+      "module": "Тестовая документация",
+      "chapter": "Примеры"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Как учиться и отвечать на вопросы",
+      "stageOrder": 4,
+      "topicOrder": 8,
+      "lessonOrder": 163,
+      "role": "reference"
+    },
+    "title": "Лекция «Собеседования»",
+    "url": "courses/mqa-base/step-070.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 72,
+      "module": "Тестовая документация",
+      "chapter": "Практика"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Как учиться и отвечать на вопросы",
+      "stageOrder": 4,
+      "topicOrder": 8,
+      "lessonOrder": 164,
+      "role": "reference"
+    },
+    "title": "Лекция «Домашние задания: шаг к практике»",
+    "url": "courses/mqa-base/step-072.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 73,
+      "module": "Тестовая документация",
+      "chapter": "Практика"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Как учиться и отвечать на вопросы",
+      "stageOrder": 4,
+      "topicOrder": 8,
+      "lessonOrder": 165,
+      "role": "reference"
+    },
+    "title": "Лекция «Напутствие по выполнению домашнего задания»",
+    "url": "courses/mqa-base/step-073.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 79,
+      "module": "Тестовая документация",
+      "chapter": "Практика"
+    },
+    "route": {
+      "stage": "documents",
+      "stageTitle": "4. Тестовая документация",
+      "topic": "Как учиться и отвечать на вопросы",
+      "stageOrder": 4,
+      "topicOrder": 8,
+      "lessonOrder": 166,
+      "role": "reference"
+    },
+    "title": "Обратная связь по модулю «Тестовая документация» ",
+    "url": "courses/mqa-base/step-079.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 101,
+      "module": "Техники тест-дизайна",
+      "chapter": "Теоретические сведения"
+    },
+    "route": {
+      "stage": "design",
+      "stageTitle": "5. Тест-дизайн",
+      "topic": "Основа и выбор техники",
+      "stageOrder": 5,
+      "topicOrder": 1,
+      "lessonOrder": 167,
+      "role": "core"
+    },
+    "title": "Лекция «Тест-дизайн: суть, техники и применение»",
+    "url": "courses/mqa-base/step-101.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 109,
+      "module": "Техники тест-дизайна",
+      "chapter": "Теоретические сведения"
+    },
+    "route": {
+      "stage": "design",
+      "stageTitle": "5. Тест-дизайн",
+      "topic": "Основа и выбор техники",
+      "stageOrder": 5,
+      "topicOrder": 1,
+      "lessonOrder": 168,
+      "role": "alternative"
+    },
+    "title": "Лекция «Общее понимание техник тест-дизайна»",
+    "url": "courses/mqa-base/step-109.html",
+    "alternativeTo": "Q101"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 116,
+      "module": "Техники тест-дизайна",
+      "chapter": "Теоретические сведения"
+    },
+    "route": {
+      "stage": "design",
+      "stageTitle": "5. Тест-дизайн",
+      "topic": "Основа и выбор техники",
+      "stageOrder": 5,
+      "topicOrder": 1,
+      "lessonOrder": 169,
+      "role": "alternative"
+    },
+    "title": "Лекция «Техники тест-дизайна»",
+    "url": "courses/mqa-base/step-116.html",
+    "alternativeTo": "Q101"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 117,
+      "module": "Техники тест-дизайна",
+      "chapter": "Теоретические сведения"
+    },
+    "route": {
+      "stage": "design",
+      "stageTitle": "5. Тест-дизайн",
+      "topic": "Основа и выбор техники",
+      "stageOrder": 5,
+      "topicOrder": 1,
+      "lessonOrder": 170,
+      "role": "core"
+    },
+    "title": "Лекция «Когда применяются техники тест-дизайна»",
+    "url": "courses/mqa-base/step-117.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 115,
+      "module": "Техники тест-дизайна",
+      "chapter": "Теоретические сведения"
+    },
+    "route": {
+      "stage": "design",
+      "stageTitle": "5. Тест-дизайн",
+      "topic": "Классы эквивалентности и границы",
+      "stageOrder": 5,
+      "topicOrder": 2,
+      "lessonOrder": 171,
+      "role": "core"
+    },
+    "title": "Лекция «Классы эквивалентности»",
+    "url": "courses/mqa-base/step-115.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 114,
+      "module": "Техники тест-дизайна",
+      "chapter": "Теоретические сведения"
+    },
+    "route": {
+      "stage": "design",
+      "stageTitle": "5. Тест-дизайн",
+      "topic": "Классы эквивалентности и границы",
+      "stageOrder": 5,
+      "topicOrder": 2,
+      "lessonOrder": 172,
+      "role": "core"
+    },
+    "title": "Лекция «Классы эквивалентности — практическое применение»",
+    "url": "courses/mqa-base/step-114.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 113,
+      "module": "Техники тест-дизайна",
+      "chapter": "Теоретические сведения"
+    },
+    "route": {
+      "stage": "design",
+      "stageTitle": "5. Тест-дизайн",
+      "topic": "Классы эквивалентности и границы",
+      "stageOrder": 5,
+      "topicOrder": 2,
+      "lessonOrder": 173,
+      "role": "core"
+    },
+    "title": "Лекция «Анализ граничных значений»",
+    "url": "courses/mqa-base/step-113.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 112,
+      "module": "Техники тест-дизайна",
+      "chapter": "Теоретические сведения"
+    },
+    "route": {
+      "stage": "design",
+      "stageTitle": "5. Тест-дизайн",
+      "topic": "Классы эквивалентности и границы",
+      "stageOrder": 5,
+      "topicOrder": 2,
+      "lessonOrder": 174,
+      "role": "core"
+    },
+    "title": "Лекция «Анализ граничных значений — практическое применение»",
+    "url": "courses/mqa-base/step-112.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 111,
+      "module": "Техники тест-дизайна",
+      "chapter": "Теоретические сведения"
+    },
+    "route": {
+      "stage": "design",
+      "stageTitle": "5. Тест-дизайн",
+      "topic": "Классы эквивалентности и границы",
+      "stageOrder": 5,
+      "topicOrder": 2,
+      "lessonOrder": 175,
+      "role": "core"
+    },
+    "title": "Лекция «Работа с валидными и невалидными значениями — практическое применение»",
+    "url": "courses/mqa-base/step-111.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 118,
+      "module": "Техники тест-дизайна",
+      "chapter": "Теоретические сведения"
+    },
+    "route": {
+      "stage": "design",
+      "stageTitle": "5. Тест-дизайн",
+      "topic": "Классы эквивалентности и границы",
+      "stageOrder": 5,
+      "topicOrder": 2,
+      "lessonOrder": 176,
+      "role": "alternative"
+    },
+    "title": "Лекция «Позитивное и негативное тестирование — связь с валидными и невалидными значениями»",
+    "url": "courses/mqa-base/step-118.html",
+    "alternativeTo": "M20"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 110,
+      "module": "Техники тест-дизайна",
+      "chapter": "Теоретические сведения"
+    },
+    "route": {
+      "stage": "design",
+      "stageTitle": "5. Тест-дизайн",
+      "topic": "Попарное тестирование",
+      "stageOrder": 5,
+      "topicOrder": 3,
+      "lessonOrder": 177,
+      "role": "core"
+    },
+    "title": "Лекция «Попарное тестирование»",
+    "url": "courses/mqa-base/step-110.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 108,
+      "module": "Техники тест-дизайна",
+      "chapter": "Теоретические сведения"
+    },
+    "route": {
+      "stage": "design",
+      "stageTitle": "5. Тест-дизайн",
+      "topic": "Попарное тестирование",
+      "stageOrder": 5,
+      "topicOrder": 3,
+      "lessonOrder": 178,
+      "role": "core"
+    },
+    "title": "Лекция «Попарное тестирование — практическое применение»",
+    "url": "courses/mqa-base/step-108.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 107,
+      "module": "Техники тест-дизайна",
+      "chapter": "Теоретические сведения"
+    },
+    "route": {
+      "stage": "design",
+      "stageTitle": "5. Тест-дизайн",
+      "topic": "Таблицы решений и причины-следствия",
+      "stageOrder": 5,
+      "topicOrder": 4,
+      "lessonOrder": 179,
+      "role": "core"
+    },
+    "title": "Лекция «Таблицы принятия решений»",
+    "url": "courses/mqa-base/step-107.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 106,
+      "module": "Техники тест-дизайна",
+      "chapter": "Теоретические сведения"
+    },
+    "route": {
+      "stage": "design",
+      "stageTitle": "5. Тест-дизайн",
+      "topic": "Таблицы решений и причины-следствия",
+      "stageOrder": 5,
+      "topicOrder": 4,
+      "lessonOrder": 180,
+      "role": "core"
+    },
+    "title": "Лекция «Таблицы принятия решений — практическое применение»",
+    "url": "courses/mqa-base/step-106.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 104,
+      "module": "Техники тест-дизайна",
+      "chapter": "Теоретические сведения"
+    },
+    "route": {
+      "stage": "design",
+      "stageTitle": "5. Тест-дизайн",
+      "topic": "Таблицы решений и причины-следствия",
+      "stageOrder": 5,
+      "topicOrder": 4,
+      "lessonOrder": 181,
+      "role": "core"
+    },
+    "title": "Лекция «Тестирование по таблицам причин и следствий — практическое применение»",
+    "url": "courses/mqa-base/step-104.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 105,
+      "module": "Техники тест-дизайна",
+      "chapter": "Теоретические сведения"
+    },
+    "route": {
+      "stage": "design",
+      "stageTitle": "5. Тест-дизайн",
+      "topic": "Состояния и варианты использования",
+      "stageOrder": 5,
+      "topicOrder": 5,
+      "lessonOrder": 182,
+      "role": "core"
+    },
+    "title": "Лекция «Тестирование состояний и переходов»",
+    "url": "courses/mqa-base/step-105.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 103,
+      "module": "Техники тест-дизайна",
+      "chapter": "Теоретические сведения"
+    },
+    "route": {
+      "stage": "design",
+      "stageTitle": "5. Тест-дизайн",
+      "topic": "Состояния и варианты использования",
+      "stageOrder": 5,
+      "topicOrder": 5,
+      "lessonOrder": 183,
+      "role": "core"
+    },
+    "title": "Лекция «Тестирование вариантов использования (Use Case Testing)»",
+    "url": "courses/mqa-base/step-103.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 102,
+      "module": "Техники тест-дизайна",
+      "chapter": "Теоретические сведения"
+    },
+    "route": {
+      "stage": "design",
+      "stageTitle": "5. Тест-дизайн",
+      "topic": "Состояния и варианты использования",
+      "stageOrder": 5,
+      "topicOrder": 5,
+      "lessonOrder": 184,
+      "role": "core"
+    },
+    "title": "Лекция «Варианты использования — практическое применение»",
+    "url": "courses/mqa-base/step-102.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 120,
+      "module": "Техники тест-дизайна",
+      "chapter": "Практика"
+    },
+    "route": {
+      "stage": "design",
+      "stageTitle": "5. Тест-дизайн",
+      "topic": "Практика тест-дизайна",
+      "stageOrder": 5,
+      "topicOrder": 6,
+      "lessonOrder": 185,
+      "role": "practice"
+    },
+    "title": "БР. Практическое задание №1 ",
+    "url": "courses/mqa-base/step-120.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 121,
+      "module": "Техники тест-дизайна",
+      "chapter": "Практика"
+    },
+    "route": {
+      "stage": "design",
+      "stageTitle": "5. Тест-дизайн",
+      "topic": "Практика тест-дизайна",
+      "stageOrder": 5,
+      "topicOrder": 6,
+      "lessonOrder": 186,
+      "role": "practice"
+    },
+    "title": "БР. Практическое задание №2 ",
+    "url": "courses/mqa-base/step-121.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 122,
+      "module": "Техники тест-дизайна",
+      "chapter": "Практика"
+    },
+    "route": {
+      "stage": "design",
+      "stageTitle": "5. Тест-дизайн",
+      "topic": "Практика тест-дизайна",
+      "stageOrder": 5,
+      "topicOrder": 6,
+      "lessonOrder": 187,
+      "role": "practice"
+    },
+    "title": "БР. Практическое задание №3",
+    "url": "courses/mqa-base/step-122.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 123,
+      "module": "Техники тест-дизайна",
+      "chapter": "Практика"
+    },
+    "route": {
+      "stage": "design",
+      "stageTitle": "5. Тест-дизайн",
+      "topic": "Практика тест-дизайна",
+      "stageOrder": 5,
+      "topicOrder": 6,
+      "lessonOrder": 188,
+      "role": "practice"
+    },
+    "title": "ЧЛ. Практическое задание №4 ",
+    "url": "courses/mqa-base/step-123.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 124,
+      "module": "Техники тест-дизайна",
+      "chapter": "Практика"
+    },
+    "route": {
+      "stage": "design",
+      "stageTitle": "5. Тест-дизайн",
+      "topic": "Практика тест-дизайна",
+      "stageOrder": 5,
+      "topicOrder": 6,
+      "lessonOrder": 189,
+      "role": "practice"
+    },
+    "title": "ЧЛ. Практическое задание №5 ",
+    "url": "courses/mqa-base/step-124.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 126,
+      "module": "Техники тест-дизайна",
+      "chapter": "Практика"
+    },
+    "route": {
+      "stage": "design",
+      "stageTitle": "5. Тест-дизайн",
+      "topic": "Практика тест-дизайна",
+      "stageOrder": 5,
+      "topicOrder": 6,
+      "lessonOrder": 190,
+      "role": "practice"
+    },
+    "title": "MQA: Ревью по теме «Техники тест-дизайна» ",
+    "url": "courses/mqa-base/step-126.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 127,
+      "module": "Техники тест-дизайна",
+      "chapter": "Практика"
+    },
+    "route": {
+      "stage": "design",
+      "stageTitle": "5. Тест-дизайн",
+      "topic": "Практика тест-дизайна",
+      "stageOrder": 5,
+      "topicOrder": 6,
+      "lessonOrder": 191,
+      "role": "practice"
+    },
+    "title": "Обратная связь по модулю «Техники тест-дизайна» ",
+    "url": "courses/mqa-base/step-127.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 119,
+      "module": "Техники тест-дизайна",
+      "chapter": "Теоретические сведения"
+    },
+    "route": {
+      "stage": "design",
+      "stageTitle": "5. Тест-дизайн",
+      "topic": "На собеседовании",
+      "stageOrder": 5,
+      "topicOrder": 7,
+      "lessonOrder": 192,
+      "role": "reference"
+    },
+    "title": "Лекция «Техники тест-дизайна на собеседовании и в работе»",
+    "url": "courses/mqa-base/step-119.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 68,
+      "module": "Сети",
+      "chapter": "HTTP и HTTPS"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "HTTP, HTTPS и полный цикл запроса",
+      "stageOrder": 6,
+      "topicOrder": 1,
+      "lessonOrder": 193,
+      "role": "core"
+    },
+    "title": "Лекция «HTTP и HTTPS: основы и зачем это знать»",
+    "url": "courses/manual-testing/step-068.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 69,
+      "module": "Сети",
+      "chapter": "HTTP и HTTPS"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "HTTP, HTTPS и полный цикл запроса",
+      "stageOrder": 6,
+      "topicOrder": 1,
+      "lessonOrder": 194,
+      "role": "core"
+    },
+    "title": "Лекция «Как это работает в HTTPS?»",
+    "url": "courses/manual-testing/step-069.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 70,
+      "module": "Сети",
+      "chapter": "HTTP и HTTPS"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "HTTP, HTTPS и полный цикл запроса",
+      "stageOrder": 6,
+      "topicOrder": 1,
+      "lessonOrder": 195,
+      "role": "core"
+    },
+    "title": "Лекция «HTTP и HTTPS: основы для собеседования и работы»",
+    "url": "courses/manual-testing/step-070.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 104,
+      "module": "Сети",
+      "chapter": "HTTP-методы в API"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "HTTP, HTTPS и полный цикл запроса",
+      "stageOrder": 6,
+      "topicOrder": 1,
+      "lessonOrder": 196,
+      "role": "core"
+    },
+    "title": "Лекция «Как работает взаимодействие между клиентом и сервером: полный цикл»",
+    "url": "courses/manual-testing/step-104.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 74,
+      "module": "Сети",
+      "chapter": "REST"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "REST, JSON, адреса и структура сообщений",
+      "stageOrder": 6,
+      "topicOrder": 2,
+      "lessonOrder": 197,
+      "role": "core"
+    },
+    "title": "Лекция «REST: что это и как это работает»",
+    "url": "courses/manual-testing/step-074.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 76,
+      "module": "Сети",
+      "chapter": "REST"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "REST, JSON, адреса и структура сообщений",
+      "stageOrder": 6,
+      "topicOrder": 2,
+      "lessonOrder": 198,
+      "role": "core"
+    },
+    "title": "Лекция «OpenAPI: что это и зачем нужно»",
+    "url": "courses/manual-testing/step-076.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 77,
+      "module": "Сети",
+      "chapter": "REST"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "REST, JSON, адреса и структура сообщений",
+      "stageOrder": 6,
+      "topicOrder": 2,
+      "lessonOrder": 199,
+      "role": "core"
+    },
+    "title": "Лекция «JSON: основной формат передачи данных»",
+    "url": "courses/manual-testing/step-077.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 78,
+      "module": "Сети",
+      "chapter": "REST"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "REST, JSON, адреса и структура сообщений",
+      "stageOrder": 6,
+      "topicOrder": 2,
+      "lessonOrder": 200,
+      "role": "core"
+    },
+    "title": "Лекция «Формат JSON»",
+    "url": "courses/manual-testing/step-078.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 79,
+      "module": "Сети",
+      "chapter": "REST"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "REST, JSON, адреса и структура сообщений",
+      "stageOrder": 6,
+      "topicOrder": 2,
+      "lessonOrder": 201,
+      "role": "core"
+    },
+    "title": "Лекция «Вложенность и уровни в JSON» ",
+    "url": "courses/manual-testing/step-079.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 80,
+      "module": "Сети",
+      "chapter": "REST"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "REST, JSON, адреса и структура сообщений",
+      "stageOrder": 6,
+      "topicOrder": 2,
+      "lessonOrder": 202,
+      "role": "core"
+    },
+    "title": "Лекция «Обязательные и необязательные поля» ",
+    "url": "courses/manual-testing/step-080.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 83,
+      "module": "Сети",
+      "chapter": "REST"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "REST, JSON, адреса и структура сообщений",
+      "stageOrder": 6,
+      "topicOrder": 2,
+      "lessonOrder": 203,
+      "role": "core"
+    },
+    "title": "Лекция «URI, URL и URN: в чём разница и как это понимать?»",
+    "url": "courses/manual-testing/step-083.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 84,
+      "module": "Сети",
+      "chapter": "REST"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "REST, JSON, адреса и структура сообщений",
+      "stageOrder": 6,
+      "topicOrder": 2,
+      "lessonOrder": 204,
+      "role": "core"
+    },
+    "title": "Лекция «Разница между ресурсом, эндпоинтом и ручкой»",
+    "url": "courses/manual-testing/step-084.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 85,
+      "module": "Сети",
+      "chapter": "REST"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "REST, JSON, адреса и структура сообщений",
+      "stageOrder": 6,
+      "topicOrder": 2,
+      "lessonOrder": 205,
+      "role": "core"
+    },
+    "title": "Лекция «Структура сообщения в API»",
+    "url": "courses/manual-testing/step-085.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 86,
+      "module": "Сети",
+      "chapter": "REST"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "REST, JSON, адреса и структура сообщений",
+      "stageOrder": 6,
+      "topicOrder": 2,
+      "lessonOrder": 206,
+      "role": "core"
+    },
+    "title": "Лекция «Заголовки запроса в API»",
+    "url": "courses/manual-testing/step-086.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 87,
+      "module": "Сети",
+      "chapter": "REST"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "REST, JSON, адреса и структура сообщений",
+      "stageOrder": 6,
+      "topicOrder": 2,
+      "lessonOrder": 207,
+      "role": "core"
+    },
+    "title": "Лекция «Заголовки ответа в API»",
+    "url": "courses/manual-testing/step-087.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 88,
+      "module": "Сети",
+      "chapter": "Cтатус-коды"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "Статус-коды",
+      "stageOrder": 6,
+      "topicOrder": 3,
+      "lessonOrder": 208,
+      "role": "core"
+    },
+    "title": "Лекция «HTTP-статус-коды: что это и зачем они нужны»",
+    "url": "courses/manual-testing/step-088.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 89,
+      "module": "Сети",
+      "chapter": "Cтатус-коды"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "Статус-коды",
+      "stageOrder": 6,
+      "topicOrder": 3,
+      "lessonOrder": 209,
+      "role": "core"
+    },
+    "title": "Лекция «HTTP-статус-коды 200: успешные сценарии»",
+    "url": "courses/manual-testing/step-089.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 90,
+      "module": "Сети",
+      "chapter": "Cтатус-коды"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "Статус-коды",
+      "stageOrder": 6,
+      "topicOrder": 3,
+      "lessonOrder": 210,
+      "role": "core"
+    },
+    "title": "Лекция «HTTP-статус-коды 300: перенаправления»",
+    "url": "courses/manual-testing/step-090.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 91,
+      "module": "Сети",
+      "chapter": "Cтатус-коды"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "Статус-коды",
+      "stageOrder": 6,
+      "topicOrder": 3,
+      "lessonOrder": 211,
+      "role": "core"
+    },
+    "title": "Лекция «HTTP-статус-коды 400: клиентские ошибки»",
+    "url": "courses/manual-testing/step-091.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 92,
+      "module": "Сети",
+      "chapter": "Cтатус-коды"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "Статус-коды",
+      "stageOrder": 6,
+      "topicOrder": 3,
+      "lessonOrder": 212,
+      "role": "core"
+    },
+    "title": "Лекция «HTTP-статус-коды 500: серверные ошибки»",
+    "url": "courses/manual-testing/step-092.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 94,
+      "module": "Сети",
+      "chapter": "HTTP-методы в API"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "HTTP-методы",
+      "stageOrder": 6,
+      "topicOrder": 4,
+      "lessonOrder": 213,
+      "role": "core"
+    },
+    "title": "Лекция «HTTP-методы в API: общее введение»",
+    "url": "courses/manual-testing/step-094.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 95,
+      "module": "Сети",
+      "chapter": "HTTP-методы в API"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "HTTP-методы",
+      "stageOrder": 6,
+      "topicOrder": 4,
+      "lessonOrder": 214,
+      "role": "core"
+    },
+    "title": "Лекция «Метод GET: как работает и зачем нужен»",
+    "url": "courses/manual-testing/step-095.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 96,
+      "module": "Сети",
+      "chapter": "HTTP-методы в API"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "HTTP-методы",
+      "stageOrder": 6,
+      "topicOrder": 4,
+      "lessonOrder": 215,
+      "role": "core"
+    },
+    "title": "Лекция «Метод POST: как работает и зачем нужен»",
+    "url": "courses/manual-testing/step-096.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 97,
+      "module": "Сети",
+      "chapter": "HTTP-методы в API"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "HTTP-методы",
+      "stageOrder": 6,
+      "topicOrder": 4,
+      "lessonOrder": 216,
+      "role": "core"
+    },
+    "title": "Лекция «Метод PUT: как работает и зачем нужен»",
+    "url": "courses/manual-testing/step-097.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 98,
+      "module": "Сети",
+      "chapter": "HTTP-методы в API"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "HTTP-методы",
+      "stageOrder": 6,
+      "topicOrder": 4,
+      "lessonOrder": 217,
+      "role": "core"
+    },
+    "title": "Лекция «Метод PATCH: как работает и зачем нужен»",
+    "url": "courses/manual-testing/step-098.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 99,
+      "module": "Сети",
+      "chapter": "HTTP-методы в API"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "HTTP-методы",
+      "stageOrder": 6,
+      "topicOrder": 4,
+      "lessonOrder": 218,
+      "role": "core"
+    },
+    "title": "Лекция «Метод DELETE: как работает и зачем нужен»",
+    "url": "courses/manual-testing/step-099.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 100,
+      "module": "Сети",
+      "chapter": "HTTP-методы в API"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "HTTP-методы",
+      "stageOrder": 6,
+      "topicOrder": 4,
+      "lessonOrder": 219,
+      "role": "core"
+    },
+    "title": "Лекция «Метод HEAD: как работает и зачем нужен»",
+    "url": "courses/manual-testing/step-100.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 101,
+      "module": "Сети",
+      "chapter": "HTTP-методы в API"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "HTTP-методы",
+      "stageOrder": 6,
+      "topicOrder": 4,
+      "lessonOrder": 220,
+      "role": "core"
+    },
+    "title": "Лекция «Метод OPTIONS: как работает и зачем нужен»",
+    "url": "courses/manual-testing/step-101.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 102,
+      "module": "Сети",
+      "chapter": "HTTP-методы в API"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "HTTP-методы",
+      "stageOrder": 6,
+      "topicOrder": 4,
+      "lessonOrder": 221,
+      "role": "core"
+    },
+    "title": "Лекция «Общий итог по HTTP-методам»",
+    "url": "courses/manual-testing/step-102.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 105,
+      "module": "Сети",
+      "chapter": "Cash и cookies"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "Кэш, cookies и проверка API",
+      "stageOrder": 6,
+      "topicOrder": 5,
+      "lessonOrder": 222,
+      "role": "core"
+    },
+    "title": "Лекция «Кэширование: серверное и клиентское»",
+    "url": "courses/manual-testing/step-105.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 106,
+      "module": "Сети",
+      "chapter": "Cash и cookies"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "Кэш, cookies и проверка API",
+      "stageOrder": 6,
+      "topicOrder": 5,
+      "lessonOrder": 223,
+      "role": "core"
+    },
+    "title": "Лекция «Куки: что это такое и зачем они нужны»",
+    "url": "courses/manual-testing/step-106.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 108,
+      "module": "Сети",
+      "chapter": "Как тестировать API"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "Кэш, cookies и проверка API",
+      "stageOrder": 6,
+      "topicOrder": 5,
+      "lessonOrder": 224,
+      "role": "core"
+    },
+    "title": "Лекция «Как тестировать API: основные подходы и сценарии»",
+    "url": "courses/manual-testing/step-108.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 109,
+      "module": "Сети",
+      "chapter": "DevTools, HTML и CSS"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "DevTools, HTML/CSS, Postman и Swagger",
+      "stageOrder": 6,
+      "topicOrder": 6,
+      "lessonOrder": 225,
+      "role": "core"
+    },
+    "title": "Лекция «Что такое DevTools»",
+    "url": "courses/manual-testing/step-109.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 110,
+      "module": "Сети",
+      "chapter": "DevTools, HTML и CSS"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "DevTools, HTML/CSS, Postman и Swagger",
+      "stageOrder": 6,
+      "topicOrder": 6,
+      "lessonOrder": 226,
+      "role": "core"
+    },
+    "title": "Лекция «Основы HTML и CSS»",
+    "url": "courses/manual-testing/step-110.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 111,
+      "module": "Сети",
+      "chapter": "Инструменты для работы"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "DevTools, HTML/CSS, Postman и Swagger",
+      "stageOrder": 6,
+      "topicOrder": 6,
+      "lessonOrder": 227,
+      "role": "core"
+    },
+    "title": "Лекция «Postman»",
+    "url": "courses/manual-testing/step-111.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 112,
+      "module": "Сети",
+      "chapter": "Инструменты для работы"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "DevTools, HTML/CSS, Postman и Swagger",
+      "stageOrder": 6,
+      "topicOrder": 6,
+      "lessonOrder": 228,
+      "role": "core"
+    },
+    "title": "Лекция «Swagger»",
+    "url": "courses/manual-testing/step-112.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 122,
+      "module": "Тестирование на деле",
+      "chapter": "Заметки \"как тестировать\""
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "Проверки интерфейса и бэкенда",
+      "stageOrder": 6,
+      "topicOrder": 7,
+      "lessonOrder": 229,
+      "role": "practice"
+    },
+    "title": "Лекция «Тестирование UI: Сравнение макетов и реального интерфейса»",
+    "url": "courses/manual-testing/step-122.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 126,
+      "module": "Тестирование на деле",
+      "chapter": "Заметки \"как тестировать\""
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "Проверки интерфейса и бэкенда",
+      "stageOrder": 6,
+      "topicOrder": 7,
+      "lessonOrder": 230,
+      "role": "practice"
+    },
+    "title": "Лекция «Как тестировать бэкенд?»",
+    "url": "courses/manual-testing/step-126.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 128,
+      "module": "Тестирование на деле",
+      "chapter": "Заметки \"как тестировать\""
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "Проверки интерфейса и бэкенда",
+      "stageOrder": 6,
+      "topicOrder": 7,
+      "lessonOrder": 231,
+      "role": "practice"
+    },
+    "title": "Лекция «Когда ты нажимаешь кнопку, а ничего не происходит: как думать и что проверять»",
+    "url": "courses/manual-testing/step-128.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 129,
+      "module": "Тестирование на деле",
+      "chapter": "Заметки \"как тестировать\""
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "Проверки интерфейса и бэкенда",
+      "stageOrder": 6,
+      "topicOrder": 7,
+      "lessonOrder": 232,
+      "role": "practice"
+    },
+    "title": "Лекция «Клиентские проблемы» ",
+    "url": "courses/manual-testing/step-129.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 130,
+      "module": "Тестирование на деле",
+      "chapter": "Заметки \"как тестировать\""
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "Проверки интерфейса и бэкенда",
+      "stageOrder": 6,
+      "topicOrder": 7,
+      "lessonOrder": 233,
+      "role": "practice"
+    },
+    "title": "Лекция «Серверные проблемы: База данных и 500 ошибки» ",
+    "url": "courses/manual-testing/step-130.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 113,
+      "module": "Сети",
+      "chapter": "Практика"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "Практика веба и API",
+      "stageOrder": 6,
+      "topicOrder": 8,
+      "lessonOrder": 234,
+      "role": "practice"
+    },
+    "title": "JSON. Практическое задание №1",
+    "url": "courses/manual-testing/step-113.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 114,
+      "module": "Сети",
+      "chapter": "Практика"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "Практика веба и API",
+      "stageOrder": 6,
+      "topicOrder": 8,
+      "lessonOrder": 235,
+      "role": "practice"
+    },
+    "title": "JSON. Практическое задание №2",
+    "url": "courses/manual-testing/step-114.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 116,
+      "module": "Сети",
+      "chapter": "Практика"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "Практика веба и API",
+      "stageOrder": 6,
+      "topicOrder": 8,
+      "lessonOrder": 236,
+      "role": "practice"
+    },
+    "title": "API. Практическое задание №4",
+    "url": "courses/manual-testing/step-116.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 117,
+      "module": "Сети",
+      "chapter": "Практика"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "Практика веба и API",
+      "stageOrder": 6,
+      "topicOrder": 8,
+      "lessonOrder": 237,
+      "role": "practice"
+    },
+    "title": "API. Практическое задание №5",
+    "url": "courses/manual-testing/step-117.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 118,
+      "module": "Сети",
+      "chapter": "Практика"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "Практика веба и API",
+      "stageOrder": 6,
+      "topicOrder": 8,
+      "lessonOrder": 238,
+      "role": "practice"
+    },
+    "title": "ЧЛ. Практическое задание №6",
+    "url": "courses/manual-testing/step-118.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 119,
+      "module": "Сети",
+      "chapter": "Практика"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "Практика веба и API",
+      "stageOrder": 6,
+      "topicOrder": 8,
+      "lessonOrder": 239,
+      "role": "practice"
+    },
+    "title": "curl. Практическое задание №7",
+    "url": "courses/manual-testing/step-119.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 152,
+      "module": "SQL",
+      "chapter": "Практика"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "Практика веба и API",
+      "stageOrder": 6,
+      "topicOrder": 8,
+      "lessonOrder": 240,
+      "role": "practice"
+    },
+    "title": "API. Практическое задание №10",
+    "url": "courses/manual-testing/step-152.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 153,
+      "module": "SQL",
+      "chapter": "Практика"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "Практика веба и API",
+      "stageOrder": 6,
+      "topicOrder": 8,
+      "lessonOrder": 241,
+      "role": "practice"
+    },
+    "title": "API. Практическое задание №9",
+    "url": "courses/manual-testing/step-153.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 154,
+      "module": "SQL",
+      "chapter": "Практика"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "Практика веба и API",
+      "stageOrder": 6,
+      "topicOrder": 8,
+      "lessonOrder": 242,
+      "role": "practice"
+    },
+    "title": "API. Практическое задание №8",
+    "url": "courses/manual-testing/step-154.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 156,
+      "module": "SQL",
+      "chapter": "Практика"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "Практика веба и API",
+      "stageOrder": 6,
+      "topicOrder": 8,
+      "lessonOrder": 243,
+      "role": "practice"
+    },
+    "title": "DevTools. Практическое задание №6",
+    "url": "courses/manual-testing/step-156.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 157,
+      "module": "SQL",
+      "chapter": "Практика"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "Практика веба и API",
+      "stageOrder": 6,
+      "topicOrder": 8,
+      "lessonOrder": 244,
+      "role": "practice"
+    },
+    "title": "JSON. Практическое задание №5",
+    "url": "courses/manual-testing/step-157.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 159,
+      "module": "SQL",
+      "chapter": "Практика"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "Практика веба и API",
+      "stageOrder": 6,
+      "topicOrder": 8,
+      "lessonOrder": 245,
+      "role": "practice"
+    },
+    "title": "DevTools. Практическое задание №3",
+    "url": "courses/manual-testing/step-159.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 160,
+      "module": "SQL",
+      "chapter": "Практика"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "Практика веба и API",
+      "stageOrder": 6,
+      "topicOrder": 8,
+      "lessonOrder": 246,
+      "role": "practice"
+    },
+    "title": "DevTools. Практическое задание №2",
+    "url": "courses/manual-testing/step-160.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 71,
+      "module": "Сети",
+      "chapter": "SOAP"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "Дополнительные форматы и инструменты",
+      "stageOrder": 6,
+      "topicOrder": 9,
+      "lessonOrder": 247,
+      "role": "advanced"
+    },
+    "title": "Лекция «SOAP: что это и зачем нужно?»",
+    "url": "courses/manual-testing/step-071.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 72,
+      "module": "Сети",
+      "chapter": "SOAP"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "Дополнительные форматы и инструменты",
+      "stageOrder": 6,
+      "topicOrder": 9,
+      "lessonOrder": 248,
+      "role": "advanced"
+    },
+    "title": "Лекция «WSDL: что это такое?»",
+    "url": "courses/manual-testing/step-072.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 73,
+      "module": "Сети",
+      "chapter": "SOAP"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "Дополнительные форматы и инструменты",
+      "stageOrder": 6,
+      "topicOrder": 9,
+      "lessonOrder": 249,
+      "role": "advanced"
+    },
+    "title": "Лекция «XML и WSDL: основа SOAP»",
+    "url": "courses/manual-testing/step-073.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 75,
+      "module": "Сети",
+      "chapter": "REST"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "Дополнительные форматы и инструменты",
+      "stageOrder": 6,
+      "topicOrder": 9,
+      "lessonOrder": 250,
+      "role": "advanced"
+    },
+    "title": "Лекция «WADL: аналог WSDL для REST»",
+    "url": "courses/manual-testing/step-075.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 81,
+      "module": "Сети",
+      "chapter": "REST"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "Дополнительные форматы и инструменты",
+      "stageOrder": 6,
+      "topicOrder": 9,
+      "lessonOrder": 251,
+      "role": "advanced"
+    },
+    "title": "Лекция «REST vs SOAP: В чём разница?»",
+    "url": "courses/manual-testing/step-081.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 164,
+      "module": "SQL",
+      "chapter": "Практика"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "Дополнительные форматы и инструменты",
+      "stageOrder": 6,
+      "topicOrder": 9,
+      "lessonOrder": 252,
+      "role": "advanced"
+    },
+    "title": "Лекция «Что означают уровни вложенности (1, 2, 3 уровни) в тестировании API?»",
+    "url": "courses/manual-testing/step-164.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 165,
+      "module": "SQL",
+      "chapter": "Практика"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "Дополнительные форматы и инструменты",
+      "stageOrder": 6,
+      "topicOrder": 9,
+      "lessonOrder": 253,
+      "role": "advanced"
+    },
+    "title": "Лекция «Что такое альтернативный сценарий (путь) в postman (тестировании)?»",
+    "url": "courses/manual-testing/step-165.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 166,
+      "module": "SQL",
+      "chapter": "Практика"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "Дополнительные форматы и инструменты",
+      "stageOrder": 6,
+      "topicOrder": 9,
+      "lessonOrder": 254,
+      "role": "advanced"
+    },
+    "title": "Лекция «Как сдавать ДЗ по POSTMAN»",
+    "url": "courses/manual-testing/step-166.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 82,
+      "module": "Сети",
+      "chapter": "REST"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "Вопросы, обратная связь и ревью",
+      "stageOrder": 6,
+      "topicOrder": 10,
+      "lessonOrder": 255,
+      "role": "reference"
+    },
+    "title": "Лекция «Вопросы про REST и SOAP на собеседовании»",
+    "url": "courses/manual-testing/step-082.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 93,
+      "module": "Сети",
+      "chapter": "Cтатус-коды"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "Вопросы, обратная связь и ревью",
+      "stageOrder": 6,
+      "topicOrder": 10,
+      "lessonOrder": 256,
+      "role": "reference"
+    },
+    "title": "Лекция «HTTP-статус-коды на собеседовании: что важно знать»",
+    "url": "courses/manual-testing/step-093.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 103,
+      "module": "Сети",
+      "chapter": "HTTP-методы в API"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "Вопросы, обратная связь и ревью",
+      "stageOrder": 6,
+      "topicOrder": 10,
+      "lessonOrder": 257,
+      "role": "reference"
+    },
+    "title": "Лекция «HTTP-методы: часто задаваемые вопросы на собеседовании»",
+    "url": "courses/manual-testing/step-103.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 107,
+      "module": "Сети",
+      "chapter": "Cash и cookies"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "Вопросы, обратная связь и ревью",
+      "stageOrder": 6,
+      "topicOrder": 10,
+      "lessonOrder": 258,
+      "role": "reference"
+    },
+    "title": "Лекция «Кэш и куки: что спрашивают на собеседованиях и как используются в работе»",
+    "url": "courses/manual-testing/step-107.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 120,
+      "module": "Сети",
+      "chapter": "Практика"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "Вопросы, обратная связь и ревью",
+      "stageOrder": 6,
+      "topicOrder": 10,
+      "lessonOrder": 259,
+      "role": "reference"
+    },
+    "title": "Обратная связь по модулю «Сети»",
+    "url": "courses/manual-testing/step-120.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 121,
+      "module": "Сети",
+      "chapter": "Практика"
+    },
+    "route": {
+      "stage": "web-api",
+      "stageTitle": "6. Веб и API",
+      "topic": "Вопросы, обратная связь и ревью",
+      "stageOrder": 6,
+      "topicOrder": 10,
+      "lessonOrder": 260,
+      "role": "reference"
+    },
+    "title": "Ревью по теме «Сети»",
+    "url": "courses/manual-testing/step-121.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 132,
+      "module": "SQL",
+      "chapter": "Базы данных"
+    },
+    "route": {
+      "stage": "database",
+      "stageTitle": "7. Базы данных и SQL",
+      "topic": "База данных и таблицы",
+      "stageOrder": 7,
+      "topicOrder": 1,
+      "lessonOrder": 261,
+      "role": "core"
+    },
+    "title": "Лекция «Что такое база данных?»",
+    "url": "courses/manual-testing/step-132.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 133,
+      "module": "SQL",
+      "chapter": "Базы данных"
+    },
+    "route": {
+      "stage": "database",
+      "stageTitle": "7. Базы данных и SQL",
+      "topic": "База данных и таблицы",
+      "stageOrder": 7,
+      "topicOrder": 1,
+      "lessonOrder": 262,
+      "role": "core"
+    },
+    "title": "Лекция «Виды баз данных»",
+    "url": "courses/manual-testing/step-133.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 134,
+      "module": "SQL",
+      "chapter": "Базы данных"
+    },
+    "route": {
+      "stage": "database",
+      "stageTitle": "7. Базы данных и SQL",
+      "topic": "База данных и таблицы",
+      "stageOrder": 7,
+      "topicOrder": 1,
+      "lessonOrder": 263,
+      "role": "core"
+    },
+    "title": "Лекция «Создание таблицы в MySQL»",
+    "url": "courses/manual-testing/step-134.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 135,
+      "module": "SQL",
+      "chapter": "Базы данных"
+    },
+    "route": {
+      "stage": "database",
+      "stageTitle": "7. Базы данных и SQL",
+      "topic": "База данных и таблицы",
+      "stageOrder": 7,
+      "topicOrder": 1,
+      "lessonOrder": 264,
+      "role": "core"
+    },
+    "title": "Лекция «Зачем тестировщику нужно уметь работать с базами данных?»",
+    "url": "courses/manual-testing/step-135.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 136,
+      "module": "SQL",
+      "chapter": "Запросы типа SELECT"
+    },
+    "route": {
+      "stage": "database",
+      "stageTitle": "7. Базы данных и SQL",
+      "topic": "SELECT, группировка и агрегация",
+      "stageOrder": 7,
+      "topicOrder": 2,
+      "lessonOrder": 265,
+      "role": "core"
+    },
+    "title": "Лекция «Запросы SELECT в SQL/MySQL»",
+    "url": "courses/manual-testing/step-136.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 137,
+      "module": "SQL",
+      "chapter": "Запросы типа SELECT"
+    },
+    "route": {
+      "stage": "database",
+      "stageTitle": "7. Базы данных и SQL",
+      "topic": "SELECT, группировка и агрегация",
+      "stageOrder": 7,
+      "topicOrder": 2,
+      "lessonOrder": 266,
+      "role": "core"
+    },
+    "title": "Лекция «Другие запросы в SQL»",
+    "url": "courses/manual-testing/step-137.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 138,
+      "module": "SQL",
+      "chapter": "Запросы типа SELECT"
+    },
+    "route": {
+      "stage": "database",
+      "stageTitle": "7. Базы данных и SQL",
+      "topic": "SELECT, группировка и агрегация",
+      "stageOrder": 7,
+      "topicOrder": 2,
+      "lessonOrder": 267,
+      "role": "core"
+    },
+    "title": "Лекция «Группировка»",
+    "url": "courses/manual-testing/step-138.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 139,
+      "module": "SQL",
+      "chapter": "Запросы типа SELECT"
+    },
+    "route": {
+      "stage": "database",
+      "stageTitle": "7. Базы данных и SQL",
+      "topic": "SELECT, группировка и агрегация",
+      "stageOrder": 7,
+      "topicOrder": 2,
+      "lessonOrder": 268,
+      "role": "core"
+    },
+    "title": "Лекция «Агрегатные функции»",
+    "url": "courses/manual-testing/step-139.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 140,
+      "module": "SQL",
+      "chapter": "Запросы типа SELECT"
+    },
+    "route": {
+      "stage": "database",
+      "stageTitle": "7. Базы данных и SQL",
+      "topic": "SELECT, группировка и агрегация",
+      "stageOrder": 7,
+      "topicOrder": 2,
+      "lessonOrder": 269,
+      "role": "core"
+    },
+    "title": "Лекция «Группировка и фильтрация оператором HAVING»",
+    "url": "courses/manual-testing/step-140.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 143,
+      "module": "SQL",
+      "chapter": "Запросы JOIN"
+    },
+    "route": {
+      "stage": "database",
+      "stageTitle": "7. Базы данных и SQL",
+      "topic": "JOIN и вложенные запросы",
+      "stageOrder": 7,
+      "topicOrder": 3,
+      "lessonOrder": 270,
+      "role": "core"
+    },
+    "title": "Лекция «Вложенные запросы»",
+    "url": "courses/manual-testing/step-143.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 144,
+      "module": "SQL",
+      "chapter": "Запросы JOIN"
+    },
+    "route": {
+      "stage": "database",
+      "stageTitle": "7. Базы данных и SQL",
+      "topic": "JOIN и вложенные запросы",
+      "stageOrder": 7,
+      "topicOrder": 3,
+      "lessonOrder": 271,
+      "role": "core"
+    },
+    "title": "Лекция «Запросы JOIN в SQL/MySQL»",
+    "url": "courses/manual-testing/step-144.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 141,
+      "module": "SQL",
+      "chapter": "Запросы типа SELECT"
+    },
+    "route": {
+      "stage": "database",
+      "stageTitle": "7. Базы данных и SQL",
+      "topic": "Практика SQL",
+      "stageOrder": 7,
+      "topicOrder": 4,
+      "lessonOrder": 272,
+      "role": "practice"
+    },
+    "title": "SQL. Практическое задание №1. Проверяемое задание «SELECT»",
+    "url": "courses/manual-testing/step-141.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 142,
+      "module": "SQL",
+      "chapter": "Запросы типа SELECT"
+    },
+    "route": {
+      "stage": "database",
+      "stageTitle": "7. Базы данных и SQL",
+      "topic": "Практика SQL",
+      "stageOrder": 7,
+      "topicOrder": 4,
+      "lessonOrder": 273,
+      "role": "practice"
+    },
+    "title": "SQL. Практическое задание №2. Проверяемое задание «GROUPBY»",
+    "url": "courses/manual-testing/step-142.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 145,
+      "module": "SQL",
+      "chapter": "Запросы JOIN"
+    },
+    "route": {
+      "stage": "database",
+      "stageTitle": "7. Базы данных и SQL",
+      "topic": "Практика SQL",
+      "stageOrder": 7,
+      "topicOrder": 4,
+      "lessonOrder": 274,
+      "role": "practice"
+    },
+    "title": "SQL. Практическое задание №3. Проверяемое задание «JOIN»",
+    "url": "courses/manual-testing/step-145.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 151,
+      "module": "SQL",
+      "chapter": "Практика"
+    },
+    "route": {
+      "stage": "database",
+      "stageTitle": "7. Базы данных и SQL",
+      "topic": "Практика SQL",
+      "stageOrder": 7,
+      "topicOrder": 4,
+      "lessonOrder": 275,
+      "role": "practice"
+    },
+    "title": "Лекция «Как сдавать SQL Academy»",
+    "url": "courses/manual-testing/step-151.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 168,
+      "module": "SQL",
+      "chapter": "Практика"
+    },
+    "route": {
+      "stage": "database",
+      "stageTitle": "7. Базы данных и SQL",
+      "topic": "Практика SQL",
+      "stageOrder": 7,
+      "topicOrder": 4,
+      "lessonOrder": 276,
+      "role": "practice"
+    },
+    "title": "Ревью по теме \"SQL\"",
+    "url": "courses/manual-testing/step-168.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 146,
+      "module": "SQL",
+      "chapter": "Insert, Update, Delete"
+    },
+    "route": {
+      "stage": "database",
+      "stageTitle": "7. Базы данных и SQL",
+      "topic": "Изменение данных — после основ",
+      "stageOrder": 7,
+      "topicOrder": 5,
+      "lessonOrder": 277,
+      "role": "advanced"
+    },
+    "title": "Лекция «Операторы INSERT, UPDATE, DELETE»",
+    "url": "courses/manual-testing/step-146.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 147,
+      "module": "SQL",
+      "chapter": "Insert, Update, Delete"
+    },
+    "route": {
+      "stage": "database",
+      "stageTitle": "7. Базы данных и SQL",
+      "topic": "Изменение данных — после основ",
+      "stageOrder": 7,
+      "topicOrder": 5,
+      "lessonOrder": 278,
+      "role": "advanced"
+    },
+    "title": "SQL. Практическое задание №4. Проверяемое задание «INSERT, UPDATE, DELETE»",
+    "url": "courses/manual-testing/step-147.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 148,
+      "module": "SQL",
+      "chapter": "Insert, Update, Delete"
+    },
+    "route": {
+      "stage": "database",
+      "stageTitle": "7. Базы данных и SQL",
+      "topic": "Шпаргалка и рабочие инструменты",
+      "stageOrder": 7,
+      "topicOrder": 6,
+      "lessonOrder": 279,
+      "role": "reference"
+    },
+    "title": "Лекция «Шпаргалка по основным операторам SQL»",
+    "url": "courses/manual-testing/step-148.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 149,
+      "module": "SQL",
+      "chapter": "Собеседование и реальность"
+    },
+    "route": {
+      "stage": "database",
+      "stageTitle": "7. Базы данных и SQL",
+      "topic": "Шпаргалка и рабочие инструменты",
+      "stageOrder": 7,
+      "topicOrder": 6,
+      "lessonOrder": 280,
+      "role": "reference"
+    },
+    "title": "Лекция «SQL и собеседования»",
+    "url": "courses/manual-testing/step-149.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 150,
+      "module": "SQL",
+      "chapter": "Собеседование и реальность"
+    },
+    "route": {
+      "stage": "database",
+      "stageTitle": "7. Базы данных и SQL",
+      "topic": "Шпаргалка и рабочие инструменты",
+      "stageOrder": 7,
+      "topicOrder": 6,
+      "lessonOrder": 281,
+      "role": "reference"
+    },
+    "title": "Лекция «SQL и работа»",
+    "url": "courses/manual-testing/step-150.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 162,
+      "module": "SQL",
+      "chapter": "Практика"
+    },
+    "route": {
+      "stage": "database",
+      "stageTitle": "7. Базы данных и SQL",
+      "topic": "Шпаргалка и рабочие инструменты",
+      "stageOrder": 7,
+      "topicOrder": 6,
+      "lessonOrder": 282,
+      "role": "reference"
+    },
+    "title": "Лекция «Инструмент DBeaver»",
+    "url": "courses/manual-testing/step-162.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 163,
+      "module": "SQL",
+      "chapter": "Практика"
+    },
+    "route": {
+      "stage": "database",
+      "stageTitle": "7. Базы данных и SQL",
+      "topic": "Шпаргалка и рабочие инструменты",
+      "stageOrder": 7,
+      "topicOrder": 6,
+      "lessonOrder": 283,
+      "role": "reference"
+    },
+    "title": "Лекция «Пример справочного значения»",
+    "url": "courses/manual-testing/step-163.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 167,
+      "module": "SQL",
+      "chapter": "Практика"
+    },
+    "route": {
+      "stage": "database",
+      "stageTitle": "7. Базы данных и SQL",
+      "topic": "Шпаргалка и рабочие инструменты",
+      "stageOrder": 7,
+      "topicOrder": 6,
+      "lessonOrder": 284,
+      "role": "reference"
+    },
+    "title": "Обратная связь по модулю «SQL» ",
+    "url": "courses/manual-testing/step-167.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 125,
+      "module": "Тестирование на деле",
+      "chapter": "Заметки \"как тестировать\""
+    },
+    "route": {
+      "stage": "end-to-end",
+      "stageTitle": "8. Сквозная практика",
+      "topic": "Выбрать и уточнить требование",
+      "stageOrder": 8,
+      "topicOrder": 1,
+      "lessonOrder": 285,
+      "role": "practice"
+    },
+    "title": "Лекция «Как определить, что нужно тестировать?»",
+    "url": "courses/manual-testing/step-125.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 161,
+      "module": "SQL",
+      "chapter": "Практика"
+    },
+    "route": {
+      "stage": "end-to-end",
+      "stageTitle": "8. Сквозная практика",
+      "topic": "Выбрать и уточнить требование",
+      "stageOrder": 8,
+      "topicOrder": 1,
+      "lessonOrder": 286,
+      "role": "practice"
+    },
+    "title": "Требования. Практическое задание №1",
+    "url": "courses/manual-testing/step-161.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 98,
+      "module": "Требования",
+      "chapter": "Практика"
+    },
+    "route": {
+      "stage": "end-to-end",
+      "stageTitle": "8. Сквозная практика",
+      "topic": "Спроектировать и записать проверки",
+      "stageOrder": 8,
+      "topicOrder": 2,
+      "lessonOrder": 287,
+      "role": "practice"
+    },
+    "title": "ТК. Практическое задание №5",
+    "url": "courses/mqa-base/step-098.html"
+  },
+  {
+    "source": {
+      "course": "mqa-base",
+      "step": 125,
+      "module": "Техники тест-дизайна",
+      "chapter": "Практика"
+    },
+    "route": {
+      "stage": "end-to-end",
+      "stageTitle": "8. Сквозная практика",
+      "topic": "Спроектировать и записать проверки",
+      "stageOrder": 8,
+      "topicOrder": 2,
+      "lessonOrder": 288,
+      "role": "practice"
+    },
+    "title": "ТК. Практическое задание №6 ",
+    "url": "courses/mqa-base/step-125.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 115,
+      "module": "Сети",
+      "chapter": "Практика"
+    },
+    "route": {
+      "stage": "end-to-end",
+      "stageTitle": "8. Сквозная практика",
+      "topic": "Проверить веб, API и данные",
+      "stageOrder": 8,
+      "topicOrder": 3,
+      "lessonOrder": 289,
+      "role": "practice"
+    },
+    "title": "API. Практическое задание №3",
+    "url": "courses/manual-testing/step-115.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 155,
+      "module": "SQL",
+      "chapter": "Практика"
+    },
+    "route": {
+      "stage": "end-to-end",
+      "stageTitle": "8. Сквозная практика",
+      "topic": "Проверить веб, API и данные",
+      "stageOrder": 8,
+      "topicOrder": 3,
+      "lessonOrder": 290,
+      "role": "practice"
+    },
+    "title": "SQL. Практическое задание №7",
+    "url": "courses/manual-testing/step-155.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 56,
+      "module": "Виды тестирования",
+      "chapter": "Практика"
+    },
+    "route": {
+      "stage": "end-to-end",
+      "stageTitle": "8. Сквозная практика",
+      "topic": "Описать найденный дефект",
+      "stageOrder": 8,
+      "topicOrder": 4,
+      "lessonOrder": 291,
+      "role": "practice"
+    },
+    "title": "БР. Практическое задание №2",
+    "url": "courses/manual-testing/step-056.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 158,
+      "module": "SQL",
+      "chapter": "Практика"
+    },
+    "route": {
+      "stage": "end-to-end",
+      "stageTitle": "8. Сквозная практика",
+      "topic": "Описать найденный дефект",
+      "stageOrder": 8,
+      "topicOrder": 4,
+      "lessonOrder": 292,
+      "role": "practice"
+    },
+    "title": "БР. Практическое задание №4",
+    "url": "courses/manual-testing/step-158.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 53,
+      "module": "Виды тестирования",
+      "chapter": "Работа и собеседования"
+    },
+    "route": {
+      "stage": "end-to-end",
+      "stageTitle": "8. Сквозная практика",
+      "topic": "Разбор готовых сценариев",
+      "stageOrder": 8,
+      "topicOrder": 5,
+      "lessonOrder": 293,
+      "role": "practice"
+    },
+    "title": "Лекция «Как виды тестирования выглядят на практике»",
+    "url": "courses/manual-testing/step-053.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 54,
+      "module": "Виды тестирования",
+      "chapter": "Работа и собеседования"
+    },
+    "route": {
+      "stage": "end-to-end",
+      "stageTitle": "8. Сквозная практика",
+      "topic": "Разбор готовых сценариев",
+      "stageOrder": 8,
+      "topicOrder": 5,
+      "lessonOrder": 294,
+      "role": "practice"
+    },
+    "title": "Лекция «Все виды тестирования на проекте»",
+    "url": "courses/manual-testing/step-054.html"
+  },
+  {
+    "source": {
+      "course": "manual-testing",
+      "step": 131,
+      "module": "Тестирование на деле",
+      "chapter": "Заметки \"как тестировать\""
+    },
+    "route": {
+      "stage": "end-to-end",
+      "stageTitle": "8. Сквозная практика",
+      "topic": "Итог и обратная связь",
+      "stageOrder": 8,
+      "topicOrder": 6,
+      "lessonOrder": 295,
+      "role": "reference"
+    },
+    "title": "Обратная связь по модулю «Тестирование на деле» ",
+    "url": "courses/manual-testing/step-131.html"
+  }
+]

@@ -1,0 +1,30 @@
+.route-intro{padding-bottom:2.5rem}
+.route-start{display:inline-block;margin:0 0 1.5rem;padding:.85rem 1.2rem;border-radius:10px;background:var(--aqua);color:#071017;font-weight:800}
+.route-start:hover{filter:brightness(1.1)}
+.route-jump{max-width:var(--max);margin:0 auto;padding:0 24px 2rem;display:flex;gap:.55rem;flex-wrap:wrap}
+.route-jump a{border:1px solid var(--line);border-radius:999px;padding:.4rem .8rem;color:var(--muted);font-size:.82rem}
+.route-jump a:hover{border-color:var(--aqua);color:var(--ink)}
+.route-outline{padding-top:1rem}
+.route-stage{scroll-margin-top:110px}
+.stage-goal{margin:.2rem 0 1.5rem 70px;max-width:760px;color:var(--muted)}
+.stage-goal strong{color:var(--ink)}
+.capstone{margin:0 0 1.5rem 70px;padding:1.2rem 1.4rem;border:1px solid var(--line);border-left:3px solid var(--aqua);border-radius:10px;background:var(--panel)}
+.capstone h3{margin:0 0 .5rem}
+.capstone p{margin:0;color:var(--muted)}
+.role-chip{display:inline-block;margin-left:.6rem;padding:.15rem .45rem;border-radius:5px;border:1px solid var(--line);font-size:.65rem;font-weight:700;vertical-align:middle}
+.role-chip.practice{color:var(--aqua)}
+.role-chip.advanced{color:var(--amber)}
+.role-chip.reference{color:var(--muted)}
+.role-chip.alternative{color:var(--muted)}
+.alternative-note{margin-top:1rem!important;padding:.7rem .9rem;border-left:3px solid var(--aqua);background:var(--panel);font-size:.9rem}
+.alternative-note a{text-decoration:underline;text-underline-offset:3px}
+.archive-section{max-width:var(--max);margin:2rem auto 0;padding:3rem 24px 0;border-top:1px solid var(--line);scroll-margin-top:100px}
+.archive-section h2{font-size:clamp(2rem,4vw,3.3rem);line-height:1.1;letter-spacing:-.04em;margin:.5rem 0}
+.archive-section>p{max-width:670px;color:var(--muted)}
+.archive-section .course-grid{padding:1.2rem 0 0}
+.archive-section .course-card{min-height:260px}
+.archive-section .course-card h2{font-size:2rem}
+.source-note{margin:2rem 0;color:var(--muted);font-size:.82rem}
+.source-note a{text-decoration:underline;text-underline-offset:3px}
+@media(max-width:800px){.stage-goal,.capstone{margin-left:0}.route-jump{padding-left:16px;padding-right:16px}.archive-section{padding-left:16px;padding-right:16px}}
+@media(prefers-color-scheme:light){.route-start{color:#fff}}

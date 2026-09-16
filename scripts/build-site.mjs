@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { buildCurriculum } from './curriculum.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const sourceDirName = process.env.COURSE_EXPORT_DIR || fs.readdirSync(root, { withFileTypes: true })
@@ -161,7 +162,7 @@ function faviconData() {
 
 function shell({ title, description, depth = 0, body, current = '' }) {
   const base = '../'.repeat(depth);
-  const navCourse = current ? `<a href="${base}courses/${current}/">Курс</a>` : '';
+  const navCourse = !isDevelopment && current ? `<a href="${base}courses/${current}/">Курс</a>` : '';
   const environmentNav = isDevelopment
     ? `\n    <span class="env-badge" aria-label="Среда разработки">DEV</span><a class="production-link" data-production-link href="${base}../">Продакшен</a>`
     : '';
@@ -175,6 +176,7 @@ function shell({ title, description, depth = 0, body, current = '' }) {
   <title>${escapeHtml(title)} · Персональный курс QA</title>
   <link rel="icon" type="image/svg+xml" href="${faviconData()}">
   <link rel="stylesheet" href="${base}assets/site.css">
+  ${isDevelopment ? `<link rel="stylesheet" href="${base}assets/route.css">` : ''}
   <script src="${base}assets/site.js" defer></script>
 </head>
 <body data-base="${base}" data-environment="${siteEnvironment}">
@@ -182,9 +184,7 @@ function shell({ title, description, depth = 0, body, current = '' }) {
   <header class="topbar">
     <a class="brand" href="${base}index.html" aria-label="Персональный курс QA, главная"><span class="brand-mark">QA</span><span>Персональный курс QA</span></a>${environmentNav}
     <nav aria-label="Основная навигация">
-      <a href="${base}courses/manual-testing/">Ручное тестирование</a>
-      <a href="${base}courses/mqa-base/">MQA Base</a>
-      ${navCourse}
+      ${isDevelopment ? `<a href="${base}index.html">Единый маршрут</a><a href="${base}index.html#archive">Архив курсов</a>` : `<a href="${base}courses/manual-testing/">Ручное тестирование</a><a href="${base}courses/mqa-base/">MQA Base</a>`}${navCourse ? `\n      ${navCourse}` : ''}
     </nav>
     <form class="search-mini" action="${base}search.html" role="search">
       <label class="sr-only" for="site-search-${depth}">Поиск по курсам</label>
@@ -201,7 +201,7 @@ function shell({ title, description, depth = 0, body, current = '' }) {
 function courseCard(course, depth = 0) {
   const base = '../'.repeat(depth);
   return `<a class="course-card ${course.accent}" href="${base}courses/${course.slug}/">
-    <span class="eyebrow">Курс</span>
+    <span class="eyebrow">${isDevelopment ? 'Архив' : 'Курс'}</span>
     <h2>${escapeHtml(course.title)}</h2>
     <p>${escapeHtml(course.description)}</p>
     <dl><div><dt>Модули</dt><dd>${course.modules.length}</dd></div><div><dt>Темы</dt><dd>${course.chapterCount}</dd></div><div><dt>Страницы</dt><dd>${course.pages.length}</dd></div></dl>
@@ -277,11 +277,27 @@ fs.mkdirSync(outDir, { recursive: true });
 
 const totalPages = courses.reduce((sum, course) => sum + course.pages.length, 0);
 const totalChapters = courses.reduce((sum, course) => sum + course.chapterCount, 0);
+const curriculum = isDevelopment ? buildCurriculum(courses) : null;
+const routeByUrl = new Map(curriculum?.records.map((record, index) => [record.url, { record, index }]) || []);
+const routeBySourceKey = new Map(curriculum?.records.map((record) => [`${record.source.course === 'mqa-base' ? 'Q' : 'M'}${record.source.step}`, record]) || []);
+
+function routeHome() {
+  const roleLabel = { core: 'Основное', practice: 'Практика', advanced: 'После основ', reference: 'Справка' };
+  const outline = curriculum.stages.map((stage) => `<section class="module-block route-stage" id="${stage.id}">
+    <header><span>${String(stage.number).padStart(2, '0')}</span><div><p>Этап ${stage.number}</p><h2>${escapeHtml(stage.title)}</h2></div><strong>${stage.topics.reduce((sum, topic) => sum + topic.items.length, 0)} шагов</strong></header>
+    <p class="stage-goal">${escapeHtml(stage.goal)} <strong>Результат:</strong> ${escapeHtml(stage.outcome)}</p>${stage.id === 'end-to-end' ? '<aside class="capstone"><h3>Итоговая работа</h3><p>Возьмите один знакомый веб-сценарий. Зафиксируйте требование и вопросы к нему, составьте проверки, выполните их в интерфейсе и при необходимости через API/БД, затем опишите один воспроизводимый дефект. Упражнения ниже взяты из разных исходных контекстов: используйте их как образцы отдельных действий, а итоговую цепочку соберите на одном выбранном сценарии.</p></aside>' : ''}
+    <div class="chapter-list">${stage.topics.map((topic) => `<details><summary><span>${escapeHtml(topic.title)} <small class="role-chip ${topic.role}">${roleLabel[topic.role]}</small></span><span class="chapter-toggle"><small>${topic.items.length}</small><span class="chapter-chevron" aria-hidden="true">▸</span></span></summary><ol>${topic.items.map((item) => `<li><a href="${item.url}"><span>${String(item.route.lessonOrder).padStart(3, '0')}</span><strong>${escapeHtml(item.title)}</strong><em>${item.alternativeTo ? 'Другой разбор' : escapeHtml(item.source.course === 'mqa-base' ? 'MQA Base' : 'Ручное тестирование')}</em></a></li>`).join('')}</ol></details>`).join('')}</div>
+  </section>`).join('');
+  return `<section class="home-intro route-intro"><div><span class="eyebrow">Единый маршрут · ${totalPages} шагов</span><h1>От первого требования<br><span>до найденного дефекта</span></h1></div><div class="home-copy"><p>Восемь последовательных этапов объединяют оба исходных курса. Начните с первого шага; дополнительные темы отмечены отдельно.</p><a class="route-start" href="${curriculum.records[0].url}">Начать обучение →</a><form class="search-hero" action="search.html" role="search"><label class="sr-only" for="home-search">Поиск по маршруту</label><input id="home-search" name="q" type="search" placeholder="Например, граничные значения" required><button>Найти</button></form></div></section>
+  <nav class="route-jump" aria-label="Этапы маршрута">${curriculum.stages.map((stage) => `<a href="#${stage.id}">${escapeHtml(stage.title)}</a>`).join('')}</nav>
+  <div class="outline route-outline">${outline}</div>
+  <section id="archive" class="archive-section"><span class="eyebrow">Исходные материалы</span><h2>Архив исходных курсов</h2><p>Прежние структуры и адреса всех уроков сохранены для ссылок и сверки. Для обучения используйте единый маршрут выше.</p><div class="course-grid">${courses.map((course) => courseCard(course)).join('')}</div></section>`;
+}
 
 write('index.html', shell({
   title: 'Персональный курс QA',
   description: '295 страниц учебных материалов по ручному тестированию и MQA Base.',
-  body: `<section class="home-intro">
+  body: isDevelopment ? routeHome() : `<section class="home-intro">
     <div><span class="eyebrow">Персональный курс QA</span><h1>Учебные материалы<br><span>без лишнего шума</span></h1></div>
     <div class="home-copy"><p>Два курса собраны в читаемый статический справочник. Выберите курс или найдите понятие сразу во всех ${totalPages} страницах.</p>
       <form class="search-hero" action="search.html" role="search"><label class="sr-only" for="home-search">Поиск по материалам</label><input id="home-search" name="q" type="search" placeholder="Например, граничные значения" required><button>Найти</button></form>
@@ -303,7 +319,7 @@ for (const course of courses) {
     depth: 2,
     current: course.slug,
     body: `<div class="course-head ${course.accent}"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><span>${escapeHtml(course.title)}</span></nav>
-      <span class="eyebrow">Курс · ${course.modules.length} модуля · ${course.pages.length} страниц</span><h1>${escapeHtml(course.title)}</h1><p>${escapeHtml(course.description)}</p>
+      <span class="eyebrow">${isDevelopment ? 'Архив исходного курса' : 'Курс'} · ${course.modules.length} модуля · ${course.pages.length} страниц</span><h1>${escapeHtml(course.title)}</h1><p>${escapeHtml(course.description)}</p>${isDevelopment ? '<p><a href="../../index.html">Перейти к единому учебному маршруту →</a></p>' : ''}
       <div class="course-meta">${course.duration ? `<span>Срок: ${escapeHtml(course.duration)}</span>` : ''}${course.workload ? `<span>Нагрузка: ${escapeHtml(course.workload)}</span>` : ''}</div>
     </div><div class="outline">${outline}</div>`,
   }));
@@ -313,48 +329,63 @@ for (const course of courses) {
     const next = course.pages[index + 1];
     const chapterPages = course.modules.flatMap((module) => module.chapters).find((chapter) => chapter.id === page.chapterId)?.pages || [];
     const chapterPos = chapterPages.findIndex((item) => item.number === page.number) + 1;
+    const currentUrl = `courses/${course.slug}/${page.file}`;
+    const routePosition = routeByUrl.get(currentUrl);
+    const routeRecord = routePosition?.record;
+    const routePrevious = routePosition ? curriculum.records[routePosition.index - 1] : null;
+    const routeNext = routePosition ? curriculum.records[routePosition.index + 1] : null;
+    const alternativeBase = routeRecord?.alternativeTo ? routeBySourceKey.get(routeRecord.alternativeTo) : null;
+    const routePager = `<nav class="pager" aria-label="Навигация между шагами">${routePrevious ? `<a class="prev" href="../../${routePrevious.url}"><small>Назад · единый маршрут</small><span>← ${escapeHtml(routePrevious.title)}</span></a>` : '<span></span>'}${routeNext ? `<a class="next" href="../../${routeNext.url}"><small>Дальше · единый маршрут</small><span>${escapeHtml(routeNext.title)} →</span></a>` : '<a class="next" href="../../index.html"><small>Маршрут пройден</small><span>К этапам →</span></a>'}</nav>`;
     write(`courses/${course.slug}/${page.file}`, shell({
       title: page.safeTitle,
       description: plainText(page.safeHtml).slice(0, 155),
       depth: 2,
       current: course.slug,
-      body: `<div class="reader-layout"><aside class="reader-rail"><a href="index.html">← Структура курса</a><div class="rail-index"><span>${String(page.number).padStart(3, '0')}</span><small>из ${course.pages.length}</small></div><p>${escapeHtml(page.chapterName)}</p><div class="rail-progress" aria-label="Шаг ${chapterPos} из ${chapterPages.length} в теме"><i style="width:${Math.round(chapterPos / chapterPages.length * 100)}%"></i></div><small>${chapterPos} / ${chapterPages.length} в теме</small></aside>
-        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><a href="index.html">${escapeHtml(course.title)}</a><span>/</span><span>${escapeHtml(page.moduleName)}</span><span>/</span><span>${escapeHtml(page.chapterName)}</span></nav>
-          <header class="lesson-head"><span class="type-chip">${pageKind(page.taskType)}</span><h1>${escapeHtml(page.safeTitle)}</h1><p>${escapeHtml(page.moduleName)} · ${escapeHtml(page.chapterName)}</p></header>
+      body: `<div class="reader-layout"><aside class="reader-rail"><a href="${isDevelopment ? '../../index.html' : 'index.html'}">← ${isDevelopment ? 'Единый маршрут' : 'Структура курса'}</a><div class="rail-index"><span>${String(isDevelopment ? routePosition.index + 1 : page.number).padStart(3, '0')}</span><small>из ${isDevelopment ? totalPages : course.pages.length}</small></div><p>${escapeHtml(isDevelopment ? routeRecord.route.stageTitle : page.chapterName)}</p><div class="rail-progress" aria-label="Шаг ${isDevelopment ? routePosition.index + 1 : chapterPos} из ${isDevelopment ? totalPages : chapterPages.length}"><i style="width:${Math.round((isDevelopment ? routePosition.index + 1 : chapterPos) / (isDevelopment ? totalPages : chapterPages.length) * 100)}%"></i></div><small>${isDevelopment ? `${routeRecord.route.topic} · ${routeRecord.route.role}` : `${chapterPos} / ${chapterPages.length} в теме`}</small></aside>
+        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">${isDevelopment ? 'Единый маршрут' : 'Главная'}</a><span>/</span>${isDevelopment ? `<a href="../../index.html#${routeRecord.route.stage}">${escapeHtml(routeRecord.route.stageTitle)}</a><span>/</span><span>${escapeHtml(routeRecord.route.topic)}</span>` : `<a href="index.html">${escapeHtml(course.title)}</a><span>/</span><span>${escapeHtml(page.moduleName)}</span><span>/</span><span>${escapeHtml(page.chapterName)}</span>`}</nav>
+          <header class="lesson-head"><span class="type-chip">${pageKind(page.taskType)}</span><h1>${escapeHtml(page.safeTitle)}</h1><p>${escapeHtml(page.moduleName)} · ${escapeHtml(page.chapterName)}</p>${alternativeBase ? `<p class="alternative-note">Другой разбор темы. <a href="../../${alternativeBase.url}">Основное объяснение: ${escapeHtml(alternativeBase.title)} →</a></p>` : ''}</header>
           ${taskSupplement(page)}<div class="lesson-content">${page.safeHtml || '<p>Текст для этого шага отсутствует в выгрузке.</p>'}</div>
-          <nav class="pager" aria-label="Навигация между шагами">${previous ? `<a class="prev" href="${previous.file}"><small>Назад</small><span>← ${escapeHtml(previous.safeTitle)}</span></a>` : '<span></span>'}${next ? `<a class="next" href="${next.file}"><small>Дальше</small><span>${escapeHtml(next.safeTitle)} →</span></a>` : `<a class="next" href="index.html"><small>Готово</small><span>К структуре курса →</span></a>`}</nav>
+          ${isDevelopment ? routePager : `<nav class="pager" aria-label="Навигация между шагами">${previous ? `<a class="prev" href="${previous.file}"><small>Назад</small><span>← ${escapeHtml(previous.safeTitle)}</span></a>` : '<span></span>'}${next ? `<a class="next" href="${next.file}"><small>Дальше</small><span>${escapeHtml(next.safeTitle)} →</span></a>` : `<a class="next" href="index.html"><small>Готово</small><span>К структуре курса →</span></a>`}</nav>`}
+          ${isDevelopment ? `<p class="source-note">Источник: <a href="index.html">${escapeHtml(course.title)}</a> · ${escapeHtml(page.moduleName)} / ${escapeHtml(page.chapterName)} · исходный шаг ${page.number}.</p>` : ''}
         </article></div>`,
     }));
   });
 }
 
-const searchIndex = courses.flatMap((course) => course.pages.map((page) => ({
-  course: course.title,
-  courseSlug: course.slug,
-  module: page.moduleName,
-  chapter: page.chapterName,
-  title: page.safeTitle,
-  type: pageKind(page.taskType),
-  url: `courses/${course.slug}/${page.file}`,
-  text: plainText(page.safeHtml).slice(0, 12000),
-})));
+const searchIndex = courses.flatMap((course) => course.pages.map((page) => {
+  const url = `courses/${course.slug}/${page.file}`;
+  const place = routeByUrl.get(url)?.record;
+  return {
+    course: isDevelopment ? 'Единый маршрут' : course.title,
+    courseSlug: course.slug,
+    module: isDevelopment ? place.route.stageTitle : page.moduleName,
+    chapter: isDevelopment ? place.route.topic : page.chapterName,
+    title: page.safeTitle,
+    type: pageKind(page.taskType),
+    url,
+    text: plainText(page.safeHtml).slice(0, 12000),
+  };
+}));
+if (isDevelopment) searchIndex.sort((a, b) => routeByUrl.get(a.url).index - routeByUrl.get(b.url).index);
 write('assets/search-index.json', JSON.stringify(searchIndex));
+if (isDevelopment) write('assets/route-map.json', JSON.stringify(curriculum.records, null, 2) + '\n');
 
 write('search.html', shell({
   title: 'Поиск',
-  description: 'Полнотекстовый поиск по двум курсам тестирования.',
+  description: isDevelopment ? 'Полнотекстовый поиск по единому маршруту тестирования.' : 'Полнотекстовый поиск по двум курсам тестирования.',
   body: `<section class="search-page"><span class="eyebrow">Поиск по ${totalPages} страницам</span><h1>Что вы хотите найти?</h1><form id="search-form" class="search-large" role="search"><label class="sr-only" for="search-input">Поиск</label><input id="search-input" name="q" type="search" placeholder="Введите термин или фразу" autofocus><button>Найти</button></form><p id="search-status" class="search-status" aria-live="polite">Введите не меньше двух символов.</p><div id="search-results" class="search-results"></div></section>`,
 }));
 
 write('about.html', shell({
   title: 'О курсе',
   description: 'Как устроен персональный курс QA.',
-  body: `<article class="about"><span class="eyebrow">Персональный курс QA</span><h1>Спокойное чтение,<br>без действий на платформе</h1><p>Сайт собран из локальных учебных материалов. В нём ${totalPages} страниц: лекции, практические задания, формы и шаги ревью.</p><h2>Что сохранено</h2><ul><li>заголовки, текст, списки, таблицы и безопасные внешние ссылки;</li><li>структура «модуль → тема → шаг»;</li><li>текстовые описания изображений без загрузки самих файлов.</li></ul><h2>Чего здесь нет</h2><p>Логинов, паролей, cookies, токенов, профилей учеников, комментариев, прогресса, ответов и решений. Формы и тесты показаны только для справки и ничего не отправляют.</p></article>`,
+  body: `<article class="about"><span class="eyebrow">Персональный курс QA</span><h1>Спокойное чтение,<br>без действий на платформе</h1><p>Сайт собран из локальных учебных материалов. В нём ${totalPages} страниц: лекции, практические задания, формы и шаги ревью.${isDevelopment ? ' Восемь этапов образуют единый маршрут; прежняя структура двух курсов доступна в архиве.' : ''}</p><h2>Что сохранено</h2><ul><li>заголовки, текст, списки, таблицы и безопасные внешние ссылки;</li><li>${isDevelopment ? 'маршрут «этап → тема → шаг» и архивная структура исходных курсов' : 'структура «модуль → тема → шаг»'};</li><li>текстовые описания изображений без загрузки самих файлов.</li></ul><h2>Чего здесь нет</h2><p>Логинов, паролей, cookies, токенов, профилей учеников, комментариев, прогресса, ответов и решений. Формы и тесты показаны только для справки и ничего не отправляют.</p></article>`,
 }));
 
 write('404.html', fs.readFileSync(path.join(outDir, 'index.html'), 'utf8'));
 write('.nojekyll', '');
 write('assets/site.css', fs.readFileSync(path.join(root, 'site-src', 'site.css'), 'utf8'));
+if (isDevelopment) write('assets/route.css', fs.readFileSync(path.join(root, 'site-src', 'route.css'), 'utf8'));
 write('assets/site.js', fs.readFileSync(path.join(root, 'site-src', 'site.js'), 'utf8'));
 
 console.log(JSON.stringify({ environment: siteEnvironment, courses: courses.length, chapters: totalChapters, pages: totalPages, searchRecords: searchIndex.length, output: outDir }));
