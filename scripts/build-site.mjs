@@ -294,7 +294,7 @@ write('index.html', shell({
 for (const course of courses) {
   const outline = course.modules.map((module) => `<section class="module-block">
     <header><span>${String(module.position).padStart(2, '0')}</span><div><p>Модуль</p><h2>${escapeHtml(module.name)}</h2></div><strong>${module.chapters.reduce((sum, chapter) => sum + chapter.pages.length, 0)} шагов</strong></header>
-    <div class="chapter-list">${module.chapters.map((chapter) => `<details open><summary><span>${escapeHtml(chapter.name)}</span><small>${chapter.pages.length}</small></summary><ol>${chapter.pages.map((page) => `<li><a href="${page.file}"><span>${String(page.number).padStart(3, '0')}</span><strong>${escapeHtml(page.safeTitle)}</strong><em>${pageKind(page.taskType)}</em></a></li>`).join('')}</ol></details>`).join('')}</div>
+    <div class="chapter-list">${module.chapters.map((chapter) => `<details><summary><span>${escapeHtml(chapter.name)}</span><span class="chapter-toggle"><small>${chapter.pages.length}</small><span class="chapter-chevron" aria-hidden="true">▸</span></span></summary><ol>${chapter.pages.map((page) => `<li><a href="${page.file}"><span>${String(page.number).padStart(3, '0')}</span><strong>${escapeHtml(page.safeTitle)}</strong><em>${pageKind(page.taskType)}</em></a></li>`).join('')}</ol></details>`).join('')}</div>
   </section>`).join('');
 
   write(`courses/${course.slug}/index.html`, shell({
