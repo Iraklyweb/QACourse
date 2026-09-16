@@ -14,6 +14,8 @@ if (!['production', 'development'].includes(siteEnvironment)) {
   throw new Error(`Неизвестное окружение: ${siteEnvironment}`);
 }
 const isDevelopment = siteEnvironment === 'development';
+// The unified curriculum is the default in both published environments.
+const isUnified = true;
 
 const retiredHost = ['ka', 'ta', '.academy'].join('');
 const retiredHostPattern = ['ka', 'ta', '\\.academy'].join('');
@@ -162,7 +164,7 @@ function faviconData() {
 
 function shell({ title, description, depth = 0, body, current = '' }) {
   const base = '../'.repeat(depth);
-  const navCourse = !isDevelopment && current ? `<a href="${base}courses/${current}/">Курс</a>` : '';
+  const navCourse = !isUnified && current ? `<a href="${base}courses/${current}/">Курс</a>` : '';
   const environmentNav = isDevelopment
     ? `\n    <span class="env-badge" aria-label="Среда разработки">DEV</span><a class="production-link" data-production-link href="${base}../">Продакшен</a>`
     : '';
@@ -176,7 +178,7 @@ function shell({ title, description, depth = 0, body, current = '' }) {
   <title>${escapeHtml(title)} · Персональный курс QA</title>
   <link rel="icon" type="image/svg+xml" href="${faviconData()}">
   <link rel="stylesheet" href="${base}assets/site.css">
-  ${isDevelopment ? `<link rel="stylesheet" href="${base}assets/route.css">` : ''}
+  ${isUnified ? `<link rel="stylesheet" href="${base}assets/route.css">` : ''}
   <script src="${base}assets/site.js" defer></script>
 </head>
 <body data-base="${base}" data-environment="${siteEnvironment}">
@@ -184,7 +186,7 @@ function shell({ title, description, depth = 0, body, current = '' }) {
   <header class="topbar">
     <a class="brand" href="${base}index.html" aria-label="Персональный курс QA, главная"><span class="brand-mark">QA</span><span>Персональный курс QA</span></a>${environmentNav}
     <nav aria-label="Основная навигация">
-      ${isDevelopment ? `<a href="${base}index.html">Единый маршрут</a><a href="${base}index.html#archive">Архив курсов</a>` : `<a href="${base}courses/manual-testing/">Ручное тестирование</a><a href="${base}courses/mqa-base/">MQA Base</a>`}${navCourse ? `\n      ${navCourse}` : ''}
+      ${isUnified ? `<a href="${base}index.html">Единый маршрут</a><a href="${base}index.html#archive">Архив курсов</a>` : `<a href="${base}courses/manual-testing/">Ручное тестирование</a><a href="${base}courses/mqa-base/">MQA Base</a>`}${navCourse ? `\n      ${navCourse}` : ''}
     </nav>
     <form class="search-mini" action="${base}search.html" role="search">
       <label class="sr-only" for="site-search-${depth}">Поиск по курсам</label>
@@ -201,7 +203,7 @@ function shell({ title, description, depth = 0, body, current = '' }) {
 function courseCard(course, depth = 0) {
   const base = '../'.repeat(depth);
   return `<a class="course-card ${course.accent}" href="${base}courses/${course.slug}/">
-    <span class="eyebrow">${isDevelopment ? 'Архив' : 'Курс'}</span>
+    <span class="eyebrow">${isUnified ? 'Архив' : 'Курс'}</span>
     <h2>${escapeHtml(course.title)}</h2>
     <p>${escapeHtml(course.description)}</p>
     <dl><div><dt>Модули</dt><dd>${course.modules.length}</dd></div><div><dt>Темы</dt><dd>${course.chapterCount}</dd></div><div><dt>Страницы</dt><dd>${course.pages.length}</dd></div></dl>
@@ -277,7 +279,7 @@ fs.mkdirSync(outDir, { recursive: true });
 
 const totalPages = courses.reduce((sum, course) => sum + course.pages.length, 0);
 const totalChapters = courses.reduce((sum, course) => sum + course.chapterCount, 0);
-const curriculum = isDevelopment ? buildCurriculum(courses) : null;
+const curriculum = isUnified ? buildCurriculum(courses) : null;
 const routeByUrl = new Map(curriculum?.records.map((record, index) => [record.url, { record, index }]) || []);
 const routeBySourceKey = new Map(curriculum?.records.map((record) => [`${record.source.course === 'mqa-base' ? 'Q' : 'M'}${record.source.step}`, record]) || []);
 
@@ -297,7 +299,7 @@ function routeHome() {
 write('index.html', shell({
   title: 'Персональный курс QA',
   description: '295 страниц учебных материалов по ручному тестированию и MQA Base.',
-  body: isDevelopment ? routeHome() : `<section class="home-intro">
+  body: isUnified ? routeHome() : `<section class="home-intro">
     <div><span class="eyebrow">Персональный курс QA</span><h1>Учебные материалы<br><span>без лишнего шума</span></h1></div>
     <div class="home-copy"><p>Два курса собраны в читаемый статический справочник. Выберите курс или найдите понятие сразу во всех ${totalPages} страницах.</p>
       <form class="search-hero" action="search.html" role="search"><label class="sr-only" for="home-search">Поиск по материалам</label><input id="home-search" name="q" type="search" placeholder="Например, граничные значения" required><button>Найти</button></form>
@@ -319,7 +321,7 @@ for (const course of courses) {
     depth: 2,
     current: course.slug,
     body: `<div class="course-head ${course.accent}"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><span>${escapeHtml(course.title)}</span></nav>
-      <span class="eyebrow">${isDevelopment ? 'Архив исходного курса' : 'Курс'} · ${course.modules.length} модуля · ${course.pages.length} страниц</span><h1>${escapeHtml(course.title)}</h1><p>${escapeHtml(course.description)}</p>${isDevelopment ? '<p><a href="../../index.html">Перейти к единому учебному маршруту →</a></p>' : ''}
+      <span class="eyebrow">${isUnified ? 'Архив исходного курса' : 'Курс'} · ${course.modules.length} модуля · ${course.pages.length} страниц</span><h1>${escapeHtml(course.title)}</h1><p>${escapeHtml(course.description)}</p>${isUnified ? '<p><a href="../../index.html">Перейти к единому учебному маршруту →</a></p>' : ''}
       <div class="course-meta">${course.duration ? `<span>Срок: ${escapeHtml(course.duration)}</span>` : ''}${course.workload ? `<span>Нагрузка: ${escapeHtml(course.workload)}</span>` : ''}</div>
     </div><div class="outline">${outline}</div>`,
   }));
@@ -341,12 +343,12 @@ for (const course of courses) {
       description: plainText(page.safeHtml).slice(0, 155),
       depth: 2,
       current: course.slug,
-      body: `<div class="reader-layout"><aside class="reader-rail"><a href="${isDevelopment ? '../../index.html' : 'index.html'}">← ${isDevelopment ? 'Единый маршрут' : 'Структура курса'}</a><div class="rail-index"><span>${String(isDevelopment ? routePosition.index + 1 : page.number).padStart(3, '0')}</span><small>из ${isDevelopment ? totalPages : course.pages.length}</small></div><p>${escapeHtml(isDevelopment ? routeRecord.route.stageTitle : page.chapterName)}</p><div class="rail-progress" aria-label="Шаг ${isDevelopment ? routePosition.index + 1 : chapterPos} из ${isDevelopment ? totalPages : chapterPages.length}"><i style="width:${Math.round((isDevelopment ? routePosition.index + 1 : chapterPos) / (isDevelopment ? totalPages : chapterPages.length) * 100)}%"></i></div><small>${isDevelopment ? `${routeRecord.route.topic} · ${routeRecord.route.role}` : `${chapterPos} / ${chapterPages.length} в теме`}</small></aside>
-        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">${isDevelopment ? 'Единый маршрут' : 'Главная'}</a><span>/</span>${isDevelopment ? `<a href="../../index.html#${routeRecord.route.stage}">${escapeHtml(routeRecord.route.stageTitle)}</a><span>/</span><span>${escapeHtml(routeRecord.route.topic)}</span>` : `<a href="index.html">${escapeHtml(course.title)}</a><span>/</span><span>${escapeHtml(page.moduleName)}</span><span>/</span><span>${escapeHtml(page.chapterName)}</span>`}</nav>
+      body: `<div class="reader-layout"><aside class="reader-rail"><a href="${isUnified ? '../../index.html' : 'index.html'}">← ${isUnified ? 'Единый маршрут' : 'Структура курса'}</a><div class="rail-index"><span>${String(isUnified ? routePosition.index + 1 : page.number).padStart(3, '0')}</span><small>из ${isUnified ? totalPages : course.pages.length}</small></div><p>${escapeHtml(isUnified ? routeRecord.route.stageTitle : page.chapterName)}</p><div class="rail-progress" aria-label="Шаг ${isUnified ? routePosition.index + 1 : chapterPos} из ${isUnified ? totalPages : chapterPages.length}"><i style="width:${Math.round((isUnified ? routePosition.index + 1 : chapterPos) / (isUnified ? totalPages : chapterPages.length) * 100)}%"></i></div><small>${isUnified ? `${routeRecord.route.topic} · ${routeRecord.route.role}` : `${chapterPos} / ${chapterPages.length} в теме`}</small></aside>
+        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">${isUnified ? 'Единый маршрут' : 'Главная'}</a><span>/</span>${isUnified ? `<a href="../../index.html#${routeRecord.route.stage}">${escapeHtml(routeRecord.route.stageTitle)}</a><span>/</span><span>${escapeHtml(routeRecord.route.topic)}</span>` : `<a href="index.html">${escapeHtml(course.title)}</a><span>/</span><span>${escapeHtml(page.moduleName)}</span><span>/</span><span>${escapeHtml(page.chapterName)}</span>`}</nav>
           <header class="lesson-head"><span class="type-chip">${pageKind(page.taskType)}</span><h1>${escapeHtml(page.safeTitle)}</h1><p>${escapeHtml(page.moduleName)} · ${escapeHtml(page.chapterName)}</p>${alternativeBase ? `<p class="alternative-note">Другой разбор темы. <a href="../../${alternativeBase.url}">Основное объяснение: ${escapeHtml(alternativeBase.title)} →</a></p>` : ''}</header>
           ${taskSupplement(page)}<div class="lesson-content">${page.safeHtml || '<p>Текст для этого шага отсутствует в выгрузке.</p>'}</div>
-          ${isDevelopment ? routePager : `<nav class="pager" aria-label="Навигация между шагами">${previous ? `<a class="prev" href="${previous.file}"><small>Назад</small><span>← ${escapeHtml(previous.safeTitle)}</span></a>` : '<span></span>'}${next ? `<a class="next" href="${next.file}"><small>Дальше</small><span>${escapeHtml(next.safeTitle)} →</span></a>` : `<a class="next" href="index.html"><small>Готово</small><span>К структуре курса →</span></a>`}</nav>`}
-          ${isDevelopment ? `<p class="source-note">Источник: <a href="index.html">${escapeHtml(course.title)}</a> · ${escapeHtml(page.moduleName)} / ${escapeHtml(page.chapterName)} · исходный шаг ${page.number}.</p>` : ''}
+          ${isUnified ? routePager : `<nav class="pager" aria-label="Навигация между шагами">${previous ? `<a class="prev" href="${previous.file}"><small>Назад</small><span>← ${escapeHtml(previous.safeTitle)}</span></a>` : '<span></span>'}${next ? `<a class="next" href="${next.file}"><small>Дальше</small><span>${escapeHtml(next.safeTitle)} →</span></a>` : `<a class="next" href="index.html"><small>Готово</small><span>К структуре курса →</span></a>`}</nav>`}
+          ${isUnified ? `<p class="source-note">Источник: <a href="index.html">${escapeHtml(course.title)}</a> · ${escapeHtml(page.moduleName)} / ${escapeHtml(page.chapterName)} · исходный шаг ${page.number}.</p>` : ''}
         </article></div>`,
     }));
   });
@@ -356,36 +358,36 @@ const searchIndex = courses.flatMap((course) => course.pages.map((page) => {
   const url = `courses/${course.slug}/${page.file}`;
   const place = routeByUrl.get(url)?.record;
   return {
-    course: isDevelopment ? 'Единый маршрут' : course.title,
+    course: isUnified ? 'Единый маршрут' : course.title,
     courseSlug: course.slug,
-    module: isDevelopment ? place.route.stageTitle : page.moduleName,
-    chapter: isDevelopment ? place.route.topic : page.chapterName,
+    module: isUnified ? place.route.stageTitle : page.moduleName,
+    chapter: isUnified ? place.route.topic : page.chapterName,
     title: page.safeTitle,
     type: pageKind(page.taskType),
     url,
     text: plainText(page.safeHtml).slice(0, 12000),
   };
 }));
-if (isDevelopment) searchIndex.sort((a, b) => routeByUrl.get(a.url).index - routeByUrl.get(b.url).index);
+if (isUnified) searchIndex.sort((a, b) => routeByUrl.get(a.url).index - routeByUrl.get(b.url).index);
 write('assets/search-index.json', JSON.stringify(searchIndex));
-if (isDevelopment) write('assets/route-map.json', JSON.stringify(curriculum.records, null, 2) + '\n');
+if (isUnified) write('assets/route-map.json', JSON.stringify(curriculum.records, null, 2) + '\n');
 
 write('search.html', shell({
   title: 'Поиск',
-  description: isDevelopment ? 'Полнотекстовый поиск по единому маршруту тестирования.' : 'Полнотекстовый поиск по двум курсам тестирования.',
+  description: isUnified ? 'Полнотекстовый поиск по единому маршруту тестирования.' : 'Полнотекстовый поиск по двум курсам тестирования.',
   body: `<section class="search-page"><span class="eyebrow">Поиск по ${totalPages} страницам</span><h1>Что вы хотите найти?</h1><form id="search-form" class="search-large" role="search"><label class="sr-only" for="search-input">Поиск</label><input id="search-input" name="q" type="search" placeholder="Введите термин или фразу" autofocus><button>Найти</button></form><p id="search-status" class="search-status" aria-live="polite">Введите не меньше двух символов.</p><div id="search-results" class="search-results"></div></section>`,
 }));
 
 write('about.html', shell({
   title: 'О курсе',
   description: 'Как устроен персональный курс QA.',
-  body: `<article class="about"><span class="eyebrow">Персональный курс QA</span><h1>Спокойное чтение,<br>без действий на платформе</h1><p>Сайт собран из локальных учебных материалов. В нём ${totalPages} страниц: лекции, практические задания, формы и шаги ревью.${isDevelopment ? ' Восемь этапов образуют единый маршрут; прежняя структура двух курсов доступна в архиве.' : ''}</p><h2>Что сохранено</h2><ul><li>заголовки, текст, списки, таблицы и безопасные внешние ссылки;</li><li>${isDevelopment ? 'маршрут «этап → тема → шаг» и архивная структура исходных курсов' : 'структура «модуль → тема → шаг»'};</li><li>текстовые описания изображений без загрузки самих файлов.</li></ul><h2>Чего здесь нет</h2><p>Логинов, паролей, cookies, токенов, профилей учеников, комментариев, прогресса, ответов и решений. Формы и тесты показаны только для справки и ничего не отправляют.</p></article>`,
+  body: `<article class="about"><span class="eyebrow">Персональный курс QA</span><h1>Спокойное чтение,<br>без действий на платформе</h1><p>Сайт собран из локальных учебных материалов. В нём ${totalPages} страниц: лекции, практические задания, формы и шаги ревью.${isUnified ? ' Восемь этапов образуют единый маршрут; прежняя структура двух курсов доступна в архиве.' : ''}</p><h2>Что сохранено</h2><ul><li>заголовки, текст, списки, таблицы и безопасные внешние ссылки;</li><li>${isUnified ? 'маршрут «этап → тема → шаг» и архивная структура исходных курсов' : 'структура «модуль → тема → шаг»'};</li><li>текстовые описания изображений без загрузки самих файлов.</li></ul><h2>Чего здесь нет</h2><p>Логинов, паролей, cookies, токенов, профилей учеников, комментариев, прогресса, ответов и решений. Формы и тесты показаны только для справки и ничего не отправляют.</p></article>`,
 }));
 
 write('404.html', fs.readFileSync(path.join(outDir, 'index.html'), 'utf8'));
 write('.nojekyll', '');
 write('assets/site.css', fs.readFileSync(path.join(root, 'site-src', 'site.css'), 'utf8'));
-if (isDevelopment) write('assets/route.css', fs.readFileSync(path.join(root, 'site-src', 'route.css'), 'utf8'));
+if (isUnified) write('assets/route.css', fs.readFileSync(path.join(root, 'site-src', 'route.css'), 'utf8'));
 write('assets/site.js', fs.readFileSync(path.join(root, 'site-src', 'site.js'), 'utf8'));
 
 console.log(JSON.stringify({ environment: siteEnvironment, courses: courses.length, chapters: totalChapters, pages: totalPages, searchRecords: searchIndex.length, output: outDir }));
