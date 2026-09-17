@@ -39,6 +39,17 @@ for (const [index, item] of map.entries()) {
 }
 if (new Set(map.map((item) => item.route.stage)).size !== 9) fail('Ожидалось девять этапов');
 if (!home.includes('id="interview"') || !home.includes('Лекции</small>') || !home.includes('Практика</small>')) fail('Нет блока собеседования или новых типов тем');
+if (!home.includes('id="end-to-end-topic-2"') || !home.includes('Выбрать и уточнить требование <small class="role-chip mixed">Лекции + практика</small>')) fail('Тема с лекцией и заданием должна быть смешанной');
+if (/\b(?:21|54) шагов\b/.test(home) || /<h2>\d+\.\s/.test(home)) fail('Ошибочное склонение или двойная нумерация этапов');
+if (!search.every((record) => record.stageId && record.topicId && record.stageNumber)) fail('Поиску не хватает ссылок на этапы и темы');
+for (const [step, minimumBlocks] of [[84, 9], [86, 12], [87, 13]]) {
+  const lesson = fs.readFileSync(path.join(outDir, `courses/mqa-base/step-${String(step).padStart(3, '0')}.html`), 'utf8');
+  if ((lesson.match(/class="lesson-method"/g) || []).length < minimumBlocks) fail(`Не восстановлены смысловые блоки лекции Q${step}`);
+  if ((lesson.match(/<h1>/g) || []).length !== 1) fail(`Повторный заголовок в лекции Q${step}`);
+}
+const architecture = fs.readFileSync(path.join(outDir, 'courses/manual-testing/step-067.html'), 'utf8');
+if ((architecture.match(/<h1>/g) || []).length !== 1 || /<p>\s*&nbsp;\s*<\/p>/.test(architecture)) fail('Повторный заголовок или пустые отступы в лекции M67');
+if (!fs.readFileSync(path.join(outDir, 'courses/mqa-base/step-084.html'), 'utf8').includes('numbered-attributes')) fail('Не пронумерованы атрибуты требований');
 if (home.includes('Восемь последовательных этапов') || home.includes('После основ') || home.includes('Основное</small>')) fail('Остались прежние статусы или вступление');
 if (!fs.readFileSync(path.join(outDir, 'courses/mqa-base/step-001.html'), 'utf8').includes('<h2>Зачем тестировать</h2>')) fail('Нет вводного объяснения');
 if (seen.size !== expected.size) fail('Не все исходные страницы распределены');

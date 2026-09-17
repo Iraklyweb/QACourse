@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Фактический результат Фактический результат — то, что происходит на самом деле при выполнении проверки. Если отличается от ожидаемого — значит, дефект найд">
+  <meta name="description" content="Фактический результат — то, что происходит на самом деле при выполнении проверки. Если отличается от ожидаемого — значит, дефект найден. Поле &amp;ldquo;Фактич">
   <meta name="color-scheme" content="dark light">
   <title>Лекция «Фактический результат» · Персональный курс QA</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
@@ -28,17 +28,17 @@
   <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="../../index.html">← Единый маршрут</a><div class="rail-index"><span>113</span><small>из 283</small></div><p>4. Тестовая документация</p><div class="rail-progress" aria-label="Шаг 113 из 283"><i style="width:40%"></i></div><small>Шаги, ожидание и фактический результат · Лекция</small></aside>
         <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Единый маршрут</a><span>/</span><a href="../../index.html#documents">4. Тестовая документация</a><span>/</span><span>Шаги, ожидание и фактический результат</span></nav>
           <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «Фактический результат»</h1><p>Тестовая документация · Структура документа</p></header>
-          <div class="lesson-content"><div>
+          <div class="lesson-content "><div class="lesson-source">
 
-<h1>Фактический результат</h1>
 
-<div>
-<div>
-<div>
+
+<div class="lesson-section">
+<div class="lesson-block">
+<div class="lesson-method">
 <p><strong>Фактический результат</strong>&mdash; то, что происходит на самом деле при выполнении проверки. Если отличается от ожидаемого &mdash; значит, дефект найден.</p>
 </div>
 
-<div>
+<div class="lesson-method">
 <p><strong>Поле &ldquo;Фактический результат&rdquo; используется только в баг-репортах.</strong></p>
 
 <p>Оно фиксирует, как система повела себя в реальности &mdash; не как ожидалось, а как произошло на самом деле.</p>
@@ -46,7 +46,7 @@
 <p>Именно это расхождение между ожидаемым и фактическим поведением становится основой для дефекта.</p>
 </div>
 
-<div>
+<div class="lesson-method">
 <p><strong>В тест-кейсах и чек-листах отдельного поля для фактического результата нет.</strong></p>
 
 <p>Проверка завершается статусом. Если поведение системы совпадает с ожидаемым &mdash; тест считается пройденным &ldquo;Passed&rdquo;.</p>
@@ -54,7 +54,7 @@
 <p>Если результат отличается &mdash; проверка получает статус &ldquo;Failed&rdquo;, и на этом месте начинается новая часть работы: оформление баг-репорта.</p>
 </div>
 
-<div>
+<div class="lesson-method">
 <p>В тест-кейсе шаги проверки уже прописаны, поэтому их можно просто скопировать в баг-репорт и добавить описание фактического поведения системы.</p>
 
 <p>А в чек-листе шагов нет, и чтобы завести баг, придётся восстановить контекст вручную:</p>
@@ -62,7 +62,7 @@
 <p>что делал, в каком порядке, с какими данными и при каких условиях.</p>
 </div>
 
-<div>
+<div class="lesson-info">
 <p>В баг-репорте фактический результат описывается максимально конкретно:</p>
 
 <ul>
@@ -75,7 +75,7 @@
 <p>а точное наблюдение, по которому команда сможет воспроизвести ошибку.</p>
 </div>
 
-<div>
+<div class="lesson-method">
 <p><strong>Так формируется связка:</strong></p>
 
 <p>тест-кейсы и чек-листы показывают, что проверялось и чем закончилась проверка,</p>

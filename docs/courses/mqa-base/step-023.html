@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Среда, окружение и стенд — практическое применение В тестировании часто встречаются слова &quot;среда&quot;, &quot;окружение&quot; и &quot;стенд&quot;. Иногда ими называют одно и то же ">
+  <meta name="description" content="В тестировании часто встречаются слова &quot;среда&quot;, &quot;окружение&quot; и &quot;стенд&quot;. Иногда ими называют одно и то же — копию продукта, где выполняются проверки. Иногда ">
   <meta name="color-scheme" content="dark light">
   <title>Лекция «Среда, окружение и стенд — практическое применение» · Персональный курс QA</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
@@ -28,13 +28,13 @@
   <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="../../index.html">← Единый маршрут</a><div class="rail-index"><span>099</span><small>из 283</small></div><p>4. Тестовая документация</p><div class="rail-progress" aria-label="Шаг 99 из 283"><i style="width:35%"></i></div><small>Паспорт, состояние и окружение · Лекция</small></aside>
         <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Единый маршрут</a><span>/</span><a href="../../index.html#documents">4. Тестовая документация</a><span>/</span><span>Паспорт, состояние и окружение</span></nav>
           <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «Среда, окружение и стенд — практическое применение»</h1><p>Тестовая документация · Состояние документа</p><p class="alternative-note">Другой разбор темы. <a href="../../courses/mqa-base/step-020.html">Основное объяснение: Лекция «Окружение: при каких условиях выполнялась проверка» →</a></p></header>
-          <div class="lesson-content"><div>
+          <div class="lesson-content "><div class="lesson-source">
 
-<h1>Среда, окружение и стенд &mdash; практическое применение</h1>
 
-<div>
-<div>
-<div>
+
+<div class="lesson-section">
+<div class="lesson-block">
+<div class="lesson-method">
 <p>В тестировании часто встречаются слова &laquo;среда&raquo;, &laquo;окружение&raquo; и &laquo;стенд&raquo;.</p>
 
 <p>Иногда ими называют одно и то же &mdash; копию продукта, где выполняются проверки.</p>
@@ -46,7 +46,7 @@
 <p>То, как именно эти слова используются, зависит от команды и её договорённостей.</p>
 </div>
 
-<div>
+<div class="lesson-method">
 <p>На одних проектах есть несколько стендов &mdash; для разработки, для тестирования, для финальной проверки перед релизом.</p>
 
 <p>На других &mdash; только один, общий для всех задач.</p>
@@ -56,7 +56,7 @@
 <p>Главное не название, а понимание &mdash; где выполнялась проверка и при каких условиях воспроизводился дефект.</p>
 </div>
 
-<div>
+<div class="lesson-method">
 <p><strong>Что такое стенд и зачем он нужен</strong></p>
 
 <p>Стенд &mdash; это отдельная копия продукта, на которой тестировщик выполняет проверки.</p>
@@ -74,13 +74,13 @@
 </ul>
 </div>
 
-<div>
+<div class="lesson-method">
 <p>По названию стенда можно сразу понять, на каком уровне системы выполнялась проверка и насколько близко к продакшену был найден дефект.</p>
 
 <p>Например, баг на Dev может быть нормальным этапом отладки, а тот же баг на Stage &mdash; уже повод остановить релиз.</p>
 </div>
 
-<div>
+<div class="lesson-method">
 <p><strong>Как стенд связан с тестовой документацией</strong></p>
 
 <p>В тест-кейсах (ТК) и чек-листах (ЧЛ) стенд указывается, если функциональность может работать по-разному в разных окружениях.</p>
@@ -102,7 +102,7 @@
 <p>Если стенд не указан, разработчик может открыть не ту версию системы и не увидеть дефект &mdash; и работа застопорится.</p>
 </div>
 
-<div>
+<div class="lesson-method">
 <p><strong>Как это выглядит на практике</strong></p>
 
 <p>Представим задачу: &ldquo;Проверить создание заказа&rdquo;.</p>
@@ -122,7 +122,7 @@
 </ul>
 </div>
 
-<div>
+<div class="lesson-info">
 <p><strong>Когда стенд не указывают</strong></p>
 
 <p>Бывают ситуации, когда стенд можно не писать &mdash; например, если в проекте всего одна тестовая среда, и проверки всегда выполняются там же.</p>
@@ -134,7 +134,7 @@
 <p>Но в баг-репорте стенд всё равно указывают всегда &mdash; потому что ошибка должна быть воспроизводимой.</p>
 </div>
 
-<div>
+<div class="lesson-method">
 <p><strong>Итог</strong></p>
 
 <p>Стенд &mdash; это не просто место, где тестировщик что-то проверяет.</p>

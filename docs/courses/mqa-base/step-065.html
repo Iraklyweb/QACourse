@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Баг-репорт на основе проваленного тест-кейса Переходим к оформлению баг-репорта на том же самом примере. Никакой новой логики здесь не появляется. Важно ср">
+  <meta name="description" content="Переходим к оформлению баг-репорта на том же самом примере. Никакой новой логики здесь не появляется. Важно сразу зафиксировать: поля в баг-репорте не отли">
   <meta name="color-scheme" content="dark light">
   <title>Лекция «Баг-репорт на основе проваленного тест-кейса» · Персональный курс QA</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
@@ -28,19 +28,19 @@
   <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="../../index.html">← Единый маршрут</a><div class="rail-index"><span>142</span><small>из 283</small></div><p>4. Тестовая документация</p><div class="rail-progress" aria-label="Шаг 142 из 283"><i style="width:50%"></i></div><small>Разобранные примеры · Лекция</small></aside>
         <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Единый маршрут</a><span>/</span><a href="../../index.html#documents">4. Тестовая документация</a><span>/</span><span>Разобранные примеры</span></nav>
           <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «Баг-репорт на основе проваленного тест-кейса»</h1><p>Тестовая документация · Примеры</p></header>
-          <div class="lesson-content"><div>
+          <div class="lesson-content "><div class="lesson-source">
 
-<h1>Баг-репорт на основе проваленного тест-кейса</h1>
 
-<div>
-<div>
-<div>
+
+<div class="lesson-section">
+<div class="lesson-block">
+<div class="lesson-method">
 <p>Переходим к оформлению баг-репорта на том же самом примере.</p>
 
 <p>Никакой новой логики здесь не появляется.</p>
 </div>
 
-<div>
+<div class="lesson-method">
 <p><strong>Важно сразу зафиксировать:</strong></p>
 
 <p>поля в баг-репорте не отличаются от полей тест-кейса.</p>
@@ -63,7 +63,7 @@
 </ul>
 </div>
 
-<div>
+<div class="lesson-method">
 <p>Если баг-репорт формируется из проваленного тест-кейса, выдумывать ничего нового не нужно.</p>
 
 <p>Мы берём те же самые сущности, которые уже были в ТК, и используем их.</p>
@@ -71,7 +71,7 @@
 <p>Ничего не переписываем и ничего не усложняем &mdash; особенно если шаги и ожидаемый результат были сформулированы однозначно, как в нашем случае.</p>
 </div>
 
-<div>
+<div class="lesson-method">
 <p><strong>Исходный тест-кейс</strong></p>
 
 <p><em>Название:</em></p>
@@ -95,7 +95,7 @@
 <p>При отсутствии выбранного чек бокса &bdquo;Я согласен с политикой&ldquo; отправить заявку невозможно</p>
 </div>
 
-<div>
+<div class="lesson-method">
 <p><strong>Что происходит по факту</strong></p>
 
 <p>При выполнении этих шагов мы получаем другой результат.</p>
@@ -113,7 +113,7 @@
 <p>&laquo;Успешная отправка формы без активного чекбокса &bdquo;Я согласен с политикой&ldquo;&raquo;.</p>
 </div>
 
-<div>
+<div class="lesson-method">
 <p><strong>Severity и Priority</strong></p>
 
 <p>На реальной работе в 99% случаев:</p>
@@ -134,7 +134,7 @@
 <p>Это напрямую влияет и на Severity, и на Priority.</p>
 </div>
 
-<div>
+<div class="lesson-method">
 <p><strong>Итог</strong></p>
 
 <p>Этот пример показывает важную вещь:</p>

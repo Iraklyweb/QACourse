@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Лекция &quot;Метод GET: как работает и зачем нужен&quot; Метод GET используется для запроса данных с сервера без их изменения. Если сравнивать с реальной жизнью, GET">
+  <meta name="description" content="Метод GET используется для запроса данных с сервера без их изменения. Если сравнивать с реальной жизнью, GET — это как просмотр каталога товаров в интернет">
   <meta name="color-scheme" content="dark light">
   <title>Лекция «Метод GET: как работает и зачем нужен» · Персональный курс QA</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
@@ -28,13 +28,13 @@
   <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="../../index.html">← Единый маршрут</a><div class="rail-index"><span>198</span><small>из 283</small></div><p>6. Веб и API</p><div class="rail-progress" aria-label="Шаг 198 из 283"><i style="width:70%"></i></div><small>HTTP-методы · Лекция</small></aside>
         <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Единый маршрут</a><span>/</span><a href="../../index.html#web-api">6. Веб и API</a><span>/</span><span>HTTP-методы</span></nav>
           <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «Метод GET: как работает и зачем нужен»</h1><p>Сети · HTTP-методы в API</p></header>
-          <div class="lesson-content"><h1>Лекция &laquo;Метод GET: как работает и зачем нужен&raquo;</h1>
+          <div class="lesson-content ">
 
-<p>&nbsp;</p>
+
 
 <h5>Метод GET используется для запроса данных с сервера без их изменения. Если сравнивать с реальной жизнью, GET &mdash; это как просмотр каталога товаров в интернет-магазине: вы можете видеть список товаров, но не можете его изменить.</h5>
 
-<h5>&nbsp;</h5>
+
 
 <h3><strong>Как работает GET?</strong></h3>
 
@@ -123,7 +123,7 @@
 
 <h5>Метод <strong>GET</strong> удобен, когда нужно просто получить данные, не внося изменений на сервере.</h5>
 
-<p>&nbsp;</p>
+
 
 <h3><strong>Основные свойства метода GET</strong></h3>
 
@@ -208,7 +208,7 @@
 	</li>
 </ul>
 
-<h5>&nbsp;</h5>
+
 
 <h3><strong>Дополнительные особенности GET</strong></h3>
 
@@ -240,7 +240,7 @@
 	</li>
 </ul>
 
-<p>&nbsp;</p>
+
 
 <h3><strong>Параметры в GET-запросах</strong></h3>
 
@@ -280,7 +280,7 @@
 	</li>
 </ul>
 
-<p>&nbsp;</p>
+
 
 <h3><strong>Типы параметров в GET-запросах</strong></h3>
 
@@ -290,7 +290,7 @@
 
 <h5>Этот запрос вернёт товары из категории &quot;электроника&quot; с ценой до 1000.</h5>
 
-<p>&nbsp;</p>
+
 
 <h5><strong>2. Параметры сортировки </strong>Определяют порядок вывода данных.</h5>
 
@@ -298,7 +298,7 @@
 
 <h5>Список товаров будет отсортирован по цене в порядке возрастания.</h5>
 
-<p>&nbsp;</p>
+
 
 <h5><strong>3. Параметры пагинации </strong>Когда данных много, сервер возвращает их <strong>постранично</strong>, чтобы снизить нагрузку.</h5>
 
@@ -306,7 +306,7 @@
 
 <h5>Этот запрос вернёт <strong>вторую страницу</strong> списка пользователей, по <strong>10 записей</strong> на каждой странице.</h5>
 
-<p>&nbsp;</p>
+
 
 <h5><strong>4. Специфические параметры API </strong>Некоторые API имеют свои особые параметры для управления запросами.</h5>
 
@@ -321,7 +321,7 @@
 	</li>
 </ul>
 
-<p>&nbsp;</p>
+
 
 <h3><strong>Особенности работы с параметрами</strong></h3>
 
@@ -347,7 +347,7 @@
 
 <h5><span>GET /search?q=API%20testing</span></h5>
 
-<p>&nbsp;</p>
+
 
 <h5><strong>2. Порядок параметров </strong>Порядок параметров в строке запроса <strong>не имеет значения</strong>. Эти два запроса вернут одинаковый результат:</h5>
 
@@ -355,7 +355,7 @@
 
 <h5><span>GET /users?status=active&amp;role=admin</span></h5>
 
-<h5>&nbsp;</h5>
+
 
 <h3><strong>Итог</strong></h3>
 
@@ -375,9 +375,9 @@
 	</li>
 </ol>
 
-<p>&nbsp;</p>
 
-<p>&nbsp;</p>
+
+
 
 <p><strong>Что нужно уметь рассказать</strong><br>
 &ndash; Термин &laquo;метод GET&raquo;<br>

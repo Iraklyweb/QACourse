@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Лекция &quot;Структура сообщения в API&quot; Когда клиент и сервер взаимодействуют через API, они обмениваются сообщениями. Сообщение — это способ передать данные ил">
+  <meta name="description" content="Когда клиент и сервер взаимодействуют через API, они обмениваются сообщениями. Сообщение — это способ передать данные или запросить информацию. Клиент &quot;спр">
   <meta name="color-scheme" content="dark light">
   <title>Лекция «Структура сообщения в API» · Персональный курс QA</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
@@ -28,13 +28,13 @@
   <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="../../index.html">← Единый маршрут</a><div class="rail-index"><span>189</span><small>из 283</small></div><p>6. Веб и API</p><div class="rail-progress" aria-label="Шаг 189 из 283"><i style="width:67%"></i></div><small>REST, JSON, адреса и структура сообщений · Лекция</small></aside>
         <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Единый маршрут</a><span>/</span><a href="../../index.html#web-api">6. Веб и API</a><span>/</span><span>REST, JSON, адреса и структура сообщений</span></nav>
           <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «Структура сообщения в API»</h1><p>Сети · REST</p></header>
-          <div class="lesson-content"><h1>Лекция &laquo;Структура сообщения в API&raquo;</h1>
+          <div class="lesson-content ">
 
-<p>&nbsp;</p>
+
 
 <p>Когда клиент и сервер взаимодействуют через API, они обмениваются сообщениями. Сообщение &mdash; это способ передать данные или запросить информацию. Клиент &quot;спрашивает&quot;, а сервер &quot;отвечает&quot;. Чтобы разобраться, как это работает, важно понять, из чего состоит каждое сообщение.</p>
 
-<p>&nbsp;</p>
+
 
 <h3><strong>Стартовая строка (Request Line / Status Line)</strong></h3>
 
@@ -72,7 +72,7 @@
 	</li>
 </ul>
 
-<p>&nbsp;</p>
+
 
 <h3><strong>Заголовки (Headers)</strong></h3>
 
@@ -100,7 +100,7 @@
 
 <p><span>Accept: application/json</span></p>
 
-<p>&nbsp;</p>
+
 
 <h3><strong>Тело сообщения (Body)</strong></h3>
 
@@ -139,7 +139,7 @@
 
 <p><span>}</span></p>
 
-<p>&nbsp;</p>
+
 
 <h3><strong>Ошибки (Fault / Status Codes)</strong></h3>
 
@@ -179,7 +179,7 @@
 	</li>
 </ul>
 
-<h2>&nbsp;</h2>
+
 
 <h3><strong>Зачем понимать структуру сообщений?</strong></h3>
 
@@ -196,15 +196,15 @@
 	</li>
 </ul>
 
-<p>&nbsp;</p>
+
 
 <h3><strong>Итог</strong></h3>
 
 <p>Сообщение в API состоит из стартовой строки, заголовков, тела (если нужно) и может содержать ошибки. Разделение на запросы и ответы помогает понять, как API работает. Это знание важно при тестировании и работе с API, но в реальности большинство запросов можно воспринимать просто как URL с параметрами и телом.</p>
 
-<p>&nbsp;</p>
 
-<p>&nbsp;</p>
+
+
 
 <p><strong>Что нужно уметь рассказать</strong><br>
 &ndash; Сообщение = обмен данными между клиентом и сервером<br>

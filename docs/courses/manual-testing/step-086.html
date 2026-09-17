@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Лекция &quot;Заголовки запроса в API&quot; Когда клиент и сервер обмениваются данными через API, они используют заголовки запроса для передачи дополнительной информа">
+  <meta name="description" content="Когда клиент и сервер обмениваются данными через API, они используют заголовки запроса для передачи дополнительной информации. Заголовки помогают клиенту и">
   <meta name="color-scheme" content="dark light">
   <title>Лекция «Заголовки запроса в API» · Персональный курс QA</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
@@ -28,15 +28,15 @@
   <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="../../index.html">← Единый маршрут</a><div class="rail-index"><span>190</span><small>из 283</small></div><p>6. Веб и API</p><div class="rail-progress" aria-label="Шаг 190 из 283"><i style="width:67%"></i></div><small>REST, JSON, адреса и структура сообщений · Лекция</small></aside>
         <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Единый маршрут</a><span>/</span><a href="../../index.html#web-api">6. Веб и API</a><span>/</span><span>REST, JSON, адреса и структура сообщений</span></nav>
           <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «Заголовки запроса в API»</h1><p>Сети · REST</p></header>
-          <div class="lesson-content"><h1>Лекция &laquo;Заголовки запроса в API&raquo;</h1>
+          <div class="lesson-content ">
 
-<p>&nbsp;</p>
+
 
 <p>Когда клиент и сервер обмениваются данными через API, они используют заголовки запроса для передачи дополнительной информации. Заголовки помогают клиенту и серверу &quot;понимать&quot; друг друга: какой формат данных используется, кто отправляет запрос, какие права доступа у клиента и как обрабатывать данные.</p>
 
 <p>Знание и правильное использование заголовков &mdash; ключ к успешной работе с API, особенно для тестировщиков.</p>
 
-<p>&nbsp;</p>
+
 
 <h3><strong>Как формируются заголовки?</strong></h3>
 
@@ -60,7 +60,7 @@
 
 <p><span>User-Agent: PostmanRuntime/7.29.2&nbsp;&nbsp;</span></p>
 
-<p>&nbsp;</p>
+
 
 <p>Здесь заголовки указывают, кто отправляет запрос, какие данные передаются и в каком формате клиент хочет получить ответ.</p>
 
@@ -74,11 +74,11 @@
 
 <p><span>Cache-Control: no-cache&nbsp;&nbsp;</span></p>
 
-<p>&nbsp;</p>
+
 
 <p>Ответ содержит информацию о возвращаемых данных, управлении сессиями и кэшировании. Формирование и отправка заголовков зависит от клиента. В обычных условиях их автоматически устанавливает браузер, мобильное приложение или другой клиент, если это предусмотрено разработчиком. При тестировании API заголовки можно изменять и настраивать вручную с помощью специальных инструментов. Некоторые заголовки вам придётся формировать самостоятельно в соответствии с требованиями системы.</p>
 
-<p>&nbsp;</p>
+
 
 <h3><strong>Где увидеть заголовки запроса и ответа?</strong></h3>
 
@@ -102,7 +102,7 @@
 
 <p>В ответе можно увидеть заголовки сервера и понять, какие данные он возвращает.</p>
 
-<p>&nbsp;</p>
+
 
 <h3><strong>Как понять, что заголовки правильные?</strong></h3>
 
@@ -125,7 +125,7 @@
 	</li>
 </ul>
 
-<p>&nbsp;</p>
+
 
 <h3><strong>Группы заголовков</strong></h3>
 
@@ -151,7 +151,7 @@
 	</li>
 </ul>
 
-<p>&nbsp;</p>
+
 
 <h3><strong>Что такое Bearer-токен?</strong></h3>
 
@@ -177,7 +177,7 @@
 	</li>
 </ul>
 
-<p>&nbsp;</p>
+
 
 <h3><strong>Что такое JWT (JSON Web Token)?</strong></h3>
 
@@ -215,7 +215,7 @@
 	</li>
 </ul>
 
-<p>&nbsp;</p>
+
 
 <h3><strong>Cookie</strong></h3>
 
@@ -243,7 +243,7 @@
 	</li>
 </ul>
 
-<h2>&nbsp;</h2>
+
 
 <h3><strong>Формат данных</strong></h3>
 
@@ -253,7 +253,7 @@
 
 <p><span>Content-Type: application/json</span></p>
 
-<p>&nbsp;</p>
+
 
 <p>На тестировании проверяется, что:</p>
 
@@ -281,7 +281,7 @@
 	</li>
 </ul>
 
-<p>&nbsp;</p>
+
 
 <h3><strong>Сведения о клиенте</strong></h3>
 
@@ -291,7 +291,7 @@
 
 <p><span>User-Agent: PostmanRuntime/7.29.2</span></p>
 
-<p>&nbsp;</p>
+
 
 <p>Используется в тестировании, если система блокирует определённые User-Agent или требует их наличия.</p>
 
@@ -299,7 +299,7 @@
 
 <p>Referer: <a href="https://example.com/" target="_blank" rel="noopener noreferrer">https://example.com/</a></p>
 
-<p>&nbsp;</p>
+
 
 <p>Позволяет отслеживать, откуда пришёл запрос. Может использоваться для защиты от подделки запросов (CSRF).</p>
 
@@ -307,11 +307,11 @@
 
 <p>Host: <a href="http://example.com/" target="_blank" rel="noopener noreferrer">example.com</a></p>
 
-<p>&nbsp;</p>
+
 
 <p>Если на одном IP-адресе работает несколько сайтов или сервисов, заголовок <strong>Host</strong> сообщает серверу, к какому из них относится запрос. Браузер автоматически добавляет этот заголовок. Если же запрос отправляется напрямую без <strong>Host</strong>, сервер ответит в зависимости от его настройки &mdash; либо вернёт страницу по умолчанию, либо ошибку.</p>
 
-<p>&nbsp;</p>
+
 
 <h3><strong>Кэширование и оптимизация</strong></h3>
 
@@ -326,7 +326,7 @@
 	</li>
 </ul>
 
-<p>&nbsp;</p>
+
 
 <h3><strong>Какие заголовки тестирует тестировщик?</strong></h3>
 
@@ -344,7 +344,7 @@
 	</li>
 </ul>
 
-<p>&nbsp;</p>
+
 
 <h3><strong>Итог</strong></h3>
 

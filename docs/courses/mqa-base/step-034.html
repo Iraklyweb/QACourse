@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Пояснение к теме &amp;ldquo;Шаги&amp;rdquo; Шаги — это не просто перечисление действий, а логика, по которой живёт проверка. По ним любой человек должен суметь вос">
+  <meta name="description" content="Шаги — это не просто перечисление действий, а логика, по которой живёт проверка. По ним любой человек должен суметь воспроизвести тест, не гадая, что имел ">
   <meta name="color-scheme" content="dark light">
   <title>Лекция «Пояснение к теме “Шаги”» · Персональный курс QA</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
@@ -28,13 +28,13 @@
   <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="../../index.html">← Единый маршрут</a><div class="rail-index"><span>110</span><small>из 283</small></div><p>4. Тестовая документация</p><div class="rail-progress" aria-label="Шаг 110 из 283"><i style="width:39%"></i></div><small>Шаги, ожидание и фактический результат · Лекция</small></aside>
         <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Единый маршрут</a><span>/</span><a href="../../index.html#documents">4. Тестовая документация</a><span>/</span><span>Шаги, ожидание и фактический результат</span></nav>
           <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «Пояснение к теме “Шаги”»</h1><p>Тестовая документация · Структура документа</p><p class="alternative-note">Другой разбор темы. <a href="../../courses/mqa-base/step-033.html">Основное объяснение: Лекция «Шаги воспроизведения» →</a></p></header>
-          <div class="lesson-content"><div>
+          <div class="lesson-content "><div class="lesson-source">
 
-<h1>Пояснение к теме &ldquo;Шаги&rdquo;</h1>
 
-<div>
-<div>
-<div>
+
+<div class="lesson-section">
+<div class="lesson-block">
+<div class="lesson-method">
 <p><strong>Шаги </strong>&mdash; это не просто перечисление действий, а логика, по которой живёт проверка.</p>
 
 <p>По ним любой человек должен суметь воспроизвести тест, не гадая, что имел в виду автор.</p>
@@ -44,7 +44,7 @@
 <p>На проекте шаги &mdash; это то, через что ты передаёшь контекст другим.</p>
 </div>
 
-<div>
+<div class="lesson-method">
 <p><strong>Логика шагов и структура</strong></p>
 
 <p>В тест-кейсе шаги &mdash; основа сценария. Они показывают, что делает тестировщик и что должно происходить после каждого действия.</p>
@@ -60,7 +60,7 @@
 <p>В чек-листах шагов нет &mdash; &ldquo;Название&rdquo; уже подразумевает действие и результат, просто в сжатой форме.</p>
 </div>
 
-<div>
+<div class="lesson-method">
 <p><strong>Практика оформления шагов</strong></p>
 
 <p>Шаги должны быть понятными и самодостаточными.</p>
@@ -72,7 +72,7 @@
 <p>Хороший шаг описывает суть действия, а не расположение элементов: &ldquo;нажать &lsquo;Создать заявку&rsquo;&rdquo; достаточно, чтобы всё было ясно.</p>
 </div>
 
-<div>
+<div class="lesson-method">
 <p><strong>Без условий и ветвлений</strong></p>
 
 <p>Шаги не должны содержать &ldquo;если&rdquo; и &ldquo;иначе&rdquo;.</p>
@@ -84,7 +84,7 @@
 <p>Так логика остаётся чистой и воспроизводимой.</p>
 </div>
 
-<div>
+<div class="lesson-method">
 <p><strong>Глаголы совершенного действия</strong></p>
 
 <p>Пиши естественно, но чётко: &ldquo;открыть&rdquo;, &ldquo;ввести&rdquo;, &ldquo;нажать&rdquo;, &ldquo;сохранить&rdquo;.</p>
@@ -94,7 +94,7 @@
 <p>Универсальный вариант &mdash; &ldquo;нажать&rdquo;: он подходит для любого устройства и интерфейса.</p>
 </div>
 
-<div>
+<div class="lesson-method">
 <p><strong>Конкретные значения</strong></p>
 
 <p>Если функционал не зависит от данных &mdash; не привязывайся к конкретике.</p>
@@ -108,7 +108,7 @@
 <p>Так не остаётся повода для догадок, и тест выполняется одинаково всеми.</p>
 </div>
 
-<div>
+<div class="lesson-method">
 <p><strong>Элементы интерфейса</strong></p>
 
 <p>Цвет, форма и расположение не указываются &mdash; это визуальные детали, которые не влияют на смысл проверки и быстро устаревают.</p>
@@ -124,7 +124,7 @@
 <p>Так шаг остаётся чистым и понятным, без лишних слов.</p>
 </div>
 
-<div>
+<div class="lesson-method">
 <p><strong>Объединение действий</strong></p>
 
 <p>Если несколько шагов проще воспринимать как одно действие, их можно объединить в один шаг:</p>
@@ -136,7 +136,7 @@
 <p>Главное &mdash; не превращай шаг в абзац: он должен оставаться конкретным и воспроизводимым.</p>
 </div>
 
-<div>
+<div class="lesson-method">
 <p><strong>Проверка на практике</strong></p>
 
 <p>После написания шагов просто пройди их сам.</p>
@@ -146,7 +146,7 @@
 <p>Такой подход избавляет от двусмысленности и спасает от ложных багов.</p>
 </div>
 
-<div>
+<div class="lesson-method">
 <p><strong>Без ссылок на другие документы</strong></p>
 
 <p>Не используй формулировки вроде &ldquo;см. шаг 3 в TC-15&rdquo;.</p>
@@ -158,7 +158,7 @@
 <p>В системах вроде TestIT или Zephyr допустимо использовать шаблоны шагов, если они не превращаются в сеть зависимостей.</p>
 </div>
 
-<div>
+<div class="lesson-method">
 <p><strong>Скриншоты и иллюстрации</strong></p>
 
 <p>Скриншоты в шагах &mdash; это крайняя мера.</p>
@@ -170,7 +170,7 @@
 <p>В идеале шаги должны быть настолько ясными, чтобы без картинок всё было очевидно.</p>
 </div>
 
-<div>
+<div class="lesson-info">
 <p><strong>Количество шагов</strong></p>
 
 <p>Нет лимита &ldquo;до 7 шагов&rdquo; или &ldquo;среднее количество 15&rdquo;.</p>

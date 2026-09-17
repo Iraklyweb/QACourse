@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Лекция &quot;HTTP и HTTPS: основы и зачем это знать&quot; Что такое HTTP? HTTP (HyperText Transfer Protocol) — это протокол, который определяет, как данные передаютс">
+  <meta name="description" content="Что такое HTTP? HTTP (HyperText Transfer Protocol) — это протокол, который определяет, как данные передаются между клиентом (например, браузером или прилож">
   <meta name="color-scheme" content="dark light">
   <title>Лекция «HTTP и HTTPS: основы и зачем это знать» · Персональный курс QA</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
@@ -28,15 +28,15 @@
   <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="../../index.html">← Единый маршрут</a><div class="rail-index"><span>178</span><small>из 283</small></div><p>6. Веб и API</p><div class="rail-progress" aria-label="Шаг 178 из 283"><i style="width:63%"></i></div><small>HTTP, HTTPS и полный цикл запроса · Лекция</small></aside>
         <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Единый маршрут</a><span>/</span><a href="../../index.html#web-api">6. Веб и API</a><span>/</span><span>HTTP, HTTPS и полный цикл запроса</span></nav>
           <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «HTTP и HTTPS: основы и зачем это знать»</h1><p>Сети · HTTP и HTTPS</p></header>
-          <div class="lesson-content"><h1><span>Лекция &laquo;HTTP и HTTPS: основы и зачем это знать&raquo;</span></h1>
+          <div class="lesson-content ">
 
-<p>&nbsp;</p>
+
 
 <h3><span><strong>Что такое HTTP?</strong></span></h3>
 
 <p><span>HTTP (HyperText Transfer Protocol) &mdash; это протокол, который определяет, как данные передаются между клиентом (например, браузером или приложением) и сервером. Это основной &quot;язык&quot; общения в интернете. Когда вы открываете веб-страницу или приложение загружает данные, клиент и сервер обмениваются информацией через HTTP.</span></p>
 
-<p>&nbsp;</p>
+
 
 <p><span><strong>Пример на пальцах</strong></span></p>
 
@@ -83,13 +83,13 @@
 
 <p>HTTP &mdash; это не просто обмен данными. Это строго определённый способ общения между клиентом и сервером, описанный разработчиками заранее<span>. Они задают, <strong>как должен выглядеть запрос, какую информацию он должен содержать и в каком формате сервер должен отвечать</strong>. Клиенту остаётся только <strong>следовать этим правилам</strong>, иначе сервер не сможет понять, что от него хотят.</span></p>
 
-<p>&nbsp;</p>
+
 
 <h3><span><strong>Что такое протокол?</strong></span></h3>
 
 <p><span><strong>Протокол</strong> &mdash; это набор правил, которые определяют, как две системы или устройства должны обмениваться данными. Чтобы взаимодействие было успешным, обе стороны должны следовать этим правилам: какие запросы можно отправлять, в каком формате должны быть ответы и как обрабатываются ошибки. Если правила соблюдаются, системы могут понимать друг друга, даже если используют разные технологии.</span></p>
 
-<p>&nbsp;</p>
+
 
 <p><strong>На примере</strong></p>
 
@@ -109,7 +109,7 @@
 	</li>
 </ul>
 
-<p>&nbsp;</p>
+
 
 <h3><span><strong>Примеры протоколов</strong></span></h3>
 
@@ -127,13 +127,13 @@
 
 <p><span>Протоколы нужны, чтобы компьютеры, приложения и устройства могли взаимодействовать независимо от языка программирования, операционной системы или места расположения.</span></p>
 
-<p>&nbsp;</p>
+
 
 <h3><span><strong>Что такое HTTPS и чем он отличается?</strong></span></h3>
 
 <p><span>HTTPS (HyperText Transfer Protocol Secure) &mdash; это тот же HTTP, но с добавлением защиты. Когда вы используете HTTPS, данные между клиентом и сервером передаются в зашифрованном виде. Это значит, что никто не сможет подслушать, что именно передаётся.</span></p>
 
-<p>&nbsp;</p>
+
 
 <p><span><strong>Зачем нужна защита?</strong></span></p>
 
@@ -146,7 +146,7 @@
 	</li>
 </ul>
 
-<p>&nbsp;</p>
+
 
 <p><span><strong>Как это работает?</strong></span></p>
 
@@ -161,7 +161,7 @@
 
 <p><span>Шифрование работает благодаря специальным сертификатам, которые устанавливаются на сервере (они называются SSL или TLS).</span></p>
 
-<p>&nbsp;</p>
+
 
 <h3><span><strong>Порты в HTTP/HTTPS: что это и зачем нужны?</strong></span></h3>
 
@@ -169,7 +169,7 @@
 
 <p>Представьте ситуацию из жизни: многоквартирный дом<span> (сервер). У каждого жильца (сервиса) свой номер квартиры (порт). Чтобы отправить письмо конкретному человеку, нужно знать <strong>не только адрес дома (IP-адрес), но и номер квартиры (порт)</strong>.</span></p>
 
-<p>&nbsp;</p>
+
 
 <table>
 
@@ -214,7 +214,7 @@
 	</tbody>
 </table>
 
-<p>&nbsp;</p>
+
 
 <p><span>Когда в браузере вводят </span><a href="https://example.com/" target="_blank" rel="noopener noreferrer"><span>https://example.com</span></a><span>, он <strong>автоматически</strong> использует порт 443, а </span><a href="http://example.com/" target="_blank" rel="noopener noreferrer"><span>http://example.com</span></a><span> &mdash; порт 80.</span></p>
 
@@ -235,7 +235,7 @@
 
 <p><span><strong>Порты помогают разделять запросы и обеспечивать безопасность данных.</strong></span></p>
 
-<p>&nbsp;</p>
+
 
 <h3><span><strong>Почему это важно?</strong></span></h3>
 
@@ -251,7 +251,7 @@
 	</li>
 </ol>
 
-<p>&nbsp;</p>
+
 
 <h3><span><strong>Итог</strong></span></h3>
 
@@ -259,9 +259,9 @@
 
 <p><span>В тестировании вы будете сталкиваться с обоими вариантами, но важно помнить: HTTPS стал стандартом для всех современных приложений, где важна защита данных. Ваши знания помогут выявлять проблемы с безопасностью и обеспечивать стабильную и защищённую работу приложений.</span></p>
 
-<p>&nbsp;</p>
 
-<p>&nbsp;</p>
+
+
 
 <p><strong>Что нужно уметь рассказать</strong><br>
 &ndash; Термин &laquo;HTTP&raquo;<br>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Лекция &quot;HTTP-статус-коды 200: успешные сценарии&quot; Коды из группы 200 говорят о том, что запрос клиента был успешно обработан сервером. Эти коды — самые част">
+  <meta name="description" content="Коды из группы 200 говорят о том, что запрос клиента был успешно обработан сервером. Эти коды — самые частые в работе тестировщика, поскольку они сигнализи">
   <meta name="color-scheme" content="dark light">
   <title>Лекция «HTTP-статус-коды 200: успешные сценарии» · Персональный курс QA</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
@@ -28,19 +28,19 @@
   <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="../../index.html">← Единый маршрут</a><div class="rail-index"><span>193</span><small>из 283</small></div><p>6. Веб и API</p><div class="rail-progress" aria-label="Шаг 193 из 283"><i style="width:68%"></i></div><small>Статус-коды · Лекция</small></aside>
         <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Единый маршрут</a><span>/</span><a href="../../index.html#web-api">6. Веб и API</a><span>/</span><span>Статус-коды</span></nav>
           <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «HTTP-статус-коды 200: успешные сценарии»</h1><p>Сети · Cтатус-коды</p></header>
-          <div class="lesson-content"><h1>Лекция &laquo;HTTP-статус-коды 200: успешные сценарии&raquo;</h1>
+          <div class="lesson-content ">
 
-<p>&nbsp;</p>
+
 
 <p>Коды из группы <strong>200</strong> говорят о том, что запрос клиента был успешно обработан сервером. Эти коды &mdash; самые частые в работе тестировщика, поскольку они сигнализируют, что всё прошло как надо. Понимание их логики помогает уверенно работать с API.</p>
 
-<p>&nbsp;</p>
+
 
 <h3><strong>Что это значит?</strong></h3>
 
 <p>Коды 200 подтверждают, что сервер понял запрос клиента, выполнил его и вернул ожидаемый результат. Это успешное завершение взаимодействия. Такие коды используются в разных сценариях: от получения данных до создания нового ресурса или обновления существующего.</p>
 
-<p>&nbsp;</p>
+
 
 <h3><strong>Основные коды 200 и как их получить</strong></h3>
 
@@ -118,7 +118,7 @@
 
 <p><span>}</span></p>
 
-<p>&nbsp;</p>
+
 
 <h4><strong>201 Created</strong></h4>
 
@@ -172,7 +172,7 @@
 
 <p>Ответ: 201 Created</p>
 
-<p>&nbsp;</p>
+
 
 <h4><strong>202 Accepted</strong></h4>
 
@@ -202,7 +202,7 @@
 
 <p><span>}</span></p>
 
-<p>&nbsp;</p>
+
 
 <h4><strong>204 No Content</strong></h4>
 
@@ -232,7 +232,7 @@
 
 <p>Ответ: 204 No Content</p>
 
-<p>&nbsp;</p>
+
 
 <h3><strong>Рекомендательный характер</strong></h3>
 
@@ -247,7 +247,7 @@
 	</li>
 </ul>
 
-<p>&nbsp;</p>
+
 
 <h3><strong>Почему это нужно понимать?</strong></h3>
 
@@ -267,7 +267,7 @@
 
 <p>Теперь, когда мы разобрались с успешными сценариями, можно перейти к кодам других групп, чтобы видеть полную картину работы с HTTP.</p>
 
-<p>&nbsp;</p>
+
 
 <h3><strong>Ошибки использования</strong></h3>
 
@@ -295,7 +295,7 @@
 
 <p>Тестировщик должен проверять не только статус-код, но и содержимое ответа, заголовков, чтобы убедиться, что данные соответствуют ожиданиям.</p>
 
-<p>&nbsp;</p>
+
 
 <h3><strong>Логика работы с пустыми ответами</strong></h3>
 

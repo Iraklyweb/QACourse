@@ -106,6 +106,7 @@ function sanitizeHtml(input = '') {
     'ul', 'ol', 'li', 'table', 'thead', 'tbody', 'tfoot', 'tr', 'th', 'td',
     'strong', 'b', 'em', 'i', 'u', 's', 'code', 'pre', 'br', 'hr', 'blockquote', 'a',
   ]);
+  const sourceClasses = { 'lecture-container': 'lesson-source', section: 'lesson-section', 'content-block': 'lesson-block', 'method-block': 'lesson-method', 'info-box': 'lesson-info', 'definition-box': 'lesson-info', highlight: 'lesson-emphasis' };
 
   html = html.replace(/<\/?\s*([a-zA-Z0-9:-]+)\b[^>]*>/g, (tag, rawName) => {
     const name = rawName.toLowerCase();
@@ -126,10 +127,16 @@ function sanitizeHtml(input = '') {
       ].join('');
       return `<${name}${attrs}>`;
     }
+    if (name === 'div' || name === 'span') {
+      const classes = attrValue(tag, 'class').split(/\s+/).map((item) => sourceClasses[item]).filter(Boolean);
+      return `<${name}${classes.length ? ` class="${[...new Set(classes)].join(' ')}"` : ''}>`;
+    }
     return `<${name}>`;
   });
 
   return html
+    .replace(/<p>\s*(?:&nbsp;|&#160;|<br>)?\s*<\/p>/gi, '')
+    .replace(/<h[1-6]>\s*(?:&nbsp;|&#160;|<br>)?\s*<\/h[1-6]>/gi, '')
     .replace(/<(p|div|span)>\s*<\/\1>/gi, '')
     .replace(/[ \t]+$/gm, '')
     .trim();
@@ -213,6 +220,22 @@ function pageKind(type) {
   return ({ lecture: 'Лекция', mentorCheckTask: 'Практическое задание' })[type] || 'Материал';
 }
 
+function cleanLessonHeading(html, title) {
+  const normalized = (value) => plainText(value).replace(/&[a-z]+;|&#\d+;/gi, ' ').replace(/[^\p{L}\p{N}]+/gu, ' ').toLocaleLowerCase('ru').trim();
+  const first = /<h1>([\s\S]*?)<\/h1>/i.exec(html);
+  if (!first) return html;
+  const heading = normalized(first[1]);
+  const pageTitle = normalized(title);
+  return heading === pageTitle || heading === pageTitle.replace(/^лекция\s+/, '') ? html.replace(first[0], '') : html;
+}
+
+function stepCount(count) {
+  const suffix = count % 100 >= 11 && count % 100 <= 14 ? 'шагов' : count % 10 === 1 ? 'шаг' : count % 10 >= 2 && count % 10 <= 4 ? 'шага' : 'шагов';
+  return `${count} ${suffix}`;
+}
+
+function displayStageTitle(title) { return title.replace(/^\d+\.\s*/, ''); }
+
 const whyTestIntro = '<section class="editorial-intro"><h2>Зачем тестировать</h2><p>Тестирование помогает обнаружить расхождение между тем, как продукт должен работать, и тем, что получает пользователь. Оно не доказывает отсутствие ошибок, но снижает риск неприятных сюрпризов до выпуска.</p><p>Тестировщик проверяет требования, исследует поведение продукта, сообщает о проблемах понятным команде способом и помогает принять обоснованное решение о выпуске. В следующих этапах вы научитесь делать это на конкретных примерах.</p></section>';
 
 const courses = courseDefs.map((def) => {
@@ -232,7 +255,7 @@ const courses = courseDefs.map((def) => {
     number: index + 1,
     file: `step-${String(index + 1).padStart(3, '0')}.html`,
     safeTitle: neutralizeBrand(page.content?.title || page.heading?.taskTitle || `Шаг ${index + 1}`),
-    safeHtml: (def.slug === 'mqa-base' && index === 0 ? whyTestIntro : '') + sanitizeHtml(page.content?.description || ''),
+    safeHtml: (def.slug === 'mqa-base' && index === 0 ? whyTestIntro : '') + cleanLessonHeading(sanitizeHtml(page.content?.description || ''), neutralizeBrand(page.content?.title || page.heading?.taskTitle || `Шаг ${index + 1}`)),
   })).filter((page) => page.taskType !== 'multi_input' && page.taskType !== 'review_step');
 
   const modules = [];
@@ -276,12 +299,12 @@ const routeBySourceKey = new Map(curriculum?.records.map((record) => [`${record.
 function routeHome() {
   const kindLabel = { lecture: 'Лекции', mixed: 'Лекции + практика', practice: 'Практика' };
   const outline = curriculum.stages.map((stage) => `<section class="module-block route-stage" id="${stage.id}">
-    <header><span>${String(stage.number).padStart(2, '0')}</span><div><p>Этап ${stage.number}</p><h2>${escapeHtml(stage.title)}</h2></div><strong>${stage.topics.reduce((sum, topic) => sum + topic.items.length, 0)} шагов</strong></header>
+    <header><span>${String(stage.number).padStart(2, '0')}</span><div><p>Этап ${stage.number}</p><h2>${escapeHtml(displayStageTitle(stage.title))}</h2></div><strong>${stepCount(stage.topics.reduce((sum, topic) => sum + topic.items.length, 0))}</strong></header>
     <p class="stage-goal">${escapeHtml(stage.goal)} <strong>Результат:</strong> ${escapeHtml(stage.outcome)}</p>${stage.id === 'end-to-end' ? '<aside class="capstone"><h3>Итоговая работа</h3><p>Возьмите один знакомый веб-сценарий. Зафиксируйте требование и вопросы к нему, составьте проверки, выполните их в интерфейсе и при необходимости через API/БД, затем опишите один воспроизводимый дефект. Упражнения ниже взяты из разных исходных контекстов: используйте их как образцы отдельных действий, а итоговую цепочку соберите на одном выбранном сценарии.</p></aside>' : ''}
-    <div class="chapter-list">${stage.topics.map((topic) => `<details><summary><span>${escapeHtml(topic.title)} <small class="role-chip ${topic.kind}">${kindLabel[topic.kind]}</small></span><span class="chapter-toggle"><small>${topic.items.length}</small><span class="chapter-chevron" aria-hidden="true">▸</span></span></summary><ol>${topic.items.map((item) => `<li><a href="${item.url}"><span>${String(item.route.lessonOrder).padStart(3, '0')}</span><strong>${escapeHtml(item.title)}</strong><em>${item.alternativeTo ? 'Другой разбор' : escapeHtml(item.source.course === 'mqa-base' ? 'MQA Base' : 'Ручное тестирование')}</em></a></li>`).join('')}</ol></details>`).join('')}</div>
+    <div class="chapter-list">${stage.topics.map((topic, topicIndex) => `<details id="${stage.id}-topic-${topicIndex + 1}"><summary><span>${escapeHtml(topic.title)} <small class="role-chip ${topic.kind}">${kindLabel[topic.kind]}</small></span><span class="chapter-toggle"><small>${topic.items.length}</small><span class="chapter-chevron" aria-hidden="true">▸</span></span></summary><ol>${topic.items.map((item) => `<li><a href="${item.url}"><span>${String(item.route.lessonOrder).padStart(3, '0')}</span><strong>${escapeHtml(item.title)}</strong><em>${item.alternativeTo ? 'Другой разбор' : escapeHtml(item.source.course === 'mqa-base' ? 'MQA Base' : 'Ручное тестирование')}</em></a></li>`).join('')}</ol></details>`).join('')}</div>
   </section>`).join('');
   return `<section class="home-intro route-intro"><div><span class="eyebrow">Единый маршрут · ${totalPages} шагов</span><h1>От знакомства с QA<br><span>до найденного дефекта</span></h1></div><div class="home-copy"><a class="route-start" href="${curriculum.records[0].url}">Начать обучение →</a><form class="search-hero" action="search.html" role="search"><label class="sr-only" for="home-search">Поиск по маршруту</label><input id="home-search" name="q" type="search" placeholder="Например, граничные значения" required><button>Найти</button></form></div></section>
-  <nav class="route-jump" aria-label="Этапы маршрута">${curriculum.stages.map((stage) => `<a href="#${stage.id}">${escapeHtml(stage.title)}</a>`).join('')}</nav>
+  <nav class="route-jump" aria-label="Этапы маршрута">${curriculum.stages.map((stage) => `<a href="#${stage.id}">${escapeHtml(displayStageTitle(stage.title))}</a>`).join('')}</nav>
   <div class="outline route-outline">${outline}</div>
   <section id="archive" class="archive-section"><span class="eyebrow">Исходные материалы</span><h2>Архив исходных курсов</h2><p>Прежние структуры учебных материалов сохранены для ссылок и сверки; формы обратной связи и ревью исключены. Для обучения используйте единый маршрут выше.</p><div class="course-grid">${courses.map((course) => courseCard(course)).join('')}</div></section>`;
 }
@@ -301,7 +324,7 @@ write('index.html', shell({
 
 for (const course of courses) {
   const outline = course.modules.map((module) => `<section class="module-block">
-    <header><span>${String(module.position).padStart(2, '0')}</span><div><p>Модуль</p><h2>${escapeHtml(module.name)}</h2></div><strong>${module.chapters.reduce((sum, chapter) => sum + chapter.pages.length, 0)} шагов</strong></header>
+    <header><span>${String(module.position).padStart(2, '0')}</span><div><p>Модуль</p><h2>${escapeHtml(module.name)}</h2></div><strong>${stepCount(module.chapters.reduce((sum, chapter) => sum + chapter.pages.length, 0))}</strong></header>
     <div class="chapter-list">${module.chapters.map((chapter) => `<details><summary><span>${escapeHtml(chapter.name)}</span><span class="chapter-toggle"><small>${chapter.pages.length}</small><span class="chapter-chevron" aria-hidden="true">▸</span></span></summary><ol>${chapter.pages.map((page) => `<li><a href="${page.file}"><span>${String(page.number).padStart(3, '0')}</span><strong>${escapeHtml(page.safeTitle)}</strong><em>${pageKind(page.taskType)}</em></a></li>`).join('')}</ol></details>`).join('')}</div>
   </section>`).join('');
 
@@ -336,7 +359,7 @@ for (const course of courses) {
       body: `<div class="reader-layout"><aside class="reader-rail"><a href="${isDevelopment ? '../../index.html' : 'index.html'}">← ${isDevelopment ? 'Единый маршрут' : 'Структура курса'}</a><div class="rail-index"><span>${String(isDevelopment ? routePosition.index + 1 : page.number).padStart(3, '0')}</span><small>из ${isDevelopment ? totalPages : course.pages.length}</small></div><p>${escapeHtml(isDevelopment ? routeRecord.route.stageTitle : page.chapterName)}</p><div class="rail-progress" aria-label="Шаг ${isDevelopment ? routePosition.index + 1 : chapterPos} из ${isDevelopment ? totalPages : chapterPages.length}"><i style="width:${Math.round((isDevelopment ? routePosition.index + 1 : chapterPos) / (isDevelopment ? totalPages : chapterPages.length) * 100)}%"></i></div><small>${isDevelopment ? `${routeRecord.route.topic} · ${pageKind(page.taskType)}` : `${chapterPos} / ${chapterPages.length} в теме`}</small></aside>
         <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">${isDevelopment ? 'Единый маршрут' : 'Главная'}</a><span>/</span>${isDevelopment ? `<a href="../../index.html#${routeRecord.route.stage}">${escapeHtml(routeRecord.route.stageTitle)}</a><span>/</span><span>${escapeHtml(routeRecord.route.topic)}</span>` : `<a href="index.html">${escapeHtml(course.title)}</a><span>/</span><span>${escapeHtml(page.moduleName)}</span><span>/</span><span>${escapeHtml(page.chapterName)}</span>`}</nav>
           <header class="lesson-head"><span class="type-chip">${pageKind(page.taskType)}</span><h1>${escapeHtml(page.safeTitle)}</h1><p>${escapeHtml(page.moduleName)} · ${escapeHtml(page.chapterName)}</p>${alternativeBase ? `<p class="alternative-note">Другой разбор темы. <a href="../../${alternativeBase.url}">Основное объяснение: ${escapeHtml(alternativeBase.title)} →</a></p>` : ''}</header>
-          <div class="lesson-content">${page.safeHtml || '<p>Текст для этого шага отсутствует в выгрузке.</p>'}</div>
+          <div class="lesson-content ${course.slug === 'mqa-base' && page.number === 84 ? 'numbered-attributes' : ''}">${page.safeHtml || '<p>Текст для этого шага отсутствует в выгрузке.</p>'}</div>
           ${isDevelopment ? routePager : `<nav class="pager" aria-label="Навигация между шагами">${previous ? `<a class="prev" href="${previous.file}"><small>Назад</small><span>← ${escapeHtml(previous.safeTitle)}</span></a>` : '<span></span>'}${next ? `<a class="next" href="${next.file}"><small>Дальше</small><span>${escapeHtml(next.safeTitle)} →</span></a>` : `<a class="next" href="index.html"><small>Готово</small><span>К структуре курса →</span></a>`}</nav>`}
           ${isDevelopment ? `<p class="source-note">Источник: <a href="index.html">${escapeHtml(course.title)}</a> · ${escapeHtml(page.moduleName)} / ${escapeHtml(page.chapterName)} · исходный шаг ${page.number}.</p>` : ''}
         </article></div>`,
@@ -350,8 +373,9 @@ const searchIndex = courses.flatMap((course) => course.pages.map((page) => {
   return {
     course: isDevelopment ? 'Единый маршрут' : course.title,
     courseSlug: course.slug,
-    module: isDevelopment ? place.route.stageTitle : page.moduleName,
+    module: isDevelopment ? displayStageTitle(place.route.stageTitle) : page.moduleName,
     chapter: isDevelopment ? place.route.topic : page.chapterName,
+    ...(isDevelopment ? { stageId: place.route.stage, topicId: `${place.route.stage}-topic-${place.route.topicOrder}`, stageNumber: place.route.stageOrder } : {}),
     title: page.safeTitle,
     type: pageKind(page.taskType),
     url,

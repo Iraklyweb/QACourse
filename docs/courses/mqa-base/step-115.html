@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Классы эквивалентности Классы эквивалентности — это техника тест-дизайна, при которой все возможные входные данные разделяются на группы (классы), в предел">
+  <meta name="description" content="Классы эквивалентности — это техника тест-дизайна, при которой все возможные входные данные разделяются на группы (классы), в пределах каждой из которых си">
   <meta name="color-scheme" content="dark light">
   <title>Лекция «Классы эквивалентности» · Персональный курс QA</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
@@ -28,19 +28,19 @@
   <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="../../index.html">← Единый маршрут</a><div class="rail-index"><span>159</span><small>из 283</small></div><p>5. Тест-дизайн</p><div class="rail-progress" aria-label="Шаг 159 из 283"><i style="width:56%"></i></div><small>Классы эквивалентности и границы · Лекция</small></aside>
         <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Единый маршрут</a><span>/</span><a href="../../index.html#design">5. Тест-дизайн</a><span>/</span><span>Классы эквивалентности и границы</span></nav>
           <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «Классы эквивалентности»</h1><p>Техники тест-дизайна · Теоретические сведения</p></header>
-          <div class="lesson-content"><div>
+          <div class="lesson-content "><div class="lesson-source">
 
-<h1>Классы эквивалентности</h1>
 
-<div>
-<div>
-<div>
+
+<div class="lesson-section">
+<div class="lesson-block">
+<div class="lesson-method">
 <p><strong>Классы эквивалентности </strong>&mdash; это техника тест-дизайна, при которой все возможные входные данные разделяются на группы (классы), в пределах каждой из которых система должна вести себя одинаково.</p>
 
 <p>Если одно значение из класса отрабатывает корректно, предполагается, что и остальные значения из этой же группы дадут тот же результат. Это позволяет сократить количество проверок без потери покрытия и сосредоточиться на логике работы системы, а не на переборе всех вариантов.</p>
 </div>
 
-<div>
+<div class="lesson-method">
 <p><strong>Пример:</strong></p>
 
 <p>На сайте предусмотрена система скидок:</p>
@@ -59,7 +59,7 @@
 <p>Четыре проверки полностью покрывают бизнес-логику скидок, не перегружая тесты.</p>
 </div>
 
-<div>
+<div class="lesson-method">
 <p><strong>Техника применяется не только к числам, но и к любым входным данным:</strong></p>
 
 <ul>
@@ -70,11 +70,11 @@
 </ul>
 </div>
 
-<div>
+<div class="lesson-method">
 <p>На практике тестировщик применяет эту технику каждый раз, когда видит диапазон, ограничение или условие. Даже если он не называет это &ldquo;классами эквивалентности&rdquo;, сам подход уже используется &mdash; выбор одного значения &ldquo;из середины&rdquo;, одного &ldquo;ниже&rdquo; и одного &ldquo;выше&rdquo; &mdash; это и есть применение техники.</p>
 </div>
 
-<div>
+<div class="lesson-info">
 <p><strong>Главная идея проста:</strong> не проверять всё подряд, а проверять представителей классов, чтобы убедиться, что система одинаково обрабатывает схожие по смыслу данные.</p>
 </div>
 </div>

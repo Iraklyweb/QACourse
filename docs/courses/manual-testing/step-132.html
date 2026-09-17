@@ -28,7 +28,7 @@
   <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="../../index.html">← Единый маршрут</a><div class="rail-index"><span>239</span><small>из 283</small></div><p>7. Базы данных и SQL</p><div class="rail-progress" aria-label="Шаг 239 из 283"><i style="width:84%"></i></div><small>База данных и таблицы · Лекция</small></aside>
         <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Единый маршрут</a><span>/</span><a href="../../index.html#database">7. Базы данных и SQL</a><span>/</span><span>База данных и таблицы</span></nav>
           <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «Что такое база данных?»</h1><p>SQL · Базы данных</p></header>
-          <div class="lesson-content"><h1><strong>Что такое База Данных (БД)</strong></h1>
+          <div class="lesson-content "><h1><strong>Что такое База Данных (БД)</strong></h1>
 
 <p>База данных &mdash; это место для хранения данных. Используется в том числе в клиент-серверной архитектуре. Это все интернет-магазины, сайты кинотеатров или авиабилетов... Вы делаете заказ, а система сохраняет ваши данные в базе.<br>
 В этом уроке мы на простых примерах изучим, что такое база данных и как она выглядит.</p>
@@ -163,11 +163,11 @@
 	</tbody>
 </table>
 
-<p>&nbsp;</p>
+
 
 <p>Теперь каждая запись имеет свой уникальный id. Это и есть классический пример синтетического первичного ключа.</p>
 
-<p>&nbsp;</p>
+
 
 <p><strong>Внешние ключи</strong><br>
 Внешний ключ используется для установления связи между таблицами.</p>
@@ -178,7 +178,7 @@
 	<li>Без внешних ключей таблицы существовали бы изолированно, и собрать связанную информацию (например, какой клиент сделал заказ) было бы невозможно.</li>
 </ul>
 
-<p>&nbsp;</p>
+
 
 <p>Общий синтаксис создания внешнего ключа</p>
 
@@ -217,7 +217,7 @@
 	</tbody>
 </table>
 
-<p>&nbsp;</p>
+
 
 <p><strong>Orders</strong></p>
 
@@ -268,7 +268,7 @@ CREATE TABLE Orders (
 	<li>При изменении Id клиента (ON UPDATE CASCADE) это значение обновляется и в связанных заказах.</li>
 </ul>
 
-<p>&nbsp;</p>
+
 
 <p><strong>Как это используется на практике</strong><br>
 Внешние ключи лежат в основе JOIN-запросов.<br>
@@ -397,11 +397,11 @@ JOIN Customers ON Orders.CustomerId = Customers.Id;</code></pre>
 
 <p><em>Полную версию статьи можно прочитать по ссылке &ldquo;<a href="https://habr.com/ru/post/555760/" target="_blank" rel="noopener noreferrer">Что такое База Данных (БД</a>)&rdquo; и &ldquo;<a href="https://metanit.com/sql/mysql/2.5.php" target="_blank" rel="noopener noreferrer">Foreign Key</a>&rdquo;, &ldquo;&nbsp;<a href="https://metanit.com/sql/tutorial/2.1.php" target="_blank" rel="noopener noreferrer">Нормализация</a>&rdquo;.</em></p>
 
-<p>&nbsp;</p>
 
-<p>&nbsp;</p>
 
-<p>&nbsp;</p>
+
+
+
 
 <p><strong>Что нужно уметь рассказать</strong><br>
 &ndash; Термин &laquo;База данных (БД)&raquo;<br>

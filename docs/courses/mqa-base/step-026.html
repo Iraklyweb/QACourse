@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Пояснение к теме &amp;ldquo;Предусловие&amp;rdquo; Предусловие — это не просто формальность, а контекст, в котором выполняется проверка. Оно определяет стартовую т">
+  <meta name="description" content="Предусловие — это не просто формальность, а контекст, в котором выполняется проверка. Оно определяет стартовую точку, с которой тест-кейс или баг-репорт им">
   <meta name="color-scheme" content="dark light">
   <title>Лекция «Пояснение к теме “Предусловие”» · Персональный курс QA</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
@@ -28,13 +28,13 @@
   <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="../../index.html">← Единый маршрут</a><div class="rail-index"><span>102</span><small>из 283</small></div><p>4. Тестовая документация</p><div class="rail-progress" aria-label="Шаг 102 из 283"><i style="width:36%"></i></div><small>Шаги, ожидание и фактический результат · Лекция</small></aside>
         <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Единый маршрут</a><span>/</span><a href="../../index.html#documents">4. Тестовая документация</a><span>/</span><span>Шаги, ожидание и фактический результат</span></nav>
           <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «Пояснение к теме “Предусловие”»</h1><p>Тестовая документация · Структура документа</p><p class="alternative-note">Другой разбор темы. <a href="../../courses/mqa-base/step-025.html">Основное объяснение: Лекция «Предусловие» →</a></p></header>
-          <div class="lesson-content"><div>
+          <div class="lesson-content "><div class="lesson-source">
 
-<h1>Пояснение к теме &ldquo;Предусловие&rdquo;</h1>
 
-<div>
-<div>
-<div>
+
+<div class="lesson-section">
+<div class="lesson-block">
+<div class="lesson-method">
 <p><strong>Предусловие </strong>&mdash; это не просто формальность, а контекст, в котором выполняется проверка.</p>
 
 <p>Оно определяет стартовую точку, с которой тест-кейс или баг-репорт имеет смысл.</p>
@@ -42,7 +42,7 @@
 <p>Ниже &mdash; практические детали, которые помогут правильно формулировать предусловия и избегать путаницы в команде.</p>
 </div>
 
-<div>
+<div class="lesson-method">
 <p><strong>Авторизация и использование учётных записей</strong></p>
 
 <p>1. Если проверка выполняется под определённой ролью или пользователем, это стоит отразить в предусловии.</p>
@@ -60,7 +60,7 @@
 <p>В этом случае лучше указать просто роль и тип пользователя без конкретных данных.</p>
 </div>
 
-<div>
+<div class="lesson-method">
 <p><strong>Учёт ролей и ролевая модель</strong></p>
 
 <p>В большинстве систем предусмотрена ролевая модель &mdash; набор ролей с различными уровнями доступа:</p>
@@ -76,7 +76,7 @@
 <p>Это даёт понимание, какие ограничения действуют в рамках теста и почему результат мог отличаться у другого участника команды. Можно и не указывать роль, если постоянно используете в работе одну и туже.</p>
 </div>
 
-<div>
+<div class="lesson-method">
 <p><strong>Существующие процессы и контекст</strong></p>
 
 <p>Иногда сценарий теста или баг-репорта подразумевает, что в системе уже есть определённые данные &mdash; например, заказ оформлен, документ создан, пользователь зарегистрирован.</p>
@@ -94,7 +94,7 @@
 <p><strong>Цель предусловия</strong> &mdash; зафиксировать контекст, а не расписать процесс воспроизведения.</p>
 </div>
 
-<div>
+<div class="lesson-info">
 <p><strong>Окружение и условия выполнения</strong></p>
 
 <p>В предусловии можно также указать технические параметры, влияющие на выполнение проверки:</p>
