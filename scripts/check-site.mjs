@@ -96,10 +96,12 @@ for (const record of search) {
 for (const [pattern, label] of forbiddenPublishedPatterns) {
   if (pattern.test(searchText)) failures.push(`docs/assets/search-index.json: ${label}`);
 }
-if (lessonFiles.length !== 283) failures.push(`Страниц уроков: ${lessonFiles.length}, ожидалось 283`);
-if (search.length !== 283) failures.push(`Записей поиска: ${search.length}, ожидалось 283`);
-if (htmlFiles.length !== 289) failures.push(`HTML-файлов: ${htmlFiles.length}, ожидалось 289`);
-if (search.some((item) => /^(?:Форма обратной связи|Ревью)$/.test(item.type))) failures.push('В поиске остались формы обратной связи или ревью');
+const expectedLessons = expectedEnvironment === 'development' ? 283 : 295;
+const expectedHtmlFiles = expectedLessons + 6;
+if (lessonFiles.length !== expectedLessons) failures.push(`Страниц уроков: ${lessonFiles.length}, ожидалось ${expectedLessons}`);
+if (search.length !== expectedLessons) failures.push(`Записей поиска: ${search.length}, ожидалось ${expectedLessons}`);
+if (htmlFiles.length !== expectedHtmlFiles) failures.push(`HTML-файлов: ${htmlFiles.length}, ожидалось ${expectedHtmlFiles}`);
+if (expectedEnvironment === 'development' && search.some((item) => /^(?:Форма обратной связи|Ревью)$/.test(item.type))) failures.push('В поиске остались формы обратной связи или ревью');
 
 if (failures.length) {
   console.error(failures.join('\n'));
