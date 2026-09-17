@@ -210,18 +210,10 @@ function courseCard(course, depth = 0) {
 }
 
 function pageKind(type) {
-  return ({ lecture: 'Лекция', mentorCheckTask: 'Практическое задание', multi_input: 'Форма обратной связи', review_step: 'Ревью' })[type] || 'Материал';
+  return ({ lecture: 'Лекция', mentorCheckTask: 'Практическое задание' })[type] || 'Материал';
 }
 
-function taskSupplement(page) {
-  if (page.taskType === 'lecture') return '';
-  let questions = '';
-  if (page.taskType === 'multi_input' && Array.isArray(page.content.items)) {
-    questions = `<section class="reference-questions"><h2>Вопросы формы</h2><ol>${page.content.items
-      .map((item) => `<li>${escapeHtml(neutralizeBrand(item.questionText || '').replace(/\s+/g, ' ').trim())}</li>`).join('')}</ol></section>`;
-  }
-  return `<aside class="notice"><strong>Справочный режим</strong><p>Задание сохранено для чтения. На этой странице нет полей ввода, проверки или отправки ответов.</p></aside>${questions}`;
-}
+const whyTestIntro = '<section class="editorial-intro"><h2>Зачем тестировать</h2><p>Тестирование помогает обнаружить расхождение между тем, как продукт должен работать, и тем, что получает пользователь. Оно не доказывает отсутствие ошибок, но снижает риск неприятных сюрпризов до выпуска.</p><p>Тестировщик проверяет требования, исследует поведение продукта, сообщает о проблемах понятным команде способом и помогает принять обоснованное решение о выпуске. В следующих этапах вы научитесь делать это на конкретных примерах.</p></section>';
 
 const courses = courseDefs.map((def) => {
   const structure = readJson(def.course);
@@ -240,8 +232,8 @@ const courses = courseDefs.map((def) => {
     number: index + 1,
     file: `step-${String(index + 1).padStart(3, '0')}.html`,
     safeTitle: neutralizeBrand(page.content?.title || page.heading?.taskTitle || `Шаг ${index + 1}`),
-    safeHtml: sanitizeHtml(page.content?.description || ''),
-  }));
+    safeHtml: (def.slug === 'mqa-base' && index === 0 ? whyTestIntro : '') + sanitizeHtml(page.content?.description || ''),
+  })).filter((page) => page.taskType !== 'multi_input' && page.taskType !== 'review_step');
 
   const modules = [];
   for (const page of ordered) {
@@ -282,21 +274,21 @@ const routeByUrl = new Map(curriculum?.records.map((record, index) => [record.ur
 const routeBySourceKey = new Map(curriculum?.records.map((record) => [`${record.source.course === 'mqa-base' ? 'Q' : 'M'}${record.source.step}`, record]) || []);
 
 function routeHome() {
-  const roleLabel = { core: 'Основное', practice: 'Практика', advanced: 'После основ', reference: 'Справка' };
+  const kindLabel = { lecture: 'Лекции', mixed: 'Лекции + практика', practice: 'Практика' };
   const outline = curriculum.stages.map((stage) => `<section class="module-block route-stage" id="${stage.id}">
     <header><span>${String(stage.number).padStart(2, '0')}</span><div><p>Этап ${stage.number}</p><h2>${escapeHtml(stage.title)}</h2></div><strong>${stage.topics.reduce((sum, topic) => sum + topic.items.length, 0)} шагов</strong></header>
     <p class="stage-goal">${escapeHtml(stage.goal)} <strong>Результат:</strong> ${escapeHtml(stage.outcome)}</p>${stage.id === 'end-to-end' ? '<aside class="capstone"><h3>Итоговая работа</h3><p>Возьмите один знакомый веб-сценарий. Зафиксируйте требование и вопросы к нему, составьте проверки, выполните их в интерфейсе и при необходимости через API/БД, затем опишите один воспроизводимый дефект. Упражнения ниже взяты из разных исходных контекстов: используйте их как образцы отдельных действий, а итоговую цепочку соберите на одном выбранном сценарии.</p></aside>' : ''}
-    <div class="chapter-list">${stage.topics.map((topic) => `<details><summary><span>${escapeHtml(topic.title)} <small class="role-chip ${topic.role}">${roleLabel[topic.role]}</small></span><span class="chapter-toggle"><small>${topic.items.length}</small><span class="chapter-chevron" aria-hidden="true">▸</span></span></summary><ol>${topic.items.map((item) => `<li><a href="${item.url}"><span>${String(item.route.lessonOrder).padStart(3, '0')}</span><strong>${escapeHtml(item.title)}</strong><em>${item.alternativeTo ? 'Другой разбор' : escapeHtml(item.source.course === 'mqa-base' ? 'MQA Base' : 'Ручное тестирование')}</em></a></li>`).join('')}</ol></details>`).join('')}</div>
+    <div class="chapter-list">${stage.topics.map((topic) => `<details><summary><span>${escapeHtml(topic.title)} <small class="role-chip ${topic.kind}">${kindLabel[topic.kind]}</small></span><span class="chapter-toggle"><small>${topic.items.length}</small><span class="chapter-chevron" aria-hidden="true">▸</span></span></summary><ol>${topic.items.map((item) => `<li><a href="${item.url}"><span>${String(item.route.lessonOrder).padStart(3, '0')}</span><strong>${escapeHtml(item.title)}</strong><em>${item.alternativeTo ? 'Другой разбор' : escapeHtml(item.source.course === 'mqa-base' ? 'MQA Base' : 'Ручное тестирование')}</em></a></li>`).join('')}</ol></details>`).join('')}</div>
   </section>`).join('');
-  return `<section class="home-intro route-intro"><div><span class="eyebrow">Единый маршрут · ${totalPages} шагов</span><h1>От первого требования<br><span>до найденного дефекта</span></h1></div><div class="home-copy"><p>Восемь последовательных этапов объединяют оба исходных курса. Начните с первого шага; дополнительные темы отмечены отдельно.</p><a class="route-start" href="${curriculum.records[0].url}">Начать обучение →</a><form class="search-hero" action="search.html" role="search"><label class="sr-only" for="home-search">Поиск по маршруту</label><input id="home-search" name="q" type="search" placeholder="Например, граничные значения" required><button>Найти</button></form></div></section>
+  return `<section class="home-intro route-intro"><div><span class="eyebrow">Единый маршрут · ${totalPages} шагов</span><h1>От знакомства с QA<br><span>до найденного дефекта</span></h1></div><div class="home-copy"><a class="route-start" href="${curriculum.records[0].url}">Начать обучение →</a><form class="search-hero" action="search.html" role="search"><label class="sr-only" for="home-search">Поиск по маршруту</label><input id="home-search" name="q" type="search" placeholder="Например, граничные значения" required><button>Найти</button></form></div></section>
   <nav class="route-jump" aria-label="Этапы маршрута">${curriculum.stages.map((stage) => `<a href="#${stage.id}">${escapeHtml(stage.title)}</a>`).join('')}</nav>
   <div class="outline route-outline">${outline}</div>
-  <section id="archive" class="archive-section"><span class="eyebrow">Исходные материалы</span><h2>Архив исходных курсов</h2><p>Прежние структуры и адреса всех уроков сохранены для ссылок и сверки. Для обучения используйте единый маршрут выше.</p><div class="course-grid">${courses.map((course) => courseCard(course)).join('')}</div></section>`;
+  <section id="archive" class="archive-section"><span class="eyebrow">Исходные материалы</span><h2>Архив исходных курсов</h2><p>Прежние структуры учебных материалов сохранены для ссылок и сверки; формы обратной связи и ревью исключены. Для обучения используйте единый маршрут выше.</p><div class="course-grid">${courses.map((course) => courseCard(course)).join('')}</div></section>`;
 }
 
 write('index.html', shell({
   title: 'Персональный курс QA',
-  description: '295 страниц учебных материалов по ручному тестированию и MQA Base.',
+  description: `${totalPages} страниц учебных материалов по ручному тестированию и MQA Base.`,
   body: isDevelopment ? routeHome() : `<section class="home-intro">
     <div><span class="eyebrow">Персональный курс QA</span><h1>Учебные материалы<br><span>без лишнего шума</span></h1></div>
     <div class="home-copy"><p>Два курса собраны в читаемый статический справочник. Выберите курс или найдите понятие сразу во всех ${totalPages} страницах.</p>
@@ -341,10 +333,10 @@ for (const course of courses) {
       description: plainText(page.safeHtml).slice(0, 155),
       depth: 2,
       current: course.slug,
-      body: `<div class="reader-layout"><aside class="reader-rail"><a href="${isDevelopment ? '../../index.html' : 'index.html'}">← ${isDevelopment ? 'Единый маршрут' : 'Структура курса'}</a><div class="rail-index"><span>${String(isDevelopment ? routePosition.index + 1 : page.number).padStart(3, '0')}</span><small>из ${isDevelopment ? totalPages : course.pages.length}</small></div><p>${escapeHtml(isDevelopment ? routeRecord.route.stageTitle : page.chapterName)}</p><div class="rail-progress" aria-label="Шаг ${isDevelopment ? routePosition.index + 1 : chapterPos} из ${isDevelopment ? totalPages : chapterPages.length}"><i style="width:${Math.round((isDevelopment ? routePosition.index + 1 : chapterPos) / (isDevelopment ? totalPages : chapterPages.length) * 100)}%"></i></div><small>${isDevelopment ? `${routeRecord.route.topic} · ${routeRecord.route.role}` : `${chapterPos} / ${chapterPages.length} в теме`}</small></aside>
+      body: `<div class="reader-layout"><aside class="reader-rail"><a href="${isDevelopment ? '../../index.html' : 'index.html'}">← ${isDevelopment ? 'Единый маршрут' : 'Структура курса'}</a><div class="rail-index"><span>${String(isDevelopment ? routePosition.index + 1 : page.number).padStart(3, '0')}</span><small>из ${isDevelopment ? totalPages : course.pages.length}</small></div><p>${escapeHtml(isDevelopment ? routeRecord.route.stageTitle : page.chapterName)}</p><div class="rail-progress" aria-label="Шаг ${isDevelopment ? routePosition.index + 1 : chapterPos} из ${isDevelopment ? totalPages : chapterPages.length}"><i style="width:${Math.round((isDevelopment ? routePosition.index + 1 : chapterPos) / (isDevelopment ? totalPages : chapterPages.length) * 100)}%"></i></div><small>${isDevelopment ? `${routeRecord.route.topic} · ${pageKind(page.taskType)}` : `${chapterPos} / ${chapterPages.length} в теме`}</small></aside>
         <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">${isDevelopment ? 'Единый маршрут' : 'Главная'}</a><span>/</span>${isDevelopment ? `<a href="../../index.html#${routeRecord.route.stage}">${escapeHtml(routeRecord.route.stageTitle)}</a><span>/</span><span>${escapeHtml(routeRecord.route.topic)}</span>` : `<a href="index.html">${escapeHtml(course.title)}</a><span>/</span><span>${escapeHtml(page.moduleName)}</span><span>/</span><span>${escapeHtml(page.chapterName)}</span>`}</nav>
           <header class="lesson-head"><span class="type-chip">${pageKind(page.taskType)}</span><h1>${escapeHtml(page.safeTitle)}</h1><p>${escapeHtml(page.moduleName)} · ${escapeHtml(page.chapterName)}</p>${alternativeBase ? `<p class="alternative-note">Другой разбор темы. <a href="../../${alternativeBase.url}">Основное объяснение: ${escapeHtml(alternativeBase.title)} →</a></p>` : ''}</header>
-          ${taskSupplement(page)}<div class="lesson-content">${page.safeHtml || '<p>Текст для этого шага отсутствует в выгрузке.</p>'}</div>
+          <div class="lesson-content">${page.safeHtml || '<p>Текст для этого шага отсутствует в выгрузке.</p>'}</div>
           ${isDevelopment ? routePager : `<nav class="pager" aria-label="Навигация между шагами">${previous ? `<a class="prev" href="${previous.file}"><small>Назад</small><span>← ${escapeHtml(previous.safeTitle)}</span></a>` : '<span></span>'}${next ? `<a class="next" href="${next.file}"><small>Дальше</small><span>${escapeHtml(next.safeTitle)} →</span></a>` : `<a class="next" href="index.html"><small>Готово</small><span>К структуре курса →</span></a>`}</nav>`}
           ${isDevelopment ? `<p class="source-note">Источник: <a href="index.html">${escapeHtml(course.title)}</a> · ${escapeHtml(page.moduleName)} / ${escapeHtml(page.chapterName)} · исходный шаг ${page.number}.</p>` : ''}
         </article></div>`,
@@ -379,7 +371,7 @@ write('search.html', shell({
 write('about.html', shell({
   title: 'О курсе',
   description: 'Как устроен персональный курс QA.',
-  body: `<article class="about"><span class="eyebrow">Персональный курс QA</span><h1>Спокойное чтение,<br>без действий на платформе</h1><p>Сайт собран из локальных учебных материалов. В нём ${totalPages} страниц: лекции, практические задания, формы и шаги ревью.${isDevelopment ? ' Восемь этапов образуют единый маршрут; прежняя структура двух курсов доступна в архиве.' : ''}</p><h2>Что сохранено</h2><ul><li>заголовки, текст, списки, таблицы и безопасные внешние ссылки;</li><li>${isDevelopment ? 'маршрут «этап → тема → шаг» и архивная структура исходных курсов' : 'структура «модуль → тема → шаг»'};</li><li>текстовые описания изображений без загрузки самих файлов.</li></ul><h2>Чего здесь нет</h2><p>Логинов, паролей, cookies, токенов, профилей учеников, комментариев, прогресса, ответов и решений. Формы и тесты показаны только для справки и ничего не отправляют.</p></article>`,
+  body: `<article class="about"><span class="eyebrow">Персональный курс QA</span><h1>Спокойное чтение,<br>без действий на платформе</h1><p>Сайт собран из локальных учебных материалов. В нём ${totalPages} страниц: лекции и практические задания.${isDevelopment ? ' Девять этапов образуют единый маршрут; прежняя структура учебных материалов доступна в архиве.' : ''}</p><h2>Что сохранено</h2><ul><li>заголовки, текст, списки, таблицы и безопасные внешние ссылки;</li><li>${isDevelopment ? 'маршрут «этап → тема → шаг» и архивная структура учебных материалов' : 'структура «модуль → тема → шаг»'};</li><li>текстовые описания изображений без загрузки самих файлов.</li></ul><h2>Чего здесь нет</h2><p>Логинов, паролей, cookies, токенов, профилей учеников, комментариев, прогресса, ответов и решений. Формы обратной связи и шаги ревью исключены; ответы не отправляются.</p></article>`,
 }));
 
 write('404.html', fs.readFileSync(path.join(outDir, 'index.html'), 'utf8'));

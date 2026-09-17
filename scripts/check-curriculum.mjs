@@ -11,6 +11,10 @@ const expected = new Set([
   ...Array.from({ length: 168 }, (_, i) => `courses/manual-testing/step-${String(i + 1).padStart(3, '0')}.html`),
   ...Array.from({ length: 127 }, (_, i) => `courses/mqa-base/step-${String(i + 1).padStart(3, '0')}.html`),
 ]);
+for (const [course, steps] of [
+  ['manual-testing', [57, 58, 120, 121, 131, 167, 168]],
+  ['mqa-base', [79, 99, 100, 126, 127]],
+]) for (const step of steps) expected.delete(`courses/${course}/step-${String(step).padStart(3, '0')}.html`);
 if (map.length !== expected.size) fail(`Карта: ${map.length} вместо ${expected.size} шагов`);
 if (search.length !== expected.size || new Set(search.map((item) => item.url)).size !== expected.size) fail('Поиск должен содержать каждый урок ровно один раз');
 if (!home.includes('Архив исходных курсов')) fail('Нет раздела архивов');
@@ -33,6 +37,9 @@ for (const [index, item] of map.entries()) {
   if (next && !html.includes(`href="../../${next.url}"`)) fail(`Неверный следующий шаг: ${item.url}`);
   if (item.alternativeTo && !html.includes('Основное объяснение')) fail(`Нет основного разбора для ${item.url}`);
 }
-if (new Set(map.map((item) => item.route.stage)).size !== 8) fail('Ожидалось восемь этапов');
+if (new Set(map.map((item) => item.route.stage)).size !== 9) fail('Ожидалось девять этапов');
+if (!home.includes('id="interview"') || !home.includes('Лекции</small>') || !home.includes('Практика</small>')) fail('Нет блока собеседования или новых типов тем');
+if (home.includes('Восемь последовательных этапов') || home.includes('После основ') || home.includes('Основное</small>')) fail('Остались прежние статусы или вступление');
+if (!fs.readFileSync(path.join(outDir, 'courses/mqa-base/step-001.html'), 'utf8').includes('<h2>Зачем тестировать</h2>')) fail('Нет вводного объяснения');
 if (seen.size !== expected.size) fail('Не все исходные страницы распределены');
-console.log(JSON.stringify({ mapped: seen.size, stages: 8, searchRecords: search.length, archives: 2, navigation: 'ok' }));
+console.log(JSON.stringify({ mapped: seen.size, stages: 9, searchRecords: search.length, archives: 2, navigation: 'ok' }));

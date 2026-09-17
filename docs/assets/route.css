@@ -13,9 +13,8 @@
 .capstone p{margin:0;color:var(--muted)}
 .role-chip{display:inline-block;margin-left:.6rem;padding:.15rem .45rem;border-radius:5px;border:1px solid var(--line);font-size:.65rem;font-weight:700;vertical-align:middle}
 .role-chip.practice{color:var(--aqua)}
-.role-chip.advanced{color:var(--amber)}
-.role-chip.reference{color:var(--muted)}
-.role-chip.alternative{color:var(--muted)}
+.role-chip.mixed{color:var(--amber)}
+.role-chip.lecture{color:var(--muted)}
 .alternative-note{margin-top:1rem!important;padding:.7rem .9rem;border-left:3px solid var(--aqua);background:var(--panel);font-size:.9rem}
 .alternative-note a{text-decoration:underline;text-underline-offset:3px}
 .archive-section{max-width:var(--max);margin:2rem auto 0;padding:3rem 24px 0;border-top:1px solid var(--line);scroll-margin-top:100px}
@@ -28,3 +27,35 @@
 .source-note a{text-decoration:underline;text-underline-offset:3px}
 @media(max-width:800px){.stage-goal,.capstone{margin-left:0}.route-jump{padding-left:16px;padding-right:16px}.archive-section{padding-left:16px;padding-right:16px}}
 @media(prefers-color-scheme:light){.route-start{color:#fff}}
+
+/* Compact 8px-based spacing scale for navigation, while preserving readable lesson text. */
+.topbar{height:64px;gap:1.25rem}
+.home-intro{padding-top:3rem;padding-bottom:2rem;gap:2rem}
+.route-intro{padding-bottom:1.5rem}
+.route-intro h1{font-size:clamp(2.6rem,4.5vw,4rem);line-height:1.02;margin-top:.5rem}
+.route-jump{padding-bottom:1rem}
+.outline{padding-top:1.5rem;padding-bottom:1.5rem}
+.module-block{margin-bottom:2.5rem}
+.module-block>header{margin-bottom:.75rem}
+.stage-goal{margin-bottom:1rem}
+.capstone{margin-bottom:1rem;padding:1rem}
+summary{padding:.75rem 0}
+details ol{margin-bottom:.75rem}
+details li a{padding:.5rem .75rem}
+.course-head{padding-top:2rem;padding-bottom:2.5rem}
+.course-head h1{margin-bottom:1.5rem}
+.reader-layout{padding-top:1.5rem;padding-bottom:1.5rem;gap:2.5rem}
+.lesson .breadcrumbs{margin-bottom:1rem}
+.lesson-head{padding-bottom:1.25rem;margin-bottom:1.5rem}
+.lesson-content{line-height:1.65}
+.lesson-content h1,.lesson-content h2,.lesson-content h3,.lesson-content h4,.lesson-content h5,.lesson-content h6{margin:1.6em 0 .6em}
+.pager{margin-top:2rem}
+.search-page,.about{padding-top:2.5rem;padding-bottom:2.5rem}
+.archive-section{margin-top:1.5rem;padding-top:2rem}
+.archive-section .course-card{min-height:220px}
+footer{margin-top:2.5rem}
+.editorial-intro{padding:1rem;border-left:3px solid var(--aqua);background:var(--panel);border-radius:0 8px 8px 0;margin-bottom:1.5rem}
+.editorial-intro h2{margin:0 0 .5rem}
+.editorial-intro p{margin:.5rem 0}
+.search-hit{background:#ffd479;color:#101827;border-radius:2px;box-shadow:0 0 0 2px #ffd479;scroll-margin-top:6rem}
+@media(max-width:800px){.topbar{height:auto}.home-intro{padding-top:2rem}.reader-layout{gap:1.5rem}}
