@@ -72,14 +72,18 @@ function searchEmphasis(text, query) {
       }
       const guideMatches = [...guides.values()].filter((item) => searchFold(item.title).includes(term)).map((item) => ({
         score: item.type === 'Этап' ? 100 : 80,
-        html: `<a class="result" href="${searchEscape(item.url.replace('#', `?hl=${encodeURIComponent(raw)}#`))}"><small>${item.type}${item.module ? ` · ${searchEmphasis(item.module, raw)}` : ''}</small><h2>${searchEmphasis(item.title, raw)}</h2></a>`,
+        html: `<a class="result" href="${searchEscape(item.url.replace('#', `?hl=${encodeURIComponent(raw)}&scope=guide#`))}"><small>${item.type}${item.module ? ` · ${searchEmphasis(item.module, raw)}` : ''}</small><h2>${searchEmphasis(item.title, raw)}</h2></a>`,
       }));
       const pageMatches = index.map((item) => {
-        const score = (searchFold(item.title).includes(term) ? 40 : 0) + (searchFold(item.chapter).includes(term) ? 16 : 0) + (searchFold(item.text).includes(term) ? 1 : 0);
-        return { item, score };
-      }).filter(({ score }) => score > 0).map(({ item, score }) => ({
+        const titleMatch = searchFold(item.title).includes(term);
+        const topicMatch = searchFold(item.chapter).includes(term);
+        const textMatch = searchFold(item.text).includes(term);
+        const score = (titleMatch ? 40 : 0) + (topicMatch ? 16 : 0) + (textMatch ? 1 : 0);
+        const scope = titleMatch ? 'title' : topicMatch ? 'topic' : 'content';
+        return { item, score, scope, titleMatch, textMatch };
+      }).filter(({ score, titleMatch, textMatch }) => score > 0 && (titleMatch || textMatch)).map(({ item, score, scope }) => ({
         score,
-        html: `<a class="result" href="${searchEscape(item.url)}?hl=${encodeURIComponent(raw)}"><small>${searchEscape(item.course)} · ${searchEmphasis(item.module, raw)} · ${searchEscape(item.type)}</small><h2>${searchEmphasis(item.title, raw)}</h2><p>${searchEmphasis(item.chapter, raw)}</p><p>${excerpt(item.text, raw)}</p></a>`,
+        html: `<a class="result" href="${searchEscape(item.url)}?hl=${encodeURIComponent(raw)}&scope=${scope}"><small>${searchEscape(item.course)} · ${searchEscape(item.module)} · ${searchEscape(item.type)}</small><h2>${searchEmphasis(item.title, raw)}</h2><p>${searchEmphasis(item.chapter, raw)}</p>${scope === 'content' || searchRange(item.text, raw) ? `<p>${excerpt(item.text, raw)}</p>` : ''}</a>`,
       }));
       const found = [...guideMatches, ...pageMatches].sort((a, b) => b.score - a.score);
       status.textContent = found.length ? `Найдено: ${found.length}` : 'Ничего не найдено. Попробуйте другую формулировку.';
@@ -95,6 +99,7 @@ function searchEmphasis(text, query) {
 
 (() => {
   const term = new URLSearchParams(location.search).get('hl')?.trim();
+  const scope = new URLSearchParams(location.search).get('scope');
   const article = document.querySelector('article.lesson');
   const guide = !article && location.hash ? document.getElementById(decodeURIComponent(location.hash.slice(1))) : null;
   const root = article || guide;
@@ -124,8 +129,11 @@ function searchEmphasis(text, query) {
     }
   };
   if (article) {
-    markFirst(article.querySelector('.lesson-content'));
+    if (scope === 'title') markFirst(article.querySelector('.lesson-head h1'));
+    else if (scope === 'topic') markFirst(article.querySelector('.breadcrumbs'));
+    else markFirst(article.querySelector('.lesson-content'));
     if (!marks.length) markFirst(article.querySelector('.lesson-head'));
+    if (!marks.length) markFirst(article.querySelector('.lesson-content'));
     if (!marks.length) markFirst(article.querySelector('.breadcrumbs'));
   } else markFirst(guide.querySelector('header,summary'));
   if (!marks.length) return;

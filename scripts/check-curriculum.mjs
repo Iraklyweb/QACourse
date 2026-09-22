@@ -41,6 +41,7 @@ if (new Set(map.map((item) => item.route.stage)).size !== 9) fail('Ожидал�
 if (!home.includes('id="interview"') || !home.includes('Лекции</small>') || !home.includes('Практика</small>')) fail('Нет блока собеседования или новых типов тем');
 if (!home.includes('id="end-to-end-topic-2"') || !home.includes('Выбрать и уточнить требование <small class="role-chip mixed">Лекции + практика</small>')) fail('Тема с лекцией и заданием должна быть смешанной');
 if (/\b(?:21|54) шагов\b/.test(home) || /<h2>\d+\.\s/.test(home)) fail('Ошибочное склонение или двойная нумерация этапов');
+if (!home.includes('Единый маршрут · 283 шага') || !home.includes('<strong>23 шага</strong>') || !home.includes('<strong>61 шаг</strong>') || !home.includes('<strong>21 шаг</strong>')) fail('Неверное склонение количества шагов');
 if (!search.every((record) => record.stageId && record.topicId && record.stageNumber)) fail('Поиску не хватает ссылок на этапы и темы');
 for (const [step, minimumBlocks] of [[84, 9], [86, 12], [87, 13]]) {
   const lesson = fs.readFileSync(path.join(outDir, `courses/mqa-base/step-${String(step).padStart(3, '0')}.html`), 'utf8');
@@ -50,6 +51,12 @@ for (const [step, minimumBlocks] of [[84, 9], [86, 12], [87, 13]]) {
 const architecture = fs.readFileSync(path.join(outDir, 'courses/manual-testing/step-067.html'), 'utf8');
 if ((architecture.match(/<h1>/g) || []).length !== 1 || /<p>\s*&nbsp;\s*<\/p>/.test(architecture)) fail('Повторный заголовок или пустые отступы в лекции M67');
 if (!fs.readFileSync(path.join(outDir, 'courses/mqa-base/step-084.html'), 'utf8').includes('numbered-attributes')) fail('Не пронумерованы атрибуты требований');
+const requirementsLesson = fs.readFileSync(path.join(outDir, 'courses/manual-testing/step-123.html'), 'utf8');
+if (requirementsLesson.includes('выполняя <strong>домашние задания</strong>') || !requirementsLesson.includes('Вы уже познакомились с темой требований')) fail('Не исправлено вступление шага 24');
+const about = fs.readFileSync(path.join(outDir, 'about.html'), 'utf8');
+if (!about.includes('В нём 283 страницы')) fail('Неверное склонение количества страниц');
+const routeCss = fs.readFileSync(path.join(outDir, 'assets/route.css'), 'utf8');
+if (!routeCss.includes('.lesson-content table{font-family:inherit}')) fail('Таблицы используют другой шрифт');
 if (home.includes('Восемь последовательных этапов') || home.includes('После основ') || home.includes('Основное</small>')) fail('Остались прежние статусы или вступление');
 if (!fs.readFileSync(path.join(outDir, 'courses/mqa-base/step-001.html'), 'utf8').includes('<h2>Зачем тестировать</h2>')) fail('Нет вводного объяснения');
 if (seen.size !== expected.size) fail('Не все исходные страницы распределены');
