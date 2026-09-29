@@ -38,6 +38,15 @@ for (const [index, item] of map.entries()) {
   if (item.alternativeTo && !html.includes('Основное объяснение')) fail(`Нет основного разбора для ${item.url}`);
 }
 if (new Set(map.map((item) => item.route.stage)).size !== 9) fail('Ожидалось девять этапов');
+const requirementsStage = map.filter((item) => item.route.stage === 'requirements');
+if (requirementsStage.length !== 14 || requirementsStage.some((item) => item.taskType !== 'lecture')) fail('Во втором этапе практика опережает теорию документации');
+const documentPractice = map.filter((item) => item.route.stage === 'documents' && ['Основная практика документов', 'Дополнительные задания — по желанию'].includes(item.route.topic));
+const expectedDocumentPractice = new Set(['Q74', 'Q75', 'Q76', 'Q77', 'Q78', 'Q94', 'Q95', 'Q96', 'Q97', 'M55']);
+const documentPracticeKeys = new Set(documentPractice.map((item) => `${item.source.course === 'mqa-base' ? 'Q' : 'M'}${item.source.step}`));
+if (documentPracticeKeys.size !== expectedDocumentPractice.size || [...expectedDocumentPractice].some((key) => !documentPracticeKeys.has(key))) fail('Практика документов расположена не после теории');
+const firstPracticeIndex = map.findIndex((item) => item.route.topic === 'Основная практика документов');
+const lastExampleIndex = map.findLastIndex((item) => item.route.topic === 'Разобранные примеры');
+if (firstPracticeIndex <= lastExampleIndex) fail('Практика документов должна идти после разобранных примеров');
 if (!home.includes('id="interview"') || !home.includes('Лекции</small>') || !home.includes('Практика</small>')) fail('Нет блока собеседования или новых типов тем');
 if (!home.includes('id="end-to-end-topic-2"') || !home.includes('Выбрать и уточнить требование <small class="role-chip mixed">Лекции + практика</small>')) fail('Тема с лекцией и заданием должна быть смешанной');
 if (/\b(?:21|54) шагов\b/.test(home) || /<h2>\d+\.\s/.test(home)) fail('Ошибочное склонение или двойная нумерация этапов');
