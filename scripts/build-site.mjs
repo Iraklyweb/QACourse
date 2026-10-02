@@ -4,6 +4,8 @@ import { fileURLToPath } from 'node:url';
 import { buildCurriculum } from './curriculum.mjs';
 import { introCourse } from './intro-course.mjs';
 
+const activeIntroBlocks = introCourse.blocks.filter((block) => block.status !== 'removed');
+
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const sourceDirName = process.env.COURSE_EXPORT_DIR || fs.readdirSync(root, { withFileTypes: true })
   .find((entry) => entry.isDirectory() && entry.name.endsWith('-academy-export'))?.name;
@@ -338,8 +340,7 @@ function routeHome() {
     <p class="stage-goal">${escapeHtml(stage.goal)} <strong>Результат:</strong> ${escapeHtml(stage.outcome)}</p>${stage.id === 'end-to-end' ? '<aside class="capstone"><h3>Итоговая работа</h3><p>Возьмите один знакомый веб-сценарий. Зафиксируйте требование и вопросы к нему, составьте проверки, выполните их в интерфейсе и при необходимости через API/БД, затем опишите один воспроизводимый дефект. Упражнения ниже взяты из разных исходных контекстов: используйте их как образцы отдельных действий, а итоговую цепочку соберите на одном выбранном сценарии.</p></aside>' : ''}
     <div class="chapter-list">${stage.topics.map((topic, topicIndex) => `<details id="${stage.id}-topic-${topicIndex + 1}"><summary><span>${escapeHtml(topic.title)} <small class="role-chip ${topic.kind}">${kindLabel[topic.kind]}</small></span><span class="chapter-toggle"><small>${topic.items.length}</small><span class="chapter-chevron" aria-hidden="true">▸</span></span></summary><ol>${topic.items.map((item) => `<li><a href="${item.url}"><span>${String(item.route.lessonOrder).padStart(3, '0')}</span><strong>${escapeHtml(item.title)}</strong><em>${item.alternativeTo ? 'Другой разбор' : escapeHtml(item.source.course === 'mqa-base' ? 'MQA Base' : 'Ручное тестирование')}</em></a></li>`).join('')}</ol></details>`).join('')}</div>
   </section>`).join('');
-  const readyMinutes = introCourse.blocks.filter((block) => block.status === 'ready').reduce((sum, block) => sum + block.minutes, 0);
-  return `<section class="intro-course-card"><div><span class="eyebrow">Новый вводный курс · готов первый блок</span><h1>${escapeHtml(introCourse.title)}</h1><p>${escapeHtml(introCourse.description)}</p></div><div class="intro-course-actions"><strong>${readyMinutes / 60} из ${introCourse.totalMinutes / 60} часов готовы</strong><a class="route-start" href="courses/${introCourse.slug}/">Открыть вводный курс →</a></div></section>
+  return `<section class="intro-course-card"><div><h1>${escapeHtml(introCourse.title)}</h1><p>${escapeHtml(introCourse.description)}</p></div><div class="intro-course-actions"><a class="route-start" href="courses/${introCourse.slug}/">Открыть вводный курс →</a></div></section>
   <section class="home-intro route-intro" id="main-route"><div><span class="eyebrow">Основной курс QA · ${stepCount(totalPages)}</span><h1>От знакомства с QA<br><span>до найденного дефекта</span></h1></div><div class="home-copy"><a class="route-start" href="${curriculum.records[0].url}">Перейти к основному курсу →</a><form class="search-hero" action="search.html" role="search"><label class="sr-only" for="home-search">Поиск по маршруту</label><input id="home-search" name="q" type="search" placeholder="Например, граничные значения" required><button>Найти</button></form></div></section>
   <nav class="route-jump" aria-label="Этапы маршрута">${curriculum.stages.map((stage) => `<a href="#${stage.id}">${escapeHtml(displayStageTitle(stage.title))}</a>`).join('')}</nav>
   <div class="outline route-outline">${outline}</div>
@@ -406,19 +407,17 @@ for (const course of courses) {
 }
 
 if (isDevelopment) {
-  const readyLessons = introCourse.blocks.flatMap((block, blockIndex) => block.lessons.map((lesson) => ({ ...lesson, block, blockIndex })));
-  const readyMinutes = introCourse.blocks.filter((block) => block.status === 'ready').reduce((sum, block) => sum + block.minutes, 0);
-  const introOutline = introCourse.blocks.map((block, blockIndex) => {
-    const status = block.status === 'ready' ? `${block.minutes / 60} часа · готово` : `${block.minutes / 60} часа · следующий этап`;
+  const readyLessons = activeIntroBlocks.flatMap((block, blockIndex) => block.lessons.map((lesson) => ({ ...lesson, block, blockIndex })));
+  const introOutline = activeIntroBlocks.map((block, blockIndex) => {
     const lessons = block.lessons.length ? `<ol>${block.lessons.map((lesson, lessonIndex) => `<li><a href="lesson-${String(readyLessons.findIndex((item) => item.slug === lesson.slug) + 1).padStart(2, '0')}.html"><span>${String(lessonIndex + 1).padStart(2, '0')}</span><strong>${escapeHtml(lesson.title)}</strong><em>${lesson.minutes} минут</em></a></li>`).join('')}</ol>` : '<p class="planned-block">Материалы будут добавлены после согласования первого блока.</p>';
-    return `<section class="module-block intro-block ${block.status === 'ready' ? 'ready' : 'planned'}"><header><span>${String(blockIndex + 1).padStart(2, '0')}</span><div><p>Блок ${blockIndex + 1}</p><h2>${escapeHtml(block.title)}</h2></div><strong>${status}</strong></header><div class="chapter-list">${lessons}</div></section>`;
+    return `<section class="module-block intro-block"><header><span>${String(blockIndex + 1).padStart(2, '0')}</span><div><p>Блок ${blockIndex + 1}</p><h2>${escapeHtml(block.title)}</h2></div></header><div class="chapter-list">${lessons}</div></section>`;
   }).join('');
 
   write(`courses/${introCourse.slug}/index.html`, shell({
     title: introCourse.title,
     description: introCourse.description,
     depth: 2,
-    body: `<div class="course-head intro-head"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><span>${escapeHtml(introCourse.title)}</span></nav><span class="eyebrow">Вводный курс · 8 часов · без практических заданий</span><h1>${escapeHtml(introCourse.title)}</h1><p>${escapeHtml(introCourse.description)}</p><div class="course-meta"><span>Готово: ${readyMinutes / 60} часов из ${introCourse.totalMinutes / 60}</span><span>${readyLessons.length} лекций</span></div></div><div class="outline intro-outline">${introOutline}</div>`,
+    body: `<div class="course-head intro-head"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><span>${escapeHtml(introCourse.title)}</span></nav><h1>${escapeHtml(introCourse.title)}</h1><p>${escapeHtml(introCourse.description)}</p></div><div class="outline intro-outline">${introOutline}</div>`,
   }));
 
   readyLessons.forEach((lesson, index) => {
@@ -429,7 +428,7 @@ if (isDevelopment) {
       title: lesson.title,
       description: plainText(lesson.html).slice(0, 155),
       depth: 2,
-      body: `<div class="reader-layout"><aside class="reader-rail"><a href="index.html">← Содержание курса</a><div class="rail-index"><span>${String(index + 1).padStart(2, '0')}</span><small>из ${readyLessons.length}</small></div><p>${escapeHtml(lesson.block.title)}</p><div class="rail-progress" aria-label="Лекция ${index + 1} из ${readyLessons.length}"><i style="width:${Math.round((index + 1) / readyLessons.length * 100)}%"></i></div><small>${lesson.minutes} минут · Лекция</small></aside><article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><a href="index.html">${escapeHtml(introCourse.title)}</a><span>/</span><span>${escapeHtml(lesson.block.title)}</span></nav><header class="lesson-head"><span class="type-chip">Вводная лекция · ${lesson.minutes} минут</span><h1>${escapeHtml(lesson.title)}</h1><p>Блок ${lesson.blockIndex + 1} · ${escapeHtml(lesson.block.title)}</p></header><div class="lesson-content">${lesson.html}</div><nav class="pager" aria-label="Навигация между лекциями">${previous ? `<a class="prev" href="${fileFor(index - 1)}"><small>Назад</small><span>← ${escapeHtml(previous.title)}</span></a>` : '<span></span>'}${next ? `<a class="next" href="${fileFor(index + 1)}"><small>Дальше</small><span>${escapeHtml(next.title)} →</span></a>` : '<a class="next" href="index.html"><small>Первый блок завершён</small><span>К содержанию курса →</span></a>'}</nav></article></div>`,
+      body: `<div class="reader-layout"><aside class="reader-rail"><a href="index.html">← Содержание курса</a><div class="rail-index"><span>${String(index + 1).padStart(2, '0')}</span><small>из ${readyLessons.length}</small></div><p>${escapeHtml(lesson.block.title)}</p><div class="rail-progress" aria-label="Лекция ${index + 1} из ${readyLessons.length}"><i style="width:${Math.round((index + 1) / readyLessons.length * 100)}%"></i></div><small>${lesson.minutes} минут · Лекция</small></aside><article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><a href="index.html">${escapeHtml(introCourse.title)}</a><span>/</span><span>${escapeHtml(lesson.block.title)}</span></nav><header class="lesson-head"><span class="type-chip">Вводная лекция · ${lesson.minutes} минут</span><h1>${escapeHtml(lesson.title)}</h1><p>Блок ${lesson.blockIndex + 1} · ${escapeHtml(lesson.block.title)}</p></header><div class="lesson-content">${lesson.html}</div><nav class="pager" aria-label="Навигация между лекциями">${previous ? `<a class="prev" href="${fileFor(index - 1)}"><small>Назад</small><span>← ${escapeHtml(previous.title)}</span></a>` : '<span></span>'}${next ? `<a class="next" href="${fileFor(index + 1)}"><small>Дальше</small><span>${escapeHtml(next.title)} →</span></a>` : '<a class="next" href="index.html"><small>Курс завершён</small><span>К содержанию курса →</span></a>'}</nav></article></div>`,
     }));
   });
 }
@@ -452,7 +451,7 @@ const searchIndex = courses.flatMap((course) => course.pages.flatMap((page) => {
 }));
 if (isDevelopment) {
   searchIndex.sort((a, b) => routeByUrl.get(a.url).index - routeByUrl.get(b.url).index);
-  const introSearchLessons = introCourse.blocks.flatMap((block, blockIndex) => block.lessons.map((lesson) => ({ ...lesson, block, blockIndex })));
+  const introSearchLessons = activeIntroBlocks.flatMap((block, blockIndex) => block.lessons.map((lesson) => ({ ...lesson, block, blockIndex })));
   const introSearch = introSearchLessons.map((lesson, lessonIndex) => ({
     course: introCourse.title,
     courseSlug: introCourse.slug,
@@ -477,7 +476,7 @@ write('search.html', shell({
 write('about.html', shell({
   title: 'О курсе',
   description: 'Как устроен персональный курс QA.',
-  body: `<article class="about"><span class="eyebrow">Персональный курс QA</span><h1>Спокойное чтение,<br>без действий на платформе</h1><p>${isDevelopment ? `На сайте доступны 10 вводных лекций и ${stepCount(totalPages)} основного QA-маршрута. Два из трёх блоков курса «IT с нуля» уже подготовлены; прежняя структура учебных материалов доступна в архиве.` : `Сайт собран из локальных учебных материалов. В нём ${pageCount(totalPages)}: лекции и практические задания.`}</p><h2>Что сохранено</h2><ul><li>заголовки, текст, списки, таблицы и безопасные внешние ссылки;</li><li>${isDevelopment ? 'вводный курс, основной маршрут «этап → тема → шаг» и архивная структура учебных материалов' : 'структура «модуль → тема → шаг»'};</li><li>текстовые описания изображений без загрузки самих файлов.</li></ul><h2>Чего здесь нет</h2><p>Логинов, паролей, cookies, токенов, профилей учеников, комментариев, прогресса, ответов и решений. Формы обратной связи и шаги ревью исключены; ответы не отправляются.</p></article>`,
+  body: `<article class="about"><span class="eyebrow">Персональный курс QA</span><h1>Спокойное чтение,<br>без действий на платформе</h1><p>${isDevelopment ? 'На сайте доступны вводный курс, основной QA-маршрут и архив исходных учебных материалов.' : `Сайт собран из локальных учебных материалов. В нём ${pageCount(totalPages)}: лекции и практические задания.`}</p><h2>Что сохранено</h2><ul><li>заголовки, текст, списки, таблицы и безопасные внешние ссылки;</li><li>${isDevelopment ? 'вводный курс, основной маршрут «этап → тема → шаг» и архивная структура учебных материалов' : 'структура «модуль → тема → шаг»'};</li><li>текстовые описания изображений без загрузки самих файлов.</li></ul><h2>Чего здесь нет</h2><p>Логинов, паролей, cookies, токенов, профилей учеников, комментариев, прогресса, ответов и решений. Формы обратной связи и шаги ревью исключены; ответы не отправляются.</p></article>`,
 }));
 
 write('404.html', fs.readFileSync(path.join(outDir, 'index.html'), 'utf8'));
