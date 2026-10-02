@@ -81,7 +81,9 @@ for (const removedCopy of ['готов первый блок', 'часов го�
 }
 for (const number of Array.from({ length: 8 }, (_, index) => index + 1)) {
   const introLesson = path.join(outDir, `courses/it-start/lesson-${String(number).padStart(2, '0')}.html`);
-  if (!fs.existsSync(introLesson) || !fs.readFileSync(introLesson, 'utf8').includes('Вводная лекция ·')) fail(`Нет вводной лекции ${number}`);
+  if (!fs.existsSync(introLesson)) fail(`Нет вводной лекции ${number}`);
+  const introLessonHtml = fs.readFileSync(introLesson, 'utf8');
+  if (introLessonHtml.includes('<span class="type-chip">Вводная лекция')) fail(`В лекции ${number} осталась вводная плашка`);
 }
 if (fs.existsSync(path.join(outDir, 'courses/it-start/lesson-09.html'))) fail('Осталась страница удалённого блока');
 const introLessonFour = fs.readFileSync(path.join(outDir, 'courses/it-start/lesson-04.html'), 'utf8');
