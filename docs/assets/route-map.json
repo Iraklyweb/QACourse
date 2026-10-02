@@ -2241,29 +2241,9 @@
       "lessonOrder": 112,
       "role": "core"
     },
-    "title": "Лекция «Приоритет в ТК ЧЛ»",
+    "title": "Лекция «Приоритет в тестовой документации»",
     "taskType": "lecture",
     "url": "courses/mqa-base/step-041.html"
-  },
-  {
-    "source": {
-      "course": "mqa-base",
-      "step": 42,
-      "module": "Тестовая документация",
-      "chapter": "Дополнительные поля"
-    },
-    "route": {
-      "stage": "documents",
-      "stageTitle": "4. Тестовая документация",
-      "topic": "Приоритет, серьёзность и вложения",
-      "stageOrder": 4,
-      "topicOrder": 4,
-      "lessonOrder": 113,
-      "role": "core"
-    },
-    "title": "Лекция «Приоритет в баг-репортах»",
-    "taskType": "lecture",
-    "url": "courses/mqa-base/step-042.html"
   },
   {
     "source": {
@@ -2278,7 +2258,7 @@
       "topic": "Приоритет, серьёзность и вложения",
       "stageOrder": 4,
       "topicOrder": 4,
-      "lessonOrder": 114,
+      "lessonOrder": 113,
       "role": "core"
     },
     "title": "Лекция «Серьёзность»",
@@ -2298,7 +2278,7 @@
       "topic": "Приоритет, серьёзность и вложения",
       "stageOrder": 4,
       "topicOrder": 4,
-      "lessonOrder": 115,
+      "lessonOrder": 114,
       "role": "core"
     },
     "title": "Лекция «Еще немного про серьезность и приоритет»",
@@ -2318,7 +2298,7 @@
       "topic": "Приоритет, серьёзность и вложения",
       "stageOrder": 4,
       "topicOrder": 4,
-      "lessonOrder": 116,
+      "lessonOrder": 115,
       "role": "core"
     },
     "title": "Лекция «Комментарий»",
@@ -2338,7 +2318,7 @@
       "topic": "Приоритет, серьёзность и вложения",
       "stageOrder": 4,
       "topicOrder": 4,
-      "lessonOrder": 117,
+      "lessonOrder": 116,
       "role": "core"
     },
     "title": "Лекция «Вложения»",
@@ -2358,7 +2338,7 @@
       "topic": "Выбор формата и поддержка проверок",
       "stageOrder": 4,
       "topicOrder": 5,
-      "lessonOrder": 118,
+      "lessonOrder": 117,
       "role": "core"
     },
     "title": "Лекция «Контекст и применение»",
@@ -2378,7 +2358,7 @@
       "topic": "Выбор формата и поддержка проверок",
       "stageOrder": 4,
       "topicOrder": 5,
-      "lessonOrder": 119,
+      "lessonOrder": 118,
       "role": "core"
     },
     "title": "Лекция «Когда использовать тест-кейсы и чек-листы»",
@@ -2398,7 +2378,7 @@
       "topic": "Выбор формата и поддержка проверок",
       "stageOrder": 4,
       "topicOrder": 5,
-      "lessonOrder": 120,
+      "lessonOrder": 119,
       "role": "core"
     },
     "title": "Лекция «Плюсы и минусы тест-кейсов и чек-листов»",
@@ -2418,7 +2398,7 @@
       "topic": "Выбор формата и поддержка проверок",
       "stageOrder": 4,
       "topicOrder": 5,
-      "lessonOrder": 121,
+      "lessonOrder": 120,
       "role": "core"
     },
     "title": "Лекция «Стремление к единому стилю»",
@@ -2438,7 +2418,7 @@
       "topic": "Выбор формата и поддержка проверок",
       "stageOrder": 4,
       "topicOrder": 5,
-      "lessonOrder": 122,
+      "lessonOrder": 121,
       "role": "core"
     },
     "title": "Лекция «Почему на практике не всегда «1 = 1»»",
@@ -2458,7 +2438,7 @@
       "topic": "Выбор формата и поддержка проверок",
       "stageOrder": 4,
       "topicOrder": 5,
-      "lessonOrder": 123,
+      "lessonOrder": 122,
       "role": "core"
     },
     "title": "Лекция «Когда делить на несколько проверок»",
@@ -2478,7 +2458,7 @@
       "topic": "Выбор формата и поддержка проверок",
       "stageOrder": 4,
       "topicOrder": 5,
-      "lessonOrder": 124,
+      "lessonOrder": 123,
       "role": "core"
     },
     "title": "Лекция «Количество проверок не говорит о качестве тестирования»",
@@ -2498,7 +2478,7 @@
       "topic": "Выбор формата и поддержка проверок",
       "stageOrder": 4,
       "topicOrder": 5,
-      "lessonOrder": 125,
+      "lessonOrder": 124,
       "role": "core"
     },
     "title": "Лекция «Один баг-репорт = одна проблема»",
@@ -2518,7 +2498,7 @@
       "topic": "Выбор формата и поддержка проверок",
       "stageOrder": 4,
       "topicOrder": 5,
-      "lessonOrder": 126,
+      "lessonOrder": 125,
       "role": "core"
     },
     "title": "Лекция «Почему проверки устаревают»",
@@ -2538,7 +2518,7 @@
       "topic": "Выбор формата и поддержка проверок",
       "stageOrder": 4,
       "topicOrder": 5,
-      "lessonOrder": 127,
+      "lessonOrder": 126,
       "role": "core"
     },
     "title": "Лекция «Подходы к составу полей»",
@@ -2558,7 +2538,7 @@
       "topic": "Выбор формата и поддержка проверок",
       "stageOrder": 4,
       "topicOrder": 5,
-      "lessonOrder": 128,
+      "lessonOrder": 127,
       "role": "core"
     },
     "title": "Лекция «Минимальный состав полей»",
@@ -2578,7 +2558,7 @@
       "topic": "Выбор формата и поддержка проверок",
       "stageOrder": 4,
       "topicOrder": 5,
-      "lessonOrder": 129,
+      "lessonOrder": 128,
       "role": "core"
     },
     "title": "Лекция «Как на работе»",
@@ -2598,7 +2578,7 @@
       "topic": "Выбор формата и поддержка проверок",
       "stageOrder": 4,
       "topicOrder": 5,
-      "lessonOrder": 130,
+      "lessonOrder": 129,
       "role": "core"
     },
     "title": "Лекция «Таблица «Полный состав полей в документации»»",
@@ -2618,7 +2598,7 @@
       "topic": "Выбор формата и поддержка проверок",
       "stageOrder": 4,
       "topicOrder": 5,
-      "lessonOrder": 131,
+      "lessonOrder": 130,
       "role": "core"
     },
     "title": "Лекция «Нужно ли писать чек-листы и тест-кейсы на всё это?»",
@@ -2638,7 +2618,7 @@
       "topic": "Разобранные примеры",
       "stageOrder": 4,
       "topicOrder": 6,
-      "lessonOrder": 132,
+      "lessonOrder": 131,
       "role": "practice"
     },
     "title": "Лекция «Введение. Часть 1»",
@@ -2658,7 +2638,7 @@
       "topic": "Разобранные примеры",
       "stageOrder": 4,
       "topicOrder": 6,
-      "lessonOrder": 133,
+      "lessonOrder": 132,
       "role": "practice"
     },
     "title": "Лекция «Введение. Часть 2»",
@@ -2678,7 +2658,7 @@
       "topic": "Разобранные примеры",
       "stageOrder": 4,
       "topicOrder": 6,
-      "lessonOrder": 134,
+      "lessonOrder": 133,
       "role": "practice"
     },
     "title": "Лекция «Введение. Часть 3»",
@@ -2698,7 +2678,7 @@
       "topic": "Разобранные примеры",
       "stageOrder": 4,
       "topicOrder": 6,
-      "lessonOrder": 135,
+      "lessonOrder": 134,
       "role": "practice"
     },
     "title": "Лекция «Форма «Консультация»»",
@@ -2718,7 +2698,7 @@
       "topic": "Разобранные примеры",
       "stageOrder": 4,
       "topicOrder": 6,
-      "lessonOrder": 136,
+      "lessonOrder": 135,
       "role": "practice"
     },
     "title": "Лекция «Переход к баг-репортам»",
@@ -2738,7 +2718,7 @@
       "topic": "Разобранные примеры",
       "stageOrder": 4,
       "topicOrder": 6,
-      "lessonOrder": 137,
+      "lessonOrder": 136,
       "role": "practice"
     },
     "title": "Лекция «Баг-репорт на основе проваленного тест-кейса»",
@@ -2758,7 +2738,7 @@
       "topic": "Разобранные примеры",
       "stageOrder": 4,
       "topicOrder": 6,
-      "lessonOrder": 138,
+      "lessonOrder": 137,
       "role": "practice"
     },
     "title": "Лекция «Приоритет и серьёзность — не одно и то же»",
@@ -2778,7 +2758,7 @@
       "topic": "Разобранные примеры",
       "stageOrder": 4,
       "topicOrder": 6,
-      "lessonOrder": 139,
+      "lessonOrder": 138,
       "role": "practice"
     },
     "title": "Лекция «Баг-репорт из чек-листа»",
@@ -2798,7 +2778,7 @@
       "topic": "Разобранные примеры",
       "stageOrder": 4,
       "topicOrder": 6,
-      "lessonOrder": 140,
+      "lessonOrder": 139,
       "role": "practice"
     },
     "title": "Лекция «Ещё один пример: визуальные баги»",
@@ -2818,7 +2798,7 @@
       "topic": "Разобранные примеры",
       "stageOrder": 4,
       "topicOrder": 6,
-      "lessonOrder": 141,
+      "lessonOrder": 140,
       "role": "practice"
     },
     "title": "Лекция «Итог»",
@@ -2838,7 +2818,7 @@
       "topic": "Разобранные примеры",
       "stageOrder": 4,
       "topicOrder": 6,
-      "lessonOrder": 142,
+      "lessonOrder": 141,
       "role": "practice"
     },
     "title": "Лекция «Совместное написание баг-репорта»",
@@ -2858,7 +2838,7 @@
       "topic": "Основная практика документов",
       "stageOrder": 4,
       "topicOrder": 7,
-      "lessonOrder": 143,
+      "lessonOrder": 142,
       "role": "practice"
     },
     "title": "БР. Практическое задание №1",
@@ -2878,7 +2858,7 @@
       "topic": "Основная практика документов",
       "stageOrder": 4,
       "topicOrder": 7,
-      "lessonOrder": 144,
+      "lessonOrder": 143,
       "role": "practice"
     },
     "title": "ЧЛ. Практическое задание №4 ",
@@ -2898,7 +2878,7 @@
       "topic": "Основная практика документов",
       "stageOrder": 4,
       "topicOrder": 7,
-      "lessonOrder": 145,
+      "lessonOrder": 144,
       "role": "practice"
     },
     "title": "ТК. Практическое задание №5 ",
@@ -2918,7 +2898,7 @@
       "topic": "Дополнительные задания — по желанию",
       "stageOrder": 4,
       "topicOrder": 8,
-      "lessonOrder": 146,
+      "lessonOrder": 145,
       "role": "reference"
     },
     "title": "БР. Практическое задание №2 ",
@@ -2938,7 +2918,7 @@
       "topic": "Дополнительные задания — по желанию",
       "stageOrder": 4,
       "topicOrder": 8,
-      "lessonOrder": 147,
+      "lessonOrder": 146,
       "role": "reference"
     },
     "title": "БР. Практическое задание №3 ",
@@ -2958,7 +2938,7 @@
       "topic": "Дополнительные задания — по желанию",
       "stageOrder": 4,
       "topicOrder": 8,
-      "lessonOrder": 148,
+      "lessonOrder": 147,
       "role": "reference"
     },
     "title": "БР. Практическое задание №1 ",
@@ -2978,7 +2958,7 @@
       "topic": "Дополнительные задания — по желанию",
       "stageOrder": 4,
       "topicOrder": 8,
-      "lessonOrder": 149,
+      "lessonOrder": 148,
       "role": "reference"
     },
     "title": "БР. Практическое задание №2",
@@ -2998,7 +2978,7 @@
       "topic": "Дополнительные задания — по желанию",
       "stageOrder": 4,
       "topicOrder": 8,
-      "lessonOrder": 150,
+      "lessonOrder": 149,
       "role": "reference"
     },
     "title": "БР. Практическое задание №3",
@@ -3018,7 +2998,7 @@
       "topic": "Дополнительные задания — по желанию",
       "stageOrder": 4,
       "topicOrder": 8,
-      "lessonOrder": 151,
+      "lessonOrder": 150,
       "role": "reference"
     },
     "title": "ЧЛ. Практическое задание №4 ",
@@ -3038,7 +3018,7 @@
       "topic": "Дополнительные задания — по желанию",
       "stageOrder": 4,
       "topicOrder": 8,
-      "lessonOrder": 152,
+      "lessonOrder": 151,
       "role": "reference"
     },
     "title": "Требования. Практическое задание №1",
@@ -3058,7 +3038,7 @@
       "topic": "Как учиться по материалам",
       "stageOrder": 4,
       "topicOrder": 9,
-      "lessonOrder": 153,
+      "lessonOrder": 152,
       "role": "reference"
     },
     "title": "Лекция «Домашние задания: шаг к практике»",
@@ -3078,7 +3058,7 @@
       "topic": "Как учиться по материалам",
       "stageOrder": 4,
       "topicOrder": 9,
-      "lessonOrder": 154,
+      "lessonOrder": 153,
       "role": "reference"
     },
     "title": "Лекция «Напутствие по выполнению домашнего задания»",
@@ -3098,7 +3078,7 @@
       "topic": "Основа и выбор техники",
       "stageOrder": 5,
       "topicOrder": 1,
-      "lessonOrder": 155,
+      "lessonOrder": 154,
       "role": "core"
     },
     "title": "Лекция «Тест-дизайн: суть, техники и применение»",
@@ -3118,7 +3098,7 @@
       "topic": "Основа и выбор техники",
       "stageOrder": 5,
       "topicOrder": 1,
-      "lessonOrder": 156,
+      "lessonOrder": 155,
       "role": "alternative"
     },
     "title": "Лекция «Общее понимание техник тест-дизайна»",
@@ -3139,7 +3119,7 @@
       "topic": "Основа и выбор техники",
       "stageOrder": 5,
       "topicOrder": 1,
-      "lessonOrder": 157,
+      "lessonOrder": 156,
       "role": "alternative"
     },
     "title": "Лекция «Техники тест-дизайна»",
@@ -3160,7 +3140,7 @@
       "topic": "Основа и выбор техники",
       "stageOrder": 5,
       "topicOrder": 1,
-      "lessonOrder": 158,
+      "lessonOrder": 157,
       "role": "core"
     },
     "title": "Лекция «Когда применяются техники тест-дизайна»",
@@ -3180,7 +3160,7 @@
       "topic": "Классы эквивалентности и границы",
       "stageOrder": 5,
       "topicOrder": 2,
-      "lessonOrder": 159,
+      "lessonOrder": 158,
       "role": "core"
     },
     "title": "Лекция «Классы эквивалентности»",
@@ -3200,7 +3180,7 @@
       "topic": "Классы эквивалентности и границы",
       "stageOrder": 5,
       "topicOrder": 2,
-      "lessonOrder": 160,
+      "lessonOrder": 159,
       "role": "core"
     },
     "title": "Лекция «Классы эквивалентности — практическое применение»",
@@ -3220,7 +3200,7 @@
       "topic": "Классы эквивалентности и границы",
       "stageOrder": 5,
       "topicOrder": 2,
-      "lessonOrder": 161,
+      "lessonOrder": 160,
       "role": "core"
     },
     "title": "Лекция «Анализ граничных значений»",
@@ -3240,7 +3220,7 @@
       "topic": "Классы эквивалентности и границы",
       "stageOrder": 5,
       "topicOrder": 2,
-      "lessonOrder": 162,
+      "lessonOrder": 161,
       "role": "core"
     },
     "title": "Лекция «Анализ граничных значений — практическое применение»",
@@ -3260,7 +3240,7 @@
       "topic": "Классы эквивалентности и границы",
       "stageOrder": 5,
       "topicOrder": 2,
-      "lessonOrder": 163,
+      "lessonOrder": 162,
       "role": "core"
     },
     "title": "Лекция «Работа с валидными и невалидными значениями — практическое применение»",
@@ -3280,7 +3260,7 @@
       "topic": "Классы эквивалентности и границы",
       "stageOrder": 5,
       "topicOrder": 2,
-      "lessonOrder": 164,
+      "lessonOrder": 163,
       "role": "alternative"
     },
     "title": "Лекция «Позитивное и негативное тестирование — связь с валидными и невалидными значениями»",
@@ -3301,7 +3281,7 @@
       "topic": "Попарное тестирование",
       "stageOrder": 5,
       "topicOrder": 3,
-      "lessonOrder": 165,
+      "lessonOrder": 164,
       "role": "core"
     },
     "title": "Лекция «Попарное тестирование»",
@@ -3321,7 +3301,7 @@
       "topic": "Попарное тестирование",
       "stageOrder": 5,
       "topicOrder": 3,
-      "lessonOrder": 166,
+      "lessonOrder": 165,
       "role": "core"
     },
     "title": "Лекция «Попарное тестирование — практическое применение»",
@@ -3341,7 +3321,7 @@
       "topic": "Таблицы решений и причины-следствия",
       "stageOrder": 5,
       "topicOrder": 4,
-      "lessonOrder": 167,
+      "lessonOrder": 166,
       "role": "core"
     },
     "title": "Лекция «Таблицы принятия решений»",
@@ -3361,7 +3341,7 @@
       "topic": "Таблицы решений и причины-следствия",
       "stageOrder": 5,
       "topicOrder": 4,
-      "lessonOrder": 168,
+      "lessonOrder": 167,
       "role": "core"
     },
     "title": "Лекция «Таблицы принятия решений — практическое применение»",
@@ -3381,7 +3361,7 @@
       "topic": "Таблицы решений и причины-следствия",
       "stageOrder": 5,
       "topicOrder": 4,
-      "lessonOrder": 169,
+      "lessonOrder": 168,
       "role": "core"
     },
     "title": "Лекция «Тестирование по таблицам причин и следствий — практическое применение»",
@@ -3401,7 +3381,7 @@
       "topic": "Состояния и варианты использования",
       "stageOrder": 5,
       "topicOrder": 5,
-      "lessonOrder": 170,
+      "lessonOrder": 169,
       "role": "core"
     },
     "title": "Лекция «Тестирование состояний и переходов»",
@@ -3421,7 +3401,7 @@
       "topic": "Состояния и варианты использования",
       "stageOrder": 5,
       "topicOrder": 5,
-      "lessonOrder": 171,
+      "lessonOrder": 170,
       "role": "core"
     },
     "title": "Лекция «Тестирование вариантов использования (Use Case Testing)»",
@@ -3441,7 +3421,7 @@
       "topic": "Состояния и варианты использования",
       "stageOrder": 5,
       "topicOrder": 5,
-      "lessonOrder": 172,
+      "lessonOrder": 171,
       "role": "core"
     },
     "title": "Лекция «Варианты использования — практическое применение»",
@@ -3461,7 +3441,7 @@
       "topic": "Практика тест-дизайна",
       "stageOrder": 5,
       "topicOrder": 6,
-      "lessonOrder": 173,
+      "lessonOrder": 172,
       "role": "practice"
     },
     "title": "БР. Практическое задание №1 ",
@@ -3481,7 +3461,7 @@
       "topic": "Практика тест-дизайна",
       "stageOrder": 5,
       "topicOrder": 6,
-      "lessonOrder": 174,
+      "lessonOrder": 173,
       "role": "practice"
     },
     "title": "БР. Практическое задание №2 ",
@@ -3501,7 +3481,7 @@
       "topic": "Практика тест-дизайна",
       "stageOrder": 5,
       "topicOrder": 6,
-      "lessonOrder": 175,
+      "lessonOrder": 174,
       "role": "practice"
     },
     "title": "БР. Практическое задание №3",
@@ -3521,7 +3501,7 @@
       "topic": "Практика тест-дизайна",
       "stageOrder": 5,
       "topicOrder": 6,
-      "lessonOrder": 176,
+      "lessonOrder": 175,
       "role": "practice"
     },
     "title": "ЧЛ. Практическое задание №4 ",
@@ -3541,7 +3521,7 @@
       "topic": "Практика тест-дизайна",
       "stageOrder": 5,
       "topicOrder": 6,
-      "lessonOrder": 177,
+      "lessonOrder": 176,
       "role": "practice"
     },
     "title": "ЧЛ. Практическое задание №5 ",
@@ -3561,7 +3541,7 @@
       "topic": "HTTP, HTTPS и полный цикл запроса",
       "stageOrder": 6,
       "topicOrder": 1,
-      "lessonOrder": 178,
+      "lessonOrder": 177,
       "role": "core"
     },
     "title": "Лекция «HTTP и HTTPS: основы и зачем это знать»",
@@ -3581,7 +3561,7 @@
       "topic": "HTTP, HTTPS и полный цикл запроса",
       "stageOrder": 6,
       "topicOrder": 1,
-      "lessonOrder": 179,
+      "lessonOrder": 178,
       "role": "core"
     },
     "title": "Лекция «Как это работает в HTTPS?»",
@@ -3601,7 +3581,7 @@
       "topic": "HTTP, HTTPS и полный цикл запроса",
       "stageOrder": 6,
       "topicOrder": 1,
-      "lessonOrder": 180,
+      "lessonOrder": 179,
       "role": "core"
     },
     "title": "Лекция «Как работает взаимодействие между клиентом и сервером: полный цикл»",
@@ -3621,7 +3601,7 @@
       "topic": "REST, JSON, адреса и структура сообщений",
       "stageOrder": 6,
       "topicOrder": 2,
-      "lessonOrder": 181,
+      "lessonOrder": 180,
       "role": "core"
     },
     "title": "Лекция «REST: что это и как это работает»",
@@ -3641,7 +3621,7 @@
       "topic": "REST, JSON, адреса и структура сообщений",
       "stageOrder": 6,
       "topicOrder": 2,
-      "lessonOrder": 182,
+      "lessonOrder": 181,
       "role": "core"
     },
     "title": "Лекция «OpenAPI: что это и зачем нужно»",
@@ -3661,7 +3641,7 @@
       "topic": "REST, JSON, адреса и структура сообщений",
       "stageOrder": 6,
       "topicOrder": 2,
-      "lessonOrder": 183,
+      "lessonOrder": 182,
       "role": "core"
     },
     "title": "Лекция «JSON: основной формат передачи данных»",
@@ -3681,7 +3661,7 @@
       "topic": "REST, JSON, адреса и структура сообщений",
       "stageOrder": 6,
       "topicOrder": 2,
-      "lessonOrder": 184,
+      "lessonOrder": 183,
       "role": "core"
     },
     "title": "Лекция «Формат JSON»",
@@ -3701,7 +3681,7 @@
       "topic": "REST, JSON, адреса и структура сообщений",
       "stageOrder": 6,
       "topicOrder": 2,
-      "lessonOrder": 185,
+      "lessonOrder": 184,
       "role": "core"
     },
     "title": "Лекция «Вложенность и уровни в JSON» ",
@@ -3721,7 +3701,7 @@
       "topic": "REST, JSON, адреса и структура сообщений",
       "stageOrder": 6,
       "topicOrder": 2,
-      "lessonOrder": 186,
+      "lessonOrder": 185,
       "role": "core"
     },
     "title": "Лекция «Обязательные и необязательные поля» ",
@@ -3741,7 +3721,7 @@
       "topic": "REST, JSON, адреса и структура сообщений",
       "stageOrder": 6,
       "topicOrder": 2,
-      "lessonOrder": 187,
+      "lessonOrder": 186,
       "role": "core"
     },
     "title": "Лекция «URI, URL и URN: в чём разница и как это понимать?»",
@@ -3761,7 +3741,7 @@
       "topic": "REST, JSON, адреса и структура сообщений",
       "stageOrder": 6,
       "topicOrder": 2,
-      "lessonOrder": 188,
+      "lessonOrder": 187,
       "role": "core"
     },
     "title": "Лекция «Разница между ресурсом, эндпоинтом и ручкой»",
@@ -3781,7 +3761,7 @@
       "topic": "REST, JSON, адреса и структура сообщений",
       "stageOrder": 6,
       "topicOrder": 2,
-      "lessonOrder": 189,
+      "lessonOrder": 188,
       "role": "core"
     },
     "title": "Лекция «Структура сообщения в API»",
@@ -3801,7 +3781,7 @@
       "topic": "REST, JSON, адреса и структура сообщений",
       "stageOrder": 6,
       "topicOrder": 2,
-      "lessonOrder": 190,
+      "lessonOrder": 189,
       "role": "core"
     },
     "title": "Лекция «Заголовки запроса в API»",
@@ -3821,7 +3801,7 @@
       "topic": "REST, JSON, адреса и структура сообщений",
       "stageOrder": 6,
       "topicOrder": 2,
-      "lessonOrder": 191,
+      "lessonOrder": 190,
       "role": "core"
     },
     "title": "Лекция «Заголовки ответа в API»",
@@ -3841,7 +3821,7 @@
       "topic": "Статус-коды",
       "stageOrder": 6,
       "topicOrder": 3,
-      "lessonOrder": 192,
+      "lessonOrder": 191,
       "role": "core"
     },
     "title": "Лекция «HTTP-статус-коды: что это и зачем они нужны»",
@@ -3861,7 +3841,7 @@
       "topic": "Статус-коды",
       "stageOrder": 6,
       "topicOrder": 3,
-      "lessonOrder": 193,
+      "lessonOrder": 192,
       "role": "core"
     },
     "title": "Лекция «HTTP-статус-коды 200: успешные сценарии»",
@@ -3881,7 +3861,7 @@
       "topic": "Статус-коды",
       "stageOrder": 6,
       "topicOrder": 3,
-      "lessonOrder": 194,
+      "lessonOrder": 193,
       "role": "core"
     },
     "title": "Лекция «HTTP-статус-коды 300: перенаправления»",
@@ -3901,7 +3881,7 @@
       "topic": "Статус-коды",
       "stageOrder": 6,
       "topicOrder": 3,
-      "lessonOrder": 195,
+      "lessonOrder": 194,
       "role": "core"
     },
     "title": "Лекция «HTTP-статус-коды 400: клиентские ошибки»",
@@ -3921,7 +3901,7 @@
       "topic": "Статус-коды",
       "stageOrder": 6,
       "topicOrder": 3,
-      "lessonOrder": 196,
+      "lessonOrder": 195,
       "role": "core"
     },
     "title": "Лекция «HTTP-статус-коды 500: серверные ошибки»",
@@ -3941,7 +3921,7 @@
       "topic": "HTTP-методы",
       "stageOrder": 6,
       "topicOrder": 4,
-      "lessonOrder": 197,
+      "lessonOrder": 196,
       "role": "core"
     },
     "title": "Лекция «HTTP-методы в API: общее введение»",
@@ -3961,7 +3941,7 @@
       "topic": "HTTP-методы",
       "stageOrder": 6,
       "topicOrder": 4,
-      "lessonOrder": 198,
+      "lessonOrder": 197,
       "role": "core"
     },
     "title": "Лекция «Метод GET: как работает и зачем нужен»",
@@ -3981,7 +3961,7 @@
       "topic": "HTTP-методы",
       "stageOrder": 6,
       "topicOrder": 4,
-      "lessonOrder": 199,
+      "lessonOrder": 198,
       "role": "core"
     },
     "title": "Лекция «Метод POST: как работает и зачем нужен»",
@@ -4001,7 +3981,7 @@
       "topic": "HTTP-методы",
       "stageOrder": 6,
       "topicOrder": 4,
-      "lessonOrder": 200,
+      "lessonOrder": 199,
       "role": "core"
     },
     "title": "Лекция «Метод PUT: как работает и зачем нужен»",
@@ -4021,7 +4001,7 @@
       "topic": "HTTP-методы",
       "stageOrder": 6,
       "topicOrder": 4,
-      "lessonOrder": 201,
+      "lessonOrder": 200,
       "role": "core"
     },
     "title": "Лекция «Метод PATCH: как работает и зачем нужен»",
@@ -4041,7 +4021,7 @@
       "topic": "HTTP-методы",
       "stageOrder": 6,
       "topicOrder": 4,
-      "lessonOrder": 202,
+      "lessonOrder": 201,
       "role": "core"
     },
     "title": "Лекция «Метод DELETE: как работает и зачем нужен»",
@@ -4061,7 +4041,7 @@
       "topic": "HTTP-методы",
       "stageOrder": 6,
       "topicOrder": 4,
-      "lessonOrder": 203,
+      "lessonOrder": 202,
       "role": "core"
     },
     "title": "Лекция «Метод HEAD: как работает и зачем нужен»",
@@ -4081,7 +4061,7 @@
       "topic": "HTTP-методы",
       "stageOrder": 6,
       "topicOrder": 4,
-      "lessonOrder": 204,
+      "lessonOrder": 203,
       "role": "core"
     },
     "title": "Лекция «Метод OPTIONS: как работает и зачем нужен»",
@@ -4101,7 +4081,7 @@
       "topic": "HTTP-методы",
       "stageOrder": 6,
       "topicOrder": 4,
-      "lessonOrder": 205,
+      "lessonOrder": 204,
       "role": "core"
     },
     "title": "Лекция «Общий итог по HTTP-методам»",
@@ -4121,7 +4101,7 @@
       "topic": "Кэш, cookies и проверка API",
       "stageOrder": 6,
       "topicOrder": 5,
-      "lessonOrder": 206,
+      "lessonOrder": 205,
       "role": "core"
     },
     "title": "Лекция «Кэширование: серверное и клиентское»",
@@ -4141,7 +4121,7 @@
       "topic": "Кэш, cookies и проверка API",
       "stageOrder": 6,
       "topicOrder": 5,
-      "lessonOrder": 207,
+      "lessonOrder": 206,
       "role": "core"
     },
     "title": "Лекция «Куки: что это такое и зачем они нужны»",
@@ -4161,7 +4141,7 @@
       "topic": "Кэш, cookies и проверка API",
       "stageOrder": 6,
       "topicOrder": 5,
-      "lessonOrder": 208,
+      "lessonOrder": 207,
       "role": "core"
     },
     "title": "Лекция «Как тестировать API: основные подходы и сценарии»",
@@ -4181,7 +4161,7 @@
       "topic": "DevTools, HTML/CSS, Postman и Swagger",
       "stageOrder": 6,
       "topicOrder": 6,
-      "lessonOrder": 209,
+      "lessonOrder": 208,
       "role": "core"
     },
     "title": "Лекция «Что такое DevTools»",
@@ -4201,7 +4181,7 @@
       "topic": "DevTools, HTML/CSS, Postman и Swagger",
       "stageOrder": 6,
       "topicOrder": 6,
-      "lessonOrder": 210,
+      "lessonOrder": 209,
       "role": "core"
     },
     "title": "Лекция «Основы HTML и CSS»",
@@ -4221,7 +4201,7 @@
       "topic": "DevTools, HTML/CSS, Postman и Swagger",
       "stageOrder": 6,
       "topicOrder": 6,
-      "lessonOrder": 211,
+      "lessonOrder": 210,
       "role": "core"
     },
     "title": "Лекция «Postman»",
@@ -4241,7 +4221,7 @@
       "topic": "DevTools, HTML/CSS, Postman и Swagger",
       "stageOrder": 6,
       "topicOrder": 6,
-      "lessonOrder": 212,
+      "lessonOrder": 211,
       "role": "core"
     },
     "title": "Лекция «Swagger»",
@@ -4261,7 +4241,7 @@
       "topic": "Проверки интерфейса и бэкенда",
       "stageOrder": 6,
       "topicOrder": 7,
-      "lessonOrder": 213,
+      "lessonOrder": 212,
       "role": "practice"
     },
     "title": "Лекция «Тестирование UI: Сравнение макетов и реального интерфейса»",
@@ -4281,7 +4261,7 @@
       "topic": "Проверки интерфейса и бэкенда",
       "stageOrder": 6,
       "topicOrder": 7,
-      "lessonOrder": 214,
+      "lessonOrder": 213,
       "role": "practice"
     },
     "title": "Лекция «Как тестировать бэкенд?»",
@@ -4301,7 +4281,7 @@
       "topic": "Проверки интерфейса и бэкенда",
       "stageOrder": 6,
       "topicOrder": 7,
-      "lessonOrder": 215,
+      "lessonOrder": 214,
       "role": "practice"
     },
     "title": "Лекция «Когда ты нажимаешь кнопку, а ничего не происходит: как думать и что проверять»",
@@ -4321,7 +4301,7 @@
       "topic": "Проверки интерфейса и бэкенда",
       "stageOrder": 6,
       "topicOrder": 7,
-      "lessonOrder": 216,
+      "lessonOrder": 215,
       "role": "practice"
     },
     "title": "Лекция «Клиентские проблемы» ",
@@ -4341,7 +4321,7 @@
       "topic": "Проверки интерфейса и бэкенда",
       "stageOrder": 6,
       "topicOrder": 7,
-      "lessonOrder": 217,
+      "lessonOrder": 216,
       "role": "practice"
     },
     "title": "Лекция «Серверные проблемы: База данных и 500 ошибки» ",
@@ -4361,7 +4341,7 @@
       "topic": "Практика веба и API",
       "stageOrder": 6,
       "topicOrder": 8,
-      "lessonOrder": 218,
+      "lessonOrder": 217,
       "role": "practice"
     },
     "title": "JSON. Практическое задание №1",
@@ -4381,7 +4361,7 @@
       "topic": "Практика веба и API",
       "stageOrder": 6,
       "topicOrder": 8,
-      "lessonOrder": 219,
+      "lessonOrder": 218,
       "role": "practice"
     },
     "title": "JSON. Практическое задание №2",
@@ -4401,7 +4381,7 @@
       "topic": "Практика веба и API",
       "stageOrder": 6,
       "topicOrder": 8,
-      "lessonOrder": 220,
+      "lessonOrder": 219,
       "role": "practice"
     },
     "title": "API. Практическое задание №4",
@@ -4421,7 +4401,7 @@
       "topic": "Практика веба и API",
       "stageOrder": 6,
       "topicOrder": 8,
-      "lessonOrder": 221,
+      "lessonOrder": 220,
       "role": "practice"
     },
     "title": "API. Практическое задание №5",
@@ -4441,7 +4421,7 @@
       "topic": "Практика веба и API",
       "stageOrder": 6,
       "topicOrder": 8,
-      "lessonOrder": 222,
+      "lessonOrder": 221,
       "role": "practice"
     },
     "title": "ЧЛ. Практическое задание №6",
@@ -4461,7 +4441,7 @@
       "topic": "Практика веба и API",
       "stageOrder": 6,
       "topicOrder": 8,
-      "lessonOrder": 223,
+      "lessonOrder": 222,
       "role": "practice"
     },
     "title": "curl. Практическое задание №7",
@@ -4481,7 +4461,7 @@
       "topic": "Практика веба и API",
       "stageOrder": 6,
       "topicOrder": 8,
-      "lessonOrder": 224,
+      "lessonOrder": 223,
       "role": "practice"
     },
     "title": "API. Практическое задание №10",
@@ -4501,7 +4481,7 @@
       "topic": "Практика веба и API",
       "stageOrder": 6,
       "topicOrder": 8,
-      "lessonOrder": 225,
+      "lessonOrder": 224,
       "role": "practice"
     },
     "title": "API. Практическое задание №9",
@@ -4521,7 +4501,7 @@
       "topic": "Практика веба и API",
       "stageOrder": 6,
       "topicOrder": 8,
-      "lessonOrder": 226,
+      "lessonOrder": 225,
       "role": "practice"
     },
     "title": "API. Практическое задание №8",
@@ -4541,7 +4521,7 @@
       "topic": "Практика веба и API",
       "stageOrder": 6,
       "topicOrder": 8,
-      "lessonOrder": 227,
+      "lessonOrder": 226,
       "role": "practice"
     },
     "title": "DevTools. Практическое задание №6",
@@ -4561,7 +4541,7 @@
       "topic": "Практика веба и API",
       "stageOrder": 6,
       "topicOrder": 8,
-      "lessonOrder": 228,
+      "lessonOrder": 227,
       "role": "practice"
     },
     "title": "JSON. Практическое задание №5",
@@ -4581,7 +4561,7 @@
       "topic": "Практика веба и API",
       "stageOrder": 6,
       "topicOrder": 8,
-      "lessonOrder": 229,
+      "lessonOrder": 228,
       "role": "practice"
     },
     "title": "DevTools. Практическое задание №3",
@@ -4601,7 +4581,7 @@
       "topic": "Практика веба и API",
       "stageOrder": 6,
       "topicOrder": 8,
-      "lessonOrder": 230,
+      "lessonOrder": 229,
       "role": "practice"
     },
     "title": "DevTools. Практическое задание №2",
@@ -4621,7 +4601,7 @@
       "topic": "Дополнительные форматы и инструменты",
       "stageOrder": 6,
       "topicOrder": 9,
-      "lessonOrder": 231,
+      "lessonOrder": 230,
       "role": "advanced"
     },
     "title": "Лекция «SOAP: что это и зачем нужно?»",
@@ -4641,7 +4621,7 @@
       "topic": "Дополнительные форматы и инструменты",
       "stageOrder": 6,
       "topicOrder": 9,
-      "lessonOrder": 232,
+      "lessonOrder": 231,
       "role": "advanced"
     },
     "title": "Лекция «WSDL: что это такое?»",
@@ -4661,7 +4641,7 @@
       "topic": "Дополнительные форматы и инструменты",
       "stageOrder": 6,
       "topicOrder": 9,
-      "lessonOrder": 233,
+      "lessonOrder": 232,
       "role": "advanced"
     },
     "title": "Лекция «XML и WSDL: основа SOAP»",
@@ -4681,7 +4661,7 @@
       "topic": "Дополнительные форматы и инструменты",
       "stageOrder": 6,
       "topicOrder": 9,
-      "lessonOrder": 234,
+      "lessonOrder": 233,
       "role": "advanced"
     },
     "title": "Лекция «WADL: аналог WSDL для REST»",
@@ -4701,7 +4681,7 @@
       "topic": "Дополнительные форматы и инструменты",
       "stageOrder": 6,
       "topicOrder": 9,
-      "lessonOrder": 235,
+      "lessonOrder": 234,
       "role": "advanced"
     },
     "title": "Лекция «REST vs SOAP: В чём разница?»",
@@ -4721,7 +4701,7 @@
       "topic": "Дополнительные форматы и инструменты",
       "stageOrder": 6,
       "topicOrder": 9,
-      "lessonOrder": 236,
+      "lessonOrder": 235,
       "role": "advanced"
     },
     "title": "Лекция «Что означают уровни вложенности (1, 2, 3 уровни) в тестировании API?»",
@@ -4741,7 +4721,7 @@
       "topic": "Дополнительные форматы и инструменты",
       "stageOrder": 6,
       "topicOrder": 9,
-      "lessonOrder": 237,
+      "lessonOrder": 236,
       "role": "advanced"
     },
     "title": "Лекция «Что такое альтернативный сценарий (путь) в postman (тестировании)?»",
@@ -4761,7 +4741,7 @@
       "topic": "Дополнительные форматы и инструменты",
       "stageOrder": 6,
       "topicOrder": 9,
-      "lessonOrder": 238,
+      "lessonOrder": 237,
       "role": "advanced"
     },
     "title": "Лекция «Как сдавать ДЗ по POSTMAN»",
@@ -4781,7 +4761,7 @@
       "topic": "База данных и таблицы",
       "stageOrder": 7,
       "topicOrder": 1,
-      "lessonOrder": 239,
+      "lessonOrder": 238,
       "role": "core"
     },
     "title": "Лекция «Что такое база данных?»",
@@ -4801,7 +4781,7 @@
       "topic": "База данных и таблицы",
       "stageOrder": 7,
       "topicOrder": 1,
-      "lessonOrder": 240,
+      "lessonOrder": 239,
       "role": "core"
     },
     "title": "Лекция «Виды баз данных»",
@@ -4821,7 +4801,7 @@
       "topic": "База данных и таблицы",
       "stageOrder": 7,
       "topicOrder": 1,
-      "lessonOrder": 241,
+      "lessonOrder": 240,
       "role": "core"
     },
     "title": "Лекция «Создание таблицы в MySQL»",
@@ -4841,7 +4821,7 @@
       "topic": "База данных и таблицы",
       "stageOrder": 7,
       "topicOrder": 1,
-      "lessonOrder": 242,
+      "lessonOrder": 241,
       "role": "core"
     },
     "title": "Лекция «Зачем тестировщику нужно уметь работать с базами данных?»",
@@ -4861,7 +4841,7 @@
       "topic": "SELECT, группировка и агрегация",
       "stageOrder": 7,
       "topicOrder": 2,
-      "lessonOrder": 243,
+      "lessonOrder": 242,
       "role": "core"
     },
     "title": "Лекция «Запросы SELECT в SQL/MySQL»",
@@ -4881,7 +4861,7 @@
       "topic": "SELECT, группировка и агрегация",
       "stageOrder": 7,
       "topicOrder": 2,
-      "lessonOrder": 244,
+      "lessonOrder": 243,
       "role": "core"
     },
     "title": "Лекция «Другие запросы в SQL»",
@@ -4901,7 +4881,7 @@
       "topic": "SELECT, группировка и агрегация",
       "stageOrder": 7,
       "topicOrder": 2,
-      "lessonOrder": 245,
+      "lessonOrder": 244,
       "role": "core"
     },
     "title": "Лекция «Группировка»",
@@ -4921,7 +4901,7 @@
       "topic": "SELECT, группировка и агрегация",
       "stageOrder": 7,
       "topicOrder": 2,
-      "lessonOrder": 246,
+      "lessonOrder": 245,
       "role": "core"
     },
     "title": "Лекция «Агрегатные функции»",
@@ -4941,7 +4921,7 @@
       "topic": "SELECT, группировка и агрегация",
       "stageOrder": 7,
       "topicOrder": 2,
-      "lessonOrder": 247,
+      "lessonOrder": 246,
       "role": "core"
     },
     "title": "Лекция «Группировка и фильтрация оператором HAVING»",
@@ -4961,7 +4941,7 @@
       "topic": "JOIN и вложенные запросы",
       "stageOrder": 7,
       "topicOrder": 3,
-      "lessonOrder": 248,
+      "lessonOrder": 247,
       "role": "core"
     },
     "title": "Лекция «Вложенные запросы»",
@@ -4981,7 +4961,7 @@
       "topic": "JOIN и вложенные запросы",
       "stageOrder": 7,
       "topicOrder": 3,
-      "lessonOrder": 249,
+      "lessonOrder": 248,
       "role": "core"
     },
     "title": "Лекция «Запросы JOIN в SQL/MySQL»",
@@ -5001,7 +4981,7 @@
       "topic": "Практика SQL",
       "stageOrder": 7,
       "topicOrder": 4,
-      "lessonOrder": 250,
+      "lessonOrder": 249,
       "role": "practice"
     },
     "title": "SQL. Практическое задание №1. Проверяемое задание «SELECT»",
@@ -5021,7 +5001,7 @@
       "topic": "Практика SQL",
       "stageOrder": 7,
       "topicOrder": 4,
-      "lessonOrder": 251,
+      "lessonOrder": 250,
       "role": "practice"
     },
     "title": "SQL. Практическое задание №2. Проверяемое задание «GROUPBY»",
@@ -5041,7 +5021,7 @@
       "topic": "Практика SQL",
       "stageOrder": 7,
       "topicOrder": 4,
-      "lessonOrder": 252,
+      "lessonOrder": 251,
       "role": "practice"
     },
     "title": "SQL. Практическое задание №3. Проверяемое задание «JOIN»",
@@ -5061,7 +5041,7 @@
       "topic": "Практика SQL",
       "stageOrder": 7,
       "topicOrder": 4,
-      "lessonOrder": 253,
+      "lessonOrder": 252,
       "role": "practice"
     },
     "title": "Лекция «Как сдавать SQL Academy»",
@@ -5081,7 +5061,7 @@
       "topic": "Изменение данных",
       "stageOrder": 7,
       "topicOrder": 5,
-      "lessonOrder": 254,
+      "lessonOrder": 253,
       "role": "advanced"
     },
     "title": "Лекция «Операторы INSERT, UPDATE, DELETE»",
@@ -5101,7 +5081,7 @@
       "topic": "Изменение данных",
       "stageOrder": 7,
       "topicOrder": 5,
-      "lessonOrder": 255,
+      "lessonOrder": 254,
       "role": "advanced"
     },
     "title": "SQL. Практическое задание №4. Проверяемое задание «INSERT, UPDATE, DELETE»",
@@ -5121,7 +5101,7 @@
       "topic": "Шпаргалка и рабочие инструменты",
       "stageOrder": 7,
       "topicOrder": 6,
-      "lessonOrder": 256,
+      "lessonOrder": 255,
       "role": "reference"
     },
     "title": "Лекция «Шпаргалка по основным операторам SQL»",
@@ -5141,7 +5121,7 @@
       "topic": "Шпаргалка и рабочие инструменты",
       "stageOrder": 7,
       "topicOrder": 6,
-      "lessonOrder": 257,
+      "lessonOrder": 256,
       "role": "reference"
     },
     "title": "Лекция «SQL и работа»",
@@ -5161,7 +5141,7 @@
       "topic": "Шпаргалка и рабочие инструменты",
       "stageOrder": 7,
       "topicOrder": 6,
-      "lessonOrder": 258,
+      "lessonOrder": 257,
       "role": "reference"
     },
     "title": "Лекция «Инструмент DBeaver»",
@@ -5181,7 +5161,7 @@
       "topic": "Шпаргалка и рабочие инструменты",
       "stageOrder": 7,
       "topicOrder": 6,
-      "lessonOrder": 259,
+      "lessonOrder": 258,
       "role": "reference"
     },
     "title": "Лекция «Пример справочного значения»",
@@ -5201,7 +5181,7 @@
       "topic": "Разбор готовых сценариев",
       "stageOrder": 8,
       "topicOrder": 1,
-      "lessonOrder": 260,
+      "lessonOrder": 259,
       "role": "reference"
     },
     "title": "Лекция «Как виды тестирования выглядят на практике»",
@@ -5221,7 +5201,7 @@
       "topic": "Разбор готовых сценариев",
       "stageOrder": 8,
       "topicOrder": 1,
-      "lessonOrder": 261,
+      "lessonOrder": 260,
       "role": "reference"
     },
     "title": "Лекция «Все виды тестирования на проекте»",
@@ -5241,7 +5221,7 @@
       "topic": "Выбрать и уточнить требование",
       "stageOrder": 8,
       "topicOrder": 2,
-      "lessonOrder": 262,
+      "lessonOrder": 261,
       "role": "practice"
     },
     "title": "Лекция «Как определить, что нужно тестировать?»",
@@ -5261,7 +5241,7 @@
       "topic": "Выбрать и уточнить требование",
       "stageOrder": 8,
       "topicOrder": 2,
-      "lessonOrder": 263,
+      "lessonOrder": 262,
       "role": "practice"
     },
     "title": "Требования. Практическое задание №1",
@@ -5281,7 +5261,7 @@
       "topic": "Спроектировать и записать проверки",
       "stageOrder": 8,
       "topicOrder": 3,
-      "lessonOrder": 264,
+      "lessonOrder": 263,
       "role": "practice"
     },
     "title": "ТК. Практическое задание №5",
@@ -5301,7 +5281,7 @@
       "topic": "Спроектировать и записать проверки",
       "stageOrder": 8,
       "topicOrder": 3,
-      "lessonOrder": 265,
+      "lessonOrder": 264,
       "role": "practice"
     },
     "title": "ТК. Практическое задание №6 ",
@@ -5321,7 +5301,7 @@
       "topic": "Проверить веб, API и данные",
       "stageOrder": 8,
       "topicOrder": 4,
-      "lessonOrder": 266,
+      "lessonOrder": 265,
       "role": "practice"
     },
     "title": "API. Практическое задание №3",
@@ -5341,7 +5321,7 @@
       "topic": "Проверить веб, API и данные",
       "stageOrder": 8,
       "topicOrder": 4,
-      "lessonOrder": 267,
+      "lessonOrder": 266,
       "role": "practice"
     },
     "title": "SQL. Практическое задание №7",
@@ -5361,7 +5341,7 @@
       "topic": "Описать найденный дефект",
       "stageOrder": 8,
       "topicOrder": 5,
-      "lessonOrder": 268,
+      "lessonOrder": 267,
       "role": "practice"
     },
     "title": "БР. Практическое задание №2",
@@ -5381,7 +5361,7 @@
       "topic": "Описать найденный дефект",
       "stageOrder": 8,
       "topicOrder": 5,
-      "lessonOrder": 269,
+      "lessonOrder": 268,
       "role": "practice"
     },
     "title": "БР. Практическое задание №4",
@@ -5401,7 +5381,7 @@
       "topic": "Как проходит собеседование",
       "stageOrder": 9,
       "topicOrder": 1,
-      "lessonOrder": 270,
+      "lessonOrder": 269,
       "role": "reference"
     },
     "title": "Лекция «Собеседования»",
@@ -5421,7 +5401,7 @@
       "topic": "Требования и тест-дизайн",
       "stageOrder": 9,
       "topicOrder": 2,
-      "lessonOrder": 271,
+      "lessonOrder": 270,
       "role": "reference"
     },
     "title": "Лекция «Требования на собеседовании»",
@@ -5441,7 +5421,7 @@
       "topic": "Требования и тест-дизайн",
       "stageOrder": 9,
       "topicOrder": 2,
-      "lessonOrder": 272,
+      "lessonOrder": 271,
       "role": "reference"
     },
     "title": "Лекция «Техники тест-дизайна на собеседовании и в работе»",
@@ -5461,7 +5441,7 @@
       "topic": "Виды тестирования",
       "stageOrder": 9,
       "topicOrder": 3,
-      "lessonOrder": 273,
+      "lessonOrder": 272,
       "role": "reference"
     },
     "title": "Лекция «Виды тестирования: как отвечать на собеседовании»",
@@ -5481,7 +5461,7 @@
       "topic": "Виды тестирования",
       "stageOrder": 9,
       "topicOrder": 3,
-      "lessonOrder": 274,
+      "lessonOrder": 273,
       "role": "reference"
     },
     "title": "Лекция «Какие виды тестирования применяли на практике»",
@@ -5501,7 +5481,7 @@
       "topic": "Виды тестирования",
       "stageOrder": 9,
       "topicOrder": 3,
-      "lessonOrder": 275,
+      "lessonOrder": 274,
       "role": "reference"
     },
     "title": "Лекция «Какие виды тестирования применяли на практике. Часть 2»",
@@ -5521,7 +5501,7 @@
       "topic": "Виды тестирования",
       "stageOrder": 9,
       "topicOrder": 3,
-      "lessonOrder": 276,
+      "lessonOrder": 275,
       "role": "reference"
     },
     "title": "Лекция «Типовые уточняющие вопросы от интервьюера»",
@@ -5541,7 +5521,7 @@
       "topic": "Клиент-серверная архитектура",
       "stageOrder": 9,
       "topicOrder": 4,
-      "lessonOrder": 277,
+      "lessonOrder": 276,
       "role": "reference"
     },
     "title": "Лекция «Клиент-серверная архитектура: как отвечать на собеседовании»",
@@ -5561,7 +5541,7 @@
       "topic": "Веб, API и HTTP",
       "stageOrder": 9,
       "topicOrder": 5,
-      "lessonOrder": 278,
+      "lessonOrder": 277,
       "role": "reference"
     },
     "title": "Лекция «HTTP и HTTPS: основы для собеседования и работы»",
@@ -5581,7 +5561,7 @@
       "topic": "Веб, API и HTTP",
       "stageOrder": 9,
       "topicOrder": 5,
-      "lessonOrder": 279,
+      "lessonOrder": 278,
       "role": "reference"
     },
     "title": "Лекция «Вопросы про REST и SOAP на собеседовании»",
@@ -5601,7 +5581,7 @@
       "topic": "Веб, API и HTTP",
       "stageOrder": 9,
       "topicOrder": 5,
-      "lessonOrder": 280,
+      "lessonOrder": 279,
       "role": "reference"
     },
     "title": "Лекция «HTTP-статус-коды на собеседовании: что важно знать»",
@@ -5621,7 +5601,7 @@
       "topic": "Веб, API и HTTP",
       "stageOrder": 9,
       "topicOrder": 5,
-      "lessonOrder": 281,
+      "lessonOrder": 280,
       "role": "reference"
     },
     "title": "Лекция «HTTP-методы: часто задаваемые вопросы на собеседовании»",
@@ -5641,7 +5621,7 @@
       "topic": "Веб, API и HTTP",
       "stageOrder": 9,
       "topicOrder": 5,
-      "lessonOrder": 282,
+      "lessonOrder": 281,
       "role": "reference"
     },
     "title": "Лекция «Кэш и куки: что спрашивают на собеседованиях и как используются в работе»",
@@ -5661,7 +5641,7 @@
       "topic": "SQL",
       "stageOrder": 9,
       "topicOrder": 6,
-      "lessonOrder": 283,
+      "lessonOrder": 282,
       "role": "reference"
     },
     "title": "Лекция «SQL и собеседования»",

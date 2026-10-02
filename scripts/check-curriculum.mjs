@@ -15,6 +15,7 @@ for (const [course, steps] of [
   ['manual-testing', [57, 58, 120, 121, 131, 167, 168]],
   ['mqa-base', [79, 99, 100, 126, 127]],
 ]) for (const step of steps) expected.delete(`courses/${course}/step-${String(step).padStart(3, '0')}.html`);
+expected.delete('courses/mqa-base/step-042.html');
 if (map.length !== expected.size) fail(`Карта: ${map.length} вместо ${expected.size} шагов`);
 if (search.length !== expected.size || new Set(search.map((item) => item.url)).size !== expected.size) fail('Поиск должен содержать каждый урок ровно один раз');
 if (!home.includes('Архив исходных курсов')) fail('Нет раздела архивов');
@@ -50,7 +51,7 @@ if (firstPracticeIndex <= lastExampleIndex) fail('Практика докуме�
 if (!home.includes('id="interview"') || !home.includes('Лекции</small>') || !home.includes('Практика</small>')) fail('Нет блока собеседования или новых типов тем');
 if (!home.includes('id="end-to-end-topic-2"') || !home.includes('Выбрать и уточнить требование <small class="role-chip mixed">Лекции + практика</small>')) fail('Тема с лекцией и заданием должна быть смешанной');
 if (/\b(?:21|54) шагов\b/.test(home) || /<h2>\d+\.\s/.test(home)) fail('Ошибочное склонение или двойная нумерация этапов');
-if (!home.includes('Единый маршрут · 283 шага') || !home.includes('<strong>23 шага</strong>') || !home.includes('<strong>61 шаг</strong>') || !home.includes('<strong>21 шаг</strong>')) fail('Неверное склонение количества шагов');
+if (!home.includes('Единый маршрут · 282 шага') || !home.includes('<strong>23 шага</strong>') || !home.includes('<strong>61 шаг</strong>') || !home.includes('<strong>21 шаг</strong>')) fail('Неверное склонение количества шагов');
 if (!search.every((record) => record.stageId && record.topicId && record.stageNumber)) fail('Поиску не хватает ссылок на этапы и темы');
 for (const [step, minimumBlocks] of [[84, 9], [86, 12], [87, 13]]) {
   const lesson = fs.readFileSync(path.join(outDir, `courses/mqa-base/step-${String(step).padStart(3, '0')}.html`), 'utf8');
@@ -62,8 +63,14 @@ if ((architecture.match(/<h1>/g) || []).length !== 1 || /<p>\s*&nbsp;\s*<\/p>/.t
 if (!fs.readFileSync(path.join(outDir, 'courses/mqa-base/step-084.html'), 'utf8').includes('numbered-attributes')) fail('Не пронумерованы атрибуты требований');
 const requirementsLesson = fs.readFileSync(path.join(outDir, 'courses/manual-testing/step-123.html'), 'utf8');
 if (requirementsLesson.includes('выполняя <strong>домашние задания</strong>') || !requirementsLesson.includes('Вы уже познакомились с темой требований')) fail('Не исправлено вступление шага 24');
+const expectedResultLesson = fs.readFileSync(path.join(outDir, 'courses/mqa-base/step-036.html'), 'utf8');
+if (!expectedResultLesson.includes('Купить один детский билет на текущую дату.') || expectedResultLesson.includes('Купить билет один детский билет')) fail('Не исправлена грамматика исходного шага Q36');
+const priorityLesson = fs.readFileSync(path.join(outDir, 'courses/mqa-base/step-041.html'), 'utf8');
+if (!priorityLesson.includes('Приоритет в тестовой документации') || !priorityLesson.includes('Приоритет в баг-репортах') || !priorityLesson.includes('после оплаты не приходит подтверждение')) fail('Уроки о приоритете не объединены');
+if (map.some((item) => item.url === 'courses/mqa-base/step-042.html') || search.some((item) => item.url === 'courses/mqa-base/step-042.html')) fail('Дублирующий урок Q42 остался в маршруте или поиске');
+if (!fs.existsSync(path.join(outDir, 'courses/mqa-base/step-042.html'))) fail('Исходный урок Q42 должен остаться в архиве');
 const about = fs.readFileSync(path.join(outDir, 'about.html'), 'utf8');
-if (!about.includes('В нём 283 страницы')) fail('Неверное склонение количества страниц');
+if (!about.includes('В нём 282 страницы')) fail('Неверное склонение количества страниц');
 const routeCss = fs.readFileSync(path.join(outDir, 'assets/route.css'), 'utf8');
 if (!routeCss.includes('.lesson-content table{font-family:inherit}')) fail('Таблицы используют другой шрифт');
 if (home.includes('Восемь последовательных этапов') || home.includes('После основ') || home.includes('Основное</small>')) fail('Остались прежние статусы или вступление');

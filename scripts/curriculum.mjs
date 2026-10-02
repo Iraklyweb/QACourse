@@ -24,7 +24,7 @@ const stages = [
     ['Три основных документа и их связь', 'core', 'Q2-8'],
     ['Паспорт, состояние и окружение', 'core', 'Q9-23'],
     ['Шаги, ожидание и фактический результат', 'core', 'Q24-39'],
-    ['Приоритет, серьёзность и вложения', 'core', 'Q40-46'],
+    ['Приоритет, серьёзность и вложения', 'core', 'Q40-41,Q43-46'],
     ['Выбор формата и поддержка проверок', 'core', 'Q47-59,M124'],
     ['Разобранные примеры', 'practice', 'Q60-69,M127'],
     ['Основная практика документов', 'practice', 'Q74,Q77-78'],
@@ -120,7 +120,8 @@ export function buildCurriculum(courses) {
     const taskTypes = new Set(items.map((item) => item.taskType === 'lecture' ? 'lecture' : 'practice'));
     return { title, role, kind: taskTypes.size === 2 ? 'mixed' : [...taskTypes][0], items };
   }) }));
-  const missing = [...lookup.keys()].filter((key) => !seen.has(key));
+  const mergedIntoAnotherLesson = new Set(['mqa-base:42']);
+  const missing = [...lookup.keys()].filter((key) => !seen.has(key) && !mergedIntoAnotherLesson.has(key));
   if (missing.length) throw new Error(`Не распределены ${missing.length} шагов: ${missing.join(', ')}`);
   for (const record of records) {
     if (record.alternativeTo && !lookup.has(`${source[record.alternativeTo[0]]}:${Number(record.alternativeTo.slice(1))}`)) {

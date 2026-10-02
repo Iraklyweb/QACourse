@@ -249,6 +249,18 @@ function editorializeLessonHtml(courseSlug, pageNumber, html) {
       '<p>Вы уже познакомились с темой требований и их основными источниками. Теперь разберём, как анализировать требования, находить в них пробелы и использовать их как основу для проверок.',
     );
   }
+  if (courseSlug === 'mqa-base' && pageNumber === 36) {
+    return html.replace('Купить билет один детский билет на текущую дату.', 'Купить один детский билет на текущую дату.');
+  }
+  if (isDevelopment && courseSlug === 'mqa-base' && pageNumber === 41) {
+    return `${html}<section class="lesson-section merged-lesson"><h2>Приоритет в баг-репортах</h2>
+      <p>В баг-репорте приоритет показывает, в каком порядке команде стоит исправлять найденные ошибки. Он не описывает масштаб поломки — для этого используется серьёзность, — а помогает решить, чем заниматься раньше.</p>
+      <div class="lesson-method"><p><strong>Высокий приоритет</strong> получают ошибки, заметно влияющие на ключевые сценарии или доверие пользователя. Например, после оплаты не приходит подтверждение либо при сохранении теряется часть введённых данных.</p></div>
+      <div class="lesson-method"><p><strong>Средний приоритет</strong> подходит для ошибок, которые не блокируют основное действие, но делают его неочевидным или неудобным. Например, фильтр срабатывает со второго раза или данные обновляются только после перезагрузки.</p></div>
+      <div class="lesson-method"><p><strong>Низкий приоритет</strong> используют для небольших неточностей, не влияющих на функциональность: неудачной формулировки уведомления или незначительного расхождения с макетом.</p></div>
+      <div class="lesson-info"><p>Первичную оценку может поставить тестировщик, а команда или владелец продукта — изменить её с учётом сроков и бизнес-рисков. Главное, чтобы причина выбранного приоритета была понятна всем участникам.</p></div>
+    </section>`;
+  }
   return html;
 }
 
@@ -264,7 +276,8 @@ const courses = courseDefs.map((def) => {
   }
 
   const ordered = pages.map((page, index) => {
-    const safeTitle = neutralizeBrand(page.content?.title || page.heading?.taskTitle || `Шаг ${index + 1}`);
+    let safeTitle = neutralizeBrand(page.content?.title || page.heading?.taskTitle || `Шаг ${index + 1}`);
+    if (isDevelopment && def.slug === 'mqa-base' && index + 1 === 41) safeTitle = 'Лекция «Приоритет в тестовой документации»';
     const safeHtml = cleanLessonHeading(sanitizeHtml(page.content?.description || ''), safeTitle);
     return {
       ...page,
@@ -310,9 +323,10 @@ const courses = courseDefs.map((def) => {
 fs.rmSync(outDir, { recursive: true, force: true });
 fs.mkdirSync(outDir, { recursive: true });
 
-const totalPages = courses.reduce((sum, course) => sum + course.pages.length, 0);
+const totalSourcePages = courses.reduce((sum, course) => sum + course.pages.length, 0);
 const totalChapters = courses.reduce((sum, course) => sum + course.chapterCount, 0);
 const curriculum = isDevelopment ? buildCurriculum(courses) : null;
+const totalPages = isDevelopment ? curriculum.records.length : totalSourcePages;
 const routeByUrl = new Map(curriculum?.records.map((record, index) => [record.url, { record, index }]) || []);
 const routeBySourceKey = new Map(curriculum?.records.map((record) => [`${record.source.course === 'mqa-base' ? 'Q' : 'M'}${record.source.step}`, record]) || []);
 
@@ -366,6 +380,7 @@ for (const course of courses) {
     const chapterPos = chapterPages.findIndex((item) => item.number === page.number) + 1;
     const currentUrl = `courses/${course.slug}/${page.file}`;
     const routePosition = routeByUrl.get(currentUrl);
+    const followsRoute = isDevelopment && Boolean(routePosition);
     const routeRecord = routePosition?.record;
     const routePrevious = routePosition ? curriculum.records[routePosition.index - 1] : null;
     const routeNext = routePosition ? curriculum.records[routePosition.index + 1] : null;
@@ -376,21 +391,22 @@ for (const course of courses) {
       description: plainText(page.safeHtml).slice(0, 155),
       depth: 2,
       current: course.slug,
-      body: `<div class="reader-layout"><aside class="reader-rail"><a href="${isDevelopment ? '../../index.html' : 'index.html'}">← ${isDevelopment ? 'Единый маршрут' : 'Структура курса'}</a><div class="rail-index"><span>${String(isDevelopment ? routePosition.index + 1 : page.number).padStart(3, '0')}</span><small>из ${isDevelopment ? totalPages : course.pages.length}</small></div><p>${escapeHtml(isDevelopment ? routeRecord.route.stageTitle : page.chapterName)}</p><div class="rail-progress" aria-label="Шаг ${isDevelopment ? routePosition.index + 1 : chapterPos} из ${isDevelopment ? totalPages : chapterPages.length}"><i style="width:${Math.round((isDevelopment ? routePosition.index + 1 : chapterPos) / (isDevelopment ? totalPages : chapterPages.length) * 100)}%"></i></div><small>${isDevelopment ? `${routeRecord.route.topic} · ${pageKind(page.taskType)}` : `${chapterPos} / ${chapterPages.length} в теме`}</small></aside>
-        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">${isDevelopment ? 'Единый маршрут' : 'Главная'}</a><span>/</span>${isDevelopment ? `<a href="../../index.html#${routeRecord.route.stage}">${escapeHtml(routeRecord.route.stageTitle)}</a><span>/</span><span>${escapeHtml(routeRecord.route.topic)}</span>` : `<a href="index.html">${escapeHtml(course.title)}</a><span>/</span><span>${escapeHtml(page.moduleName)}</span><span>/</span><span>${escapeHtml(page.chapterName)}</span>`}</nav>
+      body: `<div class="reader-layout"><aside class="reader-rail"><a href="${followsRoute ? '../../index.html' : 'index.html'}">← ${followsRoute ? 'Единый маршрут' : 'Структура курса'}</a><div class="rail-index"><span>${String(followsRoute ? routePosition.index + 1 : page.number).padStart(3, '0')}</span><small>из ${followsRoute ? totalPages : course.pages.length}</small></div><p>${escapeHtml(followsRoute ? routeRecord.route.stageTitle : page.chapterName)}</p><div class="rail-progress" aria-label="Шаг ${followsRoute ? routePosition.index + 1 : chapterPos} из ${followsRoute ? totalPages : chapterPages.length}"><i style="width:${Math.round((followsRoute ? routePosition.index + 1 : chapterPos) / (followsRoute ? totalPages : chapterPages.length) * 100)}%"></i></div><small>${followsRoute ? `${routeRecord.route.topic} · ${pageKind(page.taskType)}` : `${chapterPos} / ${chapterPages.length} в теме`}</small></aside>
+        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">${followsRoute ? 'Единый маршрут' : 'Главная'}</a><span>/</span>${followsRoute ? `<a href="../../index.html#${routeRecord.route.stage}">${escapeHtml(routeRecord.route.stageTitle)}</a><span>/</span><span>${escapeHtml(routeRecord.route.topic)}</span>` : `<a href="index.html">${escapeHtml(course.title)}</a><span>/</span><span>${escapeHtml(page.moduleName)}</span><span>/</span><span>${escapeHtml(page.chapterName)}</span>`}</nav>
           <header class="lesson-head"><span class="type-chip">${pageKind(page.taskType)}</span><h1>${escapeHtml(page.safeTitle)}</h1><p>${escapeHtml(page.moduleName)} · ${escapeHtml(page.chapterName)}</p>${alternativeBase ? `<p class="alternative-note">Другой разбор темы. <a href="../../${alternativeBase.url}">Основное объяснение: ${escapeHtml(alternativeBase.title)} →</a></p>` : ''}</header>
           <div class="lesson-content ${course.slug === 'mqa-base' && page.number === 84 ? 'numbered-attributes' : ''}">${page.safeHtml || '<p>Текст для этого шага отсутствует в выгрузке.</p>'}</div>
-          ${isDevelopment ? routePager : `<nav class="pager" aria-label="Навигация между шагами">${previous ? `<a class="prev" href="${previous.file}"><small>Назад</small><span>← ${escapeHtml(previous.safeTitle)}</span></a>` : '<span></span>'}${next ? `<a class="next" href="${next.file}"><small>Дальше</small><span>${escapeHtml(next.safeTitle)} →</span></a>` : `<a class="next" href="index.html"><small>Готово</small><span>К структуре курса →</span></a>`}</nav>`}
+          ${followsRoute ? routePager : `<nav class="pager" aria-label="Навигация между шагами">${previous ? `<a class="prev" href="${previous.file}"><small>Назад</small><span>← ${escapeHtml(previous.safeTitle)}</span></a>` : '<span></span>'}${next ? `<a class="next" href="${next.file}"><small>Дальше</small><span>${escapeHtml(next.safeTitle)} →</span></a>` : `<a class="next" href="index.html"><small>Готово</small><span>К структуре курса →</span></a>`}</nav>`}
           ${isDevelopment ? `<p class="source-note">Источник: <a href="index.html">${escapeHtml(course.title)}</a> · ${escapeHtml(page.moduleName)} / ${escapeHtml(page.chapterName)} · исходный шаг ${page.number}.</p>` : ''}
         </article></div>`,
     }));
   });
 }
 
-const searchIndex = courses.flatMap((course) => course.pages.map((page) => {
+const searchIndex = courses.flatMap((course) => course.pages.flatMap((page) => {
   const url = `courses/${course.slug}/${page.file}`;
   const place = routeByUrl.get(url)?.record;
-  return {
+  if (isDevelopment && !place) return [];
+  return [{
     course: isDevelopment ? 'Единый маршрут' : course.title,
     courseSlug: course.slug,
     module: isDevelopment ? displayStageTitle(place.route.stageTitle) : page.moduleName,
@@ -400,7 +416,7 @@ const searchIndex = courses.flatMap((course) => course.pages.map((page) => {
     type: pageKind(page.taskType),
     url,
     text: plainText(page.safeHtml).slice(0, 12000),
-  };
+  }];
 }));
 if (isDevelopment) searchIndex.sort((a, b) => routeByUrl.get(a.url).index - routeByUrl.get(b.url).index);
 write('assets/search-index.json', JSON.stringify(searchIndex));
