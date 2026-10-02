@@ -407,6 +407,7 @@ for (const course of courses) {
 
 if (isDevelopment) {
   const readyLessons = introCourse.blocks.flatMap((block, blockIndex) => block.lessons.map((lesson) => ({ ...lesson, block, blockIndex })));
+  const readyMinutes = introCourse.blocks.filter((block) => block.status === 'ready').reduce((sum, block) => sum + block.minutes, 0);
   const introOutline = introCourse.blocks.map((block, blockIndex) => {
     const status = block.status === 'ready' ? `${block.minutes / 60} часа · готово` : `${block.minutes / 60} часа · следующий этап`;
     const lessons = block.lessons.length ? `<ol>${block.lessons.map((lesson, lessonIndex) => `<li><a href="lesson-${String(readyLessons.findIndex((item) => item.slug === lesson.slug) + 1).padStart(2, '0')}.html"><span>${String(lessonIndex + 1).padStart(2, '0')}</span><strong>${escapeHtml(lesson.title)}</strong><em>${lesson.minutes} минут</em></a></li>`).join('')}</ol>` : '<p class="planned-block">Материалы будут добавлены после согласования первого блока.</p>';
@@ -417,7 +418,7 @@ if (isDevelopment) {
     title: introCourse.title,
     description: introCourse.description,
     depth: 2,
-    body: `<div class="course-head intro-head"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><span>${escapeHtml(introCourse.title)}</span></nav><span class="eyebrow">Вводный курс · 8 часов · без практических заданий</span><h1>${escapeHtml(introCourse.title)}</h1><p>${escapeHtml(introCourse.description)}</p><div class="course-meta"><span>Готово: 2 часа из 8</span><span>Первый блок: 4 лекции</span></div></div><div class="outline intro-outline">${introOutline}</div>`,
+    body: `<div class="course-head intro-head"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><span>${escapeHtml(introCourse.title)}</span></nav><span class="eyebrow">Вводный курс · 8 часов · без практических заданий</span><h1>${escapeHtml(introCourse.title)}</h1><p>${escapeHtml(introCourse.description)}</p><div class="course-meta"><span>Готово: ${readyMinutes / 60} часов из ${introCourse.totalMinutes / 60}</span><span>${readyLessons.length} лекций</span></div></div><div class="outline intro-outline">${introOutline}</div>`,
   }));
 
   readyLessons.forEach((lesson, index) => {
@@ -476,7 +477,7 @@ write('search.html', shell({
 write('about.html', shell({
   title: 'О курсе',
   description: 'Как устроен персональный курс QA.',
-  body: `<article class="about"><span class="eyebrow">Персональный курс QA</span><h1>Спокойное чтение,<br>без действий на платформе</h1><p>${isDevelopment ? `На сайте доступны 4 вводные лекции и ${stepCount(totalPages)} основного QA-маршрута. Первый из трёх блоков курса «IT с нуля» уже подготовлен; прежняя структура учебных материалов доступна в архиве.` : `Сайт собран из локальных учебных материалов. В нём ${pageCount(totalPages)}: лекции и практические задания.`}</p><h2>Что сохранено</h2><ul><li>заголовки, текст, списки, таблицы и безопасные внешние ссылки;</li><li>${isDevelopment ? 'вводный курс, основной маршрут «этап → тема → шаг» и архивная структура учебных материалов' : 'структура «модуль → тема → шаг»'};</li><li>текстовые описания изображений без загрузки самих файлов.</li></ul><h2>Чего здесь нет</h2><p>Логинов, паролей, cookies, токенов, профилей учеников, комментариев, прогресса, ответов и решений. Формы обратной связи и шаги ревью исключены; ответы не отправляются.</p></article>`,
+  body: `<article class="about"><span class="eyebrow">Персональный курс QA</span><h1>Спокойное чтение,<br>без действий на платформе</h1><p>${isDevelopment ? `На сайте доступны 10 вводных лекций и ${stepCount(totalPages)} основного QA-маршрута. Два из трёх блоков курса «IT с нуля» уже подготовлены; прежняя структура учебных материалов доступна в архиве.` : `Сайт собран из локальных учебных материалов. В нём ${pageCount(totalPages)}: лекции и практические задания.`}</p><h2>Что сохранено</h2><ul><li>заголовки, текст, списки, таблицы и безопасные внешние ссылки;</li><li>${isDevelopment ? 'вводный курс, основной маршрут «этап → тема → шаг» и архивная структура учебных материалов' : 'структура «модуль → тема → шаг»'};</li><li>текстовые описания изображений без загрузки самих файлов.</li></ul><h2>Чего здесь нет</h2><p>Логинов, паролей, cookies, токенов, профилей учеников, комментариев, прогресса, ответов и решений. Формы обратной связи и шаги ревью исключены; ответы не отправляются.</p></article>`,
 }));
 
 write('404.html', fs.readFileSync(path.join(outDir, 'index.html'), 'utf8'));

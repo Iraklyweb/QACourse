@@ -20,7 +20,7 @@ for (const [course, steps] of [
 expected.delete('courses/mqa-base/step-042.html');
 if (map.length !== expected.size) fail(`Карта: ${map.length} вместо ${expected.size} шагов`);
 if (qaSearch.length !== expected.size || new Set(qaSearch.map((item) => item.url)).size !== expected.size) fail('Поиск должен содержать каждый основной урок ровно один раз');
-if (introSearch.length !== 4 || new Set(introSearch.map((item) => item.url)).size !== 4) fail('Поиск должен содержать четыре вводные лекции');
+if (introSearch.length !== 10 || new Set(introSearch.map((item) => item.url)).size !== 10) fail('Поиск должен содержать десять вводных лекций');
 if (!home.includes('Архив исходных курсов')) fail('Нет раздела архивов');
 for (const archive of ['manual-testing', 'mqa-base']) {
   if (!fs.existsSync(path.join(outDir, 'courses', archive, 'index.html'))) fail(`Нет архива ${archive}`);
@@ -73,12 +73,17 @@ if (!priorityLesson.includes('Приоритет в тестовой докум�
 if (map.some((item) => item.url === 'courses/mqa-base/step-042.html') || qaSearch.some((item) => item.url === 'courses/mqa-base/step-042.html')) fail('Дублирующий урок Q42 остался в маршруте или поиске');
 if (!fs.existsSync(path.join(outDir, 'courses/mqa-base/step-042.html'))) fail('Исходный урок Q42 должен остаться в архиве');
 const about = fs.readFileSync(path.join(outDir, 'about.html'), 'utf8');
-if (!about.includes('4 вводные лекции') || !about.includes('282 шага основного QA-маршрута')) fail('Неверно описан состав dev-курса');
+if (!about.includes('10 вводных лекций') || !about.includes('282 шага основного QA-маршрута')) fail('Неверно описан состав dev-курса');
 const introIndex = fs.readFileSync(path.join(outDir, 'courses/it-start/index.html'), 'utf8');
-if (!home.includes('IT с нуля') || !home.includes('2 из 8 часов готовы') || !introIndex.includes('без практических заданий') || !introIndex.includes('Первый блок: 4 лекции')) fail('Вводный курс не представлен на главной или в содержании');
-for (const number of [1, 2, 3, 4]) {
+if (!home.includes('IT с нуля') || !home.includes('5 из 8 часов готовы') || !introIndex.includes('без практических заданий') || !introIndex.includes('10 лекций')) fail('Вводный курс не представлен на главной или в содержании');
+for (const number of Array.from({ length: 10 }, (_, index) => index + 1)) {
   const introLesson = path.join(outDir, `courses/it-start/lesson-${String(number).padStart(2, '0')}.html`);
   if (!fs.existsSync(introLesson) || !fs.readFileSync(introLesson, 'utf8').includes('Вводная лекция · 30 минут')) fail(`Нет вводной лекции ${number}`);
+}
+const introLessonFour = fs.readFileSync(path.join(outDir, 'courses/it-start/lesson-04.html'), 'utf8');
+if (introLessonFour.includes('Кто такие frontend-, backend- и fullstack-разработчики') || introLessonFour.includes('Главная схема блока') || introLessonFour.includes('Что будет дальше')) fail('В четвёртой лекции остались удалённые блоки');
+for (const record of introSearch) {
+  if (fs.readFileSync(path.join(outDir, record.url), 'utf8').includes('Что будет дальше')) fail(`Остался блок «Что будет дальше»: ${record.url}`);
 }
 const routeCss = fs.readFileSync(path.join(outDir, 'assets/route.css'), 'utf8');
 if (!routeCss.includes('.lesson-content table{font-family:inherit}')) fail('Таблицы используют другой шрифт');
