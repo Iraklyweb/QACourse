@@ -1,4 +1,19 @@
 .route-intro{padding-bottom:2.5rem}
+.intro-course-card{max-width:var(--max);margin:2rem auto 1rem;padding:2rem 24px;display:grid;grid-template-columns:1.3fr .7fr;gap:2rem;align-items:end;border:1px solid var(--line);border-radius:18px;background:linear-gradient(135deg,var(--panel),transparent)}
+.intro-course-card h1{margin:.4rem 0;font-size:clamp(2.5rem,6vw,5rem);line-height:1;letter-spacing:-.055em}
+.intro-course-card p{max-width:680px;margin:.8rem 0 0;color:var(--muted)}
+.intro-course-actions{display:flex;flex-direction:column;align-items:flex-start;gap:.8rem}
+.intro-course-actions strong{color:var(--aqua)}
+.intro-course-actions .route-start{margin:0}
+.intro-head h1{color:var(--aqua)}
+.intro-block.planned{opacity:.65}
+.intro-block .chapter-list>ol{margin:0;padding:0;list-style:none;border-top:1px solid var(--line)}
+.intro-block .chapter-list>ol li a{display:grid;grid-template-columns:54px 1fr 110px;gap:.8rem;padding:.7rem .8rem;border-bottom:1px solid var(--line);color:var(--muted)}
+.intro-block .chapter-list>ol li a:hover{background:var(--panel);color:var(--ink)}
+.intro-block .chapter-list>ol span{font:600 .78rem ui-monospace,monospace;color:#71829c}
+.intro-block .chapter-list>ol strong{font-weight:650}
+.intro-block .chapter-list>ol em{text-align:right;font-size:.78rem;font-style:normal}
+.planned-block{margin:0;padding:1rem 0;color:var(--muted)}
 .route-start{display:inline-block;margin:0 0 1.5rem;padding:.85rem 1.2rem;border-radius:10px;background:var(--aqua);color:#071017;font-weight:800}
 .route-start:hover{filter:brightness(1.1)}
 .route-jump{max-width:var(--max);margin:0 auto;padding:0 24px 2rem;display:flex;gap:.55rem;flex-wrap:wrap}
@@ -25,7 +40,7 @@
 .archive-section .course-card h2{font-size:2rem}
 .source-note{margin:2rem 0;color:var(--muted);font-size:.82rem}
 .source-note a{text-decoration:underline;text-underline-offset:3px}
-@media(max-width:800px){.stage-goal,.capstone{margin-left:0}.route-jump{padding-left:16px;padding-right:16px}.archive-section{padding-left:16px;padding-right:16px}}
+@media(max-width:800px){.stage-goal,.capstone{margin-left:0}.route-jump{padding-left:16px;padding-right:16px}.archive-section{padding-left:16px;padding-right:16px}.intro-course-card{margin:1rem 16px;padding:1.25rem;grid-template-columns:1fr}.intro-block .chapter-list>ol li a{grid-template-columns:42px 1fr}.intro-block .chapter-list>ol em{display:none}}
 @media(prefers-color-scheme:light){.route-start{color:#fff}}
 
 /* Compact 8px-based spacing scale for navigation, while preserving readable lesson text. */

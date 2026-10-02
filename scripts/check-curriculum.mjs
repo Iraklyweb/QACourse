@@ -5,6 +5,8 @@ const outDir = path.resolve(process.argv[2] || 'docs');
 const fail = (message) => { throw new Error(message); };
 const map = JSON.parse(fs.readFileSync(path.join(outDir, 'assets/route-map.json'), 'utf8'));
 const search = JSON.parse(fs.readFileSync(path.join(outDir, 'assets/search-index.json'), 'utf8'));
+const qaSearch = search.filter((item) => item.courseSlug !== 'it-start');
+const introSearch = search.filter((item) => item.courseSlug === 'it-start');
 const home = fs.readFileSync(path.join(outDir, 'index.html'), 'utf8');
 const roles = new Set(['core', 'practice', 'advanced', 'reference', 'alternative']);
 const expected = new Set([
@@ -17,7 +19,8 @@ for (const [course, steps] of [
 ]) for (const step of steps) expected.delete(`courses/${course}/step-${String(step).padStart(3, '0')}.html`);
 expected.delete('courses/mqa-base/step-042.html');
 if (map.length !== expected.size) fail(`Карта: ${map.length} вместо ${expected.size} шагов`);
-if (search.length !== expected.size || new Set(search.map((item) => item.url)).size !== expected.size) fail('Поиск должен содержать каждый урок ровно один раз');
+if (qaSearch.length !== expected.size || new Set(qaSearch.map((item) => item.url)).size !== expected.size) fail('Поиск должен содержать каждый основной урок ровно один раз');
+if (introSearch.length !== 4 || new Set(introSearch.map((item) => item.url)).size !== 4) fail('Поиск должен содержать четыре вводные лекции');
 if (!home.includes('Архив исходных курсов')) fail('Нет раздела архивов');
 for (const archive of ['manual-testing', 'mqa-base']) {
   if (!fs.existsSync(path.join(outDir, 'courses', archive, 'index.html'))) fail(`Нет архива ${archive}`);
@@ -29,7 +32,7 @@ for (const [index, item] of map.entries()) {
   if (!roles.has(item.route.role)) fail(`Нет роли у ${item.url}`);
   if (!item.route.stage || !item.route.topic || item.route.lessonOrder !== index + 1) fail(`Некорректное место ${item.url}`);
   if (!home.includes(`href="${item.url}"`)) fail(`Главная не ведёт на ${item.url}`);
-  if (!search.some((record) => record.url === item.url)) fail(`Нет в поиске: ${item.url}`);
+  if (!qaSearch.some((record) => record.url === item.url)) fail(`Нет в поиске: ${item.url}`);
   const html = fs.readFileSync(path.join(outDir, item.url), 'utf8');
   if (!html.includes(item.route.stageTitle) || !html.includes('Единый маршрут')) fail(`Нет маршрута в уроке: ${item.url}`);
   const previous = map[index - 1];
@@ -51,8 +54,8 @@ if (firstPracticeIndex <= lastExampleIndex) fail('Практика докуме�
 if (!home.includes('id="interview"') || !home.includes('Лекции</small>') || !home.includes('Практика</small>')) fail('Нет блока собеседования или новых типов тем');
 if (!home.includes('id="end-to-end-topic-2"') || !home.includes('Выбрать и уточнить требование <small class="role-chip mixed">Лекции + практика</small>')) fail('Тема с лекцией и заданием должна быть смешанной');
 if (/\b(?:21|54) шагов\b/.test(home) || /<h2>\d+\.\s/.test(home)) fail('Ошибочное склонение или двойная нумерация этапов');
-if (!home.includes('Единый маршрут · 282 шага') || !home.includes('<strong>23 шага</strong>') || !home.includes('<strong>61 шаг</strong>') || !home.includes('<strong>21 шаг</strong>')) fail('Неверное склонение количества шагов');
-if (!search.every((record) => record.stageId && record.topicId && record.stageNumber)) fail('Поиску не хватает ссылок на этапы и темы');
+if (!home.includes('Основной курс QA · 282 шага') || !home.includes('<strong>23 шага</strong>') || !home.includes('<strong>61 шаг</strong>') || !home.includes('<strong>21 шаг</strong>')) fail('Неверное склонение количества шагов');
+if (!qaSearch.every((record) => record.stageId && record.topicId && record.stageNumber)) fail('Поиску не хватает ссылок на этапы и темы');
 for (const [step, minimumBlocks] of [[84, 9], [86, 12], [87, 13]]) {
   const lesson = fs.readFileSync(path.join(outDir, `courses/mqa-base/step-${String(step).padStart(3, '0')}.html`), 'utf8');
   if ((lesson.match(/class="lesson-method"/g) || []).length < minimumBlocks) fail(`Не восстановлены смысловые блоки лекции Q${step}`);
@@ -67,10 +70,16 @@ const expectedResultLesson = fs.readFileSync(path.join(outDir, 'courses/mqa-base
 if (!expectedResultLesson.includes('Купить один детский билет на текущую дату.') || expectedResultLesson.includes('Купить билет один детский билет')) fail('Не исправлена грамматика исходного шага Q36');
 const priorityLesson = fs.readFileSync(path.join(outDir, 'courses/mqa-base/step-041.html'), 'utf8');
 if (!priorityLesson.includes('Приоритет в тестовой документации') || !priorityLesson.includes('Приоритет в баг-репортах') || !priorityLesson.includes('после оплаты не приходит подтверждение')) fail('Уроки о приоритете не объединены');
-if (map.some((item) => item.url === 'courses/mqa-base/step-042.html') || search.some((item) => item.url === 'courses/mqa-base/step-042.html')) fail('Дублирующий урок Q42 остался в маршруте или поиске');
+if (map.some((item) => item.url === 'courses/mqa-base/step-042.html') || qaSearch.some((item) => item.url === 'courses/mqa-base/step-042.html')) fail('Дублирующий урок Q42 остался в маршруте или поиске');
 if (!fs.existsSync(path.join(outDir, 'courses/mqa-base/step-042.html'))) fail('Исходный урок Q42 должен остаться в архиве');
 const about = fs.readFileSync(path.join(outDir, 'about.html'), 'utf8');
-if (!about.includes('В нём 282 страницы')) fail('Неверное склонение количества страниц');
+if (!about.includes('4 вводные лекции') || !about.includes('282 шага основного QA-маршрута')) fail('Неверно описан состав dev-курса');
+const introIndex = fs.readFileSync(path.join(outDir, 'courses/it-start/index.html'), 'utf8');
+if (!home.includes('IT с нуля') || !home.includes('2 из 8 часов готовы') || !introIndex.includes('без практических заданий') || !introIndex.includes('Первый блок: 4 лекции')) fail('Вводный курс не представлен на главной или в содержании');
+for (const number of [1, 2, 3, 4]) {
+  const introLesson = path.join(outDir, `courses/it-start/lesson-${String(number).padStart(2, '0')}.html`);
+  if (!fs.existsSync(introLesson) || !fs.readFileSync(introLesson, 'utf8').includes('Вводная лекция · 30 минут')) fail(`Нет вводной лекции ${number}`);
+}
 const routeCss = fs.readFileSync(path.join(outDir, 'assets/route.css'), 'utf8');
 if (!routeCss.includes('.lesson-content table{font-family:inherit}')) fail('Таблицы используют другой шрифт');
 if (home.includes('Восемь последовательных этапов') || home.includes('После основ') || home.includes('Основное</small>')) fail('Остались прежние статусы или вступление');

@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { buildCurriculum } from './curriculum.mjs';
+import { introCourse } from './intro-course.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const sourceDirName = process.env.COURSE_EXPORT_DIR || fs.readdirSync(root, { withFileTypes: true })
@@ -191,7 +192,7 @@ function shell({ title, description, depth = 0, body, current = '' }) {
   <header class="topbar">
     <a class="brand" href="${base}index.html" aria-label="Персональный курс QA, главная"><span class="brand-mark">QA</span><span>Персональный курс QA</span></a>${environmentNav}
     <nav aria-label="Основная навигация">
-      ${isDevelopment ? `<a href="${base}index.html">Единый маршрут</a><a href="${base}index.html#archive">Архив курсов</a>` : `<a href="${base}courses/manual-testing/">Ручное тестирование</a><a href="${base}courses/mqa-base/">MQA Base</a>`}${navCourse ? `\n      ${navCourse}` : ''}
+      ${isDevelopment ? `<a href="${base}courses/${introCourse.slug}/">IT с нуля</a><a href="${base}index.html#main-route">Основной курс</a><a href="${base}index.html#archive">Архив курсов</a>` : `<a href="${base}courses/manual-testing/">Ручное тестирование</a><a href="${base}courses/mqa-base/">MQA Base</a>`}${navCourse ? `\n      ${navCourse}` : ''}
     </nav>
     <form class="search-mini" action="${base}search.html" role="search">
       <label class="sr-only" for="site-search-${depth}">Поиск по курсам</label>
@@ -337,7 +338,9 @@ function routeHome() {
     <p class="stage-goal">${escapeHtml(stage.goal)} <strong>Результат:</strong> ${escapeHtml(stage.outcome)}</p>${stage.id === 'end-to-end' ? '<aside class="capstone"><h3>Итоговая работа</h3><p>Возьмите один знакомый веб-сценарий. Зафиксируйте требование и вопросы к нему, составьте проверки, выполните их в интерфейсе и при необходимости через API/БД, затем опишите один воспроизводимый дефект. Упражнения ниже взяты из разных исходных контекстов: используйте их как образцы отдельных действий, а итоговую цепочку соберите на одном выбранном сценарии.</p></aside>' : ''}
     <div class="chapter-list">${stage.topics.map((topic, topicIndex) => `<details id="${stage.id}-topic-${topicIndex + 1}"><summary><span>${escapeHtml(topic.title)} <small class="role-chip ${topic.kind}">${kindLabel[topic.kind]}</small></span><span class="chapter-toggle"><small>${topic.items.length}</small><span class="chapter-chevron" aria-hidden="true">▸</span></span></summary><ol>${topic.items.map((item) => `<li><a href="${item.url}"><span>${String(item.route.lessonOrder).padStart(3, '0')}</span><strong>${escapeHtml(item.title)}</strong><em>${item.alternativeTo ? 'Другой разбор' : escapeHtml(item.source.course === 'mqa-base' ? 'MQA Base' : 'Ручное тестирование')}</em></a></li>`).join('')}</ol></details>`).join('')}</div>
   </section>`).join('');
-  return `<section class="home-intro route-intro"><div><span class="eyebrow">Единый маршрут · ${stepCount(totalPages)}</span><h1>От знакомства с QA<br><span>до найденного дефекта</span></h1></div><div class="home-copy"><a class="route-start" href="${curriculum.records[0].url}">Начать обучение →</a><form class="search-hero" action="search.html" role="search"><label class="sr-only" for="home-search">Поиск по маршруту</label><input id="home-search" name="q" type="search" placeholder="Например, граничные значения" required><button>Найти</button></form></div></section>
+  const readyMinutes = introCourse.blocks.filter((block) => block.status === 'ready').reduce((sum, block) => sum + block.minutes, 0);
+  return `<section class="intro-course-card"><div><span class="eyebrow">Новый вводный курс · готов первый блок</span><h1>${escapeHtml(introCourse.title)}</h1><p>${escapeHtml(introCourse.description)}</p></div><div class="intro-course-actions"><strong>${readyMinutes / 60} из ${introCourse.totalMinutes / 60} часов готовы</strong><a class="route-start" href="courses/${introCourse.slug}/">Открыть вводный курс →</a></div></section>
+  <section class="home-intro route-intro" id="main-route"><div><span class="eyebrow">Основной курс QA · ${stepCount(totalPages)}</span><h1>От знакомства с QA<br><span>до найденного дефекта</span></h1></div><div class="home-copy"><a class="route-start" href="${curriculum.records[0].url}">Перейти к основному курсу →</a><form class="search-hero" action="search.html" role="search"><label class="sr-only" for="home-search">Поиск по маршруту</label><input id="home-search" name="q" type="search" placeholder="Например, граничные значения" required><button>Найти</button></form></div></section>
   <nav class="route-jump" aria-label="Этапы маршрута">${curriculum.stages.map((stage) => `<a href="#${stage.id}">${escapeHtml(displayStageTitle(stage.title))}</a>`).join('')}</nav>
   <div class="outline route-outline">${outline}</div>
   <section id="archive" class="archive-section"><span class="eyebrow">Исходные материалы</span><h2>Архив исходных курсов</h2><p>Прежние структуры учебных материалов сохранены для ссылок и сверки; формы обратной связи и ревью исключены. Для обучения используйте единый маршрут выше.</p><div class="course-grid">${courses.map((course) => courseCard(course)).join('')}</div></section>`;
@@ -402,6 +405,34 @@ for (const course of courses) {
   });
 }
 
+if (isDevelopment) {
+  const readyLessons = introCourse.blocks.flatMap((block, blockIndex) => block.lessons.map((lesson) => ({ ...lesson, block, blockIndex })));
+  const introOutline = introCourse.blocks.map((block, blockIndex) => {
+    const status = block.status === 'ready' ? `${block.minutes / 60} часа · готово` : `${block.minutes / 60} часа · следующий этап`;
+    const lessons = block.lessons.length ? `<ol>${block.lessons.map((lesson, lessonIndex) => `<li><a href="lesson-${String(readyLessons.findIndex((item) => item.slug === lesson.slug) + 1).padStart(2, '0')}.html"><span>${String(lessonIndex + 1).padStart(2, '0')}</span><strong>${escapeHtml(lesson.title)}</strong><em>${lesson.minutes} минут</em></a></li>`).join('')}</ol>` : '<p class="planned-block">Материалы будут добавлены после согласования первого блока.</p>';
+    return `<section class="module-block intro-block ${block.status === 'ready' ? 'ready' : 'planned'}"><header><span>${String(blockIndex + 1).padStart(2, '0')}</span><div><p>Блок ${blockIndex + 1}</p><h2>${escapeHtml(block.title)}</h2></div><strong>${status}</strong></header><div class="chapter-list">${lessons}</div></section>`;
+  }).join('');
+
+  write(`courses/${introCourse.slug}/index.html`, shell({
+    title: introCourse.title,
+    description: introCourse.description,
+    depth: 2,
+    body: `<div class="course-head intro-head"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><span>${escapeHtml(introCourse.title)}</span></nav><span class="eyebrow">Вводный курс · 8 часов · без практических заданий</span><h1>${escapeHtml(introCourse.title)}</h1><p>${escapeHtml(introCourse.description)}</p><div class="course-meta"><span>Готово: 2 часа из 8</span><span>Первый блок: 4 лекции</span></div></div><div class="outline intro-outline">${introOutline}</div>`,
+  }));
+
+  readyLessons.forEach((lesson, index) => {
+    const previous = readyLessons[index - 1];
+    const next = readyLessons[index + 1];
+    const fileFor = (position) => `lesson-${String(position + 1).padStart(2, '0')}.html`;
+    write(`courses/${introCourse.slug}/${fileFor(index)}`, shell({
+      title: lesson.title,
+      description: plainText(lesson.html).slice(0, 155),
+      depth: 2,
+      body: `<div class="reader-layout"><aside class="reader-rail"><a href="index.html">← Содержание курса</a><div class="rail-index"><span>${String(index + 1).padStart(2, '0')}</span><small>из ${readyLessons.length}</small></div><p>${escapeHtml(lesson.block.title)}</p><div class="rail-progress" aria-label="Лекция ${index + 1} из ${readyLessons.length}"><i style="width:${Math.round((index + 1) / readyLessons.length * 100)}%"></i></div><small>${lesson.minutes} минут · Лекция</small></aside><article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><a href="index.html">${escapeHtml(introCourse.title)}</a><span>/</span><span>${escapeHtml(lesson.block.title)}</span></nav><header class="lesson-head"><span class="type-chip">Вводная лекция · ${lesson.minutes} минут</span><h1>${escapeHtml(lesson.title)}</h1><p>Блок ${lesson.blockIndex + 1} · ${escapeHtml(lesson.block.title)}</p></header><div class="lesson-content">${lesson.html}</div><nav class="pager" aria-label="Навигация между лекциями">${previous ? `<a class="prev" href="${fileFor(index - 1)}"><small>Назад</small><span>← ${escapeHtml(previous.title)}</span></a>` : '<span></span>'}${next ? `<a class="next" href="${fileFor(index + 1)}"><small>Дальше</small><span>${escapeHtml(next.title)} →</span></a>` : '<a class="next" href="index.html"><small>Первый блок завершён</small><span>К содержанию курса →</span></a>'}</nav></article></div>`,
+    }));
+  });
+}
+
 const searchIndex = courses.flatMap((course) => course.pages.flatMap((page) => {
   const url = `courses/${course.slug}/${page.file}`;
   const place = routeByUrl.get(url)?.record;
@@ -418,20 +449,34 @@ const searchIndex = courses.flatMap((course) => course.pages.flatMap((page) => {
     text: plainText(page.safeHtml).slice(0, 12000),
   }];
 }));
-if (isDevelopment) searchIndex.sort((a, b) => routeByUrl.get(a.url).index - routeByUrl.get(b.url).index);
+if (isDevelopment) {
+  searchIndex.sort((a, b) => routeByUrl.get(a.url).index - routeByUrl.get(b.url).index);
+  const introSearchLessons = introCourse.blocks.flatMap((block, blockIndex) => block.lessons.map((lesson) => ({ ...lesson, block, blockIndex })));
+  const introSearch = introSearchLessons.map((lesson, lessonIndex) => ({
+    course: introCourse.title,
+    courseSlug: introCourse.slug,
+    module: `Блок ${lesson.blockIndex + 1}. ${lesson.block.title}`,
+    chapter: lesson.block.title,
+    title: lesson.title,
+    type: 'Вводная лекция',
+    url: `courses/${introCourse.slug}/lesson-${String(lessonIndex + 1).padStart(2, '0')}.html`,
+    text: plainText(lesson.html).slice(0, 12000),
+  }));
+  searchIndex.unshift(...introSearch);
+}
 write('assets/search-index.json', JSON.stringify(searchIndex));
 if (isDevelopment) write('assets/route-map.json', JSON.stringify(curriculum.records, null, 2) + '\n');
 
 write('search.html', shell({
   title: 'Поиск',
   description: isDevelopment ? 'Полнотекстовый поиск по единому маршруту тестирования.' : 'Полнотекстовый поиск по двум курсам тестирования.',
-  body: `<section class="search-page"><span class="eyebrow">Поиск по ${totalPages} страницам</span><h1>Что вы хотите найти?</h1><form id="search-form" class="search-large" role="search"><label class="sr-only" for="search-input">Поиск</label><input id="search-input" name="q" type="search" placeholder="Введите термин или фразу" autofocus><button>Найти</button></form><p id="search-status" class="search-status" aria-live="polite">Введите не меньше двух символов.</p><div id="search-results" class="search-results"></div></section>`,
+  body: `<section class="search-page"><span class="eyebrow">Поиск по ${searchIndex.length} материалам</span><h1>Что вы хотите найти?</h1><form id="search-form" class="search-large" role="search"><label class="sr-only" for="search-input">Поиск</label><input id="search-input" name="q" type="search" placeholder="Введите термин или фразу" autofocus><button>Найти</button></form><p id="search-status" class="search-status" aria-live="polite">Введите не меньше двух символов.</p><div id="search-results" class="search-results"></div></section>`,
 }));
 
 write('about.html', shell({
   title: 'О курсе',
   description: 'Как устроен персональный курс QA.',
-  body: `<article class="about"><span class="eyebrow">Персональный курс QA</span><h1>Спокойное чтение,<br>без действий на платформе</h1><p>Сайт собран из локальных учебных материалов. В нём ${pageCount(totalPages)}: лекции и практические задания.${isDevelopment ? ' Девять этапов образуют единый маршрут; прежняя структура учебных материалов доступна в архиве.' : ''}</p><h2>Что сохранено</h2><ul><li>заголовки, текст, списки, таблицы и безопасные внешние ссылки;</li><li>${isDevelopment ? 'маршрут «этап → тема → шаг» и архивная структура учебных материалов' : 'структура «модуль → тема → шаг»'};</li><li>текстовые описания изображений без загрузки самих файлов.</li></ul><h2>Чего здесь нет</h2><p>Логинов, паролей, cookies, токенов, профилей учеников, комментариев, прогресса, ответов и решений. Формы обратной связи и шаги ревью исключены; ответы не отправляются.</p></article>`,
+  body: `<article class="about"><span class="eyebrow">Персональный курс QA</span><h1>Спокойное чтение,<br>без действий на платформе</h1><p>${isDevelopment ? `На сайте доступны 4 вводные лекции и ${stepCount(totalPages)} основного QA-маршрута. Первый из трёх блоков курса «IT с нуля» уже подготовлен; прежняя структура учебных материалов доступна в архиве.` : `Сайт собран из локальных учебных материалов. В нём ${pageCount(totalPages)}: лекции и практические задания.`}</p><h2>Что сохранено</h2><ul><li>заголовки, текст, списки, таблицы и безопасные внешние ссылки;</li><li>${isDevelopment ? 'вводный курс, основной маршрут «этап → тема → шаг» и архивная структура учебных материалов' : 'структура «модуль → тема → шаг»'};</li><li>текстовые описания изображений без загрузки самих файлов.</li></ul><h2>Чего здесь нет</h2><p>Логинов, паролей, cookies, токенов, профилей учеников, комментариев, прогресса, ответов и решений. Формы обратной связи и шаги ревью исключены; ответы не отправляются.</p></article>`,
 }));
 
 write('404.html', fs.readFileSync(path.join(outDir, 'index.html'), 'utf8'));

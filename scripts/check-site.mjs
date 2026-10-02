@@ -97,8 +97,8 @@ for (const [pattern, label] of forbiddenPublishedPatterns) {
   if (pattern.test(searchText)) failures.push(`docs/assets/search-index.json: ${label}`);
 }
 const expectedLessons = expectedEnvironment === 'development' ? 283 : 295;
-const expectedSearchRecords = expectedEnvironment === 'development' ? 282 : 295;
-const expectedHtmlFiles = expectedLessons + 6;
+const expectedSearchRecords = expectedEnvironment === 'development' ? 286 : 295;
+const expectedHtmlFiles = expectedEnvironment === 'development' ? 294 : 301;
 if (lessonFiles.length !== expectedLessons) failures.push(`Страниц уроков: ${lessonFiles.length}, ожидалось ${expectedLessons}`);
 if (search.length !== expectedSearchRecords) failures.push(`Записей поиска: ${search.length}, ожидалось ${expectedSearchRecords}`);
 if (htmlFiles.length !== expectedHtmlFiles) failures.push(`HTML-файлов: ${htmlFiles.length}, ожидалось ${expectedHtmlFiles}`);
