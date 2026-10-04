@@ -86,6 +86,15 @@ for (const number of Array.from({ length: 8 }, (_, index) => index + 1)) {
   if (introLessonHtml.includes('<span class="type-chip">Вводная лекция')) fail(`В лекции ${number} осталась вводная плашка`);
 }
 if (fs.existsSync(path.join(outDir, 'courses/it-start/lesson-09.html'))) fail('Осталась страница удалённого блока');
+for (const [lesson, image] of [
+  ['lesson-04.html', 'digital-product-map.png'],
+  ['lesson-05.html', 'double-click-meme.png'],
+  ['lesson-08.html', 'junior-qa-first-day-meme.png'],
+]) {
+  if (!fs.existsSync(path.join(outDir, 'assets/it-start', image))) fail(`Нет изображения ${image}`);
+  const lessonHtml = fs.readFileSync(path.join(outDir, 'courses/it-start', lesson), 'utf8');
+  if (!lessonHtml.includes(`../../assets/it-start/${image}`) || !lessonHtml.includes('loading="lazy"')) fail(`Изображение ${image} не подключено корректно`);
+}
 const introLessonFour = fs.readFileSync(path.join(outDir, 'courses/it-start/lesson-04.html'), 'utf8');
 if (introLessonFour.includes('Кто такие frontend-, backend- и fullstack-разработчики') || introLessonFour.includes('Главная схема блока') || introLessonFour.includes('Что будет дальше')) fail('В четвёртой лекции остались удалённые блоки');
 for (const record of introSearch) {

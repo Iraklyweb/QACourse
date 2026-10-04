@@ -484,5 +484,7 @@ write('.nojekyll', '');
 write('assets/site.css', fs.readFileSync(path.join(root, 'site-src', 'site.css'), 'utf8'));
 if (isDevelopment) write('assets/route.css', fs.readFileSync(path.join(root, 'site-src', 'route.css'), 'utf8'));
 write('assets/site.js', fs.readFileSync(path.join(root, 'site-src', 'site.js'), 'utf8'));
+const staticAssetsDir = path.join(root, 'site-src', 'assets');
+if (fs.existsSync(staticAssetsDir)) fs.cpSync(staticAssetsDir, path.join(outDir, 'assets'), { recursive: true });
 
 console.log(JSON.stringify({ environment: siteEnvironment, courses: courses.length, chapters: totalChapters, pages: totalPages, searchRecords: searchIndex.length, output: outDir }));
