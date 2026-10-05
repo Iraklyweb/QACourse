@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Требования Требования — это описание того, что система должна делать и как она должна себя вести, чтобы считаться работающей корректно. Иначе говоря, это н">
+  <meta name="description" content="Требования — это описание того, что система должна делать и как она должна себя вести, чтобы считаться работающей корректно. Иначе говоря, это набор правил">
   <meta name="color-scheme" content="dark light">
   <title>Лекция «Требования»  · Персональный курс QA</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
@@ -16,7 +16,7 @@
   <header class="topbar">
     <a class="brand" href="../../index.html" aria-label="Персональный курс QA, главная"><span class="brand-mark">QA</span><span>Персональный курс QA</span></a>
     <nav aria-label="Основная навигация">
-      <a href="../../index.html">Единый маршрут</a><a href="../../index.html#archive">Архив курсов</a>
+      <a href="../../courses/it-start/">IT с нуля</a><a href="../../index.html#main-route">Основной курс</a><a href="../../index.html#archive">Архив курсов</a>
     </nav>
     <form class="search-mini" action="../../search.html" role="search">
       <label class="sr-only" for="site-search-2">Поиск по курсам</label>
@@ -24,21 +24,21 @@
       <button type="submit" aria-label="Искать">⌕</button>
     </form>
   </header>
-  <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="../../index.html">← Единый маршрут</a><div class="rail-index"><span>012</span><small>из 295</small></div><p>2. Требования</p><div class="rail-progress" aria-label="Шаг 12 из 295"><i style="width:4%"></i></div><small>Смысл, типы и качество требований · core</small></aside>
+  <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="../../index.html">← Единый маршрут</a><div class="rail-index"><span>011</span><small>из 282</small></div><p>2. Требования</p><div class="rail-progress" aria-label="Шаг 11 из 282"><i style="width:4%"></i></div><small>Смысл, типы и качество требований · Лекция</small></aside>
         <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Единый маршрут</a><span>/</span><a href="../../index.html#requirements">2. Требования</a><span>/</span><span>Смысл, типы и качество требований</span></nav>
           <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «Требования» </h1><p>Требования · Теоретические сведения</p></header>
-          <div class="lesson-content"><div>
+          <div class="lesson-content "><div class="lesson-source">
 
-<h1>Требования</h1>
 
-<div>
-<div>
+
+<div class="lesson-section">
+<div class="lesson-info">
 <p>Требования &mdash; это описание того, что система должна делать и как она должна себя вести, чтобы считаться работающей корректно.</p>
 
 <p>Иначе говоря, это набор правил и ограничений, по которым определяется, что считается нормой, а что &mdash; отклонением.</p>
 </div>
 
-<div>
+<div class="lesson-block">
 <p>Требования не появляются из ниоткуда.</p>
 
 <p>Они формируются из ожиданий заказчика, пользователей и аналитиков.</p>
@@ -47,7 +47,7 @@
 
 <p>Перед тем как тестировать &ldquo;что делает система&rdquo;, важно понимать, почему она должна делать это именно так.</p>
 
-<div>
+<div class="lesson-info">
 <p>Это не просто документ.</p>
 
 <p>Требования &mdash; основа, из которой вырастают задачи, проверки и вся логика тестирования.</p>
@@ -61,13 +61,13 @@
 
 <p>Из этих описаний появляются задачи в Jira, а из задач &mdash; тест-кейсы и чек-листы.</p>
 
-<p>&nbsp;</p>
+
 
 <p><strong>Так выстраивается цепочка:</strong></p>
 
 <p>требование &rarr; задача &rarr; проверка &rarr; баг &rarr; исправление &rarr; обновлённое требование.</p>
 
-<div>
+<div class="lesson-method">
 <ul>
 	<li>Без требований никто не понимает, что считать ошибкой.</li>
 	<li>Можно увидеть несоответствие, но пока не ясно, как &ldquo;должно быть&rdquo; &mdash; невозможно сказать, баг это или просто другой вариант реализации.</li>
@@ -99,7 +99,7 @@
 
 <p>Главное, чтобы каждый участник видел одно и то же &ldquo;ожидание&rdquo;, а не свою интерпретацию.</p>
 
-<div>
+<div class="lesson-info">
 <p>Понимание требований &mdash; это не формальность.</p>
 
 <p>Это способность видеть продукт глазами всей команды.</p>
@@ -109,7 +109,7 @@
 </div>
 </div>
 </div></div>
-          <nav class="pager" aria-label="Навигация между шагами"><a class="prev" href="../../courses/manual-testing/step-067.html"><small>Назад · единый маршрут</small><span>← Лекция «Контекст для работы с клиент-серверной архитектурой»</span></a><a class="next" href="../../courses/mqa-base/step-081.html"><small>Дальше · единый маршрут</small><span>Лекция «Как воспринимать на практике»  →</span></a></nav>
+          <nav class="pager" aria-label="Навигация между шагами"><a class="prev" href="../../courses/mqa-base/step-071.html"><small>Назад · единый маршрут</small><span>← Лекция «Роли в IT проекте»</span></a><a class="next" href="../../courses/mqa-base/step-081.html"><small>Дальше · единый маршрут</small><span>Лекция «Как воспринимать на практике»  →</span></a></nav>
           <p class="source-note">Источник: <a href="index.html">MQA Base</a> · Требования / Теоретические сведения · исходный шаг 80.</p>
         </article></div></main>
   <footer><span>Персональный курс QA · без отслеживания и отправки ответов</span><a href="../../about.html">О сайте</a></footer>

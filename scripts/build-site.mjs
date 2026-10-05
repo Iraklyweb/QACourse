@@ -2,6 +2,9 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { buildCurriculum } from './curriculum.mjs';
+import { introCourse } from './intro-course.mjs';
+
+const activeIntroBlocks = introCourse.blocks.filter((block) => block.status !== 'removed');
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const sourceDirName = process.env.COURSE_EXPORT_DIR || fs.readdirSync(root, { withFileTypes: true })
@@ -108,6 +111,7 @@ function sanitizeHtml(input = '') {
     'ul', 'ol', 'li', 'table', 'thead', 'tbody', 'tfoot', 'tr', 'th', 'td',
     'strong', 'b', 'em', 'i', 'u', 's', 'code', 'pre', 'br', 'hr', 'blockquote', 'a',
   ]);
+  const sourceClasses = { 'lecture-container': 'lesson-source', section: 'lesson-section', 'content-block': 'lesson-block', 'method-block': 'lesson-method', 'info-box': 'lesson-info', 'definition-box': 'lesson-info', highlight: 'lesson-emphasis' };
 
   html = html.replace(/<\/?\s*([a-zA-Z0-9:-]+)\b[^>]*>/g, (tag, rawName) => {
     const name = rawName.toLowerCase();
@@ -128,10 +132,16 @@ function sanitizeHtml(input = '') {
       ].join('');
       return `<${name}${attrs}>`;
     }
+    if (name === 'div' || name === 'span') {
+      const classes = attrValue(tag, 'class').split(/\s+/).map((item) => sourceClasses[item]).filter(Boolean);
+      return `<${name}${classes.length ? ` class="${[...new Set(classes)].join(' ')}"` : ''}>`;
+    }
     return `<${name}>`;
   });
 
   return html
+    .replace(/<p>\s*(?:&nbsp;|&#160;|<br>)?\s*<\/p>/gi, '')
+    .replace(/<h[1-6]>\s*(?:&nbsp;|&#160;|<br>)?\s*<\/h[1-6]>/gi, '')
     .replace(/<(p|div|span)>\s*<\/\1>/gi, '')
     .replace(/[ \t]+$/gm, '')
     .trim();
@@ -186,7 +196,7 @@ function shell({ title, description, depth = 0, body, current = '' }) {
   <header class="topbar">
     <a class="brand" href="${base}index.html" aria-label="Персональный курс QA, главная"><span class="brand-mark">QA</span><span>Персональный курс QA</span></a>${environmentNav}
     <nav aria-label="Основная навигация">
-      ${isUnified ? `<a href="${base}index.html">Единый маршрут</a><a href="${base}index.html#archive">Архив курсов</a>` : `<a href="${base}courses/manual-testing/">Ручное тестирование</a><a href="${base}courses/mqa-base/">MQA Base</a>`}${navCourse ? `\n      ${navCourse}` : ''}
+      <a href="${base}courses/${introCourse.slug}/">IT с нуля</a><a href="${base}index.html#main-route">Основной курс</a><a href="${base}index.html#archive">Архив курсов</a>${navCourse ? `\n      ${navCourse}` : ''}
     </nav>
     <form class="search-mini" action="${base}search.html" role="search">
       <label class="sr-only" for="site-search-${depth}">Поиск по курсам</label>
@@ -212,18 +222,54 @@ function courseCard(course, depth = 0) {
 }
 
 function pageKind(type) {
-  return ({ lecture: 'Лекция', mentorCheckTask: 'Практическое задание', multi_input: 'Форма обратной связи', review_step: 'Ревью' })[type] || 'Материал';
+  return ({ lecture: 'Лекция', mentorCheckTask: 'Практическое задание' })[type] || 'Материал';
 }
 
-function taskSupplement(page) {
-  if (page.taskType === 'lecture') return '';
-  let questions = '';
-  if (page.taskType === 'multi_input' && Array.isArray(page.content.items)) {
-    questions = `<section class="reference-questions"><h2>Вопросы формы</h2><ol>${page.content.items
-      .map((item) => `<li>${escapeHtml(neutralizeBrand(item.questionText || '').replace(/\s+/g, ' ').trim())}</li>`).join('')}</ol></section>`;
-  }
-  return `<aside class="notice"><strong>Справочный режим</strong><p>Задание сохранено для чтения. На этой странице нет полей ввода, проверки или отправки ответов.</p></aside>${questions}`;
+function cleanLessonHeading(html, title) {
+  const normalized = (value) => plainText(value).replace(/&[a-z]+;|&#\d+;/gi, ' ').replace(/[^\p{L}\p{N}]+/gu, ' ').toLocaleLowerCase('ru').trim();
+  const first = /<h1>([\s\S]*?)<\/h1>/i.exec(html);
+  if (!first) return html;
+  const heading = normalized(first[1]);
+  const pageTitle = normalized(title);
+  return heading === pageTitle || heading === pageTitle.replace(/^лекция\s+/, '') ? html.replace(first[0], '') : html;
 }
+
+function countNoun(count, one, few, many) {
+  const suffix = count % 100 >= 11 && count % 100 <= 14 ? many : count % 10 === 1 ? one : count % 10 >= 2 && count % 10 <= 4 ? few : many;
+  return `${count} ${suffix}`;
+}
+
+const stepCount = (count) => countNoun(count, 'шаг', 'шага', 'шагов');
+const pageCount = (count) => countNoun(count, 'страница', 'страницы', 'страниц');
+const moduleCount = (count) => countNoun(count, 'модуль', 'модуля', 'модулей');
+const topicCount = (count) => countNoun(count, 'тема', 'темы', 'тем');
+const courseCount = (count) => countNoun(count, 'курс', 'курса', 'курсов');
+
+function displayStageTitle(title) { return title.replace(/^\d+\.\s*/, ''); }
+
+function editorializeLessonHtml(courseSlug, pageNumber, html) {
+  if (courseSlug === 'manual-testing' && pageNumber === 123) {
+    return html.replace(
+      /<p>Мы уже <strong>изучали тему требований<\/strong>, и выполняя <strong>домашние задания<\/strong>, вы <strong>сами формировали требования<\/strong>\. На их основе вы создавали <strong>тестовую документацию<\/strong> и определяли, как система должна работать\./,
+      '<p>Вы уже познакомились с темой требований и их основными источниками. Теперь разберём, как анализировать требования, находить в них пробелы и использовать их как основу для проверок.',
+    );
+  }
+  if (courseSlug === 'mqa-base' && pageNumber === 36) {
+    return html.replace('Купить билет один детский билет на текущую дату.', 'Купить один детский билет на текущую дату.');
+  }
+  if (courseSlug === 'mqa-base' && pageNumber === 41) {
+    return `${html}<section class="lesson-section merged-lesson"><h2>Приоритет в баг-репортах</h2>
+      <p>В баг-репорте приоритет показывает, в каком порядке команде стоит исправлять найденные ошибки. Он не описывает масштаб поломки — для этого используется серьёзность, — а помогает решить, чем заниматься раньше.</p>
+      <div class="lesson-method"><p><strong>Высокий приоритет</strong> получают ошибки, заметно влияющие на ключевые сценарии или доверие пользователя. Например, после оплаты не приходит подтверждение либо при сохранении теряется часть введённых данных.</p></div>
+      <div class="lesson-method"><p><strong>Средний приоритет</strong> подходит для ошибок, которые не блокируют основное действие, но делают его неочевидным или неудобным. Например, фильтр срабатывает со второго раза или данные обновляются только после перезагрузки.</p></div>
+      <div class="lesson-method"><p><strong>Низкий приоритет</strong> используют для небольших неточностей, не влияющих на функциональность: неудачной формулировки уведомления или незначительного расхождения с макетом.</p></div>
+      <div class="lesson-info"><p>Первичную оценку может поставить тестировщик, а команда или владелец продукта — изменить её с учётом сроков и бизнес-рисков. Главное, чтобы причина выбранного приоритета была понятна всем участникам.</p></div>
+    </section>`;
+  }
+  return html;
+}
+
+const whyTestIntro = '<section class="editorial-intro"><h2>Зачем тестировать</h2><p>Тестирование помогает обнаружить расхождение между тем, как продукт должен работать, и тем, что получает пользователь. Оно не доказывает отсутствие ошибок, но снижает риск неприятных сюрпризов до выпуска.</p><p>Тестировщик проверяет требования, исследует поведение продукта, сообщает о проблемах понятным команде способом и помогает принять обоснованное решение о выпуске. В следующих этапах вы научитесь делать это на конкретных примерах.</p></section>';
 
 const courses = courseDefs.map((def) => {
   const structure = readJson(def.course);
@@ -234,16 +280,21 @@ const courses = courseDefs.map((def) => {
     throw new Error(`${def.slug}: контрольные количества выгрузки не совпадают`);
   }
 
-  const ordered = pages.map((page, index) => ({
-    ...page,
-    moduleName: neutralizeBrand(page.moduleName),
-    chapterName: neutralizeBrand(page.chapterName),
-    index,
-    number: index + 1,
-    file: `step-${String(index + 1).padStart(3, '0')}.html`,
-    safeTitle: neutralizeBrand(page.content?.title || page.heading?.taskTitle || `Шаг ${index + 1}`),
-    safeHtml: sanitizeHtml(page.content?.description || ''),
-  }));
+  const ordered = pages.map((page, index) => {
+    let safeTitle = neutralizeBrand(page.content?.title || page.heading?.taskTitle || `Шаг ${index + 1}`);
+    if (def.slug === 'mqa-base' && index + 1 === 41) safeTitle = 'Лекция «Приоритет в тестовой документации»';
+    const safeHtml = cleanLessonHeading(sanitizeHtml(page.content?.description || ''), safeTitle);
+    return {
+      ...page,
+      moduleName: neutralizeBrand(page.moduleName),
+      chapterName: neutralizeBrand(page.chapterName),
+      index,
+      number: index + 1,
+      file: `step-${String(index + 1).padStart(3, '0')}.html`,
+      safeTitle,
+      safeHtml: (def.slug === 'mqa-base' && index === 0 ? whyTestIntro : '') + editorializeLessonHtml(def.slug, index + 1, safeHtml),
+    };
+  }).filter((page) => page.taskType !== 'multi_input' && page.taskType !== 'review_step');
 
   const modules = [];
   for (const page of ordered) {
@@ -277,41 +328,36 @@ const courses = courseDefs.map((def) => {
 fs.rmSync(outDir, { recursive: true, force: true });
 fs.mkdirSync(outDir, { recursive: true });
 
-const totalPages = courses.reduce((sum, course) => sum + course.pages.length, 0);
+const totalSourcePages = courses.reduce((sum, course) => sum + course.pages.length, 0);
 const totalChapters = courses.reduce((sum, course) => sum + course.chapterCount, 0);
-const curriculum = isUnified ? buildCurriculum(courses) : null;
+const curriculum = buildCurriculum(courses);
+const totalPages = curriculum.records.length;
 const routeByUrl = new Map(curriculum?.records.map((record, index) => [record.url, { record, index }]) || []);
 const routeBySourceKey = new Map(curriculum?.records.map((record) => [`${record.source.course === 'mqa-base' ? 'Q' : 'M'}${record.source.step}`, record]) || []);
 
 function routeHome() {
-  const roleLabel = { core: 'Основное', practice: 'Практика', advanced: 'После основ', reference: 'Справка' };
+  const kindLabel = { lecture: 'Лекции', mixed: 'Лекции + практика', practice: 'Практика' };
   const outline = curriculum.stages.map((stage) => `<section class="module-block route-stage" id="${stage.id}">
-    <header><span>${String(stage.number).padStart(2, '0')}</span><div><p>Этап ${stage.number}</p><h2>${escapeHtml(stage.title)}</h2></div><strong>${stage.topics.reduce((sum, topic) => sum + topic.items.length, 0)} шагов</strong></header>
+    <header><span>${String(stage.number).padStart(2, '0')}</span><div><p>Этап ${stage.number}</p><h2>${escapeHtml(displayStageTitle(stage.title))}</h2></div><strong>${stepCount(stage.topics.reduce((sum, topic) => sum + topic.items.length, 0))}</strong></header>
     <p class="stage-goal">${escapeHtml(stage.goal)} <strong>Результат:</strong> ${escapeHtml(stage.outcome)}</p>${stage.id === 'end-to-end' ? '<aside class="capstone"><h3>Итоговая работа</h3><p>Возьмите один знакомый веб-сценарий. Зафиксируйте требование и вопросы к нему, составьте проверки, выполните их в интерфейсе и при необходимости через API/БД, затем опишите один воспроизводимый дефект. Упражнения ниже взяты из разных исходных контекстов: используйте их как образцы отдельных действий, а итоговую цепочку соберите на одном выбранном сценарии.</p></aside>' : ''}
-    <div class="chapter-list">${stage.topics.map((topic) => `<details><summary><span>${escapeHtml(topic.title)} <small class="role-chip ${topic.role}">${roleLabel[topic.role]}</small></span><span class="chapter-toggle"><small>${topic.items.length}</small><span class="chapter-chevron" aria-hidden="true">▸</span></span></summary><ol>${topic.items.map((item) => `<li><a href="${item.url}"><span>${String(item.route.lessonOrder).padStart(3, '0')}</span><strong>${escapeHtml(item.title)}</strong><em>${item.alternativeTo ? 'Другой разбор' : escapeHtml(item.source.course === 'mqa-base' ? 'MQA Base' : 'Ручное тестирование')}</em></a></li>`).join('')}</ol></details>`).join('')}</div>
+    <div class="chapter-list">${stage.topics.map((topic, topicIndex) => `<details id="${stage.id}-topic-${topicIndex + 1}"><summary><span>${escapeHtml(topic.title)} <small class="role-chip ${topic.kind}">${kindLabel[topic.kind]}</small></span><span class="chapter-toggle"><small>${topic.items.length}</small><span class="chapter-chevron" aria-hidden="true">▸</span></span></summary><ol>${topic.items.map((item) => `<li><a href="${item.url}"><span>${String(item.route.lessonOrder).padStart(3, '0')}</span><strong>${escapeHtml(item.title)}</strong><em>${item.alternativeTo ? 'Другой разбор' : escapeHtml(item.source.course === 'mqa-base' ? 'MQA Base' : 'Ручное тестирование')}</em></a></li>`).join('')}</ol></details>`).join('')}</div>
   </section>`).join('');
-  return `<section class="home-intro route-intro"><div><span class="eyebrow">Единый маршрут · ${totalPages} шагов</span><h1>От первого требования<br><span>до найденного дефекта</span></h1></div><div class="home-copy"><p>Восемь последовательных этапов объединяют оба исходных курса. Начните с первого шага; дополнительные темы отмечены отдельно.</p><a class="route-start" href="${curriculum.records[0].url}">Начать обучение →</a><form class="search-hero" action="search.html" role="search"><label class="sr-only" for="home-search">Поиск по маршруту</label><input id="home-search" name="q" type="search" placeholder="Например, граничные значения" required><button>Найти</button></form></div></section>
-  <nav class="route-jump" aria-label="Этапы маршрута">${curriculum.stages.map((stage) => `<a href="#${stage.id}">${escapeHtml(stage.title)}</a>`).join('')}</nav>
+  return `<section class="intro-course-card"><div><h1>${escapeHtml(introCourse.title)}</h1><p>${escapeHtml(introCourse.description)}</p></div><div class="intro-course-actions"><a class="route-start" href="courses/${introCourse.slug}/">Открыть вводный курс →</a></div></section>
+  <section class="home-intro route-intro" id="main-route"><div><span class="eyebrow">Основной курс QA · ${stepCount(totalPages)}</span><h1>От знакомства с QA<br><span>до найденного дефекта</span></h1></div><div class="home-copy"><a class="route-start" href="${curriculum.records[0].url}">Перейти к основному курсу →</a><form class="search-hero" action="search.html" role="search"><label class="sr-only" for="home-search">Поиск по маршруту</label><input id="home-search" name="q" type="search" placeholder="Например, граничные значения" required><button>Найти</button></form></div></section>
+  <nav class="route-jump" aria-label="Этапы маршрута">${curriculum.stages.map((stage) => `<a href="#${stage.id}">${escapeHtml(displayStageTitle(stage.title))}</a>`).join('')}</nav>
   <div class="outline route-outline">${outline}</div>
-  <section id="archive" class="archive-section"><span class="eyebrow">Исходные материалы</span><h2>Архив исходных курсов</h2><p>Прежние структуры и адреса всех уроков сохранены для ссылок и сверки. Для обучения используйте единый маршрут выше.</p><div class="course-grid">${courses.map((course) => courseCard(course)).join('')}</div></section>`;
+  <section id="archive" class="archive-section"><span class="eyebrow">Исходные материалы</span><h2>Архив исходных курсов</h2><p>Прежние структуры учебных материалов сохранены для ссылок и сверки; формы обратной связи и ревью исключены. Для обучения используйте единый маршрут выше.</p><div class="course-grid">${courses.map((course) => courseCard(course)).join('')}</div></section>`;
 }
 
 write('index.html', shell({
   title: 'Персональный курс QA',
-  description: '295 страниц учебных материалов по ручному тестированию и MQA Base.',
-  body: isUnified ? routeHome() : `<section class="home-intro">
-    <div><span class="eyebrow">Персональный курс QA</span><h1>Учебные материалы<br><span>без лишнего шума</span></h1></div>
-    <div class="home-copy"><p>Два курса собраны в читаемый статический справочник. Выберите курс или найдите понятие сразу во всех ${totalPages} страницах.</p>
-      <form class="search-hero" action="search.html" role="search"><label class="sr-only" for="home-search">Поиск по материалам</label><input id="home-search" name="q" type="search" placeholder="Например, граничные значения" required><button>Найти</button></form>
-    </div>
-  </section>
-  <section class="course-grid" aria-label="Курсы">${courses.map((course) => courseCard(course)).join('')}</section>
-  <section class="library-stats"><div><strong>${courses.length}</strong><span>курса</span></div><div><strong>${totalChapters}</strong><span>тема</span></div><div><strong>${totalPages}</strong><span>страниц</span></div></section>`,
+  description: `${pageCount(totalPages)} учебных материалов по ручному тестированию и MQA Base.`,
+  body: routeHome(),
 }));
 
 for (const course of courses) {
   const outline = course.modules.map((module) => `<section class="module-block">
-    <header><span>${String(module.position).padStart(2, '0')}</span><div><p>Модуль</p><h2>${escapeHtml(module.name)}</h2></div><strong>${module.chapters.reduce((sum, chapter) => sum + chapter.pages.length, 0)} шагов</strong></header>
+    <header><span>${String(module.position).padStart(2, '0')}</span><div><p>Модуль</p><h2>${escapeHtml(module.name)}</h2></div><strong>${stepCount(module.chapters.reduce((sum, chapter) => sum + chapter.pages.length, 0))}</strong></header>
     <div class="chapter-list">${module.chapters.map((chapter) => `<details><summary><span>${escapeHtml(chapter.name)}</span><span class="chapter-toggle"><small>${chapter.pages.length}</small><span class="chapter-chevron" aria-hidden="true">▸</span></span></summary><ol>${chapter.pages.map((page) => `<li><a href="${page.file}"><span>${String(page.number).padStart(3, '0')}</span><strong>${escapeHtml(page.safeTitle)}</strong><em>${pageKind(page.taskType)}</em></a></li>`).join('')}</ol></details>`).join('')}</div>
   </section>`).join('');
 
@@ -321,7 +367,7 @@ for (const course of courses) {
     depth: 2,
     current: course.slug,
     body: `<div class="course-head ${course.accent}"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><span>${escapeHtml(course.title)}</span></nav>
-      <span class="eyebrow">${isUnified ? 'Архив исходного курса' : 'Курс'} · ${course.modules.length} модуля · ${course.pages.length} страниц</span><h1>${escapeHtml(course.title)}</h1><p>${escapeHtml(course.description)}</p>${isUnified ? '<p><a href="../../index.html">Перейти к единому учебному маршруту →</a></p>' : ''}
+      <span class="eyebrow">Архив исходного курса · ${moduleCount(course.modules.length)} · ${pageCount(course.pages.length)}</span><h1>${escapeHtml(course.title)}</h1><p>${escapeHtml(course.description)}</p><p><a href="../../index.html">Перейти к единому учебному маршруту →</a></p>
       <div class="course-meta">${course.duration ? `<span>Срок: ${escapeHtml(course.duration)}</span>` : ''}${course.workload ? `<span>Нагрузка: ${escapeHtml(course.workload)}</span>` : ''}</div>
     </div><div class="outline">${outline}</div>`,
   }));
@@ -333,6 +379,7 @@ for (const course of courses) {
     const chapterPos = chapterPages.findIndex((item) => item.number === page.number) + 1;
     const currentUrl = `courses/${course.slug}/${page.file}`;
     const routePosition = routeByUrl.get(currentUrl);
+    const followsRoute = Boolean(routePosition);
     const routeRecord = routePosition?.record;
     const routePrevious = routePosition ? curriculum.records[routePosition.index - 1] : null;
     const routeNext = routePosition ? curriculum.records[routePosition.index + 1] : null;
@@ -343,45 +390,90 @@ for (const course of courses) {
       description: plainText(page.safeHtml).slice(0, 155),
       depth: 2,
       current: course.slug,
-      body: `<div class="reader-layout"><aside class="reader-rail"><a href="${isUnified ? '../../index.html' : 'index.html'}">← ${isUnified ? 'Единый маршрут' : 'Структура курса'}</a><div class="rail-index"><span>${String(isUnified ? routePosition.index + 1 : page.number).padStart(3, '0')}</span><small>из ${isUnified ? totalPages : course.pages.length}</small></div><p>${escapeHtml(isUnified ? routeRecord.route.stageTitle : page.chapterName)}</p><div class="rail-progress" aria-label="Шаг ${isUnified ? routePosition.index + 1 : chapterPos} из ${isUnified ? totalPages : chapterPages.length}"><i style="width:${Math.round((isUnified ? routePosition.index + 1 : chapterPos) / (isUnified ? totalPages : chapterPages.length) * 100)}%"></i></div><small>${isUnified ? `${routeRecord.route.topic} · ${routeRecord.route.role}` : `${chapterPos} / ${chapterPages.length} в теме`}</small></aside>
-        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">${isUnified ? 'Единый маршрут' : 'Главная'}</a><span>/</span>${isUnified ? `<a href="../../index.html#${routeRecord.route.stage}">${escapeHtml(routeRecord.route.stageTitle)}</a><span>/</span><span>${escapeHtml(routeRecord.route.topic)}</span>` : `<a href="index.html">${escapeHtml(course.title)}</a><span>/</span><span>${escapeHtml(page.moduleName)}</span><span>/</span><span>${escapeHtml(page.chapterName)}</span>`}</nav>
+      body: `<div class="reader-layout"><aside class="reader-rail"><a href="${followsRoute ? '../../index.html' : 'index.html'}">← ${followsRoute ? 'Единый маршрут' : 'Структура курса'}</a><div class="rail-index"><span>${String(followsRoute ? routePosition.index + 1 : page.number).padStart(3, '0')}</span><small>из ${followsRoute ? totalPages : course.pages.length}</small></div><p>${escapeHtml(followsRoute ? routeRecord.route.stageTitle : page.chapterName)}</p><div class="rail-progress" aria-label="Шаг ${followsRoute ? routePosition.index + 1 : chapterPos} из ${followsRoute ? totalPages : chapterPages.length}"><i style="width:${Math.round((followsRoute ? routePosition.index + 1 : chapterPos) / (followsRoute ? totalPages : chapterPages.length) * 100)}%"></i></div><small>${followsRoute ? `${routeRecord.route.topic} · ${pageKind(page.taskType)}` : `${chapterPos} / ${chapterPages.length} в теме`}</small></aside>
+        <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">${followsRoute ? 'Единый маршрут' : 'Главная'}</a><span>/</span>${followsRoute ? `<a href="../../index.html#${routeRecord.route.stage}">${escapeHtml(routeRecord.route.stageTitle)}</a><span>/</span><span>${escapeHtml(routeRecord.route.topic)}</span>` : `<a href="index.html">${escapeHtml(course.title)}</a><span>/</span><span>${escapeHtml(page.moduleName)}</span><span>/</span><span>${escapeHtml(page.chapterName)}</span>`}</nav>
           <header class="lesson-head"><span class="type-chip">${pageKind(page.taskType)}</span><h1>${escapeHtml(page.safeTitle)}</h1><p>${escapeHtml(page.moduleName)} · ${escapeHtml(page.chapterName)}</p>${alternativeBase ? `<p class="alternative-note">Другой разбор темы. <a href="../../${alternativeBase.url}">Основное объяснение: ${escapeHtml(alternativeBase.title)} →</a></p>` : ''}</header>
-          ${taskSupplement(page)}<div class="lesson-content">${page.safeHtml || '<p>Текст для этого шага отсутствует в выгрузке.</p>'}</div>
-          ${isUnified ? routePager : `<nav class="pager" aria-label="Навигация между шагами">${previous ? `<a class="prev" href="${previous.file}"><small>Назад</small><span>← ${escapeHtml(previous.safeTitle)}</span></a>` : '<span></span>'}${next ? `<a class="next" href="${next.file}"><small>Дальше</small><span>${escapeHtml(next.safeTitle)} →</span></a>` : `<a class="next" href="index.html"><small>Готово</small><span>К структуре курса →</span></a>`}</nav>`}
-          ${isUnified ? `<p class="source-note">Источник: <a href="index.html">${escapeHtml(course.title)}</a> · ${escapeHtml(page.moduleName)} / ${escapeHtml(page.chapterName)} · исходный шаг ${page.number}.</p>` : ''}
+          <div class="lesson-content ${course.slug === 'mqa-base' && page.number === 84 ? 'numbered-attributes' : ''}">${page.safeHtml || '<p>Текст для этого шага отсутствует в выгрузке.</p>'}</div>
+          ${followsRoute ? routePager : `<nav class="pager" aria-label="Навигация между шагами">${previous ? `<a class="prev" href="${previous.file}"><small>Назад</small><span>← ${escapeHtml(previous.safeTitle)}</span></a>` : '<span></span>'}${next ? `<a class="next" href="${next.file}"><small>Дальше</small><span>${escapeHtml(next.safeTitle)} →</span></a>` : `<a class="next" href="index.html"><small>Готово</small><span>К структуре курса →</span></a>`}</nav>`}
+          <p class="source-note">Источник: <a href="index.html">${escapeHtml(course.title)}</a> · ${escapeHtml(page.moduleName)} / ${escapeHtml(page.chapterName)} · исходный шаг ${page.number}.</p>
         </article></div>`,
     }));
   });
 }
 
-const searchIndex = courses.flatMap((course) => course.pages.map((page) => {
+{
+  const readyLessons = activeIntroBlocks.flatMap((block, blockIndex) => block.lessons.map((lesson) => ({ ...lesson, block, blockIndex })));
+  const introOutline = activeIntroBlocks.map((block, blockIndex) => {
+    const lessons = block.lessons.length ? `<ol>${block.lessons.map((lesson, lessonIndex) => `<li><a href="lesson-${String(readyLessons.findIndex((item) => item.slug === lesson.slug) + 1).padStart(2, '0')}.html"><span>${String(lessonIndex + 1).padStart(2, '0')}</span><strong>${escapeHtml(lesson.title)}</strong><em>${lesson.minutes} минут</em></a></li>`).join('')}</ol>` : '<p class="planned-block">Материалы будут добавлены после согласования первого блока.</p>';
+    return `<section class="module-block intro-block"><header><span>${String(blockIndex + 1).padStart(2, '0')}</span><div><p>Блок ${blockIndex + 1}</p><h2>${escapeHtml(block.title)}</h2></div></header><div class="chapter-list">${lessons}</div></section>`;
+  }).join('');
+
+  write(`courses/${introCourse.slug}/index.html`, shell({
+    title: introCourse.title,
+    description: introCourse.description,
+    depth: 2,
+    body: `<div class="course-head intro-head"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><span>${escapeHtml(introCourse.title)}</span></nav><h1>${escapeHtml(introCourse.title)}</h1><p>${escapeHtml(introCourse.description)}</p></div><div class="outline intro-outline">${introOutline}</div>`,
+  }));
+
+  readyLessons.forEach((lesson, index) => {
+    const previous = readyLessons[index - 1];
+    const next = readyLessons[index + 1];
+    const fileFor = (position) => `lesson-${String(position + 1).padStart(2, '0')}.html`;
+    write(`courses/${introCourse.slug}/${fileFor(index)}`, shell({
+      title: lesson.title,
+      description: plainText(lesson.html).slice(0, 155),
+      depth: 2,
+      body: `<div class="reader-layout"><aside class="reader-rail"><a href="index.html">← Содержание курса</a><div class="rail-index"><span>${String(index + 1).padStart(2, '0')}</span><small>из ${readyLessons.length}</small></div><p>${escapeHtml(lesson.block.title)}</p><div class="rail-progress" aria-label="Лекция ${index + 1} из ${readyLessons.length}"><i style="width:${Math.round((index + 1) / readyLessons.length * 100)}%"></i></div><small>${lesson.minutes} минут · Лекция</small></aside><article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Главная</a><span>/</span><a href="index.html">${escapeHtml(introCourse.title)}</a><span>/</span><span>${escapeHtml(lesson.block.title)}</span></nav><header class="lesson-head"><h1>${escapeHtml(lesson.title)}</h1><p>Блок ${lesson.blockIndex + 1} · ${escapeHtml(lesson.block.title)}</p></header><div class="lesson-content">${lesson.html}</div><nav class="pager" aria-label="Навигация между лекциями">${previous ? `<a class="prev" href="${fileFor(index - 1)}"><small>Назад</small><span>← ${escapeHtml(previous.title)}</span></a>` : '<span></span>'}${next ? `<a class="next" href="${fileFor(index + 1)}"><small>Дальше</small><span>${escapeHtml(next.title)} →</span></a>` : '<a class="next" href="index.html"><small>Курс завершён</small><span>К содержанию курса →</span></a>'}</nav></article></div>`,
+    }));
+  });
+}
+
+const searchIndex = courses.flatMap((course) => course.pages.flatMap((page) => {
   const url = `courses/${course.slug}/${page.file}`;
   const place = routeByUrl.get(url)?.record;
-  return {
-    course: isUnified ? 'Единый маршрут' : course.title,
+  if (!place) return [];
+  return [{
+    course: 'Единый маршрут',
     courseSlug: course.slug,
-    module: isUnified ? place.route.stageTitle : page.moduleName,
-    chapter: isUnified ? place.route.topic : page.chapterName,
+    module: displayStageTitle(place.route.stageTitle),
+    chapter: place.route.topic,
+    stageId: place.route.stage,
+    topicId: `${place.route.stage}-topic-${place.route.topicOrder}`,
+    stageNumber: place.route.stageOrder,
     title: page.safeTitle,
     type: pageKind(page.taskType),
     url,
     text: plainText(page.safeHtml).slice(0, 12000),
-  };
+  }];
 }));
-if (isUnified) searchIndex.sort((a, b) => routeByUrl.get(a.url).index - routeByUrl.get(b.url).index);
+{
+  searchIndex.sort((a, b) => routeByUrl.get(a.url).index - routeByUrl.get(b.url).index);
+  const introSearchLessons = activeIntroBlocks.flatMap((block, blockIndex) => block.lessons.map((lesson) => ({ ...lesson, block, blockIndex })));
+  const introSearch = introSearchLessons.map((lesson, lessonIndex) => ({
+    course: introCourse.title,
+    courseSlug: introCourse.slug,
+    module: `Блок ${lesson.blockIndex + 1}. ${lesson.block.title}`,
+    chapter: lesson.block.title,
+    title: lesson.title,
+    type: 'Вводная лекция',
+    url: `courses/${introCourse.slug}/lesson-${String(lessonIndex + 1).padStart(2, '0')}.html`,
+    text: plainText(lesson.html).slice(0, 12000),
+  }));
+  searchIndex.unshift(...introSearch);
+}
 write('assets/search-index.json', JSON.stringify(searchIndex));
 if (isUnified) write('assets/route-map.json', JSON.stringify(curriculum.records, null, 2) + '\n');
 
 write('search.html', shell({
   title: 'Поиск',
-  description: isUnified ? 'Полнотекстовый поиск по единому маршруту тестирования.' : 'Полнотекстовый поиск по двум курсам тестирования.',
-  body: `<section class="search-page"><span class="eyebrow">Поиск по ${totalPages} страницам</span><h1>Что вы хотите найти?</h1><form id="search-form" class="search-large" role="search"><label class="sr-only" for="search-input">Поиск</label><input id="search-input" name="q" type="search" placeholder="Введите термин или фразу" autofocus><button>Найти</button></form><p id="search-status" class="search-status" aria-live="polite">Введите не меньше двух символов.</p><div id="search-results" class="search-results"></div></section>`,
+  description: 'Полнотекстовый поиск по единому маршруту тестирования.',
+  body: `<section class="search-page"><span class="eyebrow">Поиск по ${searchIndex.length} материалам</span><h1>Что вы хотите найти?</h1><form id="search-form" class="search-large" role="search"><label class="sr-only" for="search-input">Поиск</label><input id="search-input" name="q" type="search" placeholder="Введите термин или фразу" autofocus><button>Найти</button></form><p id="search-status" class="search-status" aria-live="polite">Введите не меньше двух символов.</p><div id="search-results" class="search-results"></div></section>`,
 }));
 
 write('about.html', shell({
   title: 'О курсе',
   description: 'Как устроен персональный курс QA.',
-  body: `<article class="about"><span class="eyebrow">Персональный курс QA</span><h1>Спокойное чтение,<br>без действий на платформе</h1><p>Сайт собран из локальных учебных материалов. В нём ${totalPages} страниц: лекции, практические задания, формы и шаги ревью.${isUnified ? ' Восемь этапов образуют единый маршрут; прежняя структура двух курсов доступна в архиве.' : ''}</p><h2>Что сохранено</h2><ul><li>заголовки, текст, списки, таблицы и безопасные внешние ссылки;</li><li>${isUnified ? 'маршрут «этап → тема → шаг» и архивная структура исходных курсов' : 'структура «модуль → тема → шаг»'};</li><li>текстовые описания изображений без загрузки самих файлов.</li></ul><h2>Чего здесь нет</h2><p>Логинов, паролей, cookies, токенов, профилей учеников, комментариев, прогресса, ответов и решений. Формы и тесты показаны только для справки и ничего не отправляют.</p></article>`,
+  body: `<article class="about"><span class="eyebrow">Персональный курс QA</span><h1>Спокойное чтение,<br>без действий на платформе</h1><p>На сайте доступны вводный курс, основной QA-маршрут и архив исходных учебных материалов.</p><h2>Что сохранено</h2><ul><li>заголовки, текст, списки, таблицы и безопасные внешние ссылки;</li><li>вводный курс, основной маршрут «этап → тема → шаг» и архивная структура учебных материалов;</li><li>текстовые описания изображений без загрузки самих файлов.</li></ul><h2>Чего здесь нет</h2><p>Логинов, паролей, cookies, токенов, профилей учеников, комментариев, прогресса, ответов и решений. Формы обратной связи и шаги ревью исключены; ответы не отправляются.</p></article>`,
 }));
 
 write('404.html', fs.readFileSync(path.join(outDir, 'index.html'), 'utf8'));
@@ -389,5 +481,7 @@ write('.nojekyll', '');
 write('assets/site.css', fs.readFileSync(path.join(root, 'site-src', 'site.css'), 'utf8'));
 if (isUnified) write('assets/route.css', fs.readFileSync(path.join(root, 'site-src', 'route.css'), 'utf8'));
 write('assets/site.js', fs.readFileSync(path.join(root, 'site-src', 'site.js'), 'utf8'));
+const staticAssetsDir = path.join(root, 'site-src', 'assets');
+if (fs.existsSync(staticAssetsDir)) fs.cpSync(staticAssetsDir, path.join(outDir, 'assets'), { recursive: true });
 
 console.log(JSON.stringify({ environment: siteEnvironment, courses: courses.length, chapters: totalChapters, pages: totalPages, searchRecords: searchIndex.length, output: outDir }));

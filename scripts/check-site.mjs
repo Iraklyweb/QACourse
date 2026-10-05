@@ -96,9 +96,13 @@ for (const record of search) {
 for (const [pattern, label] of forbiddenPublishedPatterns) {
   if (pattern.test(searchText)) failures.push(`docs/assets/search-index.json: ${label}`);
 }
-if (lessonFiles.length !== 295) failures.push(`Страниц уроков: ${lessonFiles.length}, ожидалось 295`);
-if (search.length !== 295) failures.push(`Записей поиска: ${search.length}, ожидалось 295`);
-if (htmlFiles.length !== 301) failures.push(`HTML-файлов: ${htmlFiles.length}, ожидалось 301`);
+const expectedLessons = 283;
+const expectedSearchRecords = 290;
+const expectedHtmlFiles = 298;
+if (lessonFiles.length !== expectedLessons) failures.push(`Страниц уроков: ${lessonFiles.length}, ожидалось ${expectedLessons}`);
+if (search.length !== expectedSearchRecords) failures.push(`Записей поиска: ${search.length}, ожидалось ${expectedSearchRecords}`);
+if (htmlFiles.length !== expectedHtmlFiles) failures.push(`HTML-файлов: ${htmlFiles.length}, ожидалось ${expectedHtmlFiles}`);
+if (expectedEnvironment === 'development' && search.some((item) => /^(?:Форма обратной связи|Ревью)$/.test(item.type))) failures.push('В поиске остались формы обратной связи или ревью');
 
 if (failures.length) {
   console.error(failures.join('\n'));

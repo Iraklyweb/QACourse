@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Минимальный состав полей Минимум — это не про удобство и не про отчётность, а про саму возможность передать смысл проверки или дефекта. Без этих полей доку">
+  <meta name="description" content="Минимум — это не про удобство и не про отчётность, а про саму возможность передать смысл проверки или дефекта. Без этих полей документ теряет структуру: не">
   <meta name="color-scheme" content="dark light">
   <title>Лекция «Минимальный состав полей» · Персональный курс QA</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
@@ -16,7 +16,7 @@
   <header class="topbar">
     <a class="brand" href="../../index.html" aria-label="Персональный курс QA, главная"><span class="brand-mark">QA</span><span>Персональный курс QA</span></a>
     <nav aria-label="Основная навигация">
-      <a href="../../index.html">Единый маршрут</a><a href="../../index.html#archive">Архив курсов</a>
+      <a href="../../courses/it-start/">IT с нуля</a><a href="../../index.html#main-route">Основной курс</a><a href="../../index.html#archive">Архив курсов</a>
     </nav>
     <form class="search-mini" action="../../search.html" role="search">
       <label class="sr-only" for="site-search-2">Поиск по курсам</label>
@@ -24,22 +24,22 @@
       <button type="submit" aria-label="Искать">⌕</button>
     </form>
   </header>
-  <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="../../index.html">← Единый маршрут</a><div class="rail-index"><span>142</span><small>из 295</small></div><p>4. Тестовая документация</p><div class="rail-progress" aria-label="Шаг 142 из 295"><i style="width:48%"></i></div><small>Выбор формата и поддержка проверок · core</small></aside>
+  <main id="main"><div class="reader-layout"><aside class="reader-rail"><a href="../../index.html">← Единый маршрут</a><div class="rail-index"><span>127</span><small>из 282</small></div><p>4. Тестовая документация</p><div class="rail-progress" aria-label="Шаг 127 из 282"><i style="width:45%"></i></div><small>Выбор формата и поддержка проверок · Лекция</small></aside>
         <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">Единый маршрут</a><span>/</span><a href="../../index.html#documents">4. Тестовая документация</a><span>/</span><span>Выбор формата и поддержка проверок</span></nav>
           <header class="lesson-head"><span class="type-chip">Лекция</span><h1>Лекция «Минимальный состав полей»</h1><p>Тестовая документация · Подходы к составу полей</p></header>
-          <div class="lesson-content"><div>
+          <div class="lesson-content "><div class="lesson-source">
 
-<h1>Минимальный состав полей</h1>
 
-<div>
-<div>
-<div>
+
+<div class="lesson-section">
+<div class="lesson-block">
+<div class="lesson-method">
 <p><strong>Минимум </strong>&mdash; это не про удобство и не про отчётность, а про саму возможность передать смысл проверки или дефекта.</p>
 
 <p>Без этих полей документ теряет структуру: непонятно, что проверяется, где выполнялась проверка и какой результат получился.</p>
 </div>
 
-<div>
+<div class="lesson-method">
 <p><strong>Минимальный состав</strong> &mdash; это &ldquo;скелет&rdquo; тестовой документации.</p>
 
 <p>В нём нет ничего лишнего &mdash; только то, что делает документ рабочим.</p>
@@ -51,7 +51,7 @@
 <p>Остальное (авторы, даты, версии) появляется позже, когда документ уже живёт в системе.</p>
 </div>
 
-<div>
+<div class="lesson-method">
 <p>Обязательные поля</p>
 
 <p>Зачем они нужны</p>
@@ -106,7 +106,7 @@
 </table>
 </div>
 
-<div>
+<div class="lesson-method">
 <p>Если убрать хоть одно поле из минимума, документ перестаёт быть рабочим.</p>
 
 <p>Без ID нельзя отличить записи между собой, быстро посчитать или сослаться на конкретную.</p>
@@ -120,7 +120,7 @@
 <p>А без статуса не ясно, чем всё закончилось.</p>
 </div>
 
-<div>
+<div class="lesson-info">
 <p><strong>Приоритет и серьёзность живут особняком.</strong></p>
 
 <p>В тест-кейсах и чек-листах приоритет может быть, но проверка спокойно выполняется и без него.</p>
@@ -138,7 +138,7 @@
 <p>По сути, это полузабытые поля, которые оживают только тогда, когда случается реальная проблема.</p>
 </div>
 
-<div>
+<div class="lesson-method">
 <p>На собеседованиях могут спросить про минимальный набор полей для разных документов.</p>
 
 <p>В ответе стоит назвать основное из таблицы и добавить, что в баг-репортах есть приоритет и серьёзность.</p>
@@ -146,7 +146,7 @@
 <p>Это показывает, что вы понимаете не только структуру документа, но и как команда оценивает срочность и влияние дефектов.</p>
 </div>
 
-<div>
+<div class="lesson-method">
 <p><strong>Минимум </strong>&mdash; это не формальность, а нижняя граница смысла.</p>
 
 <p>Он делает проверку воспроизводимой, дефект &mdash; понятным, а документацию &mdash; живой и читаемой в команде.</p>
