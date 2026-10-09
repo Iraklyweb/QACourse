@@ -210,6 +210,36 @@ function shell({ title, description, depth = 0, body, current = '' }) {
 </html>`;
 }
 
+function landingShell({ body }) {
+  const environmentNav = isDevelopment
+    ? `<span class="env-badge landing-env" aria-label="Среда разработки">DEV</span><a class="landing-production" data-production-link href="../../qa-course/">Продакшен</a>`
+    : '';
+  return `<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Персональный курс ручного тестирования: последовательный путь от устройства IT-продукта до самостоятельной проверки веб-приложений, API и данных.">
+  <meta name="color-scheme" content="dark">
+  <title>Курс ручного тестирования · Персональный курс QA</title>
+  <link rel="icon" type="image/svg+xml" href="${faviconData()}">
+  <link rel="stylesheet" href="../assets/landing.css">
+  <script src="../assets/landing.js" defer></script>
+</head>
+<body data-environment="${siteEnvironment}">
+  <a class="landing-skip" href="#content">К содержанию</a>
+  <header class="landing-header">
+    <span class="landing-brand" aria-label="Персональный курс QA"><span>QA</span><strong>Персональный курс</strong></span>
+    <nav aria-label="Навигация по странице"><a href="#results">Результат</a><a href="#program">Программа</a><a href="#format">Формат</a><a href="#faq">Вопросы</a></nav>
+    <div class="landing-header-actions">${environmentNav}<button type="button" class="button button-small" data-interest>Узнать о старте</button></div>
+  </header>
+  <main id="content">${body}</main>
+  <footer class="landing-footer"><span class="landing-brand"><span>QA</span><strong>Персональный курс</strong></span><p>Последовательная программа для старта в ручном тестировании.</p><a href="#content">Наверх ↑</a></footer>
+  <dialog class="interest-dialog" aria-labelledby="interest-title"><button class="dialog-close" type="button" data-dialog-close aria-label="Закрыть">×</button><span class="section-label">Скоро</span><h2 id="interest-title">Набор ещё не открыт</h2><p>Курс пока готовится к запуску. Здесь появится форма записи, когда будут определены формат участия, дата старта и стоимость.</p><button class="button" type="button" data-dialog-close>Понятно</button></dialog>
+</body>
+</html>`;
+}
+
 function courseCard(course, depth = 0) {
   const base = '../'.repeat(depth);
   return `<a class="course-card ${course.accent}" href="${base}courses/${course.slug}/">
@@ -401,11 +431,53 @@ function routeHome() {
   <section id="archive" class="archive-section"><span class="eyebrow">Исходные материалы</span><h2>Архив исходных курсов</h2><p>Прежние структуры учебных материалов сохранены для ссылок и сверки; формы обратной связи и ревью исключены. Для обучения используйте единый маршрут выше.</p><div class="course-grid">${courses.map((course) => courseCard(course)).join('')}</div></section>`;
 }
 
+function salesLanding() {
+  const program = curriculum.stages.map((stage) => {
+    const count = stage.topics.reduce((sum, topic) => sum + topic.items.length, 0);
+    return `<details class="program-stage"${stage.number === 1 ? ' open' : ''}><summary><span class="program-number">${String(stage.number).padStart(2, '0')}</span><span><strong>${escapeHtml(displayStageTitle(stage.title))}</strong><small>${escapeHtml(stage.goal)}</small></span><span class="program-count">${stepCount(count)}</span><span class="program-plus" aria-hidden="true">+</span></summary><div class="program-body"><p><strong>После этапа:</strong> ${escapeHtml(stage.outcome)}</p><ul>${stage.topics.map((topic) => `<li>${escapeHtml(topic.title)}</li>`).join('')}</ul></div></details>`;
+  }).join('');
+
+  return `<section class="sales-hero">
+    <div class="hero-copy"><span class="section-label">Курс ручного тестирования · с нуля</span><h1>Научитесь видеть продукт <em>глазами тестировщика</em></h1><p class="hero-lead">Последовательный маршрут от устройства IT-продукта и требований до тест-кейсов, API, SQL и самостоятельного разбора дефектов.</p><div class="hero-actions"><button type="button" class="button" data-interest>Узнать о старте курса</button><a class="text-link" href="#program">Посмотреть программу <span>↓</span></a></div><p class="hero-note">Запись откроется позже. Доступ к учебным материалам на этой странице не публикуется.</p></div>
+    <div class="hero-visual" aria-label="Пример рабочего пространства тестировщика">
+      <div class="visual-glow"></div><div class="browser-card"><div class="browser-bar"><i></i><i></i><i></i><span>checkout.example</span></div><div class="checkout-screen"><div class="screen-copy"><small>Оформление заказа</small><strong>Почти готово</strong><span></span><span></span><span class="short"></span></div><div class="screen-form"><span>Email</span><div>student@example.com</div><span>Промокод</span><div class="error-field">QA-START</div><button type="button" tabindex="-1">Оплатить</button></div></div></div>
+      <div class="bug-card"><span>BUG-014</span><strong>Скидка не применяется</strong><small>Severity: Major · Priority: High</small></div><div class="check-card"><span>✓</span><p><strong>Ожидаемый результат</strong><br>Итоговая сумма пересчитана</p></div>
+    </div>
+  </section>
+
+  <section class="trust-strip" aria-label="Ключевые особенности"><div><strong>9</strong><span>последовательных этапов</span></div><div><strong>${totalPages}</strong><span>${totalPages === 282 ? 'шага' : 'учебных шагов'}</span></div><div><strong>0 → QA</strong><span>можно начать без опыта в IT</span></div><div><strong>Теория + практика</strong><span>знания сразу связываются с задачами</span></div></section>
+
+  <section class="sales-section problem-section" id="results"><div class="section-heading"><span class="section-label">Не просто набор лекций</span><h2>Вы будете понимать, <em>что и зачем</em> проверяете</h2><p>Темы собраны в один маршрут по нарастающей сложности. Каждый этап опирается на предыдущий — без хаотичного переключения между инструментами.</p></div><div class="result-grid">
+    <article><span>01</span><h3>Разобраться в продукте</h3><p>Понимать роли в IT-команде, путь запроса и место тестировщика в разработке.</p></article>
+    <article><span>02</span><h3>Спроектировать проверки</h3><p>Анализировать требования, выбирать виды тестирования и применять техники тест-дизайна.</p></article>
+    <article><span>03</span><h3>Описать результат</h3><p>Создавать чек-листы, тест-кейсы и воспроизводимые баг-репорты для команды.</p></article>
+    <article><span>04</span><h3>Заглянуть глубже интерфейса</h3><p>Работать с HTTP, API, DevTools, Postman и SQL на уровне начинающего QA.</p></article>
+  </div></section>
+
+  <section class="sales-section program-section" id="program"><div class="section-heading split-heading"><div><span class="section-label">Программа</span><h2>От первого термина<br>до цельной проверки</h2></div><p>Программа объединяет вводную базу для новичка и основной QA-маршрут. Ниже — реальные этапы курса без маркетинговых модулей-заглушек.</p></div><div class="program-list">${program}</div></section>
+
+  <section class="sales-section format-section" id="format"><div class="section-heading"><span class="section-label">Как устроено обучение</span><h2>Короткий цикл, который повторяется на каждом этапе</h2></div><div class="format-flow"><article><span>1</span><div><h3>Понять</h3><p>Спокойно разобрать термин, процесс или инструмент на понятном примере.</p></div></article><b>→</b><article><span>2</span><div><h3>Увидеть связь</h3><p>Понять, где знание используется в продукте и с какими рисками связано.</p></div></article><b>→</b><article><span>3</span><div><h3>Применить</h3><p>Закрепить материал проверкой, документом, запросом или разбором ситуации.</p></div></article></div><div class="workspace-panel"><div><span class="section-label">Внутри курса</span><h3>Один маршрут вместо десятков случайных источников</h3><p>Лекции, примеры и практические задания расположены в нужной очередности. Можно видеть текущий этап, возвращаться к теме и искать материал по названию или фразе.</p></div><div class="workspace-preview"><div class="workspace-top"><span>Ваш маршрут</span><b>37%</b></div><i><u></u></i><ol><li class="done"><span>✓</span> Требования</li><li class="current"><span>04</span> Тестовая документация</li><li><span>05</span> Тест-дизайн</li><li><span>06</span> Веб и API</li></ol></div></div></section>
+
+  <section class="sales-section audience-section"><div class="audience-card fit"><span class="section-label">Курс подойдёт, если вы</span><h2>Хотите войти в QA осознанно</h2><ul><li>начинаете с нуля и хотите сначала понять устройство IT;</li><li>цените последовательную программу без скачков между темами;</li><li>готовы не только читать, но и разбирать примеры и задания;</li><li>хотите получить базу для первого собеседования на ручного тестировщика.</li></ul></div><div class="audience-card honest"><span class="section-label">Честно о формате</span><h2>Курс не обещает магии</h2><ul><li>результат потребует регулярного самостоятельного изучения;</li><li>одного просмотра материалов недостаточно без практики;</li><li>курс даёт систему знаний, но не гарантирует трудоустройство;</li><li>дата старта, стоимость и условия участия будут объявлены позже.</li></ul></div></section>
+
+  <section class="sales-section faq-section" id="faq"><div class="section-heading"><span class="section-label">Частые вопросы</span><h2>Перед стартом</h2></div><div class="faq-list">
+    <details><summary>Можно ли начать без опыта в IT?<span>+</span></summary><p>Да. Перед основным маршрутом есть короткий вводный курс: он объясняет, что такое программное обеспечение, из каких частей состоит цифровой продукт и что делает тестировщик.</p></details>
+    <details><summary>Какие темы входят в программу?<span>+</span></summary><p>Требования, виды тестирования, тестовая документация, тест-дизайн, клиент-серверное взаимодействие, HTTP и API, DevTools, Postman, базы данных, SQL, сквозная практика и вопросы для собеседования.</p></details>
+    <details><summary>Сколько длится обучение?<span>+</span></summary><p>Программа содержит ${stepCount(totalPages)} и рассчитана на последовательное прохождение. Точный календарный график будет опубликован вместе с условиями набора.</p></details>
+    <details><summary>Уже можно получить доступ к курсу?<span>+</span></summary><p>Пока нет. Эта страница знакомит с программой; доступы, формат участия и запись появятся после подготовки запуска.</p></details>
+    <details><summary>Курс гарантирует трудоустройство?<span>+</span></summary><p>Нет. Он формирует системную базу ручного тестировщика и помогает подготовиться к техническим вопросам, но результат поиска работы зависит от практики, рынка и действий самого ученика.</p></details>
+  </div></section>
+
+  <section class="final-cta"><span class="section-label">Готовы начать с основ?</span><h2>Соберите знания о QA<br>в понятную систему</h2><p>Набор ещё не открыт. На следующем этапе здесь появятся дата старта, формат участия и запись.</p><button type="button" class="button button-light" data-interest>Узнать о старте курса</button></section>`;
+}
+
 write('index.html', shell({
   title: 'Персональный курс QA',
   description: `${pageCount(totalPages)} учебных материалов по ручному тестированию и MQA Base.`,
   body: routeHome(),
 }));
+
+write('qa-course/index.html', landingShell({ body: salesLanding() }));
 
 for (const course of courses) {
   const outline = course.modules.map((module) => `<section class="module-block">
@@ -533,6 +605,8 @@ write('.nojekyll', '');
 write('assets/site.css', fs.readFileSync(path.join(root, 'site-src', 'site.css'), 'utf8'));
 if (isUnified) write('assets/route.css', fs.readFileSync(path.join(root, 'site-src', 'route.css'), 'utf8'));
 write('assets/site.js', fs.readFileSync(path.join(root, 'site-src', 'site.js'), 'utf8'));
+write('assets/landing.css', fs.readFileSync(path.join(root, 'site-src', 'landing.css'), 'utf8'));
+write('assets/landing.js', fs.readFileSync(path.join(root, 'site-src', 'landing.js'), 'utf8'));
 const staticAssetsDir = path.join(root, 'site-src', 'assets');
 if (fs.existsSync(staticAssetsDir)) fs.cpSync(staticAssetsDir, path.join(outDir, 'assets'), { recursive: true });
 

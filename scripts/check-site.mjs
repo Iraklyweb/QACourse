@@ -65,7 +65,8 @@ for (const file of htmlFiles) {
       const outsideTree = path.relative(outDir, target).startsWith('..') || path.isAbsolute(path.relative(outDir, target));
       const isProductionLink = /\bdata-production-link\b/i.test(tag[0]);
       if (isProductionLink) {
-        if (expectedEnvironment !== 'development' || target !== path.dirname(outDir)) {
+        const productionTargets = new Set([path.dirname(outDir), path.join(path.dirname(outDir), 'qa-course')]);
+        if (expectedEnvironment !== 'development' || !productionTargets.has(target)) {
           failures.push(`${path.relative(root, file)}: некорректная ссылка на продакшен ${ref}`);
         }
         continue;
@@ -98,7 +99,7 @@ for (const [pattern, label] of forbiddenPublishedPatterns) {
 }
 const expectedLessons = 283;
 const expectedSearchRecords = 290;
-const expectedHtmlFiles = 298;
+const expectedHtmlFiles = 299;
 if (lessonFiles.length !== expectedLessons) failures.push(`Страниц уроков: ${lessonFiles.length}, ожидалось ${expectedLessons}`);
 if (search.length !== expectedSearchRecords) failures.push(`Записей поиска: ${search.length}, ожидалось ${expectedSearchRecords}`);
 if (htmlFiles.length !== expectedHtmlFiles) failures.push(`HTML-файлов: ${htmlFiles.length}, ожидалось ${expectedHtmlFiles}`);
