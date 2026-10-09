@@ -9,13 +9,13 @@
     "route": {
       "stage": "start",
       "stageTitle": "1. Старт и устройство продукта",
-      "topic": "Зачем тестировать и как устроен курс",
+      "topic": "Зачем тестировать и семь принципов",
       "stageOrder": 1,
       "topicOrder": 1,
       "lessonOrder": 1,
       "role": "core"
     },
-    "title": "Вводная лекция",
+    "title": "Лекция «Зачем тестировать: семь главных принципов»",
     "taskType": "lecture",
     "url": "courses/mqa-base/step-001.html"
   },
