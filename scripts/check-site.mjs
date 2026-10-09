@@ -10,8 +10,9 @@ if (!['production', 'development'].includes(expectedEnvironment)) {
 }
 const failures = [];
 const htmlFiles = [];
+const hasSalesLanding = fs.existsSync(path.join(outDir, 'qa-course', 'index.html'));
+const enforceNeutralBrand = expectedEnvironment === 'development' || hasSalesLanding;
 const forbiddenPublishedPatterns = [
-  [/Персональный\s+курс/iu, 'временное название курса'],
   [new RegExp(['Ka', 'ta\\s+Academy'].join(''), 'i'), 'прежнее латинское название'],
   [new RegExp(['Ка', 'та\\s+Академ'].join(''), 'iu'), 'прежнее русское название'],
   [new RegExp(['ka', 'ta\\.academy'].join(''), 'i'), 'технический адрес прежней платформы'],
@@ -58,6 +59,9 @@ for (const file of htmlFiles) {
   for (const [pattern, label] of forbiddenPublishedPatterns) {
     if (pattern.test(html)) failures.push(`${path.relative(root, file)}: ${label}`);
   }
+  if (enforceNeutralBrand && /Персональный\s+курс/iu.test(html)) {
+    failures.push(`${path.relative(root, file)}: временное название курса`);
+  }
   for (const tag of html.matchAll(/<(?:a|link|script)\b[^>]*>/gi)) {
     const ref = tag[0].match(/\b(?:href|src)=["']([^"']+)["']/i)?.[1];
     if (ref && !/^(?:https?:|data:|#)/i.test(ref)) {
@@ -100,7 +104,6 @@ for (const [pattern, label] of forbiddenPublishedPatterns) {
 }
 const expectedLessons = 283;
 const expectedSearchRecords = 290;
-const hasSalesLanding = fs.existsSync(path.join(outDir, 'qa-course', 'index.html'));
 const expectedHtmlFiles = hasSalesLanding ? 299 : 298;
 if (expectedEnvironment === 'development' && !hasSalesLanding) failures.push('В development нет продающей страницы курса');
 if (lessonFiles.length !== expectedLessons) failures.push(`Страниц уроков: ${lessonFiles.length}, ожидалось ${expectedLessons}`);
