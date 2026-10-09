@@ -7,3 +7,12 @@
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.button,.program-plus,.faq-list summary span{transition:none}}
 body{overflow-x:hidden}
 @media(max-width:640px){.hero-copy h1{font-size:clamp(2.2rem,10vw,2.8rem)}.visual-glow{inset:10% 0}}
+
+.program-intro{display:grid;grid-template-columns:58px 1fr auto;gap:1.2rem;align-items:center;padding:1.5rem 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.program-intro>span{font:700 .88rem Unbounded,sans-serif;color:var(--mint)}
+.program-intro>div{display:flex;flex-direction:column}
+.program-intro strong{font-size:1.18rem}
+.program-intro small{color:var(--muted);font-size:.78rem;margin-top:.2rem}
+.program-intro>b{font-size:.75rem;color:var(--muted);white-space:nowrap}
+.program-intro+.program-list{border-top:0}
+@media(max-width:640px){.program-intro{grid-template-columns:42px 1fr auto;gap:.7rem}.program-intro small{display:none}.program-stage summary{grid-template-columns:42px 1fr auto 24px;gap:.7rem}.program-count{display:block;white-space:nowrap;font-size:.66rem}}

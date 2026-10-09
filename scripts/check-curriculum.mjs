@@ -54,7 +54,7 @@ if (firstPracticeIndex <= lastExampleIndex) fail('Практика докуме�
 if (!home.includes('id="interview"') || !home.includes('Лекции</small>') || !home.includes('Практика</small>')) fail('Нет блока собеседования или новых типов тем');
 if (!home.includes('id="end-to-end-topic-2"') || !home.includes('Выбрать и уточнить требование <small class="role-chip mixed">Лекции + практика</small>')) fail('Тема с лекцией и заданием должна быть смешанной');
 if (/\b(?:21|54) шагов\b/.test(home) || /<h2>\d+\.\s/.test(home)) fail('Ошибочное склонение или двойная нумерация этапов');
-if (!home.includes('Основной курс QA · 282 шага') || !home.includes('<strong>23 шага</strong>') || !home.includes('<strong>61 шаг</strong>') || !home.includes('<strong>21 шаг</strong>')) fail('Неверное склонение количества шагов');
+if (!home.includes('Основной курс QA · 78 часов · 282 шага') || !home.includes('<strong>9 ч · 23 шага</strong>') || !home.includes('<strong>15 ч · 61 шаг</strong>') || !home.includes('<strong>8 ч · 21 шаг</strong>')) fail('Неверное время или склонение количества шагов');
 if (!qaSearch.every((record) => record.stageId && record.topicId && record.stageNumber)) fail('Поиску не хватает ссылок на этапы и темы');
 for (const [step, minimumBlocks] of [[84, 9], [86, 12], [87, 13]]) {
   const lesson = fs.readFileSync(path.join(outDir, `courses/mqa-base/step-${String(step).padStart(3, '0')}.html`), 'utf8');
@@ -76,7 +76,8 @@ const about = fs.readFileSync(path.join(outDir, 'about.html'), 'utf8');
 if (!about.includes('доступны вводный курс, основной QA-маршрут')) fail('Неверно описан состав dev-курса');
 const introIndex = fs.readFileSync(path.join(outDir, 'courses/it-start/index.html'), 'utf8');
 if (!home.includes('IT с нуля') || !introIndex.includes('Что делает тестировщик')) fail('Вводный курс не представлен на главной или в содержании');
-for (const removedCopy of ['готов первый блок', 'часов готовы', '8 часов', 'без практических заданий', 'Как создаётся программный продукт']) {
+if (!home.includes('<strong>4 часа</strong>') || !introIndex.includes('<strong>2 часа</strong>')) fail('Не показано время вводного курса или его блоков');
+for (const removedCopy of ['готов первый блок', 'часов готовы', 'без практических заданий', 'Как создаётся программный продукт']) {
   if (home.includes(removedCopy) || introIndex.includes(removedCopy)) fail(`Осталась служебная или удалённая информация: ${removedCopy}`);
 }
 for (const number of Array.from({ length: 8 }, (_, index) => index + 1)) {
