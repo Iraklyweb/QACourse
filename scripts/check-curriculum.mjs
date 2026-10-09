@@ -70,6 +70,8 @@ const expectedResultLesson = fs.readFileSync(path.join(outDir, 'courses/mqa-base
 if (!expectedResultLesson.includes('Купить один детский билет на текущую дату.') || expectedResultLesson.includes('Купить билет один детский билет')) fail('Не исправлена грамматика исходного шага Q36');
 const priorityLesson = fs.readFileSync(path.join(outDir, 'courses/mqa-base/step-041.html'), 'utf8');
 if (!priorityLesson.includes('Приоритет в тестовой документации') || !priorityLesson.includes('Приоритет в баг-репортах') || !priorityLesson.includes('после оплаты не приходит подтверждение')) fail('Уроки о приоритете не объединены');
+const splitChecksLesson = fs.readFileSync(path.join(outDir, 'courses/mqa-base/step-052.html'), 'utf8');
+if (!splitChecksLesson.includes('Регистрация и профиль') || !splitChecksLesson.includes('Когда разделять не обязательно') || !splitChecksLesson.includes('Как понять, что проверку пора разделить') || !splitChecksLesson.includes('восстановление пароля')) fail('Не добавлено расширенное объяснение разных мест проверки');
 if (map.some((item) => item.url === 'courses/mqa-base/step-042.html') || qaSearch.some((item) => item.url === 'courses/mqa-base/step-042.html')) fail('Дублирующий урок Q42 остался в маршруте или поиске');
 if (!fs.existsSync(path.join(outDir, 'courses/mqa-base/step-042.html'))) fail('Исходный урок Q42 должен остаться в архиве');
 const about = fs.readFileSync(path.join(outDir, 'about.html'), 'utf8');
