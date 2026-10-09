@@ -223,8 +223,8 @@ function landingShell({ body }) {
   <meta name="color-scheme" content="dark">
   <title>Курс ручного тестирования · Персональный курс QA</title>
   <link rel="icon" type="image/svg+xml" href="${faviconData()}">
-  <link rel="stylesheet" href="../assets/landing.css">
-  <script src="../assets/landing.js" defer></script>
+  <link rel="stylesheet" href="../assets/landing.css?v=3">
+  <script src="../assets/landing.js?v=3" defer></script>
 </head>
 <body data-environment="${siteEnvironment}">
   <a class="landing-skip" href="#content">К содержанию</a>
