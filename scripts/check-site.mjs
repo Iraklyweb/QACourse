@@ -99,7 +99,9 @@ for (const [pattern, label] of forbiddenPublishedPatterns) {
 }
 const expectedLessons = 283;
 const expectedSearchRecords = 290;
-const expectedHtmlFiles = 299;
+const hasSalesLanding = fs.existsSync(path.join(outDir, 'qa-course', 'index.html'));
+const expectedHtmlFiles = hasSalesLanding ? 299 : 298;
+if (expectedEnvironment === 'development' && !hasSalesLanding) failures.push('В development нет продающей страницы курса');
 if (lessonFiles.length !== expectedLessons) failures.push(`Страниц уроков: ${lessonFiles.length}, ожидалось ${expectedLessons}`);
 if (search.length !== expectedSearchRecords) failures.push(`Записей поиска: ${search.length}, ожидалось ${expectedSearchRecords}`);
 if (htmlFiles.length !== expectedHtmlFiles) failures.push(`HTML-файлов: ${htmlFiles.length}, ожидалось ${expectedHtmlFiles}`);
