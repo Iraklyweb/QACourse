@@ -32,8 +32,8 @@ const retiredCyrillicNamePattern = new RegExp(['(?<![\\p{L}\\p{N}])Ка', 'та(
 function neutralizeBrand(value = '') {
   return String(value)
     .replace(retiredUrlPattern, '')
-    .replace(retiredLatinBrandPattern, 'Персональный курс QA')
-    .replace(retiredCyrillicBrandPattern, 'Персональный курс QA')
+    .replace(retiredLatinBrandPattern, 'Курс QA')
+    .replace(retiredCyrillicBrandPattern, 'Курс QA')
     .replace(retiredSupportHandlePattern, 'службу поддержки курса')
     .replace(retiredLatinNamePattern, 'курс QA')
     .replace(retiredCyrillicNamePattern, 'курс QA');
@@ -185,7 +185,7 @@ function shell({ title, description, depth = 0, body, current = '' }) {
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="${escapeHtml(description)}">
   <meta name="color-scheme" content="dark light">
-  <title>${escapeHtml(title)} · Персональный курс QA</title>
+  <title>${escapeHtml(title)} · QA</title>
   <link rel="icon" type="image/svg+xml" href="${faviconData()}">
   <link rel="stylesheet" href="${base}assets/site.css">
   ${isUnified ? `<link rel="stylesheet" href="${base}assets/route.css">` : ''}
@@ -194,7 +194,7 @@ function shell({ title, description, depth = 0, body, current = '' }) {
 <body data-base="${base}" data-environment="${siteEnvironment}">
   <a class="skip-link" href="#main">К содержанию</a>
   <header class="topbar">
-    <a class="brand" href="${base}index.html" aria-label="Персональный курс QA, главная"><span class="brand-mark">QA</span><span>Персональный курс QA</span></a>${environmentNav}
+    <a class="brand" href="${base}index.html" aria-label="Курс QA, главная"><span class="brand-mark">QA</span><span>Курс QA</span></a>${environmentNav}
     <nav aria-label="Основная навигация">
       <a href="${base}courses/${introCourse.slug}/">IT с нуля</a><a href="${base}index.html#main-route">Основной курс</a><a href="${base}index.html#archive">Архив курсов</a>${navCourse ? `\n      ${navCourse}` : ''}
     </nav>
@@ -205,7 +205,7 @@ function shell({ title, description, depth = 0, body, current = '' }) {
     </form>
   </header>
   <main id="main">${body}</main>
-  <footer><span>Персональный курс QA · без отслеживания и отправки ответов</span><a href="${base}about.html">О сайте</a></footer>
+  <footer><span>Курс QA · без отслеживания и отправки ответов</span><a href="${base}about.html">О сайте</a></footer>
 </body>
 </html>`;
 }
@@ -219,9 +219,9 @@ function landingShell({ body }) {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Персональный курс ручного тестирования: последовательный путь от устройства IT-продукта до самостоятельной проверки веб-приложений, API и данных.">
+  <meta name="description" content="Курс ручного тестирования: последовательный путь от устройства IT-продукта до самостоятельной проверки веб-приложений, API и данных.">
   <meta name="color-scheme" content="dark">
-  <title>Курс ручного тестирования · Персональный курс QA</title>
+  <title>Курс ручного тестирования · QA</title>
   <link rel="icon" type="image/svg+xml" href="${faviconData()}">
   <link rel="stylesheet" href="../assets/landing.css?v=4">
   <script src="../assets/landing.js?v=4" defer></script>
@@ -229,12 +229,12 @@ function landingShell({ body }) {
 <body data-environment="${siteEnvironment}">
   <a class="landing-skip" href="#content">К содержанию</a>
   <header class="landing-header">
-    <span class="landing-brand" aria-label="Персональный курс QA"><span>QA</span><strong>Персональный курс</strong></span>
+    <span class="landing-brand" aria-label="Курс QA"><span>QA</span><strong>Курс QA</strong></span>
     <nav aria-label="Навигация по странице"><a href="#results">Результат</a><a href="#program">Программа</a><a href="#format">Формат</a><a href="#faq">Вопросы</a></nav>
     <div class="landing-header-actions">${environmentNav}<button type="button" class="button button-small" data-interest>Узнать о старте</button></div>
   </header>
   <main id="content">${body}</main>
-  <footer class="landing-footer"><span class="landing-brand"><span>QA</span><strong>Персональный курс</strong></span><p>Последовательная программа для старта в ручном тестировании.</p><a href="#content">Наверх ↑</a></footer>
+  <footer class="landing-footer"><span class="landing-brand"><span>QA</span><strong>Курс QA</strong></span><p>Последовательная программа для старта в ручном тестировании.</p><a href="#content">Наверх ↑</a></footer>
   <dialog class="interest-dialog" aria-labelledby="interest-title"><button class="dialog-close" type="button" data-dialog-close aria-label="Закрыть">×</button><span class="section-label">Скоро</span><h2 id="interest-title">Набор ещё не открыт</h2><p>Курс пока готовится к запуску. Здесь появится форма записи, когда будут определены формат участия, дата старта и стоимость.</p><button class="button" type="button" data-dialog-close>Понятно</button></dialog>
 </body>
 </html>`;
@@ -472,7 +472,7 @@ function salesLanding() {
 }
 
 write('index.html', shell({
-  title: 'Персональный курс QA',
+  title: 'Курс QA',
   description: `${pageCount(totalPages)} учебных материалов по ручному тестированию и MQA Base.`,
   body: routeHome(),
 }));
@@ -596,8 +596,8 @@ write('search.html', shell({
 
 write('about.html', shell({
   title: 'О курсе',
-  description: 'Как устроен персональный курс QA.',
-  body: `<article class="about"><span class="eyebrow">Персональный курс QA</span><h1>Спокойное чтение,<br>без действий на платформе</h1><p>На сайте доступны вводный курс, основной QA-маршрут и архив исходных учебных материалов.</p><h2>Что сохранено</h2><ul><li>заголовки, текст, списки, таблицы и безопасные внешние ссылки;</li><li>вводный курс, основной маршрут «этап → тема → шаг» и архивная структура учебных материалов;</li><li>текстовые описания изображений без загрузки самих файлов.</li></ul><h2>Чего здесь нет</h2><p>Логинов, паролей, cookies, токенов, профилей учеников, комментариев, прогресса, ответов и решений. Формы обратной связи и шаги ревью исключены; ответы не отправляются.</p></article>`,
+  description: 'Как устроен курс QA.',
+  body: `<article class="about"><span class="eyebrow">Курс QA</span><h1>Спокойное чтение,<br>без действий на платформе</h1><p>На сайте доступны вводный курс, основной QA-маршрут и архив исходных учебных материалов.</p><h2>Что сохранено</h2><ul><li>заголовки, текст, списки, таблицы и безопасные внешние ссылки;</li><li>вводный курс, основной маршрут «этап → тема → шаг» и архивная структура учебных материалов;</li><li>текстовые описания изображений без загрузки самих файлов.</li></ul><h2>Чего здесь нет</h2><p>Логинов, паролей, cookies, токенов, профилей учеников, комментариев, прогресса, ответов и решений. Формы обратной связи и шаги ревью исключены; ответы не отправляются.</p></article>`,
 }));
 
 write('404.html', fs.readFileSync(path.join(outDir, 'index.html'), 'utf8'));

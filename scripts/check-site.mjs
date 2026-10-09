@@ -11,6 +11,7 @@ if (!['production', 'development'].includes(expectedEnvironment)) {
 const failures = [];
 const htmlFiles = [];
 const forbiddenPublishedPatterns = [
+  [/Персональный\s+курс/iu, 'временное название курса'],
   [new RegExp(['Ka', 'ta\\s+Academy'].join(''), 'i'), 'прежнее латинское название'],
   [new RegExp(['Ка', 'та\\s+Академ'].join(''), 'iu'), 'прежнее русское название'],
   [new RegExp(['ka', 'ta\\.academy'].join(''), 'i'), 'технический адрес прежней платформы'],
