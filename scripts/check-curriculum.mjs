@@ -18,6 +18,7 @@ for (const [course, steps] of [
   ['mqa-base', [79, 99, 100, 126, 127]],
 ]) for (const step of steps) expected.delete(`courses/${course}/step-${String(step).padStart(3, '0')}.html`);
 expected.delete('courses/mqa-base/step-042.html');
+expected.delete('courses/mqa-base/step-072.html');
 if (map.length !== expected.size) fail(`Карта: ${map.length} вместо ${expected.size} шагов`);
 if (qaSearch.length !== expected.size || new Set(qaSearch.map((item) => item.url)).size !== expected.size) fail('Поиск должен содержать каждый основной урок ровно один раз');
 if (introSearch.length !== 8 || new Set(introSearch.map((item) => item.url)).size !== 8) fail('Поиск должен содержать восемь вводных лекций');
@@ -54,7 +55,7 @@ if (firstPracticeIndex <= lastExampleIndex) fail('Практика докуме�
 if (!home.includes('id="interview"') || !home.includes('Лекции</small>') || !home.includes('Практика</small>')) fail('Нет блока собеседования или новых типов тем');
 if (!home.includes('id="end-to-end-topic-2"') || !home.includes('Выбрать и уточнить требование <small class="role-chip mixed">Лекции + практика</small>')) fail('Тема с лекцией и заданием должна быть смешанной');
 if (/\b(?:21|54) шагов\b/.test(home) || /<h2>\d+\.\s/.test(home)) fail('Ошибочное склонение или двойная нумерация этапов');
-if (!home.includes('Основной курс QA · 78 часов · 282 шага') || !home.includes('<strong>9 ч · 23 шага</strong>') || !home.includes('<strong>15 ч · 61 шаг</strong>') || !home.includes('<strong>8 ч · 21 шаг</strong>')) fail('Неверное время или склонение количества шагов');
+if (!home.includes('Основной курс QA · 78 часов · 281 шаг') || !home.includes('<strong>9 ч · 23 шага</strong>') || !home.includes('<strong>15 ч · 61 шаг</strong>') || !home.includes('<strong>8 ч · 21 шаг</strong>')) fail('Неверное время или склонение количества шагов');
 if (!qaSearch.every((record) => record.stageId && record.topicId && record.stageNumber)) fail('Поиску не хватает ссылок на этапы и темы');
 for (const [step, minimumBlocks] of [[84, 9], [86, 12], [87, 13]]) {
   const lesson = fs.readFileSync(path.join(outDir, `courses/mqa-base/step-${String(step).padStart(3, '0')}.html`), 'utf8');
@@ -74,6 +75,12 @@ const splitChecksLesson = fs.readFileSync(path.join(outDir, 'courses/mqa-base/st
 if (!splitChecksLesson.includes('Регистрация и профиль') || !splitChecksLesson.includes('Когда разделять не обязательно') || !splitChecksLesson.includes('Как понять, что проверку пора разделить') || !splitChecksLesson.includes('восстановление пароля')) fail('Не добавлено расширенное объяснение разных мест проверки');
 if (map.some((item) => item.url === 'courses/mqa-base/step-042.html') || qaSearch.some((item) => item.url === 'courses/mqa-base/step-042.html')) fail('Дублирующий урок Q42 остался в маршруте или поиске');
 if (!fs.existsSync(path.join(outDir, 'courses/mqa-base/step-042.html'))) fail('Исходный урок Q42 должен остаться в архиве');
+if (map.some((item) => item.url === 'courses/mqa-base/step-072.html') || qaSearch.some((item) => item.url === 'courses/mqa-base/step-072.html')) fail('Устаревшая инструкция по сдаче заданий осталась в маршруте или поиске');
+if (!fs.existsSync(path.join(outDir, 'courses/mqa-base/step-072.html'))) fail('Исходный урок Q72 должен остаться в архиве');
+const studyGuideIndex = map.findIndex((item) => item.url === 'courses/mqa-base/step-073.html');
+if (studyGuideIndex !== 0 || map[0]?.route.topic !== 'Как проходить курс') fail('Лекция о прохождении курса должна открывать основной маршрут');
+const studyGuide = fs.readFileSync(path.join(outDir, 'courses/mqa-base/step-073.html'), 'utf8');
+if (!studyGuide.includes('Лекция «Как проходить курс»') || !studyGuide.includes('Сначала поймите основную мысль') || studyGuide.includes('Google Таблиц') || studyGuide.includes('домашнего задания')) fail('Не переработана вводная лекция о прохождении курса');
 const about = fs.readFileSync(path.join(outDir, 'about.html'), 'utf8');
 if (!about.includes('доступны вводный курс, основной QA-маршрут')) fail('Неверно описан состав dev-курса');
 const introIndex = fs.readFileSync(path.join(outDir, 'courses/it-start/index.html'), 'utf8');

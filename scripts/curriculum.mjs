@@ -2,6 +2,7 @@
 // Q = mqa-base. Every source step must appear exactly once in this route.
 const stages = [
   { id: 'start', title: '1. Старт и устройство продукта', hours: 3, goal: 'Понять роль тестировщика и путь запроса через веб-приложение.', outcome: 'Объясняете, что проверяет QA и где искать причину сбоя.', topics: [
+    ['Как проходить курс', 'reference', 'Q73'],
     ['Зачем тестировать и семь принципов', 'core', 'Q1'],
     ['Клиент, сервер, фронтенд и бэкенд', 'core', 'M59-65,M67'],
     ['Роли в IT-проекте', 'core', 'Q71'],
@@ -29,7 +30,6 @@ const stages = [
     ['Разобранные примеры', 'practice', 'Q60-69,M127'],
     ['Основная практика документов', 'practice', 'Q74,Q77-78'],
     ['Дополнительные задания — по желанию', 'reference', 'Q75-76,Q94-97,M55'],
-    ['Как учиться по материалам', 'reference', 'Q72-73'],
   ] },
   { id: 'design', title: '5. Тест-дизайн', hours: 9, goal: 'Получать сильное покрытие без перебора всех комбинаций.', outcome: 'Применяете классы, границы, пары, решения и переходы состояний.', topics: [
     ['Основа и выбор техники', 'core', 'Q101,Q109,Q116-117'],
@@ -120,8 +120,8 @@ export function buildCurriculum(courses) {
     const taskTypes = new Set(items.map((item) => item.taskType === 'lecture' ? 'lecture' : 'practice'));
     return { title, role, kind: taskTypes.size === 2 ? 'mixed' : [...taskTypes][0], items };
   }) }));
-  const mergedIntoAnotherLesson = new Set(['mqa-base:42']);
-  const missing = [...lookup.keys()].filter((key) => !seen.has(key) && !mergedIntoAnotherLesson.has(key));
+  const archivedOnly = new Set(['mqa-base:42', 'mqa-base:72']);
+  const missing = [...lookup.keys()].filter((key) => !seen.has(key) && !archivedOnly.has(key));
   if (missing.length) throw new Error(`Не распределены ${missing.length} шагов: ${missing.join(', ')}`);
   for (const record of records) {
     if (record.alternativeTo && !lookup.has(`${source[record.alternativeTo[0]]}:${Number(record.alternativeTo.slice(1))}`)) {

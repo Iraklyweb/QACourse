@@ -332,6 +332,18 @@ function editorializeLessonHtml(courseSlug, pageNumber, html) {
       </div>`,
     );
   }
+  if (courseSlug === 'mqa-base' && pageNumber === 73) {
+    return `<section class="editorial-intro">
+      <h2>Как проходить курс</h2>
+      <p>Материалы расположены по нарастающей сложности: новые темы опираются на то, что вы уже прошли. Поэтому в первый раз двигайтесь по порядку, даже если отдельная тема кажется знакомой.</p>
+      <div class="lesson-method"><h3>Сначала поймите основную мысль</h3><p>Не пытайтесь запомнить каждую формулировку. После лекции попробуйте своими словами ответить на два вопроса: что я узнал и где это пригодится тестировщику. Если можете объяснить тему без текста перед глазами, значит основа понятна.</p></div>
+      <div class="lesson-method"><h3>Практику выполняйте самостоятельно</h3><p>Сначала сделайте собственную попытку и только потом сверяйтесь с примерами. Ошибочный первый вариант полезнее бездумно скопированного правильного ответа: он показывает, какое место нужно разобрать ещё раз.</p></div>
+      <div class="lesson-method"><h3>Фиксируйте вопросы</h3><p>Если что-то непонятно, запишите конкретный вопрос и продолжайте, когда это не мешает следующей теме. Часть терминов станет понятнее позже, когда появится связанный пример или инструмент.</p></div>
+      <div class="lesson-method"><h3>Возвращайтесь к сложным темам</h3><p>После практики перечитайте лекцию и сравните новое понимание с первым. Особенно полезно возвращаться к требованиям, тестовой документации, тест-дизайну, API и SQL: эти темы раскрываются постепенно.</p></div>
+      <div class="lesson-method"><h3>Проверяйте себя объяснением</h3><p>Попробуйте рассказать изученное так, будто отвечаете коллеге или на собеседовании: дать определение, привести пример и объяснить, зачем это нужно. Если объяснение распадается, отметьте пробел и вернитесь к нужному фрагменту.</p></div>
+      <div class="lesson-info"><p><strong>Ошибки и непонимание &mdash; нормальная часть обучения.</strong> Цель не в том, чтобы пройти страницы как можно быстрее, а в том, чтобы постепенно научиться применять материал в новых ситуациях.</p></div>
+    </section>`;
+  }
   return html;
 }
 
@@ -399,11 +411,14 @@ const courses = courseDefs.map((def) => {
     let safeTitle = neutralizeBrand(page.content?.title || page.heading?.taskTitle || `Шаг ${index + 1}`);
     if (def.slug === 'mqa-base' && index + 1 === 1) safeTitle = 'Лекция «Зачем тестировать: семь главных принципов»';
     if (def.slug === 'mqa-base' && index + 1 === 41) safeTitle = 'Лекция «Приоритет в тестовой документации»';
+    if (def.slug === 'mqa-base' && index + 1 === 73) safeTitle = 'Лекция «Как проходить курс»';
     const safeHtml = cleanLessonHeading(sanitizeHtml(page.content?.description || ''), safeTitle);
+    const moduleName = def.slug === 'mqa-base' && index + 1 === 73 ? 'Старт и устройство продукта' : neutralizeBrand(page.moduleName);
+    const chapterName = def.slug === 'mqa-base' && index + 1 === 73 ? 'Как проходить курс' : neutralizeBrand(page.chapterName);
     return {
       ...page,
-      moduleName: neutralizeBrand(page.moduleName),
-      chapterName: neutralizeBrand(page.chapterName),
+      moduleName,
+      chapterName,
       index,
       number: index + 1,
       file: `step-${String(index + 1).padStart(3, '0')}.html`,
