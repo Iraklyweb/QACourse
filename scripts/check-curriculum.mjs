@@ -91,6 +91,10 @@ if (clientTypesLesson.includes('Программы вроде Microsoft Word и�
 const serviceTermsLesson = fs.readFileSync(path.join(outDir, 'courses/manual-testing/step-063.html'), 'utf8');
 if (!serviceTermsLesson.includes('Вся лекция &mdash; для общего развития.')) fail('Лекция о сервисах не помечена целиком как материал для общего развития');
 if (serviceTermsLesson.includes('Что нужно уметь рассказать') || serviceTermsLesson.includes('Всё остальное &mdash; для общего развития')) fail('В лекции о сервисах осталась старая частичная пометка');
+const frontendBackendLesson = fs.readFileSync(path.join(outDir, 'courses/manual-testing/step-064.html'), 'utf8');
+for (const fragment of ['Что такое фреймворк и библиотека', 'Фреймворк &mdash; не синоним фронтенда', 'Инструменты фронтенда', '<strong>Java:</strong> Spring.', '<strong>Python:</strong> Django и FastAPI.', '<strong>Node.js</strong> сам по себе не является фреймворком']) {
+  if (!frontendBackendLesson.includes(fragment)) fail(`Не исправлена лекция о фронтенде и бэкенде: ${fragment}`);
+}
 if (map.some((item) => item.url === 'courses/mqa-base/step-042.html') || qaSearch.some((item) => item.url === 'courses/mqa-base/step-042.html')) fail('Дублирующий урок Q42 остался в маршруте или поиске');
 if (!fs.existsSync(path.join(outDir, 'courses/mqa-base/step-042.html'))) fail('Исходный урок Q42 должен остаться в архиве');
 if (map.some((item) => item.url === 'courses/mqa-base/step-072.html') || qaSearch.some((item) => item.url === 'courses/mqa-base/step-072.html')) fail('Устаревшая инструкция по сдаче заданий осталась в маршруте или поиске');
