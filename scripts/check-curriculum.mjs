@@ -85,7 +85,8 @@ for (const title of [
 ]) if (!principlesLesson.includes(title)) fail(`Нет названия принципа из статьи: ${title}`);
 if (principlesLesson.includes('Материал подготовлен на основе') || principlesLesson.includes('habr.com/ru/articles/699990')) fail('В лекции осталась удалённая ссылка на статью');
 const clientTypesLesson = fs.readFileSync(path.join(outDir, 'courses/manual-testing/step-061.html'), 'utf8');
-if (!clientTypesLesson.includes('Google Docs &mdash; преимущественно тонкий клиент') || !clientTypesLesson.includes('Microsoft Excel для компьютера &mdash; преимущественно толстый клиент') || !clientTypesLesson.includes('Это не абсолютные категории') || !clientTypesLesson.includes('«1С:Предприятие» в режиме толстого клиента')) fail('Нет наглядного сравнения тонкого и толстого клиента');
+if (!clientTypesLesson.includes('Google Таблицы &mdash; преимущественно тонкий клиент') || !clientTypesLesson.includes('Microsoft Excel для компьютера &mdash; преимущественно толстый клиент') || !clientTypesLesson.includes('Это не абсолютные категории') || !clientTypesLesson.includes('«1С:Предприятие» в режиме толстого клиента')) fail('Нет наглядного сравнения тонкого и толстого клиента');
+if (clientTypesLesson.includes('Google Docs')) fail('В сравнении с Excel остался пример Google Docs вместо Google Таблиц');
 if (clientTypesLesson.includes('Программы вроде Microsoft Word или Excel')) fail('В лекции остался дублирующий пример Microsoft Office');
 if (map.some((item) => item.url === 'courses/mqa-base/step-042.html') || qaSearch.some((item) => item.url === 'courses/mqa-base/step-042.html')) fail('Дублирующий урок Q42 остался в маршруте или поиске');
 if (!fs.existsSync(path.join(outDir, 'courses/mqa-base/step-042.html'))) fail('Исходный урок Q42 должен остаться в архиве');
