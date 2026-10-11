@@ -73,6 +73,16 @@ const priorityLesson = fs.readFileSync(path.join(outDir, 'courses/mqa-base/step-
 if (!priorityLesson.includes('Приоритет в тестовой документации') || !priorityLesson.includes('Приоритет в баг-репортах') || !priorityLesson.includes('после оплаты не приходит подтверждение')) fail('Уроки о приоритете не объединены');
 const splitChecksLesson = fs.readFileSync(path.join(outDir, 'courses/mqa-base/step-052.html'), 'utf8');
 if (!splitChecksLesson.includes('Регистрация и профиль') || !splitChecksLesson.includes('Когда разделять не обязательно') || !splitChecksLesson.includes('Как понять, что проверку пора разделить') || !splitChecksLesson.includes('восстановление пароля')) fail('Не добавлено расширенное объяснение разных мест проверки');
+const principlesLesson = fs.readFileSync(path.join(outDir, 'courses/mqa-base/step-001.html'), 'utf8');
+for (const title of [
+  '1. Исчерпывающее тестирование невозможно',
+  '2. Тестирование демонстрирует наличие дефектов, а не их отсутствие',
+  '3. Заблуждение об отсутствии ошибок',
+  '4. Раннее тестирование сохраняет время и деньги',
+  '5. Принцип скопления или кластеризация дефектов',
+  '6. Тестирование зависит от контекста',
+  '7. Парадокс пестицида',
+]) if (!principlesLesson.includes(title)) fail(`Нет названия принципа из статьи: ${title}`);
 if (map.some((item) => item.url === 'courses/mqa-base/step-042.html') || qaSearch.some((item) => item.url === 'courses/mqa-base/step-042.html')) fail('Дублирующий урок Q42 остался в маршруте или поиске');
 if (!fs.existsSync(path.join(outDir, 'courses/mqa-base/step-042.html'))) fail('Исходный урок Q42 должен остаться в архиве');
 if (map.some((item) => item.url === 'courses/mqa-base/step-072.html') || qaSearch.some((item) => item.url === 'courses/mqa-base/step-072.html')) fail('Устаревшая инструкция по сдаче заданий осталась в маршруте или поиске');
