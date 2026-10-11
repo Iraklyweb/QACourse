@@ -279,6 +279,10 @@ function displayStageTitle(title) { return title.replace(/^\d+\.\s*/, ''); }
 
 function editorializeLessonHtml(courseSlug, pageNumber, html) {
   if (courseSlug === 'manual-testing' && pageNumber === 61) {
+    html = html.replace(
+      'Программы вроде Microsoft Word или Excel: вся работа происходит локально на вашем устройстве.',
+      '«1С:Предприятие» в режиме толстого клиента: интерфейс и значительная часть бизнес-логики выполняются на компьютере пользователя, а сервер или база данных используются для хранения и обмена данными.',
+    );
     return html.replace(
       /<h3><span><strong>Как это связано с клиент-серверной архитектурой\?<\/strong><\/span><\/h3>/,
       `<section class="lesson-section client-comparison">
