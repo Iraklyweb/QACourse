@@ -395,7 +395,6 @@ const whyTestIntro = `<section class="editorial-intro principles-lesson">
     <li>Учитывайте назначение продукта и цену возможной ошибки.</li>
     <li>Пересматривайте регрессию после изменений и найденных дефектов.</li>
   </ul>
-  <p>Материал подготовлен на основе общепринятых принципов тестирования и переработан по мотивам статьи <a href="https://habr.com/ru/articles/699990/" target="_blank" rel="noopener noreferrer">«Принципы тестирования: нас 7»</a>.</p>
 </section>`;
 
 const courses = courseDefs.map((def) => {

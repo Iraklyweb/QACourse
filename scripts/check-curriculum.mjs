@@ -83,6 +83,7 @@ for (const title of [
   '6. Тестирование зависит от контекста',
   '7. Парадокс пестицида',
 ]) if (!principlesLesson.includes(title)) fail(`Нет названия принципа из статьи: ${title}`);
+if (principlesLesson.includes('Материал подготовлен на основе') || principlesLesson.includes('habr.com/ru/articles/699990')) fail('В лекции осталась удалённая ссылка на статью');
 if (map.some((item) => item.url === 'courses/mqa-base/step-042.html') || qaSearch.some((item) => item.url === 'courses/mqa-base/step-042.html')) fail('Дублирующий урок Q42 остался в маршруте или поиске');
 if (!fs.existsSync(path.join(outDir, 'courses/mqa-base/step-042.html'))) fail('Исходный урок Q42 должен остаться в архиве');
 if (map.some((item) => item.url === 'courses/mqa-base/step-072.html') || qaSearch.some((item) => item.url === 'courses/mqa-base/step-072.html')) fail('Устаревшая инструкция по сдаче заданий осталась в маршруте или поиске');
