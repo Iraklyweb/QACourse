@@ -103,7 +103,7 @@ for (const [pattern, label] of forbiddenPublishedPatterns) {
   if (pattern.test(searchText)) failures.push(`docs/assets/search-index.json: ${label}`);
 }
 const expectedLessons = 283;
-const expectedSearchRecords = 289;
+const expectedSearchRecords = expectedEnvironment === 'development' ? 289 : 290;
 const expectedHtmlFiles = hasSalesLanding ? 299 : 298;
 if (expectedEnvironment === 'development' && !hasSalesLanding) failures.push('В development нет продающей страницы курса');
 if (lessonFiles.length !== expectedLessons) failures.push(`Страниц уроков: ${lessonFiles.length}, ожидалось ${expectedLessons}`);
