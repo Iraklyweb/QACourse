@@ -295,6 +295,13 @@ function editorializeLessonHtml(courseSlug, pageNumber, html) {
       <h3><span><strong>Как это связано с клиент-серверной архитектурой?</strong></span></h3>`,
     );
   }
+  if (courseSlug === 'manual-testing' && pageNumber === 63) {
+    const withoutChecklist = html.replace(
+      /<p><strong>Что нужно уметь рассказать<\/strong>[\s\S]*?<p><strong>Всё остальное &mdash; для общего развития<\/strong><\/p>/,
+      '',
+    );
+    return `<div class="lesson-info"><p><strong>Вся лекция &mdash; для общего развития.</strong></p></div>${withoutChecklist}`;
+  }
   if (courseSlug === 'manual-testing' && pageNumber === 123) {
     return html.replace(
       /<p>Мы уже <strong>изучали тему требований<\/strong>, и выполняя <strong>домашние задания<\/strong>, вы <strong>сами формировали требования<\/strong>\. На их основе вы создавали <strong>тестовую документацию<\/strong> и определяли, как система должна работать\./,
