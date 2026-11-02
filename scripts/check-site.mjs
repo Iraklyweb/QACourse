@@ -104,7 +104,8 @@ for (const [pattern, label] of forbiddenPublishedPatterns) {
 }
 const expectedLessons = 283;
 const expectedSearchRecords = 289;
-const expectedHtmlFiles = hasSalesLanding ? 299 : 298;
+const hasDocumentationExamples = fs.existsSync(path.join(outDir, 'examples', 'test-case.html'));
+const expectedHtmlFiles = hasSalesLanding ? (hasDocumentationExamples ? 303 : 299) : 298;
 if (expectedEnvironment === 'development' && !hasSalesLanding) failures.push('В development нет продающей страницы курса');
 if (lessonFiles.length !== expectedLessons) failures.push(`Страниц уроков: ${lessonFiles.length}, ожидалось ${expectedLessons}`);
 if (search.length !== expectedSearchRecords) failures.push(`Записей поиска: ${search.length}, ожидалось ${expectedSearchRecords}`);

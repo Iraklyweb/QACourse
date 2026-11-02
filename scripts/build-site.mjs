@@ -196,7 +196,7 @@ function shell({ title, description, depth = 0, body, current = '' }) {
   <header class="topbar">
     <a class="brand" href="${base}index.html" aria-label="Курс QA, главная"><span class="brand-mark">QA</span><span>Курс QA</span></a>${environmentNav}
     <nav aria-label="Основная навигация">
-      <a href="${base}courses/${introCourse.slug}/">IT с нуля</a><a href="${base}index.html#main-route">Основной курс</a><a href="${base}index.html#archive">Архив курсов</a>${navCourse ? `\n      ${navCourse}` : ''}
+      <a href="${base}courses/${introCourse.slug}/">IT с нуля</a><a href="${base}index.html#main-route">Основной курс</a><a href="${base}examples/">Примеры документов</a><a href="${base}index.html#archive">Архив курсов</a>${navCourse ? `\n      ${navCourse}` : ''}
     </nav>
     <form class="search-mini" action="${base}search.html" role="search">
       <label class="sr-only" for="site-search-${depth}">Поиск по курсам</label>
@@ -532,6 +532,74 @@ const totalCourseHours = mainCourseHours + introCourse.totalMinutes / 60;
 const routeByUrl = new Map(curriculum?.records.map((record, index) => [record.url, { record, index }]) || []);
 const routeBySourceKey = new Map(curriculum?.records.map((record) => [`${record.source.course === 'mqa-base' ? 'Q' : 'M'}${record.source.step}`, record]) || []);
 
+const documentationExamples = [
+  {
+    slug: 'test-case',
+    title: 'Тест-кейс: успешное оформление заказа',
+    kind: 'Тест-кейс',
+    lessonUrl: 'courses/mqa-base/step-003.html',
+    teaser: 'Предусловия, тестовые данные, последовательность шагов и ожидаемый результат каждого действия.',
+  },
+  {
+    slug: 'checklist',
+    title: 'Чек-лист: проверка корзины и заказа',
+    kind: 'Чек-лист',
+    lessonUrl: 'courses/mqa-base/step-004.html',
+    teaser: 'Компактный набор проверок без подробного сценария выполнения.',
+  },
+  {
+    slug: 'bug-report',
+    title: 'Баг-репорт: заказ создаётся дважды',
+    kind: 'Баг-репорт',
+    lessonUrl: 'courses/mqa-base/step-005.html',
+    teaser: 'Заголовок, окружение, шаги воспроизведения, фактический и ожидаемый результаты.',
+  },
+];
+const documentationExampleByLesson = new Map(documentationExamples.map((example) => [example.lessonUrl, example]));
+
+function documentationSequence(activeSlug = '') {
+  const steps = [
+    ['Требование', 'Понять ожидаемое поведение'],
+    ['Чек-лист', 'Определить набор проверок'],
+    ['Тест-кейс', 'Подробно описать важный сценарий'],
+    ['Выполнение', 'Сравнить результат с ожиданием'],
+    ['Баг-репорт', 'Зафиксировать найденное отклонение'],
+  ];
+  const slugByIndex = ['', 'checklist', 'test-case', '', 'bug-report'];
+  return `<ol class="document-flow">${steps.map(([title, description], index) => `<li${slugByIndex[index] === activeSlug ? ' class="current"' : ''}><span>${String(index + 1).padStart(2, '0')}</span><div><strong>${title}</strong><small>${description}</small></div></li>`).join('')}</ol>`;
+}
+
+function documentationExampleNav(activeSlug) {
+  return `<nav class="example-switcher" aria-label="Примеры документации">${documentationExamples.map((example) => `<a${example.slug === activeSlug ? ' aria-current="page"' : ''} href="${example.slug}.html">${example.kind}</a>`).join('')}</nav>`;
+}
+
+function lessonExampleCallout(example) {
+  return `<details class="lesson-example"><summary><span><small>Учебный пример</small><strong>Посмотреть: ${escapeHtml(example.kind.toLowerCase())}</strong></span><span aria-hidden="true">+</span></summary><div><p>${escapeHtml(example.teaser)}</p><a class="example-button" href="../../examples/${example.slug}.html">Открыть полный пример →</a></div></details>`;
+}
+
+function examplePageBody(example) {
+  const sharedHead = `<div class="example-page-head"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../index.html">Главная</a><span>/</span><a href="index.html">Примеры документов</a><span>/</span><span>${escapeHtml(example.kind)}</span></nav><span class="eyebrow">Учебный пример · вымышленный продукт Demo Shop</span><h1>${escapeHtml(example.title)}</h1><p>${escapeHtml(example.teaser)}</p></div>${documentationExampleNav(example.slug)}${documentationSequence(example.slug)}`;
+  if (example.slug === 'test-case') return `${sharedHead}<article class="document-example">
+    <details><summary><strong>Пустой шаблон</strong><span>Что заполнять</span></summary><div class="document-panel"><button class="copy-document" type="button" data-copy-target="test-case-template">Скопировать шаблон</button><pre id="test-case-template">ID:\nНазвание:\nЦель проверки:\nПредусловия:\nТестовые данные:\nШаги и ожидаемые результаты:\nПостусловия:\nПриоритет:</pre></div></details>
+    <details open><summary><strong>Заполненный пример</strong><span>Как выглядит документ</span></summary><div class="document-panel"><dl class="document-meta"><div><dt>ID</dt><dd>TC-ORDER-001</dd></div><div><dt>Приоритет</dt><dd>Высокий</dd></div><div><dt>Название</dt><dd>Успешное оформление заказа авторизованным пользователем</dd></div><div><dt>Цель</dt><dd>Убедиться, что пользователь может оформить один товар с доставкой курьером</dd></div><div><dt>Предусловия</dt><dd>Пользователь авторизован; товар «Беспроводная мышь» доступен; корзина пуста</dd></div><div><dt>Тестовые данные</dt><dd>Адрес: Учебная улица, 10; способ оплаты: при получении</dd></div></dl><div class="document-table-wrap"><table class="doc-table doc-steps"><thead><tr><th>№</th><th>Действие</th><th>Ожидаемый результат</th></tr></thead><tbody><tr><td data-label="Шаг">1</td><td data-label="Действие">Открыть карточку товара «Беспроводная мышь»</td><td data-label="Ожидаемый результат">Карточка открыта, товар доступен для заказа</td></tr><tr><td data-label="Шаг">2</td><td data-label="Действие">Нажать «Добавить в корзину»</td><td data-label="Ожидаемый результат">Товар добавлен, счётчик корзины равен 1</td></tr><tr><td data-label="Шаг">3</td><td data-label="Действие">Открыть корзину</td><td data-label="Ожидаемый результат">Отображается один товар, название и цена верны</td></tr><tr><td data-label="Шаг">4</td><td data-label="Действие">Нажать «Оформить заказ», указать адрес и оплату при получении</td><td data-label="Ожидаемый результат">Данные приняты, кнопка подтверждения доступна</td></tr><tr><td data-label="Шаг">5</td><td data-label="Действие">Нажать «Подтвердить заказ»</td><td data-label="Ожидаемый результат">Создан один заказ, показан его номер и статус «Принят»</td></tr></tbody></table></div><p><strong>Постусловие:</strong> удалить учебный заказ или пометить его как тестовый.</p></div></details>
+    <details><summary><strong>Разбор структуры</strong><span>Зачем нужны поля</span></summary><div class="document-panel"><ul class="field-guide"><li><strong>Название</strong><span>Описывает проверку и ожидаемый итог без чтения шагов.</span></li><li><strong>Предусловия</strong><span>Фиксируют состояние системы до первого действия.</span></li><li><strong>Тестовые данные</strong><span>Позволяют повторить проверку в тех же условиях.</span></li><li><strong>Шаги</strong><span>Содержат по одному понятному действию в правильной последовательности.</span></li><li><strong>Ожидаемый результат</strong><span>Даёт критерий успешности для каждого шага.</span></li></ul></div></details>
+  </article>`;
+  if (example.slug === 'checklist') return `${sharedHead}<article class="document-example">
+    <details><summary><strong>Пустой шаблон</strong><span>Что заполнять</span></summary><div class="document-panel"><button class="copy-document" type="button" data-copy-target="checklist-template">Скопировать шаблон</button><pre id="checklist-template">Раздел:\nПроверка:\nОжидаемый результат:\nПриоритет:\nСтатус:\nКомментарий:</pre></div></details>
+    <details open><summary><strong>Заполненный пример</strong><span>Как выглядит документ</span></summary><div class="document-panel"><div class="document-table-wrap"><table class="doc-table doc-steps"><thead><tr><th>№</th><th>Проверка</th><th>Ожидаемый результат</th><th>Приоритет</th><th>Статус</th></tr></thead><tbody><tr><td data-label="№">1</td><td data-label="Проверка">Добавить доступный товар в пустую корзину</td><td data-label="Ожидание">Товар появился, количество равно 1</td><td data-label="Приоритет">Высокий</td><td data-label="Статус"><span class="doc-status passed">Пройдено</span></td></tr><tr><td data-label="№">2</td><td data-label="Проверка">Изменить количество товара с 1 на 2</td><td data-label="Ожидание">Количество и итоговая сумма пересчитаны</td><td data-label="Приоритет">Высокий</td><td data-label="Статус"><span class="doc-status passed">Пройдено</span></td></tr><tr><td data-label="№">3</td><td data-label="Проверка">Удалить единственный товар</td><td data-label="Ожидание">Корзина пуста, сумма равна 0</td><td data-label="Приоритет">Средний</td><td data-label="Статус"><span class="doc-status passed">Пройдено</span></td></tr><tr><td data-label="№">4</td><td data-label="Проверка">Дважды нажать подтверждение заказа при медленном ответе</td><td data-label="Ожидание">Создаётся только один заказ</td><td data-label="Приоритет">Высокий</td><td data-label="Статус"><span class="doc-status failed">Ошибка</span></td></tr><tr><td data-label="№">5</td><td data-label="Проверка">Оформить заказ без адреса доставки</td><td data-label="Ожидание">Показана подсказка, заказ не создан</td><td data-label="Приоритет">Высокий</td><td data-label="Статус"><span class="doc-status blocked">Не выполнено</span></td></tr></tbody></table></div></div></details>
+    <details><summary><strong>Разбор структуры</strong><span>Чем отличается от тест-кейса</span></summary><div class="document-panel"><p>Чек-лист перечисляет <strong>что проверить</strong>, но обычно не расписывает каждый клик. Он удобен для знакомой функции и быстрой регрессии. Подробный тест-кейс нужен для сложного, критичного или редко выполняемого сценария.</p><ul class="field-guide"><li><strong>Проверка</strong><span>Короткая и однозначная формулировка одной идеи.</span></li><li><strong>Ожидаемый результат</strong><span>Критерий, по которому определяется статус.</span></li><li><strong>Статус</strong><span>Пройдено, ошибка, заблокировано или не выполнено.</span></li></ul></div></details>
+  </article>`;
+  return `${sharedHead}<article class="document-example">
+    <details><summary><strong>Пустой шаблон</strong><span>Что заполнять</span></summary><div class="document-panel"><button class="copy-document" type="button" data-copy-target="bug-report-template">Скопировать шаблон</button><pre id="bug-report-template">Заголовок:\nОкружение:\nПредусловия:\nШаги воспроизведения:\nФактический результат:\nОжидаемый результат:\nСерьёзность:\nПриоритет:\nВложения:</pre></div></details>
+    <details open><summary><strong>Заполненный пример</strong><span>Как выглядит документ</span></summary><div class="document-panel"><dl class="document-meta"><div><dt>ID</dt><dd>BUG-ORDER-014</dd></div><div><dt>Серьёзность</dt><dd>Высокая</dd></div><div><dt>Приоритет</dt><dd>Высокий</dd></div><div><dt>Заголовок</dt><dd>Двойное нажатие «Подтвердить заказ» создаёт два одинаковых заказа</dd></div><div><dt>Окружение</dt><dd>Test; сборка 2.4.0; Chrome 130; Windows 11</dd></div><div><dt>Предусловия</dt><dd>Пользователь авторизован; в корзине один доступный товар; заполнены данные доставки</dd></div></dl><h3>Шаги воспроизведения</h3><ol><li>Открыть корзину.</li><li>Перейти к оформлению заказа.</li><li>Дважды быстро нажать «Подтвердить заказ».</li><li>Открыть историю заказов.</li></ol><div class="result-pair"><section><span>Фактический результат</span><p>Созданы два заказа с одинаковым составом и разными номерами.</p></section><section><span>Ожидаемый результат</span><p>После первого нажатия кнопка блокируется и создаётся только один заказ.</p></section></div><p><strong>Вложения:</strong> видео воспроизведения и два идентификатора заказов без персональных данных.</p></div></details>
+    <details><summary><strong>Разбор структуры</strong><span>Почему отчёт воспроизводим</span></summary><div class="document-panel"><ul class="field-guide"><li><strong>Заголовок</strong><span>Содержит действие, условие и наблюдаемую проблему.</span></li><li><strong>Окружение</strong><span>Показывает, где именно обнаружен дефект.</span></li><li><strong>Шаги</strong><span>Начинаются после предусловий и приводят к проблеме без лишних действий.</span></li><li><strong>Фактический результат</strong><span>Описывает наблюдаемое поведение без предположений о причине.</span></li><li><strong>Ожидаемый результат</strong><span>Фиксирует корректное поведение системы.</span></li></ul></div></details>
+  </article>`;
+}
+
+function examplesHubBody() {
+  return `<section class="examples-hero"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../index.html">Главная</a><span>/</span><span>Примеры документов</span></nav><span class="eyebrow">Учебная библиотека</span><h1>Тестовая документация<br>на одном сценарии</h1><p>Все примеры относятся к вымышленному интернет-магазину Demo Shop. Так проще увидеть не только форму каждого документа, но и последовательность: от идеи проверки до найденного дефекта.</p></section>${documentationSequence()}<section class="example-grid">${documentationExamples.map((example, index) => `<a class="example-card" href="${example.slug}.html"><span>${String(index + 1).padStart(2, '0')} · ${escapeHtml(example.kind)}</span><h2>${escapeHtml(example.title)}</h2><p>${escapeHtml(example.teaser)}</p><strong>Открыть пример →</strong></a>`).join('')}</section><aside class="privacy-note"><h2>Почему данные выглядят учебными</h2><p>Названия продукта, адреса, пользователи, номера задач и окружение вымышлены. Структура приближена к рабочей документации, но не раскрывает данные реальных проектов.</p></aside>`;
+}
+
 function routeHome() {
   const kindLabel = { lecture: 'Лекции', mixed: 'Лекции + практика', practice: 'Практика' };
   const outline = curriculum.stages.map((stage) => `<section class="module-block route-stage" id="${stage.id}">
@@ -594,6 +662,21 @@ write('index.html', shell({
 
 write('qa-course/index.html', landingShell({ body: salesLanding() }));
 
+write('examples/index.html', shell({
+  title: 'Примеры тестовой документации',
+  description: 'Учебные примеры тест-кейса, чек-листа и баг-репорта на одном вымышленном сценарии.',
+  depth: 1,
+  body: examplesHubBody(),
+}));
+for (const example of documentationExamples) {
+  write(`examples/${example.slug}.html`, shell({
+    title: example.title,
+    description: example.teaser,
+    depth: 1,
+    body: examplePageBody(example),
+  }));
+}
+
 for (const course of courses) {
   const outline = course.modules.map((module) => `<section class="module-block">
     <header><span>${String(module.position).padStart(2, '0')}</span><div><p>Модуль</p><h2>${escapeHtml(module.name)}</h2></div><strong>${stepCount(module.chapters.reduce((sum, chapter) => sum + chapter.pages.length, 0))}</strong></header>
@@ -623,6 +706,7 @@ for (const course of courses) {
     const routePrevious = routePosition ? curriculum.records[routePosition.index - 1] : null;
     const routeNext = routePosition ? curriculum.records[routePosition.index + 1] : null;
     const alternativeBase = routeRecord?.alternativeTo ? routeBySourceKey.get(routeRecord.alternativeTo) : null;
+    const documentationExample = documentationExampleByLesson.get(currentUrl);
     const routePager = `<nav class="pager" aria-label="Навигация между шагами">${routePrevious ? `<a class="prev" href="../../${routePrevious.url}"><small>Назад · единый маршрут</small><span>← ${escapeHtml(routePrevious.title)}</span></a>` : '<span></span>'}${routeNext ? `<a class="next" href="../../${routeNext.url}"><small>Дальше · единый маршрут</small><span>${escapeHtml(routeNext.title)} →</span></a>` : '<a class="next" href="../../index.html"><small>Маршрут пройден</small><span>К этапам →</span></a>'}</nav>`;
     write(`courses/${course.slug}/${page.file}`, shell({
       title: page.safeTitle,
@@ -631,7 +715,7 @@ for (const course of courses) {
       current: course.slug,
       body: `<div class="reader-layout"><aside class="reader-rail"><a href="${followsRoute ? '../../index.html' : 'index.html'}">← ${followsRoute ? 'Единый маршрут' : 'Структура курса'}</a><div class="rail-index"><span>${String(followsRoute ? routePosition.index + 1 : page.number).padStart(3, '0')}</span><small>из ${followsRoute ? totalPages : course.pages.length}</small></div><p>${escapeHtml(followsRoute ? routeRecord.route.stageTitle : page.chapterName)}</p><div class="rail-progress" aria-label="Шаг ${followsRoute ? routePosition.index + 1 : chapterPos} из ${followsRoute ? totalPages : chapterPages.length}"><i style="width:${Math.round((followsRoute ? routePosition.index + 1 : chapterPos) / (followsRoute ? totalPages : chapterPages.length) * 100)}%"></i></div><small>${followsRoute ? `${routeRecord.route.topic} · ${pageKind(page.taskType)}` : `${chapterPos} / ${chapterPages.length} в теме`}</small></aside>
         <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">${followsRoute ? 'Единый маршрут' : 'Главная'}</a><span>/</span>${followsRoute ? `<a href="../../index.html#${routeRecord.route.stage}">${escapeHtml(routeRecord.route.stageTitle)}</a><span>/</span><span>${escapeHtml(routeRecord.route.topic)}</span>` : `<a href="index.html">${escapeHtml(course.title)}</a><span>/</span><span>${escapeHtml(page.moduleName)}</span><span>/</span><span>${escapeHtml(page.chapterName)}</span>`}</nav>
-          <header class="lesson-head"><span class="type-chip">${pageKind(page.taskType)}</span><h1>${escapeHtml(page.safeTitle)}</h1><p>${escapeHtml(page.moduleName)} · ${escapeHtml(page.chapterName)}</p>${alternativeBase ? `<p class="alternative-note">Другой разбор темы. <a href="../../${alternativeBase.url}">Основное объяснение: ${escapeHtml(alternativeBase.title)} →</a></p>` : ''}</header>
+          <header class="lesson-head"><span class="type-chip">${pageKind(page.taskType)}</span><h1>${escapeHtml(page.safeTitle)}</h1><p>${escapeHtml(page.moduleName)} · ${escapeHtml(page.chapterName)}</p>${alternativeBase ? `<p class="alternative-note">Другой разбор темы. <a href="../../${alternativeBase.url}">Основное объяснение: ${escapeHtml(alternativeBase.title)} →</a></p>` : ''}</header>${documentationExample ? `\n          ${lessonExampleCallout(documentationExample)}` : ''}
           <div class="lesson-content ${course.slug === 'mqa-base' && page.number === 84 ? 'numbered-attributes' : ''}">${page.safeHtml || '<p>Текст для этого шага отсутствует в выгрузке.</p>'}</div>
           ${followsRoute ? routePager : `<nav class="pager" aria-label="Навигация между шагами">${previous ? `<a class="prev" href="${previous.file}"><small>Назад</small><span>← ${escapeHtml(previous.safeTitle)}</span></a>` : '<span></span>'}${next ? `<a class="next" href="${next.file}"><small>Дальше</small><span>${escapeHtml(next.safeTitle)} →</span></a>` : `<a class="next" href="index.html"><small>Готово</small><span>К структуре курса →</span></a>`}</nav>`}
           <p class="source-note">Источник: <a href="index.html">${escapeHtml(course.title)}</a> · ${escapeHtml(page.moduleName)} / ${escapeHtml(page.chapterName)} · исходный шаг ${page.number}.</p>

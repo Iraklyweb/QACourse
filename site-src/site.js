@@ -149,3 +149,18 @@ function searchEmphasis(text, query) {
   document.addEventListener('touchstart', clear, { capture: true, passive: true });
   document.addEventListener('click', clear, true);
 })();
+
+document.querySelectorAll('[data-copy-target]').forEach((button) => {
+  button.addEventListener('click', async () => {
+    const target = document.getElementById(button.dataset.copyTarget);
+    if (!target) return;
+    const initial = button.textContent;
+    try {
+      await navigator.clipboard.writeText(target.textContent.trim());
+      button.textContent = 'Скопировано';
+    } catch {
+      button.textContent = 'Не удалось скопировать';
+    }
+    window.setTimeout(() => { button.textContent = initial; }, 1800);
+  });
+});

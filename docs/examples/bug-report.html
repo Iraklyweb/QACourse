@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Заголовок, окружение, шаги воспроизведения, фактический и ожидаемый результаты.">
+  <meta name="color-scheme" content="dark light">
+  <title>Баг-репорт: заказ создаётся дважды · QA</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23101827%22%2F%3E%3Cpath%20d%3D%22M8%208h14a3%203%200%200%201%203%203v13H11a3%203%200%200%201-3-3V8Z%22%20fill%3D%22%234fd1c5%22%2F%3E%3Cpath%20d%3D%22M12%2012h9M12%2016h9M12%2020h6%22%20stroke%3D%22%23101827%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+  <link rel="stylesheet" href="../assets/site.css">
+  <link rel="stylesheet" href="../assets/route.css">
+  <script src="../assets/site.js" defer></script>
+</head>
+<body data-base="../" data-environment="development">
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="topbar">
+    <a class="brand" href="../index.html" aria-label="Курс QA, главная"><span class="brand-mark">QA</span><span>Курс QA</span></a>
+    <span class="env-badge" aria-label="Среда разработки">DEV</span><a class="production-link" data-production-link href="../../">Продакшен</a>
+    <nav aria-label="Основная навигация">
+      <a href="../courses/it-start/">IT с нуля</a><a href="../index.html#main-route">Основной курс</a><a href="../examples/">Примеры документов</a><a href="../index.html#archive">Архив курсов</a>
+    </nav>
+    <form class="search-mini" action="../search.html" role="search">
+      <label class="sr-only" for="site-search-1">Поиск по курсам</label>
+      <input id="site-search-1" name="q" type="search" placeholder="Найти тему…" autocomplete="off">
+      <button type="submit" aria-label="Искать">⌕</button>
+    </form>
+  </header>
+  <main id="main"><div class="example-page-head"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../index.html">Главная</a><span>/</span><a href="index.html">Примеры документов</a><span>/</span><span>Баг-репорт</span></nav><span class="eyebrow">Учебный пример · вымышленный продукт Demo Shop</span><h1>Баг-репорт: заказ создаётся дважды</h1><p>Заголовок, окружение, шаги воспроизведения, фактический и ожидаемый результаты.</p></div><nav class="example-switcher" aria-label="Примеры документации"><a href="test-case.html">Тест-кейс</a><a href="checklist.html">Чек-лист</a><a aria-current="page" href="bug-report.html">Баг-репорт</a></nav><ol class="document-flow"><li><span>01</span><div><strong>Требование</strong><small>Понять ожидаемое поведение</small></div></li><li><span>02</span><div><strong>Чек-лист</strong><small>Определить набор проверок</small></div></li><li><span>03</span><div><strong>Тест-кейс</strong><small>Подробно описать важный сценарий</small></div></li><li><span>04</span><div><strong>Выполнение</strong><small>Сравнить результат с ожиданием</small></div></li><li class="current"><span>05</span><div><strong>Баг-репорт</strong><small>Зафиксировать найденное отклонение</small></div></li></ol><article class="document-example">
+    <details><summary><strong>Пустой шаблон</strong><span>Что заполнять</span></summary><div class="document-panel"><button class="copy-document" type="button" data-copy-target="bug-report-template">Скопировать шаблон</button><pre id="bug-report-template">Заголовок:
+Окружение:
+Предусловия:
+Шаги воспроизведения:
+Фактический результат:
+Ожидаемый результат:
+Серьёзность:
+Приоритет:
+Вложения:</pre></div></details>
+    <details open><summary><strong>Заполненный пример</strong><span>Как выглядит документ</span></summary><div class="document-panel"><dl class="document-meta"><div><dt>ID</dt><dd>BUG-ORDER-014</dd></div><div><dt>Серьёзность</dt><dd>Высокая</dd></div><div><dt>Приоритет</dt><dd>Высокий</dd></div><div><dt>Заголовок</dt><dd>Двойное нажатие «Подтвердить заказ» создаёт два одинаковых заказа</dd></div><div><dt>Окружение</dt><dd>Test; сборка 2.4.0; Chrome 130; Windows 11</dd></div><div><dt>Предусловия</dt><dd>Пользователь авторизован; в корзине один доступный товар; заполнены данные доставки</dd></div></dl><h3>Шаги воспроизведения</h3><ol><li>Открыть корзину.</li><li>Перейти к оформлению заказа.</li><li>Дважды быстро нажать «Подтвердить заказ».</li><li>Открыть историю заказов.</li></ol><div class="result-pair"><section><span>Фактический результат</span><p>Созданы два заказа с одинаковым составом и разными номерами.</p></section><section><span>Ожидаемый результат</span><p>После первого нажатия кнопка блокируется и создаётся только один заказ.</p></section></div><p><strong>Вложения:</strong> видео воспроизведения и два идентификатора заказов без персональных данных.</p></div></details>
+    <details><summary><strong>Разбор структуры</strong><span>Почему отчёт воспроизводим</span></summary><div class="document-panel"><ul class="field-guide"><li><strong>Заголовок</strong><span>Содержит действие, условие и наблюдаемую проблему.</span></li><li><strong>Окружение</strong><span>Показывает, где именно обнаружен дефект.</span></li><li><strong>Шаги</strong><span>Начинаются после предусловий и приводят к проблеме без лишних действий.</span></li><li><strong>Фактический результат</strong><span>Описывает наблюдаемое поведение без предположений о причине.</span></li><li><strong>Ожидаемый результат</strong><span>Фиксирует корректное поведение системы.</span></li></ul></div></details>
+  </article></main>
+  <footer><span>Курс QA · без отслеживания и отправки ответов</span><a href="../about.html">О сайте</a></footer>
+</body>
+</html>

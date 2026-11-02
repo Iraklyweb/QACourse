@@ -95,6 +95,23 @@ const frontendBackendLesson = fs.readFileSync(path.join(outDir, 'courses/manual-
 for (const fragment of ['Что такое фреймворк и библиотека', 'Фреймворк &mdash; не синоним фронтенда', 'Инструменты фронтенда', '<strong>Java:</strong> Spring.', '<strong>Python:</strong> Django и FastAPI.', '<strong>Node.js</strong> сам по себе не является фреймворком']) {
   if (!frontendBackendLesson.includes(fragment)) fail(`Не исправлена лекция о фронтенде и бэкенде: ${fragment}`);
 }
+for (const [lesson, example, marker] of [
+  ['courses/mqa-base/step-003.html', 'examples/test-case.html', 'Посмотреть: тест-кейс'],
+  ['courses/mqa-base/step-004.html', 'examples/checklist.html', 'Посмотреть: чек-лист'],
+  ['courses/mqa-base/step-005.html', 'examples/bug-report.html', 'Посмотреть: баг-репорт'],
+]) {
+  const lessonHtml = fs.readFileSync(path.join(outDir, lesson), 'utf8');
+  if (!lessonHtml.includes(marker) || !lessonHtml.includes(`../../${example}`)) fail(`Нет ссылки на учебный пример в ${lesson}`);
+  if (!fs.existsSync(path.join(outDir, example))) fail(`Нет страницы учебного примера ${example}`);
+}
+const examplesHub = fs.readFileSync(path.join(outDir, 'examples/index.html'), 'utf8');
+if (!examplesHub.includes('Тестовая документация') || !examplesHub.includes('test-case.html') || !examplesHub.includes('checklist.html') || !examplesHub.includes('bug-report.html')) fail('Не собрана библиотека примеров документации');
+const testCaseExample = fs.readFileSync(path.join(outDir, 'examples/test-case.html'), 'utf8');
+if (!testCaseExample.includes('TC-ORDER-001') || !testCaseExample.includes('Пустой шаблон') || !testCaseExample.includes('Разбор структуры')) fail('Неполный пример тест-кейса');
+const checklistExample = fs.readFileSync(path.join(outDir, 'examples/checklist.html'), 'utf8');
+if (!checklistExample.includes('Дважды нажать подтверждение заказа') || !checklistExample.includes('Чем отличается от тест-кейса')) fail('Неполный пример чек-листа');
+const bugReportExample = fs.readFileSync(path.join(outDir, 'examples/bug-report.html'), 'utf8');
+if (!bugReportExample.includes('BUG-ORDER-014') || !bugReportExample.includes('Фактический результат') || !bugReportExample.includes('Ожидаемый результат')) fail('Неполный пример баг-репорта');
 if (map.some((item) => item.url === 'courses/mqa-base/step-042.html') || qaSearch.some((item) => item.url === 'courses/mqa-base/step-042.html')) fail('Дублирующий урок Q42 остался в маршруте или поиске');
 if (!fs.existsSync(path.join(outDir, 'courses/mqa-base/step-042.html'))) fail('Исходный урок Q42 должен остаться в архиве');
 if (map.some((item) => item.url === 'courses/mqa-base/step-072.html') || qaSearch.some((item) => item.url === 'courses/mqa-base/step-072.html')) fail('Устаревшая инструкция по сдаче заданий осталась в маршруте или поиске');
