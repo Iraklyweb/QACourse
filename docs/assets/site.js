@@ -150,17 +150,35 @@ function searchEmphasis(text, query) {
   document.addEventListener('click', clear, true);
 })();
 
+const copyPlainText = async (text) => {
+  if (navigator.clipboard?.writeText) {
+    try {
+      await navigator.clipboard.writeText(text);
+      return true;
+    } catch {
+      // Some embedded browsers expose the Clipboard API but deny access to it.
+    }
+  }
+
+  const field = document.createElement('textarea');
+  field.value = text;
+  field.setAttribute('readonly', '');
+  field.style.position = 'fixed';
+  field.style.opacity = '0';
+  document.body.append(field);
+  field.select();
+  const copied = document.execCommand('copy');
+  field.remove();
+  return copied;
+};
+
 document.querySelectorAll('[data-copy-target]').forEach((button) => {
   button.addEventListener('click', async () => {
     const target = document.getElementById(button.dataset.copyTarget);
     if (!target) return;
     const initial = button.textContent;
-    try {
-      await navigator.clipboard.writeText(target.textContent.trim());
-      button.textContent = 'Скопировано';
-    } catch {
-      button.textContent = 'Не удалось скопировать';
-    }
+    const copied = await copyPlainText(target.textContent.trim());
+    button.textContent = copied ? 'Скопировано' : 'Не удалось скопировать';
     window.setTimeout(() => { button.textContent = initial; }, 1800);
   });
 });
