@@ -153,5 +153,26 @@ const routeCss = fs.readFileSync(path.join(outDir, 'assets/route.css'), 'utf8');
 if (!routeCss.includes('.lesson-content table{font-family:inherit}')) fail('Таблицы используют другой шрифт');
 if (home.includes('Восемь последовательных этапов') || home.includes('После основ') || home.includes('Основное</small>')) fail('Остались прежние статусы или вступление');
 if (!fs.readFileSync(path.join(outDir, 'courses/mqa-base/step-001.html'), 'utf8').includes('<h2>Зачем тестировать</h2>')) fail('Нет вводного объяснения');
+const courseHtmlFiles = [];
+function collectCourseHtml(directory) {
+  for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
+    const entryPath = path.join(directory, entry.name);
+    if (entry.isDirectory()) collectCourseHtml(entryPath);
+    else if (entry.name.endsWith('.html')) courseHtmlFiles.push(entryPath);
+  }
+}
+collectCourseHtml(path.join(outDir, 'courses'));
+for (const file of courseHtmlFiles) {
+  const content = fs.readFileSync(file, 'utf8');
+  for (const forbidden of [
+    'приниматься не будут',
+    'обязательное условие для сдачи урока',
+    'Инструкция, как в Google Таблицах дать доступ',
+    'Сдавать домашнее задание можно только',
+    'Все последующие домашние задания, до особого распоряжения',
+    'указать эти замечания в гугл таблицах',
+    'вставь ссылку в Google Таблицы',
+  ]) if (content.includes(forbidden)) fail(`Осталось жёсткое ограничение формата «${forbidden}»: ${path.relative(outDir, file)}`);
+}
 if (seen.size !== expected.size) fail('Не все исходные страницы распределены');
 console.log(JSON.stringify({ mapped: seen.size, stages: 9, searchRecords: search.length, archives: 2, navigation: 'ok' }));
