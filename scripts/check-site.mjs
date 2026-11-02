@@ -10,6 +10,8 @@ if (!['production', 'development'].includes(expectedEnvironment)) {
 }
 const failures = [];
 const htmlFiles = [];
+const hasSalesLanding = fs.existsSync(path.join(outDir, 'qa-course', 'index.html'));
+const enforceNeutralBrand = expectedEnvironment === 'development' || hasSalesLanding;
 const forbiddenPublishedPatterns = [
   [new RegExp(['Ka', 'ta\\s+Academy'].join(''), 'i'), 'прежнее латинское название'],
   [new RegExp(['Ка', 'та\\s+Академ'].join(''), 'iu'), 'прежнее русское название'],
@@ -57,6 +59,9 @@ for (const file of htmlFiles) {
   for (const [pattern, label] of forbiddenPublishedPatterns) {
     if (pattern.test(html)) failures.push(`${path.relative(root, file)}: ${label}`);
   }
+  if (enforceNeutralBrand && /Персональный\s+курс/iu.test(html)) {
+    failures.push(`${path.relative(root, file)}: временное название курса`);
+  }
   for (const tag of html.matchAll(/<(?:a|link|script)\b[^>]*>/gi)) {
     const ref = tag[0].match(/\b(?:href|src)=["']([^"']+)["']/i)?.[1];
     if (ref && !/^(?:https?:|data:|#)/i.test(ref)) {
@@ -65,7 +70,8 @@ for (const file of htmlFiles) {
       const outsideTree = path.relative(outDir, target).startsWith('..') || path.isAbsolute(path.relative(outDir, target));
       const isProductionLink = /\bdata-production-link\b/i.test(tag[0]);
       if (isProductionLink) {
-        if (expectedEnvironment !== 'development' || target !== path.dirname(outDir)) {
+        const productionTargets = new Set([path.dirname(outDir), path.join(path.dirname(outDir), 'qa-course')]);
+        if (expectedEnvironment !== 'development' || !productionTargets.has(target)) {
           failures.push(`${path.relative(root, file)}: некорректная ссылка на продакшен ${ref}`);
         }
         continue;
@@ -97,8 +103,9 @@ for (const [pattern, label] of forbiddenPublishedPatterns) {
   if (pattern.test(searchText)) failures.push(`docs/assets/search-index.json: ${label}`);
 }
 const expectedLessons = 283;
-const expectedSearchRecords = 290;
-const expectedHtmlFiles = 298;
+const expectedSearchRecords = 289;
+const expectedHtmlFiles = hasSalesLanding ? 299 : 298;
+if (expectedEnvironment === 'development' && !hasSalesLanding) failures.push('В development нет продающей страницы курса');
 if (lessonFiles.length !== expectedLessons) failures.push(`Страниц уроков: ${lessonFiles.length}, ожидалось ${expectedLessons}`);
 if (search.length !== expectedSearchRecords) failures.push(`Записей поиска: ${search.length}, ожидалось ${expectedSearchRecords}`);
 if (htmlFiles.length !== expectedHtmlFiles) failures.push(`HTML-файлов: ${htmlFiles.length}, ожидалось ${expectedHtmlFiles}`);

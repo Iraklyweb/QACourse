@@ -18,6 +18,7 @@ for (const [course, steps] of [
   ['mqa-base', [79, 99, 100, 126, 127]],
 ]) for (const step of steps) expected.delete(`courses/${course}/step-${String(step).padStart(3, '0')}.html`);
 expected.delete('courses/mqa-base/step-042.html');
+expected.delete('courses/mqa-base/step-072.html');
 if (map.length !== expected.size) fail(`Карта: ${map.length} вместо ${expected.size} шагов`);
 if (qaSearch.length !== expected.size || new Set(qaSearch.map((item) => item.url)).size !== expected.size) fail('Поиск должен содержать каждый основной урок ровно один раз');
 if (introSearch.length !== 8 || new Set(introSearch.map((item) => item.url)).size !== 8) fail('Поиск должен содержать восемь вводных лекций');
@@ -54,7 +55,7 @@ if (firstPracticeIndex <= lastExampleIndex) fail('Практика докуме�
 if (!home.includes('id="interview"') || !home.includes('Лекции</small>') || !home.includes('Практика</small>')) fail('Нет блока собеседования или новых типов тем');
 if (!home.includes('id="end-to-end-topic-2"') || !home.includes('Выбрать и уточнить требование <small class="role-chip mixed">Лекции + практика</small>')) fail('Тема с лекцией и заданием должна быть смешанной');
 if (/\b(?:21|54) шагов\b/.test(home) || /<h2>\d+\.\s/.test(home)) fail('Ошибочное склонение или двойная нумерация этапов');
-if (!home.includes('Основной курс QA · 282 шага') || !home.includes('<strong>23 шага</strong>') || !home.includes('<strong>61 шаг</strong>') || !home.includes('<strong>21 шаг</strong>')) fail('Неверное склонение количества шагов');
+if (!home.includes('Основной курс QA · 78 часов · 281 шаг') || !home.includes('<strong>9 ч · 23 шага</strong>') || !home.includes('<strong>15 ч · 61 шаг</strong>') || !home.includes('<strong>8 ч · 21 шаг</strong>')) fail('Неверное время или склонение количества шагов');
 if (!qaSearch.every((record) => record.stageId && record.topicId && record.stageNumber)) fail('Поиску не хватает ссылок на этапы и темы');
 for (const [step, minimumBlocks] of [[84, 9], [86, 12], [87, 13]]) {
   const lesson = fs.readFileSync(path.join(outDir, `courses/mqa-base/step-${String(step).padStart(3, '0')}.html`), 'utf8');
@@ -70,13 +71,44 @@ const expectedResultLesson = fs.readFileSync(path.join(outDir, 'courses/mqa-base
 if (!expectedResultLesson.includes('Купить один детский билет на текущую дату.') || expectedResultLesson.includes('Купить билет один детский билет')) fail('Не исправлена грамматика исходного шага Q36');
 const priorityLesson = fs.readFileSync(path.join(outDir, 'courses/mqa-base/step-041.html'), 'utf8');
 if (!priorityLesson.includes('Приоритет в тестовой документации') || !priorityLesson.includes('Приоритет в баг-репортах') || !priorityLesson.includes('после оплаты не приходит подтверждение')) fail('Уроки о приоритете не объединены');
+const splitChecksLesson = fs.readFileSync(path.join(outDir, 'courses/mqa-base/step-052.html'), 'utf8');
+if (!splitChecksLesson.includes('Регистрация и профиль') || !splitChecksLesson.includes('Когда разделять не обязательно') || !splitChecksLesson.includes('Как понять, что проверку пора разделить') || !splitChecksLesson.includes('восстановление пароля')) fail('Не добавлено расширенное объяснение разных мест проверки');
+const principlesLesson = fs.readFileSync(path.join(outDir, 'courses/mqa-base/step-001.html'), 'utf8');
+for (const title of [
+  '1. Исчерпывающее тестирование невозможно',
+  '2. Тестирование демонстрирует наличие дефектов, а не их отсутствие',
+  '3. Заблуждение об отсутствии ошибок',
+  '4. Раннее тестирование сохраняет время и деньги',
+  '5. Принцип скопления или кластеризация дефектов',
+  '6. Тестирование зависит от контекста',
+  '7. Парадокс пестицида',
+]) if (!principlesLesson.includes(title)) fail(`Нет названия принципа из статьи: ${title}`);
+if (principlesLesson.includes('Материал подготовлен на основе') || principlesLesson.includes('habr.com/ru/articles/699990')) fail('В лекции осталась удалённая ссылка на статью');
+const clientTypesLesson = fs.readFileSync(path.join(outDir, 'courses/manual-testing/step-061.html'), 'utf8');
+if (!clientTypesLesson.includes('Google Таблицы &mdash; преимущественно тонкий клиент') || !clientTypesLesson.includes('Microsoft Excel для компьютера &mdash; преимущественно толстый клиент') || !clientTypesLesson.includes('Это не абсолютные категории') || !clientTypesLesson.includes('«1С:Предприятие» в режиме толстого клиента')) fail('Нет наглядного сравнения тонкого и толстого клиента');
+if (clientTypesLesson.includes('Google Docs')) fail('В сравнении с Excel остался пример Google Docs вместо Google Таблиц');
+if (clientTypesLesson.includes('Программы вроде Microsoft Word или Excel')) fail('В лекции остался дублирующий пример Microsoft Office');
+const serviceTermsLesson = fs.readFileSync(path.join(outDir, 'courses/manual-testing/step-063.html'), 'utf8');
+if (!serviceTermsLesson.includes('Вся лекция &mdash; для общего развития.')) fail('Лекция о сервисах не помечена целиком как материал для общего развития');
+if (serviceTermsLesson.includes('Что нужно уметь рассказать') || serviceTermsLesson.includes('Всё остальное &mdash; для общего развития')) fail('В лекции о сервисах осталась старая частичная пометка');
+const frontendBackendLesson = fs.readFileSync(path.join(outDir, 'courses/manual-testing/step-064.html'), 'utf8');
+for (const fragment of ['Что такое фреймворк и библиотека', 'Фреймворк &mdash; не синоним фронтенда', 'Инструменты фронтенда', '<strong>Java:</strong> Spring.', '<strong>Python:</strong> Django и FastAPI.', '<strong>Node.js</strong> сам по себе не является фреймворком']) {
+  if (!frontendBackendLesson.includes(fragment)) fail(`Не исправлена лекция о фронтенде и бэкенде: ${fragment}`);
+}
 if (map.some((item) => item.url === 'courses/mqa-base/step-042.html') || qaSearch.some((item) => item.url === 'courses/mqa-base/step-042.html')) fail('Дублирующий урок Q42 остался в маршруте или поиске');
 if (!fs.existsSync(path.join(outDir, 'courses/mqa-base/step-042.html'))) fail('Исходный урок Q42 должен остаться в архиве');
+if (map.some((item) => item.url === 'courses/mqa-base/step-072.html') || qaSearch.some((item) => item.url === 'courses/mqa-base/step-072.html')) fail('Устаревшая инструкция по сдаче заданий осталась в маршруте или поиске');
+if (!fs.existsSync(path.join(outDir, 'courses/mqa-base/step-072.html'))) fail('Исходный урок Q72 должен остаться в архиве');
+const studyGuideIndex = map.findIndex((item) => item.url === 'courses/mqa-base/step-073.html');
+if (studyGuideIndex !== 0 || map[0]?.route.topic !== 'Как проходить курс') fail('Лекция о прохождении курса должна открывать основной маршрут');
+const studyGuide = fs.readFileSync(path.join(outDir, 'courses/mqa-base/step-073.html'), 'utf8');
+if (!studyGuide.includes('Лекция «Как проходить курс»') || !studyGuide.includes('Сначала поймите основную мысль') || studyGuide.includes('Google Таблиц') || studyGuide.includes('домашнего задания')) fail('Не переработана вводная лекция о прохождении курса');
 const about = fs.readFileSync(path.join(outDir, 'about.html'), 'utf8');
 if (!about.includes('доступны вводный курс, основной QA-маршрут')) fail('Неверно описан состав dev-курса');
 const introIndex = fs.readFileSync(path.join(outDir, 'courses/it-start/index.html'), 'utf8');
 if (!home.includes('IT с нуля') || !introIndex.includes('Что делает тестировщик')) fail('Вводный курс не представлен на главной или в содержании');
-for (const removedCopy of ['готов первый блок', 'часов готовы', '8 часов', 'без практических заданий', 'Как создаётся программный продукт']) {
+if (!home.includes('<strong>4 часа</strong>') || !introIndex.includes('<strong>2 часа</strong>')) fail('Не показано время вводного курса или его блоков');
+for (const removedCopy of ['готов первый блок', 'часов готовы', 'без практических заданий', 'Как создаётся программный продукт']) {
   if (home.includes(removedCopy) || introIndex.includes(removedCopy)) fail(`Осталась служебная или удалённая информация: ${removedCopy}`);
 }
 for (const number of Array.from({ length: 8 }, (_, index) => index + 1)) {
