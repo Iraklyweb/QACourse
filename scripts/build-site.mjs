@@ -756,16 +756,20 @@ for (const course of courses) {
     const routeNext = routePosition ? curriculum.records[routePosition.index + 1] : null;
     const alternativeBase = routeRecord?.alternativeTo ? routeBySourceKey.get(routeRecord.alternativeTo) : null;
     const documentationExample = documentationExampleByLesson.get(currentUrl);
+    const usesUnifiedPracticeNumber = followsRoute && ['Основная практика документов', 'Дополнительные задания — по желанию'].includes(routeRecord.route.topic);
+    const lessonHtml = usesUnifiedPracticeNumber
+      ? page.safeHtml.replace(/^\s*<h1\b[^>]*>[\s\S]*?<\/h1>\s*/i, '')
+      : page.safeHtml;
     const routePager = `<nav class="pager" aria-label="Навигация между шагами">${routePrevious ? `<a class="prev" href="../../${routePrevious.url}"><small>Назад · единый маршрут</small><span>← ${escapeHtml(routePrevious.title)}</span></a>` : '<span></span>'}${routeNext ? `<a class="next" href="../../${routeNext.url}"><small>Дальше · единый маршрут</small><span>${escapeHtml(routeNext.title)} →</span></a>` : '<a class="next" href="../../index.html"><small>Маршрут пройден</small><span>К этапам →</span></a>'}</nav>`;
     write(`courses/${course.slug}/${page.file}`, shell({
-      title: page.safeTitle,
-      description: plainText(page.safeHtml).slice(0, 155),
+      title: followsRoute ? routeRecord.title : page.safeTitle,
+      description: plainText(lessonHtml).slice(0, 155),
       depth: 2,
       current: course.slug,
       body: `<div class="reader-layout"><aside class="reader-rail"><a href="${followsRoute ? '../../index.html' : 'index.html'}">← ${followsRoute ? 'Единый маршрут' : 'Структура курса'}</a><div class="rail-index"><span>${String(followsRoute ? routePosition.index + 1 : page.number).padStart(3, '0')}</span><small>из ${followsRoute ? totalPages : course.pages.length}</small></div><p>${escapeHtml(followsRoute ? routeRecord.route.stageTitle : page.chapterName)}</p><div class="rail-progress" aria-label="Шаг ${followsRoute ? routePosition.index + 1 : chapterPos} из ${followsRoute ? totalPages : chapterPages.length}"><i style="width:${Math.round((followsRoute ? routePosition.index + 1 : chapterPos) / (followsRoute ? totalPages : chapterPages.length) * 100)}%"></i></div><small>${followsRoute ? `${routeRecord.route.topic} · ${pageKind(page.taskType)}` : `${chapterPos} / ${chapterPages.length} в теме`}</small></aside>
         <article class="lesson"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../../index.html">${followsRoute ? 'Единый маршрут' : 'Главная'}</a><span>/</span>${followsRoute ? `<a href="../../index.html#${routeRecord.route.stage}">${escapeHtml(routeRecord.route.stageTitle)}</a><span>/</span><span>${escapeHtml(routeRecord.route.topic)}</span>` : `<a href="index.html">${escapeHtml(course.title)}</a><span>/</span><span>${escapeHtml(page.moduleName)}</span><span>/</span><span>${escapeHtml(page.chapterName)}</span>`}</nav>
-          <header class="lesson-head"><span class="type-chip">${pageKind(page.taskType)}</span><h1>${escapeHtml(page.safeTitle)}</h1><p>${escapeHtml(page.moduleName)} · ${escapeHtml(page.chapterName)}</p>${alternativeBase ? `<p class="alternative-note">Другой разбор темы. <a href="../../${alternativeBase.url}">Основное объяснение: ${escapeHtml(alternativeBase.title)} →</a></p>` : ''}</header>${documentationExample ? `\n          ${lessonExampleCallout(documentationExample)}` : ''}
-          <div class="lesson-content ${course.slug === 'mqa-base' && page.number === 84 ? 'numbered-attributes' : ''}">${page.safeHtml || '<p>Текст для этого шага отсутствует в выгрузке.</p>'}</div>
+          <header class="lesson-head"><span class="type-chip">${pageKind(page.taskType)}</span><h1>${escapeHtml(followsRoute ? routeRecord.title : page.safeTitle)}</h1><p>${escapeHtml(page.moduleName)} · ${escapeHtml(page.chapterName)}</p>${alternativeBase ? `<p class="alternative-note">Другой разбор темы. <a href="../../${alternativeBase.url}">Основное объяснение: ${escapeHtml(alternativeBase.title)} →</a></p>` : ''}</header>${documentationExample ? `\n          ${lessonExampleCallout(documentationExample)}` : ''}
+          <div class="lesson-content ${course.slug === 'mqa-base' && page.number === 84 ? 'numbered-attributes' : ''}">${lessonHtml || '<p>Текст для этого шага отсутствует в выгрузке.</p>'}</div>
           ${followsRoute ? routePager : `<nav class="pager" aria-label="Навигация между шагами">${previous ? `<a class="prev" href="${previous.file}"><small>Назад</small><span>← ${escapeHtml(previous.safeTitle)}</span></a>` : '<span></span>'}${next ? `<a class="next" href="${next.file}"><small>Дальше</small><span>${escapeHtml(next.safeTitle)} →</span></a>` : `<a class="next" href="index.html"><small>Готово</small><span>К структуре курса →</span></a>`}</nav>`}
           <p class="source-note">Источник: <a href="index.html">${escapeHtml(course.title)}</a> · ${escapeHtml(page.moduleName)} / ${escapeHtml(page.chapterName)} · исходный шаг ${page.number}.</p>
         </article></div>`,
@@ -812,7 +816,7 @@ const searchIndex = courses.flatMap((course) => course.pages.flatMap((page) => {
     stageId: place.route.stage,
     topicId: `${place.route.stage}-topic-${place.route.topicOrder}`,
     stageNumber: place.route.stageOrder,
-    title: page.safeTitle,
+    title: place.title,
     type: pageKind(page.taskType),
     url,
     text: plainText(page.safeHtml).slice(0, 12000),

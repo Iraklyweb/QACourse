@@ -76,6 +76,16 @@ const stages = [
 ];
 
 const source = { M: 'manual-testing', Q: 'mqa-base' };
+const renumberedPracticeTopics = new Set([
+  'Основная практика документов',
+  'Дополнительные задания — по желанию',
+]);
+
+function routeLessonTitle(sourceTitle, topicTitle, itemIndex) {
+  if (!renumberedPracticeTopics.has(topicTitle)) return sourceTitle;
+  return sourceTitle.replace(/№\s*\d+/u, `№${itemIndex + 1}`).trim();
+}
+
 // The underlying pages remain unique; these explicitly identified recaps point
 // readers to the primary explanation instead of silently repeating it.
 const alternativeTo = {
@@ -98,7 +108,7 @@ export function buildCurriculum(courses) {
   const seen = new Set();
   const records = [];
   const route = stages.map((stage, stageIndex) => ({ ...stage, number: stageIndex + 1, topics: stage.topics.map(([title, role, spec], topicIndex) => {
-    const items = expand(spec).map(({ courseSlug, number }) => {
+    const items = expand(spec).map(({ courseSlug, number }, itemIndex) => {
       const key = `${courseSlug}:${number}`;
       if (seen.has(key)) throw new Error(`Повтор в маршруте: ${key}`);
       const found = lookup.get(key);
@@ -109,7 +119,7 @@ export function buildCurriculum(courses) {
       const record = {
         source: { course: courseSlug, step: number, module: found.page.moduleName, chapter: found.page.chapterName },
         route: { stage: stage.id, stageTitle: stage.title, topic: title, stageOrder: stageIndex + 1, topicOrder: topicIndex + 1, lessonOrder: records.length + 1, role: alternative ? 'alternative' : role },
-        title: found.page.safeTitle,
+        title: routeLessonTitle(found.page.safeTitle, title, itemIndex),
         taskType: found.page.taskType,
         url: `courses/${courseSlug}/${found.page.file}`,
         ...(alternative ? { alternativeTo: alternative } : {}),

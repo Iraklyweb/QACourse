@@ -2881,7 +2881,7 @@
       "lessonOrder": 144,
       "role": "practice"
     },
-    "title": "ЧЛ. Практическое задание №4 ",
+    "title": "ЧЛ. Практическое задание №2",
     "taskType": "mentorCheckTask",
     "url": "courses/mqa-base/step-077.html"
   },
@@ -2901,7 +2901,7 @@
       "lessonOrder": 145,
       "role": "practice"
     },
-    "title": "ТК. Практическое задание №5 ",
+    "title": "ТК. Практическое задание №3",
     "taskType": "mentorCheckTask",
     "url": "courses/mqa-base/step-078.html"
   },
@@ -2921,7 +2921,7 @@
       "lessonOrder": 146,
       "role": "reference"
     },
-    "title": "БР. Практическое задание №2 ",
+    "title": "БР. Практическое задание №1",
     "taskType": "mentorCheckTask",
     "url": "courses/mqa-base/step-075.html"
   },
@@ -2941,7 +2941,7 @@
       "lessonOrder": 147,
       "role": "reference"
     },
-    "title": "БР. Практическое задание №3 ",
+    "title": "БР. Практическое задание №2",
     "taskType": "mentorCheckTask",
     "url": "courses/mqa-base/step-076.html"
   },
@@ -2961,7 +2961,7 @@
       "lessonOrder": 148,
       "role": "reference"
     },
-    "title": "БР. Практическое задание №1 ",
+    "title": "БР. Практическое задание №3",
     "taskType": "mentorCheckTask",
     "url": "courses/mqa-base/step-094.html"
   },
@@ -2981,7 +2981,7 @@
       "lessonOrder": 149,
       "role": "reference"
     },
-    "title": "БР. Практическое задание №2",
+    "title": "БР. Практическое задание №4",
     "taskType": "mentorCheckTask",
     "url": "courses/mqa-base/step-095.html"
   },
@@ -3001,7 +3001,7 @@
       "lessonOrder": 150,
       "role": "reference"
     },
-    "title": "БР. Практическое задание №3",
+    "title": "БР. Практическое задание №5",
     "taskType": "mentorCheckTask",
     "url": "courses/mqa-base/step-096.html"
   },
@@ -3021,7 +3021,7 @@
       "lessonOrder": 151,
       "role": "reference"
     },
-    "title": "ЧЛ. Практическое задание №4 ",
+    "title": "ЧЛ. Практическое задание №6",
     "taskType": "mentorCheckTask",
     "url": "courses/mqa-base/step-097.html"
   },
@@ -3041,7 +3041,7 @@
       "lessonOrder": 152,
       "role": "reference"
     },
-    "title": "Требования. Практическое задание №1",
+    "title": "Требования. Практическое задание №7",
     "taskType": "mentorCheckTask",
     "url": "courses/manual-testing/step-055.html"
   },

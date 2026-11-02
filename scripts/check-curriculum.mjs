@@ -20,6 +20,12 @@ for (const [course, steps] of [
 expected.delete('courses/mqa-base/step-042.html');
 expected.delete('courses/mqa-base/step-072.html');
 if (map.length !== expected.size) fail(`Карта: ${map.length} вместо ${expected.size} шагов`);
+for (const topic of ['Основная практика документов', 'Дополнительные задания — по желанию']) {
+  const items = map.filter((item) => item.route.topic === topic);
+  items.forEach((item, index) => {
+    if (!item.title.includes(`№${index + 1}`)) fail(`Нарушена единая нумерация в теме «${topic}»: ${item.title}`);
+  });
+}
 if (qaSearch.length !== expected.size || new Set(qaSearch.map((item) => item.url)).size !== expected.size) fail('Поиск должен содержать каждый основной урок ровно один раз');
 if (introSearch.length !== 8 || new Set(introSearch.map((item) => item.url)).size !== 8) fail('Поиск должен содержать восемь вводных лекций');
 if (!home.includes('Архив исходных курсов')) fail('Нет раздела архивов');
