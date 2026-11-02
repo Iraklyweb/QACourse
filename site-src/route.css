@@ -136,7 +136,6 @@ footer{margin-top:2.5rem}
 .examples-hero>p,.example-page-head>p{max-width:760px;color:var(--muted);font-size:1.08rem}
 .document-flow{max-width:var(--max);margin:0 auto;padding:1rem 24px 2rem;display:grid;grid-template-columns:repeat(5,1fr);gap:.65rem;list-style:none}
 .document-flow li{min-width:0;padding:.8rem;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
-.document-flow li.current{border-color:var(--aqua);box-shadow:inset 0 0 0 1px var(--aqua)}
 .document-flow li>span{display:block;margin-bottom:.4rem;color:var(--aqua);font:800 .75rem/1 ui-monospace,monospace}
 .document-flow li div{display:grid;gap:.2rem}.document-flow li strong{font-size:.88rem}.document-flow li small{color:var(--muted);line-height:1.35}
 .example-grid{max-width:var(--max);margin:0 auto;padding:1rem 24px 3rem;display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}

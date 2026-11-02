@@ -557,7 +557,7 @@ const documentationExamples = [
 ];
 const documentationExampleByLesson = new Map(documentationExamples.map((example) => [example.lessonUrl, example]));
 
-function documentationSequence(activeSlug = '') {
+function documentationSequence() {
   const steps = [
     ['Требование', 'Понять ожидаемое поведение'],
     ['Чек-лист', 'Определить набор проверок'],
@@ -565,8 +565,7 @@ function documentationSequence(activeSlug = '') {
     ['Выполнение', 'Сравнить результат с ожиданием'],
     ['Баг-репорт', 'Зафиксировать найденное отклонение'],
   ];
-  const slugByIndex = ['', 'checklist', 'test-case', '', 'bug-report'];
-  return `<ol class="document-flow">${steps.map(([title, description], index) => `<li${slugByIndex[index] === activeSlug ? ' class="current"' : ''}><span>${String(index + 1).padStart(2, '0')}</span><div><strong>${title}</strong><small>${description}</small></div></li>`).join('')}</ol>`;
+  return `<ol class="document-flow">${steps.map(([title, description], index) => `<li><span>${String(index + 1).padStart(2, '0')}</span><div><strong>${title}</strong><small>${description}</small></div></li>`).join('')}</ol>`;
 }
 
 function documentationExampleNav(activeSlug) {
@@ -578,7 +577,7 @@ function lessonExampleCallout(example) {
 }
 
 function examplePageBody(example) {
-  const sharedHead = `<div class="example-page-head"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../index.html">Главная</a><span>/</span><a href="index.html">Примеры документов</a><span>/</span><span>${escapeHtml(example.kind)}</span></nav><span class="eyebrow">Учебный пример · вымышленный продукт Demo Shop</span><h1>${escapeHtml(example.title)}</h1><p>${escapeHtml(example.teaser)}</p></div>${documentationExampleNav(example.slug)}${documentationSequence(example.slug)}`;
+  const sharedHead = `<div class="example-page-head"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="../index.html">Главная</a><span>/</span><a href="index.html">Примеры документов</a><span>/</span><span>${escapeHtml(example.kind)}</span></nav><span class="eyebrow">Учебный пример · вымышленный продукт Demo Shop</span><h1>${escapeHtml(example.title)}</h1><p>${escapeHtml(example.teaser)}</p></div>${documentationExampleNav(example.slug)}`;
   if (example.slug === 'test-case') return `${sharedHead}<article class="document-example">
     <details><summary><strong>Пустой шаблон</strong><span>Что заполнять</span></summary><div class="document-panel"><button class="copy-document" type="button" data-copy-target="test-case-template">Скопировать шаблон</button><pre id="test-case-template">ID:\nНазвание:\nЦель проверки:\nПредусловия:\nТестовые данные:\nШаги и ожидаемые результаты:\nПостусловия:\nПриоритет:</pre></div></details>
     <details open><summary><strong>Заполненный пример</strong><span>Как выглядит документ</span></summary><div class="document-panel"><dl class="document-meta"><div><dt>ID</dt><dd>TC-ORDER-001</dd></div><div><dt>Приоритет</dt><dd>Высокий</dd></div><div><dt>Название</dt><dd>Успешное оформление заказа авторизованным пользователем</dd></div><div><dt>Цель</dt><dd>Убедиться, что пользователь может оформить один товар с доставкой курьером</dd></div><div><dt>Предусловия</dt><dd>Пользователь авторизован; товар «Беспроводная мышь» доступен; корзина пуста</dd></div><div><dt>Тестовые данные</dt><dd>Адрес: Учебная улица, 10; способ оплаты: при получении</dd></div></dl><div class="document-table-wrap"><table class="doc-table doc-steps"><thead><tr><th>№</th><th>Действие</th><th>Ожидаемый результат</th></tr></thead><tbody><tr><td data-label="Шаг">1</td><td data-label="Действие">Открыть карточку товара «Беспроводная мышь»</td><td data-label="Ожидаемый результат">Карточка открыта, товар доступен для заказа</td></tr><tr><td data-label="Шаг">2</td><td data-label="Действие">Нажать «Добавить в корзину»</td><td data-label="Ожидаемый результат">Товар добавлен, счётчик корзины равен 1</td></tr><tr><td data-label="Шаг">3</td><td data-label="Действие">Открыть корзину</td><td data-label="Ожидаемый результат">Отображается один товар, название и цена верны</td></tr><tr><td data-label="Шаг">4</td><td data-label="Действие">Нажать «Оформить заказ», указать адрес и оплату при получении</td><td data-label="Ожидаемый результат">Данные приняты, кнопка подтверждения доступна</td></tr><tr><td data-label="Шаг">5</td><td data-label="Действие">Нажать «Подтвердить заказ»</td><td data-label="Ожидаемый результат">Создан один заказ, показан его номер и статус «Принят»</td></tr></tbody></table></div><p><strong>Постусловие:</strong> удалить учебный заказ или пометить его как тестовый.</p></div></details>
